@@ -1,40 +1,79 @@
 package com.richikin.runner.core;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.richikin.enumslib.StateID;
+import com.richikin.runner.config.AppConfig;
+import com.richikin.runner.developer.Developer;
 
-/**
- * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
- */
-public class MainGame extends ApplicationAdapter
+public class MainGame extends com.badlogic.gdx.Game
 {
-    private SpriteBatch batch;
-    private Texture     image;
-
     @Override
     public void create()
     {
-        batch = new SpriteBatch();
-        image = new Texture("badlogic.png");
+        App.mainGame = this;
+
+        //
+        // Initialise all essential objects required before
+        // the main screen is initialised.
+        //
+
+        // TODO: 21/02/2021 - This is crap, change it
+        Startup startup = new Startup();
+        startup.startApp();
+        startup.closeStartup();
     }
 
     @Override
     public void render()
     {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
-        batch.draw(image, 165, 180);
-        batch.end();
+        ScreenUtils.clear(1, 1, 1, 1);
+
+        super.render();
+
+        AppConfig.configListener.update();
+
+        App.baseRenderer.getSplashScreen().update();
     }
 
     @Override
-    public void dispose()
+    public void setScreen(Screen screen)
     {
-        batch.dispose();
-        image.dispose();
+        Gdx.app.debug("MG: ", ("" + screen.getClass()));
+
+        super.setScreen(screen);
+    }
+
+    /**
+     * Pause the app
+     */
+    @Override
+    public void pause()
+    {
+        super.pause();
+
+        if (!Developer.isDevMode()
+            && (App.appState != null)
+            && (App.appState.equalTo(StateID._STATE_GAME)))
+        {
+            AppConfig.pause();
+        }
+    }
+
+    /**
+     * Actions to perform on leaving Pause
+     */
+    @Override
+    public void resume()
+    {
+        super.resume();
+
+        if (!Developer.isDevMode()
+            && (App.appState != null)
+            && (App.appState.equalTo(StateID._STATE_GAME)))
+        {
+            AppConfig.unPause();
+        }
     }
 }

@@ -1,18 +1,15 @@
 package com.richikin.runner.entities;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.runner.characters.managers.*;
-import com.richikin.runner.characters.misc.Teleporter;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.core.App;
 import com.richikin.runner.entities.components.IEntityManagerComponent;
+import com.richikin.runner.entities.managers.AlienManager;
+import com.richikin.runner.entities.managers.PlayerManager;
 import com.richikin.runner.entities.objects.GdxSprite;
 import com.richikin.runner.entities.objects.IEntityManager;
-import com.richikin.runner.entities.objects.TeleportBeam;
-import com.richikin.runner.maps.RoomManager;
 import com.richikin.utilslib.logging.Trace;
 
 public class  EntityManager implements IEntityManager
@@ -24,32 +21,16 @@ public class  EntityManager implements IEntityManager
     static
     {
         enemies = new Array<>();
-
-        enemies.add(GraphicID.G_3BALLS_UFO);
-        enemies.add(GraphicID.G_3LEGS_ALIEN);
-        enemies.add(GraphicID.G_ASTEROID);
-        enemies.add(GraphicID.G_ALIEN_WHEEL);
-        enemies.add(GraphicID.G_BLOB);
-        enemies.add(GraphicID.G_DOG);
-        enemies.add(GraphicID.G_GREEN_BLOCK);
-        enemies.add(GraphicID.G_SPINNING_BALL);
-        enemies.add(GraphicID.G_STAIR_CLIMBER);
-        enemies.add(GraphicID.G_STAR_SPINNER);
-        enemies.add(GraphicID.G_TOPSPIN);
-        enemies.add(GraphicID.G_TWINKLES);
     }
 
     // --------------------------------------------------
     // Indexes into manager list
     public int _alienManagerIndex;
-    public int _bombManagerIndex;
 
     // --------------------------------------------------
     // Indexes into entity list
     public int   _playerIndex;
-    public int[] _teleportIndex;
 
-    public TeleportBeam  teleportBeam;
     public PlayerManager playerManager;
     public RenderSystem  renderSystem;
 
@@ -57,8 +38,7 @@ public class  EntityManager implements IEntityManager
 
     public EntityManager()
     {
-        this.renderSystem   = new RenderSystem();
-        this._teleportIndex = new int[RoomManager._MAX_TELEPORTERS];
+        this.renderSystem = new RenderSystem();
     }
 
     @Override
@@ -66,13 +46,6 @@ public class  EntityManager implements IEntityManager
     {
         Trace.__FILE_FUNC();
 
-        // TODO: 09/01/2021 - Look at adding these into the entity manager list
-        App.roverManager          = new RoverManager();
-        App.teleportManager       = new TeleportManager();
-        App.missileBaseManager    = new MissileBaseManager();
-        App.defenceStationManager = new DefenceStationManager();
-
-        _bombManagerIndex  = App.entityData.addManager(new BombManager());
         _alienManagerIndex = App.entityData.addManager(new AlienManager());
     }
 
@@ -86,11 +59,6 @@ public class  EntityManager implements IEntityManager
         playerManager.init();
 
         addBackgroundEntities();
-
-        App.roverManager.init();
-        App.teleportManager.init();
-        App.missileBaseManager.init();
-        App.defenceStationManager.init();
 
         for (final IEntityManagerComponent system : App.entityData.managerList)
         {
@@ -231,7 +199,6 @@ public class  EntityManager implements IEntityManager
     {
         if (renderSystem != null)
         {
-            renderSystem.drawTeleportBeams(teleportBeam);
             renderSystem.drawSprites();
         }
     }
@@ -239,39 +206,12 @@ public class  EntityManager implements IEntityManager
     @Override
     public void releaseEntity(GdxSprite entity)
     {
-        switch (entity.gid)
+        for (GraphicID gid : enemies)
         {
-            case G_TRANSPORTER:
+            if (gid == entity.gid)
             {
-                _teleportIndex[((Teleporter) entity).teleporterNumber] = 0;
+                App.entityData.managerList.get(_alienManagerIndex).free(gid);
             }
-            break;
-
-            case G_MISSILE_BASE:
-            {
-                App.missileBaseManager.free();
-            }
-            break;
-
-            case G_BOMB:
-            case G_DEFENDER:
-            case G_MISSILE:
-            case G_ROVER:
-            {
-            }
-            break;
-
-            default:
-            {
-                for (GraphicID gid : enemies)
-                {
-                    if (gid == entity.gid)
-                    {
-                        App.entityData.managerList.get(_alienManagerIndex).free(gid);
-                    }
-                }
-            }
-            break;
         }
     }
 
@@ -282,9 +222,7 @@ public class  EntityManager implements IEntityManager
     @Override
     public void updateIndexes()
     {
-        _playerIndex      = 0;
-        _teleportIndex[0] = 0;
-        _teleportIndex[1] = 0;
+        _playerIndex = 0;
 
         for (int i = 0; i < App.entityData.entityMap.size; i++)
         {
@@ -292,16 +230,9 @@ public class  EntityManager implements IEntityManager
 
             if (entity != null)
             {
-                if (entity.gid == GraphicID.G_TRANSPORTER)
+                if (entity.gid == GraphicID.G_PLAYER)
                 {
-                    _teleportIndex[((Teleporter) entity).teleporterNumber] = i;
-                }
-                else
-                {
-                    if (entity.gid == GraphicID.G_PLAYER)
-                    {
-                        _playerIndex = i;
-                    }
+                    _playerIndex = i;
                 }
             }
         }
@@ -321,13 +252,13 @@ public class  EntityManager implements IEntityManager
     {
         // --------------------------------------------------
         //
-        BackgroundObjectsManager backgroundObjectsManager = new BackgroundObjectsManager();
-        backgroundObjectsManager.addUFOs(2 + MathUtils.random(2));
-        backgroundObjectsManager.addTwinkleStars();
-
-        BarrierManager barrierManager = new BarrierManager();
-        barrierManager.init();
-        barrierManager.create();
+//        BackgroundObjectsManager backgroundObjectsManager = new BackgroundObjectsManager();
+//        backgroundObjectsManager.addUFOs(2 + MathUtils.random(2));
+//        backgroundObjectsManager.addTwinkleStars();
+//
+//        BarrierManager barrierManager = new BarrierManager();
+//        barrierManager.init();
+//        barrierManager.create();
     }
 
     @Override
@@ -336,7 +267,6 @@ public class  EntityManager implements IEntityManager
         enemies.clear();
         enemies = null;
 
-        teleportBeam  = null;
         playerManager = null;
         renderSystem  = null;
     }

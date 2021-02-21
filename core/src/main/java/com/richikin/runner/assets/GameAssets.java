@@ -7,6 +7,9 @@ import com.richikin.utilslib.maths.SimpleVec2;
 
 public class GameAssets
 {
+    public static final String _PLAYER_IDLE_ASSET = "";
+    public static final int _PLAYER_STAND_FRAMES  = 1;
+
     public static int hudPanelWidth;      // Set when object is loaded
     public static int hudPanelHeight;     //
 

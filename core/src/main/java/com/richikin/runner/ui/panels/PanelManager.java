@@ -2,7 +2,7 @@ package com.richikin.runner.ui.panels;
 
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.StateID;
-import com.richikin.jetman.core.App;
+import com.richikin.runner.core.App;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Direction;

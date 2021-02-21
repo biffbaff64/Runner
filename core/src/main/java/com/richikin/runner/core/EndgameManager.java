@@ -3,7 +3,6 @@ package com.richikin.runner.core;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.StateID;
 import com.richikin.runner.config.AppConfig;
-import com.richikin.runner.ui.GameCompletedPanel;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 
@@ -56,8 +55,8 @@ public class EndgameManager
 
                 App.getHud().hideControls();
 
-                App.mainGameScreen.completedPanel = new GameCompletedPanel();
-                App.mainGameScreen.completedPanel.setup();
+//                App.mainGameScreen.completedPanel = new GameCompletedPanel();
+//                App.mainGameScreen.completedPanel.setup();
 
                 App.getHud().setStateID(StateID._STATE_GAME_FINISHED);
                 App.appState.set(StateID._STATE_GAME_FINISHED);

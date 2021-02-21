@@ -3,10 +3,12 @@ package com.richikin.runner.core;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.richikin.enumslib.StateID;
+import com.richikin.runner.config.Settings;
 import com.richikin.runner.entities.Entities;
 import com.richikin.runner.entities.EntityData;
 import com.richikin.runner.entities.EntityManager;
 import com.richikin.runner.entities.EntityUtils;
+import com.richikin.runner.entities.hero.MainPlayer;
 import com.richikin.runner.entities.paths.PathUtils;
 import com.richikin.runner.graphics.CameraUtils;
 import com.richikin.runner.graphics.parallax.ParallaxManager;
@@ -18,6 +20,8 @@ import com.richikin.runner.maps.RoomManager;
 import com.richikin.runner.physics.CollisionUtils;
 import com.richikin.runner.screens.MainGameScreen;
 import com.richikin.runner.screens.MainMenuScreen;
+import com.richikin.runner.ui.HeadsUpDisplay;
+import com.richikin.runner.ui.panels.PanelManager;
 import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.assets.AssetLoader;
 import com.richikin.utilslib.core.ISettings;
@@ -41,7 +45,7 @@ public final class App extends LibApp
     public static HighScoreUtils  highScoreUtils;
     public static ParallaxManager parallaxManager;
     public static PanelManager    panelManager;
-    public static LevelManager levelManager;
+    public static LevelManager    levelManager;
     public static RoomManager  roomManager;
 
     //
@@ -55,7 +59,7 @@ public final class App extends LibApp
     public static EntityData     entityData;
     public static MapData        mapData;
     public static HeadsUpDisplay hud;
-    public static GameProgress  gameProgress;
+    public static GameProgress   gameProgress;
     public static MapCreator    mapCreator;
     public static EntityManager entityManager;
 
@@ -105,7 +109,7 @@ public final class App extends LibApp
 
     public static SimpleVec2 getPlayerPos()
     {
-        position.set(entities.mainPlayer.sprite.getX(), entities.mainPlayer.sprite.getY());
+//        position.set(entities.mainPlayer.sprite.getX(), entities.mainPlayer.sprite.getY());
 
         return position;
     }
