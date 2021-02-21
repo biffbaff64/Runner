@@ -2,7 +2,6 @@ package com.richikin.runner.core;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.StateID;
 import com.richikin.runner.entities.Entities;
 import com.richikin.runner.entities.EntityData;
