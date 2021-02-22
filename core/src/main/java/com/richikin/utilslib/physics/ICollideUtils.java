@@ -1,6 +1,8 @@
 package com.richikin.utilslib.physics;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.richikin.enumslib.GraphicID;
+import com.richikin.enumslib.TileID;
 import com.richikin.runner.entities.objects.GdxSprite;
 import com.richikin.runner.physics.aabb.CollisionObject;
 

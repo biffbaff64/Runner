@@ -2,7 +2,6 @@ package com.richikin.runner.entities;
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.runner.characters.misc.DefenceStation;
 import com.richikin.runner.entities.components.IEntityManagerComponent;
 import com.richikin.runner.entities.objects.BaseEntity;
 import com.richikin.utilslib.logging.Trace;
@@ -13,7 +12,6 @@ public class EntityData implements Disposable
 {
     public Array<BaseEntity>                  entityMap;
     public ArrayList<IEntityManagerComponent> managerList;
-    public DefenceStation[]                   defenceStations;
 
     public EntityData()
     {
@@ -97,6 +95,5 @@ public class EntityData implements Disposable
 
         entityMap   = null;
         managerList = null;
-        defenceStations = null;
     }
 }

@@ -19,11 +19,7 @@ import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.config.Settings;
 import com.richikin.runner.core.App;
 import com.richikin.runner.developer.Developer;
-import com.richikin.runner.developer.DeveloperPanel;
 import com.richikin.runner.ui.IUIPage;
-import com.richikin.runner.ui.InstructionsPanel;
-import com.richikin.runner.ui.PrivacyPolicyPanel;
-import com.richikin.runner.ui.StatsPanel;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.ui.Scene2DUtils;
 
@@ -40,9 +36,6 @@ public class OptionsPage implements IUIPage
     private CheckBox           hintsCheckBox;
     private Texture            foreground;
     private Skin               skin;
-    private StatsPanel         statsPanel;
-    private PrivacyPolicyPanel privacyPanel;
-    private InstructionsPanel  storyPanel;
     private ScreenID           activePanel;
     private boolean            isJustFinishedOptionsPanel;
     private boolean            enteredDeveloperPanel;

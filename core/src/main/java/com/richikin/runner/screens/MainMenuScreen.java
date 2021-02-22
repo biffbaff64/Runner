@@ -13,7 +13,6 @@ import com.richikin.runner.core.App;
 import com.richikin.runner.graphics.Gfx;
 import com.richikin.runner.graphics.camera.OrthoGameCamera;
 import com.richikin.runner.graphics.effects.StarField;
-import com.richikin.runner.ui.ExitPanel;
 import com.richikin.runner.ui.IUIPage;
 import com.richikin.utilslib.logging.Trace;
 
@@ -28,9 +27,7 @@ public class MainMenuScreen extends AbstractBaseScreen
     private static final int _OPTIONS_PAGE   = 1;
     private static final int _HISCORE_PAGE   = 2;
     private static final int _CREDITS_PAGE   = 3;
-    private static final int _EXIT_PAGE      = 4;
 
-    private ExitPanel          exitPanel;
     private OptionsPage        optionsPage;
     private MenuPage           menuPage;
     private Texture            background;
@@ -63,11 +60,6 @@ public class MainMenuScreen extends AbstractBaseScreen
 
         menuPage.initialise();
         menuPage.show();
-
-        if (AppConfig.isAndroidApp() && !App.googleServices.isSignedIn())
-        {
-            App.googleServices.signIn();
-        }
 
         Trace.finishedMessage();
     }
@@ -109,20 +101,12 @@ public class MainMenuScreen extends AbstractBaseScreen
                 case _HISCORE_PAGE:
                 case _CREDITS_PAGE:
                 case _OPTIONS_PAGE:
-                case _EXIT_PAGE:
                 {
                     spriteBatch.draw(background, AppConfig.hudOriginX, AppConfig.hudOriginY);
 
                     starField.render();
 
-                    if (exitPanel == null)
-                    {
-                        panels.get(currentPage).draw(spriteBatch);
-                    }
-                    else
-                    {
-                        exitPanel.draw(spriteBatch);
-                    }
+                    panels.get(currentPage).draw(spriteBatch);
 
                     if (AppConfig.backButton.isVisible())
                     {
@@ -177,28 +161,6 @@ public class MainMenuScreen extends AbstractBaseScreen
                     {
                         AppConfig.backButton.setChecked(false);
                         changePageTo(_MENU_PAGE);
-                    }
-                }
-                break;
-
-                case _EXIT_PAGE:
-                {
-                    int option = exitPanel.update();
-
-                    if (option == ExitPanel._YES_PRESSED)
-                    {
-                        exitPanel.dispose();
-                        AppConfig.shutDownActive = true;
-                        Gdx.app.exit();
-                    }
-                    else if (option == ExitPanel._NO_PRESSED)
-                    {
-                        exitPanel.close();
-                        exitPanel = null;
-
-                        currentPage = _MENU_PAGE;
-
-                        panels.get(currentPage).show();
                     }
                 }
                 break;
@@ -261,22 +223,10 @@ public class MainMenuScreen extends AbstractBaseScreen
                         menuPage.buttonExit.setChecked(false);
                         panels.get(currentPage).hide();
 
-                        exitPanel = new ExitPanel();
-                        exitPanel.open();
-
-                        currentPage = _EXIT_PAGE;
-                    }
-
-                    //
-                    // Check GOOGLE SIGN-IN button
-                    if ((menuPage.buttonGoogle != null) && menuPage.buttonGoogle.isChecked())
-                    {
-                        menuPage.buttonGoogle.setChecked(false);
-
-                        if (!App.googleServices.isSignedIn())
-                        {
-                            App.googleServices.signIn();
-                        }
+//                        exitPanel = new ExitPanel();
+//                        exitPanel.open();
+//
+//                        currentPage = _EXIT_PAGE;
                     }
                 }
             }
@@ -380,7 +330,6 @@ public class MainMenuScreen extends AbstractBaseScreen
         }
 
         background = null;
-        exitPanel   = null;
         optionsPage = null;
         menuPage = null;
     }

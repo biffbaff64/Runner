@@ -4,6 +4,7 @@ import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.tools.texturepacker.TexturePacker;
+import com.richikin.runner.config.Version;
 import com.richikin.runner.core.MainGame;
 import com.richikin.runner.graphics.Gfx;
 
