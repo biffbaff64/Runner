@@ -31,8 +31,6 @@ public class GameProgress implements Disposable
     private final Item lives;
 
     private int scoreStack;
-    private int timeStack;
-    private int fuelStack;
 
     public GameProgress()
     {
@@ -40,8 +38,6 @@ public class GameProgress implements Disposable
         lives = new Item(0, GameConstants._MAX_LIVES, GameConstants._MAX_LIVES);
 
         this.scoreStack = 0;
-        this.timeStack  = 0;
-        this.fuelStack  = 0;
     }
 
     public void resetProgress()
@@ -88,28 +84,9 @@ public class GameProgress implements Disposable
 
     public void stackPush(Stack stack, int amount)
     {
-        switch (stack)
+        if (stack == Stack._SCORE)
         {
-            case _SCORE:
-            {
-                scoreStack += amount;
-            }
-            break;
-
-            case _TIME:
-            {
-                timeStack += amount;
-            }
-            break;
-
-            case _FUEL:
-            {
-                fuelStack += amount;
-            }
-            break;
-
-            default:
-                break;
+            scoreStack += amount;
         }
     }
 
@@ -123,22 +100,6 @@ public class GameProgress implements Disposable
 
             score.add(amount);
             scoreStack -= amount;
-        }
-
-        if (timeStack > 0)
-        {
-            amount = NumberUtils.getCount(timeStack);
-
-            App.getHud().getTimeBar().add(amount);
-            timeStack -= amount;
-        }
-
-        if (fuelStack > 0)
-        {
-            amount = NumberUtils.getCount(fuelStack);
-
-            App.getHud().getFuelBar().add(amount);
-            fuelStack -= amount;
         }
     }
 
@@ -154,7 +115,6 @@ public class GameProgress implements Disposable
 
     public void closeLastGame()
     {
-        App.googleServices.submitScore(score.getTotal(), playerLevel);
     }
 
     public void toMinimum()

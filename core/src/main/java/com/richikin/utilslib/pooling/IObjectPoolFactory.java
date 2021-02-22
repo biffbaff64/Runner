@@ -1,6 +1,7 @@
 package com.richikin.utilslib.pooling;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.richikin.enumslib.GraphicID;
 
 public interface IObjectPoolFactory<T>
 {

@@ -1,5 +1,7 @@
 package com.richikin.utilslib.graphics;
 
+import com.richikin.enumslib.GraphicID;
+
 public class GraphicIndex
 {
     public final GraphicID graphicID;

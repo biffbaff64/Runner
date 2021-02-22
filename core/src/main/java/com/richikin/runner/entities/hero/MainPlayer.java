@@ -4,4 +4,7 @@ import com.richikin.runner.entities.objects.GdxSprite;
 
 public class MainPlayer extends GdxSprite
 {
+    public void setup(boolean b)
+    {
+    }
 }

@@ -28,7 +28,6 @@ public class MenuPage implements IUIPage, Disposable
     public ImageButton buttonHiScores;
     public ImageButton buttonCredits;
     public ImageButton buttonExit;
-    public ImageButton buttonGoogle;
 
     private Texture   foreground;
     private Image     decoration;
@@ -51,8 +50,6 @@ public class MenuPage implements IUIPage, Disposable
     @Override
     public boolean update()
     {
-        updateGoogleButton();
-
         return false;
     }
 
@@ -258,54 +255,6 @@ public class MenuPage implements IUIPage, Disposable
     }
 
     /**
-     * Creates the Google button if needed.
-     * Also removes the button if the game
-     * has signed in to google play services.
-     */
-    private void updateGoogleButton()
-    {
-        if ((buttonGoogle == null) && !App.googleServices.isSignedIn())
-        {
-            /*
-             * Create the 'Sign in with Google' button.
-             * This button will be shown if auto sign-in
-             * fails, allowing the player to manually sign
-             * in to Google Play Services.
-             */
-            if (App.googleServices.isEnabled() && !App.googleServices.isSignedIn())
-            {
-                Scene2DUtils scene2DUtils = new Scene2DUtils();
-
-                buttonGoogle = scene2DUtils.addButton
-                    (
-                        "btn_google_signin_dark",
-                        "btn_google_signout_dark_pressed",
-                        1040,
-                        30
-                    );
-
-                buttonGoogle.setZIndex(1);
-
-                buttonGoogle.addListener(new ClickListener()
-                {
-                    public void clicked(InputEvent event, float x, float y)
-                    {
-                        GameAudio.inst().startSound(AudioData.SFX_BEEP);
-
-                        buttonGoogle.setChecked(true);
-                    }
-                });
-            }
-        }
-
-        if ((buttonGoogle != null) && App.googleServices.isSignedIn())
-        {
-            buttonGoogle.addAction(Actions.removeActor());
-            buttonGoogle = null;
-        }
-    }
-
-    /**
      * Sets visibility of all rlevant actors.
      *
      * @param _visible boolean visibility setting.
@@ -321,11 +270,6 @@ public class MenuPage implements IUIPage, Disposable
         if (decoration != null)
         {
             decoration.setVisible(_visible);
-        }
-
-        if (buttonGoogle != null)
-        {
-            buttonGoogle.setVisible(_visible);
         }
     }
 }

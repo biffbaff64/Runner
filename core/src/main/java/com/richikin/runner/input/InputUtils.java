@@ -10,7 +10,7 @@ public class InputUtils
 {
     public static float getJoystickAngle()
     {
-        return getJoystickVector().angle();
+        return getJoystickVector().angleDeg();
     }
 
     public static Vector2 getJoystickVector()

@@ -1,8 +1,6 @@
 
 package com.richikin.utilslib.input.controllers;
 
-import com.badlogic.gdx.controllers.PovDirection;
-
 public abstract class ControllerMap
 {
     public static float _MIN_RANGE;
@@ -17,11 +15,11 @@ public abstract class ControllerMap
     public static int _BUTTON_BACK;
     public static int _BUTTON_START;
 
-    public static PovDirection _BUTTON_DPAD_UP;
-    public static PovDirection _BUTTON_DPAD_DOWN;
-    public static PovDirection _BUTTON_DPAD_RIGHT;
-    public static PovDirection _BUTTON_DPAD_LEFT;
-    public static PovDirection _BUTTON_DPAD_CENTRE;
+//    public static PovDirection _BUTTON_DPAD_UP;
+//    public static PovDirection _BUTTON_DPAD_DOWN;
+//    public static PovDirection _BUTTON_DPAD_RIGHT;
+//    public static PovDirection _BUTTON_DPAD_LEFT;
+//    public static PovDirection _BUTTON_DPAD_CENTRE;
 
     public static int _BUTTON_LB;
     public static int _BUTTON_L3;

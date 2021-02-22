@@ -54,12 +54,6 @@ public class LevelManager
         }
 
         //
-        // Reset the bars. Each level must start with full fuel and maximum time.
-        App.getHud().getFuelBar().setToMaximum();
-        App.getHud().getTimeBar().setToMaximum();
-        App.getHud().update();
-
-        //
         // The player is rewarded with an extra life every 4th level.
         if (App.gameProgress.getLives().getTotal() < GameConstants._MAX_LIVES)
         {

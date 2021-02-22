@@ -1,8 +1,6 @@
 
 package com.richikin.utilslib.input.controllers;
 
-import com.badlogic.gdx.controllers.PovDirection;
-
 public class ControllerData
 {
     // =================================================================
@@ -10,9 +8,6 @@ public class ControllerData
     public static int           controllerButtonCode;
     public static int           controllerAxisCode;
     public static float         controllerAxisValue;
-
-    public static PovDirection  controllerPovDirection;
-    public static int           controllerPovCode;
 
     public static boolean       controllerStartPressed;
     public static boolean       controllerFirePressed;

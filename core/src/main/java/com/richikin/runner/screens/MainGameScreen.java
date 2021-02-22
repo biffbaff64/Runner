@@ -10,12 +10,14 @@ import com.richikin.runner.core.GameControlLoop;
 import com.richikin.runner.core.LevelManager;
 import com.richikin.runner.developer.Developer;
 import com.richikin.runner.graphics.camera.Shake;
+import com.richikin.runner.ui.GameCompletedPanel;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 
 public class MainGameScreen extends AbstractBaseScreen
 {
+    public GameCompletedPanel completedPanel;
     public StopWatch          retryDelay;
     public EndgameManager     endGameManager;
     public GameControlLoop    gameControlLoop;

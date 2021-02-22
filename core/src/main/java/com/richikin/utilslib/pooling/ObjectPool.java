@@ -3,6 +3,7 @@ package com.richikin.utilslib.pooling;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
+import com.richikin.enumslib.GraphicID;
 
 public class ObjectPool<T>
 {

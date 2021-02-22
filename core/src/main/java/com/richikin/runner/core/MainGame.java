@@ -6,18 +6,26 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.richikin.enumslib.StateID;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.developer.Developer;
+import com.richikin.runner.screens.SplashScreen;
 
 public class MainGame extends com.badlogic.gdx.Game
 {
+    public SplashScreen splashScreen;
+
+    public MainGame()
+    {
+    }
+
     @Override
     public void create()
     {
         App.mainGame = this;
 
+        splashScreen = new SplashScreen();
+
         //
         // Initialise all essential objects required before
         // the main screen is initialised.
-        //
 
         // TODO: 21/02/2021 - This is crap, change it
         Startup startup = new Startup();
@@ -28,13 +36,19 @@ public class MainGame extends com.badlogic.gdx.Game
     @Override
     public void render()
     {
-        ScreenUtils.clear(1, 1, 1, 1);
+        if (splashScreen.isAvailable)
+        {
+            splashScreen.update();
+            splashScreen.render();
+        }
+        else
+        {
+            ScreenUtils.clear(1, 1, 1, 1);
 
-        super.render();
+            super.render();
 
-        AppConfig.configListener.update();
-
-        App.baseRenderer.getSplashScreen().update();
+            AppConfig.configListener.update();
+        }
     }
 
     @Override

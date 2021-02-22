@@ -16,6 +16,7 @@ import com.richikin.runner.graphics.renderers.BaseRenderer;
 import com.richikin.runner.input.InputManager;
 import com.richikin.runner.maps.MapCreator;
 import com.richikin.runner.maps.MapData;
+import com.richikin.runner.maps.MapUtils;
 import com.richikin.runner.maps.RoomManager;
 import com.richikin.runner.physics.CollisionUtils;
 import com.richikin.runner.screens.MainGameScreen;
@@ -27,41 +28,40 @@ import com.richikin.utilslib.assets.AssetLoader;
 import com.richikin.utilslib.core.ISettings;
 import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.maths.SimpleVec2;
-import net.dermetfan.gdx.maps.MapUtils;
 
 public final class App extends LibApp
 {
     // =======================================================
     // Global access references
     //
-    public static MainGame     mainGame;
-    public static BaseRenderer baseRenderer;
-    public static CameraUtils  cameraUtils;
-    public static WorldModel     worldModel;
-    public static InputManager   inputManager;
-    public static MainMenuScreen mainMenuScreen;
-    public static MainGameScreen mainGameScreen;
-    public static ISettings      settings;
+    public static MainGame        mainGame;
+    public static BaseRenderer    baseRenderer;
+    public static CameraUtils     cameraUtils;
+    public static WorldModel      worldModel;
+    public static InputManager    inputManager;
+    public static MainMenuScreen  mainMenuScreen;
+    public static MainGameScreen  mainGameScreen;
+    public static ISettings       settings;
     public static HighScoreUtils  highScoreUtils;
     public static ParallaxManager parallaxManager;
     public static PanelManager    panelManager;
     public static LevelManager    levelManager;
-    public static RoomManager  roomManager;
+    public static RoomManager     roomManager;
 
     //
     // Globals to be made available when MainGameScreen is active.
     // These must be released when MainGameScreen is destroyed.
     public static CollisionUtils collisionUtils;
-    public static EntityUtils entityUtils;
-    public static Entities    entities;
-    public static MapUtils   mapUtils;
-    public static PathUtils  pathUtils;
+    public static EntityUtils    entityUtils;
+    public static Entities       entities;
+    public static MapUtils       mapUtils;
+    public static PathUtils      pathUtils;
     public static EntityData     entityData;
     public static MapData        mapData;
     public static HeadsUpDisplay hud;
     public static GameProgress   gameProgress;
-    public static MapCreator    mapCreator;
-    public static EntityManager entityManager;
+    public static MapCreator     mapCreator;
+    public static EntityManager  entityManager;
 
     private App()
     {

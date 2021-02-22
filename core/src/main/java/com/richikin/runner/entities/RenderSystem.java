@@ -3,7 +3,6 @@ package com.richikin.runner.entities;
 import com.richikin.runner.config.Settings;
 import com.richikin.runner.core.App;
 import com.richikin.runner.entities.objects.GdxSprite;
-import com.richikin.runner.entities.objects.TeleportBeam;
 import com.richikin.runner.graphics.Gfx;
 import com.richikin.utilslib.physics.Movement;
 import org.jetbrains.annotations.NotNull;
@@ -58,20 +57,6 @@ public class RenderSystem
                     }
                 }
             }
-        }
-    }
-
-    /**
-     * Draw the teleporter beams, which are activated when the
-     * teleporter is in use. These are not sprites.
-     *
-     * @param teleportBeam The {@link TeleportBeam} object.
-     */
-    public void drawTeleportBeams(TeleportBeam teleportBeam)
-    {
-        if (teleportBeam != null)
-        {
-            teleportBeam.draw(App.spriteBatch);
         }
     }
 

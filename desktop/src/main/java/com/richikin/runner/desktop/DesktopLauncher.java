@@ -20,7 +20,7 @@ public class DesktopLauncher
     // build and you add new images to a folder, YOU MUST build and run the desktop
     // version so that the atlases are rebuilt. If you don't do this then you will
     // experience errors when the program tries to access the new images.
-    private static final boolean _rebuildAtlas          = true;
+    private static final boolean _rebuildAtlas          = false;
     private static final boolean _drawDebugLines        = false;
     private static final boolean _removeDuplicateImages = false;
 
@@ -77,11 +77,10 @@ public class DesktopLauncher
             // - source folder
             // - destination folder
             // - name of atlas, without extension (the extension '.atlas' will be added automatically)
-            TexturePacker.process(settings, "data/packedimages/objects", "data/packedimages/output", "objects");
-            TexturePacker.process(settings, "data/packedimages/animations", "data/packedimages/output", "animations");
-            TexturePacker.process(settings, "data/packedimages/achievements", "data/packedimages/output", "achievements");
-            TexturePacker.process(settings, "data/packedimages/input", "data/packedimages/output", "buttons");
-            TexturePacker.process(settings, "data/packedimages/text", "data/packedimages/output", "text");
+            TexturePacker.process(settings, "packedimages/objects", "packedimages/output", "objects");
+            TexturePacker.process(settings, "packedimages/animations", "packedimages/output", "animations");
+            TexturePacker.process(settings, "packedimages/input", "packedimages/output", "buttons");
+            TexturePacker.process(settings, "packedimages/text", "packedimages/output", "text");
         }
     }
 }

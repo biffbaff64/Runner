@@ -2,9 +2,11 @@ package com.richikin.runner.core;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.richikin.runner.assets.GameAssets;
 import com.richikin.runner.audio.GameAudio;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.config.Settings;
+import com.richikin.runner.developer.DebugRenderer;
 import com.richikin.runner.developer.Developer;
 import com.richikin.runner.graphics.Gfx;
 import com.richikin.runner.graphics.camera.Shake;
@@ -43,7 +45,7 @@ public class Startup
         // For Android apps...
         // Setting up google services goes here.
 
-//        DebugRenderer.setup(GameAssets._PRO_WINDOWS_FONT);
+        DebugRenderer.setup(GameAssets._PRO_WINDOWS_FONT);
         App.worldModel.createB2DRenderer();
 
         GameAudio.inst().setup();

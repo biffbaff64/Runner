@@ -96,4 +96,8 @@ public class HeadsUpDisplay implements Disposable
     public void dispose()
     {
     }
+
+    public void refillItems()
+    {
+    }
 }

@@ -2,6 +2,7 @@
 package com.richikin.utilslib.assets;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.richikin.enumslib.GraphicID;
 
 /**
  * Creates an object describing essential asset data for entities.

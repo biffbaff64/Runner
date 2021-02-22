@@ -12,7 +12,6 @@ import com.richikin.runner.graphics.camera.ViewportType;
 import com.richikin.runner.graphics.camera.Zoom;
 import com.richikin.runner.graphics.parallax.ParallaxBackground;
 import com.richikin.runner.graphics.parallax.ParallaxManager;
-import com.richikin.runner.screens.LoadingScreen;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec3F;
 
@@ -29,7 +28,6 @@ public class BaseRenderer implements Disposable
     public Zoom               hudZoom;
     public boolean            isDrawingStage;
 
-    private LoadingScreen loadingScreen;
     private WorldRenderer worldRenderer;
     private HUDRenderer   hudRenderer;
     private SimpleVec3F   cameraPos;
@@ -94,7 +92,6 @@ public class BaseRenderer implements Disposable
         worldRenderer = new WorldRenderer();
         hudRenderer   = new HUDRenderer();
         cameraPos     = new SimpleVec3F();
-        loadingScreen = new LoadingScreen();
 
         isDrawingStage         = true;
         AppConfig.camerasReady = true;
@@ -115,22 +112,11 @@ public class BaseRenderer implements Disposable
         {
             if ((App.getPlayer() != null) && App.appState.after(StateID._STATE_SETUP))
             {
-                if (App.getPlayer().isRidingRover)
-                {
-                    App.mapUtils.positionAt
-                        (
-                            (int) (App.getRover().sprite.getX() + 130),
-                            (int) (App.getRover().sprite.getY())
-                        );
-                }
-                else
-                {
-                    App.mapUtils.positionAt
-                        (
-                            (int) (App.getPlayer().sprite.getX()),
-                            (int) (App.getPlayer().sprite.getY())
-                        );
-                }
+                App.mapUtils.positionAt
+                    (
+                        (int) (App.getPlayer().sprite.getX()),
+                        (int) (App.getPlayer().sprite.getY())
+                    );
             }
         }
         else
@@ -237,11 +223,6 @@ public class BaseRenderer implements Disposable
         hudZoom.stop();
 
         App.worldModel.drawDebugMatrix();
-    }
-
-    public LoadingScreen getSplashScreen()
-    {
-        return loadingScreen;
     }
 
     public void resizeCameras(int _width, int _height)

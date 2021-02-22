@@ -3,10 +3,10 @@ package com.richikin.runner.ui.panels;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.enumslib.StateID;
-import com.richikin.jetman.config.AppConfig;
-import com.richikin.jetman.core.App;
-import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.graphics.camera.Zoom;
+import com.richikin.runner.config.AppConfig;
+import com.richikin.runner.core.App;
+import com.richikin.runner.graphics.Gfx;
+import com.richikin.runner.graphics.camera.Zoom;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.ui.DefaultPanel;
 import org.jetbrains.annotations.NotNull;

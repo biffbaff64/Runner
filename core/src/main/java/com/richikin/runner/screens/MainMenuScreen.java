@@ -1,6 +1,5 @@
 package com.richikin.runner.screens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.enumslib.ScreenID;
@@ -258,7 +257,7 @@ public class MainMenuScreen extends AbstractBaseScreen
         AppConfig.currentScreenID = ScreenID._MAIN_MENU;
         App.appState.set(StateID._STATE_MAIN_MENU);
 
-        App.baseRenderer.getSplashScreen().dispose();
+        App.mainGame.splashScreen.dispose();
 
         Trace.finishedMessage();
     }
