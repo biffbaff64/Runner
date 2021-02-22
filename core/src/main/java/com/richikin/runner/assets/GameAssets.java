@@ -7,16 +7,19 @@ import com.richikin.utilslib.maths.SimpleVec2;
 
 public class GameAssets
 {
-    public static final String _PLAYER_IDLE_ASSET = "";
-    public static final int _PLAYER_STAND_FRAMES  = 1;
+    public static final String _PLAYER_IDLE_ASSET   = "";
+    public static final int    _PLAYER_STAND_FRAMES = 1;
+
+    public static final String _OPTIONS_PANEL_ASSET = "";
+    public static final String _UISKIN_ASSET        = "";
 
     public static int hudPanelWidth;      // Set when object is loaded
     public static int hudPanelHeight;     //
 
     private static final AssetSize[] assetSizes =
         {
-            new AssetSize(GraphicID.G_NO_ID,           80, 80),
-        };
+            new AssetSize(GraphicID.G_NO_ID, 80, 80),
+            };
 
     public static SimpleVec2 getAssetSize(GraphicID _gid)
     {

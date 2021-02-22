@@ -25,20 +25,20 @@ import com.richikin.utilslib.ui.Scene2DUtils;
 
 public class OptionsPage implements IUIPage
 {
-    private ImageButton        buttonStats;
-    private ImageButton        buttonPrivacy;
-    private ImageButton        buttonStoryLine;
-    private ImageButton        buttonDevOptions;
-    private ImageButton        buttonGoogle;
-    private CheckBox           musicCheckBox;
-    private CheckBox           fxCheckBox;
-    private CheckBox           vibrateCheckBox;
-    private CheckBox           hintsCheckBox;
-    private Texture            foreground;
-    private Skin               skin;
-    private ScreenID           activePanel;
-    private boolean            isJustFinishedOptionsPanel;
-    private boolean            enteredDeveloperPanel;
+    private ImageButton buttonStats;
+    private ImageButton buttonPrivacy;
+    private ImageButton buttonStoryLine;
+    private ImageButton buttonDevOptions;
+    private ImageButton buttonGoogle;
+    private CheckBox    musicCheckBox;
+    private CheckBox    fxCheckBox;
+    private CheckBox    vibrateCheckBox;
+    private CheckBox    hintsCheckBox;
+    private Texture     foreground;
+    private Skin        skin;
+    private ScreenID    activePanel;
+    private boolean     isJustFinishedOptionsPanel;
+    private boolean     enteredDeveloperPanel;
 
     /**
      * Instantiates a new Options page.
@@ -88,43 +88,16 @@ public class OptionsPage implements IUIPage
         {
             switch (activePanel)
             {
-                case _STATS_SCREEN:
-                {
-                    if (statsPanel != null)
-                    {
-                        statsPanel.dispose();
-                    }
-                    statsPanel                 = null;
-                    isJustFinishedOptionsPanel = false;
+                case _STATS_SCREEN,
+                    _INSTRUCTIONS_SCREEN,
+                    _PRIVACY_POLICY_SCREEN -> {
+                    // TODO: 22/02/2021 - Panel updates here
                 }
-                break;
 
-                case _PRIVACY_POLICY_SCREEN:
-                {
-                    if (privacyPanel != null)
-                    {
-                        privacyPanel.dispose();
-                    }
-                    privacyPanel               = null;
-                    isJustFinishedOptionsPanel = false;
-                }
-                break;
-
-                case _INSTRUCTIONS_SCREEN:
-                {
-                    if (storyPanel != null)
-                    {
-                        storyPanel.dispose();
-                    }
-                    storyPanel                 = null;
-                    isJustFinishedOptionsPanel = false;
-                }
-                break;
-
-                default:
+                default -> {
                     updateSettings();
                     isJustFinishedOptionsPanel = true;
-                    break;
+                }
             }
 
             if (!isJustFinishedOptionsPanel)
@@ -154,30 +127,15 @@ public class OptionsPage implements IUIPage
     {
         switch (activePanel)
         {
-            case _STATS_SCREEN:
-            {
-                statsPanel.draw();
+            case _STATS_SCREEN,
+                _PRIVACY_POLICY_SCREEN,
+                _INSTRUCTIONS_SCREEN -> {
             }
-            break;
 
-            case _PRIVACY_POLICY_SCREEN:
-            {
-                privacyPanel.draw();
-            }
-            break;
-
-            case _INSTRUCTIONS_SCREEN:
-            {
-                storyPanel.draw();
-            }
-            break;
-
-            case _DEVELOPER_PANEL:
-            default:
-            {
+            default -> {
                 if (Developer.developerPanelActive)
                 {
-                    DeveloperPanel.inst().draw(spriteBatch);
+                    // TODO: 22/02/2021 - Draw developer panel here
                 }
                 else
                 {
@@ -187,7 +145,6 @@ public class OptionsPage implements IUIPage
                     }
                 }
             }
-            break;
         }
     }
 
@@ -295,8 +252,6 @@ public class OptionsPage implements IUIPage
         hintsCheckBox.setChecked(App.settings.isEnabled(Settings._SHOW_HINTS));
         musicCheckBox.setChecked(App.settings.isEnabled(Settings._MUSIC_ENABLED));
         fxCheckBox.setChecked(App.settings.isEnabled(Settings._SOUNDS_ENABLED));
-
-        buttonGoogle.setChecked(App.googleServices.isSignedIn());
     }
 
     /**
@@ -349,14 +304,6 @@ public class OptionsPage implements IUIPage
             {
                 public void clicked(InputEvent event, float x, float y)
                 {
-                    if (privacyPanel == null)
-                    {
-                        showActors(false);
-                        activePanel = ScreenID._PRIVACY_POLICY_SCREEN;
-
-                        privacyPanel = new PrivacyPolicyPanel();
-                        privacyPanel.open();
-                    }
                 }
             });
         }
@@ -372,14 +319,6 @@ public class OptionsPage implements IUIPage
             {
                 public void clicked(InputEvent event, float x, float y)
                 {
-                    if (storyPanel == null)
-                    {
-                        showActors(false);
-                        activePanel = ScreenID._INSTRUCTIONS_SCREEN;
-
-                        storyPanel = new InstructionsPanel();
-                        storyPanel.open();
-                    }
                 }
             });
         }
@@ -390,10 +329,6 @@ public class OptionsPage implements IUIPage
             {
                 public void clicked(InputEvent event, float x, float y)
                 {
-                    App.googleServices.signOut();
-
-                    buttonGoogle.addAction(Actions.removeActor());
-                    buttonGoogle = null;
                 }
             });
         }
@@ -408,14 +343,6 @@ public class OptionsPage implements IUIPage
             {
                 public void clicked(InputEvent event, float x, float y)
                 {
-                    if (statsPanel == null)
-                    {
-                        showActors(false);
-                        activePanel = ScreenID._STATS_SCREEN;
-
-                        statsPanel = new StatsPanel();
-                        statsPanel.open();
-                    }
                 }
             });
         }
@@ -440,7 +367,7 @@ public class OptionsPage implements IUIPage
                         AppConfig.backButton.setVisible(false);
                         AppConfig.backButton.setDisabled(true);
 
-                        DeveloperPanel.inst().setup();
+//                        DeveloperPanel.inst().setup();
                     }
                 }
             });
@@ -580,9 +507,6 @@ public class OptionsPage implements IUIPage
 
         foreground   = null;
         skin         = null;
-        statsPanel   = null;
-        privacyPanel = null;
-        storyPanel   = null;
     }
 
     public void setActivePanel(ScreenID screenID)
