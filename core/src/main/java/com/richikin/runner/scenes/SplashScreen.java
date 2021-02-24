@@ -1,5 +1,5 @@
 
-package com.richikin.runner.screens;
+package com.richikin.runner.scenes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -10,10 +10,6 @@ import com.richikin.runner.assets.GameAssets;
 
 public class SplashScreen implements Disposable
 {
-    public boolean isAvailable;
-
-    private SpriteBatch batch;
-    private Texture     background;
     private static final SplashScreen _INSTANCE;
 
     // Instance initialiser block
@@ -29,15 +25,18 @@ public class SplashScreen implements Disposable
         }
     }
 
+    public boolean isAvailable;
+
+    private SpriteBatch batch;
+    private Texture     background;
+
     public static SplashScreen inst()
     {
         return _INSTANCE;
     }
 
-    public SplashScreen()
+    public void setup()
     {
-        Gdx.app.debug("SpS: ", "[Init:]");
-
         batch      = new SpriteBatch();
         background = new Texture(GameAssets._SPLASH_SCREEN_ASSET);
 
@@ -52,8 +51,6 @@ public class SplashScreen implements Disposable
     {
         if (isAvailable)
         {
-            Gdx.app.debug("SpS: ", "[Render:]");
-
             Gdx.gl.glClearColor(1, 1, 1, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -66,8 +63,6 @@ public class SplashScreen implements Disposable
     @Override
     public void dispose()
     {
-        Gdx.app.debug("SpS: ", "[Dispose:]");
-
         batch.dispose();
         background.dispose();
 

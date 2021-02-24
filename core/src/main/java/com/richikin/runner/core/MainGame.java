@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.richikin.enumslib.StateID;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.developer.Developer;
-import com.richikin.runner.screens.SplashScreen;
+import com.richikin.runner.scenes.SplashScreen;
 
 public class MainGame extends com.badlogic.gdx.Game
 {
@@ -18,6 +18,8 @@ public class MainGame extends com.badlogic.gdx.Game
     public void create()
     {
         App.mainGame = this;
+
+        SplashScreen.inst().setup();
 
         //
         // Initialise all essential objects required before

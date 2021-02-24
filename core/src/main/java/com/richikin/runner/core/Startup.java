@@ -10,8 +10,8 @@ import com.richikin.runner.developer.DebugRenderer;
 import com.richikin.runner.developer.Developer;
 import com.richikin.runner.graphics.Gfx;
 import com.richikin.runner.graphics.camera.Shake;
-import com.richikin.runner.screens.MainGameScreen;
-import com.richikin.runner.screens.MainMenuScreen;
+import com.richikin.runner.scenes.MainGameScreen;
+import com.richikin.runner.scenes.MainMenuScreen;
 import com.richikin.utilslib.logging.Trace;
 
 public class Startup

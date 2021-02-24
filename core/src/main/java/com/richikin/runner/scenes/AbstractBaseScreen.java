@@ -1,4 +1,4 @@
-package com.richikin.runner.screens;
+package com.richikin.runner.scenes;
 
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.utils.Disposable;

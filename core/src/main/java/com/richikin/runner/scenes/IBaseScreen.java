@@ -1,5 +1,5 @@
 
-package com.richikin.runner.screens;
+package com.richikin.runner.scenes;
 
 public interface IBaseScreen
 {

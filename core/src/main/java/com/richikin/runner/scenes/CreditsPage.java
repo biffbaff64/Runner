@@ -1,5 +1,5 @@
 
-package com.richikin.runner.screens;
+package com.richikin.runner.scenes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

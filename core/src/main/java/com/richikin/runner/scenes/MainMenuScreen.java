@@ -1,4 +1,4 @@
-package com.richikin.runner.screens;
+package com.richikin.runner.scenes;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -96,11 +96,7 @@ public class MainMenuScreen extends AbstractBaseScreen
 
             switch (currentPage)
             {
-                case _MENU_PAGE:
-                case _HISCORE_PAGE:
-                case _CREDITS_PAGE:
-                case _OPTIONS_PAGE:
-                {
+                case _MENU_PAGE, _HISCORE_PAGE, _CREDITS_PAGE, _OPTIONS_PAGE -> {
                     spriteBatch.draw(background, AppConfig.hudOriginX, AppConfig.hudOriginY);
 
                     starField.render();
@@ -112,13 +108,9 @@ public class MainMenuScreen extends AbstractBaseScreen
                         AppConfig.backButton.setPosition(AppConfig.hudOriginX + 20, AppConfig.hudOriginY + 20);
                     }
                 }
-                break;
-
-                default:
-                {
+                default -> {
                     Trace.__FILE_FUNC("ERROR: Illegal panel: " + currentPage);
                 }
-                break;
             }
         }
     }
@@ -135,9 +127,7 @@ public class MainMenuScreen extends AbstractBaseScreen
         {
             switch (currentPage)
             {
-                case _HISCORE_PAGE:
-                case _CREDITS_PAGE:
-                {
+                case _HISCORE_PAGE, _CREDITS_PAGE -> {
                     panels.get(currentPage).update();
 
                     if (AppConfig.backButton.isChecked())
@@ -146,29 +136,19 @@ public class MainMenuScreen extends AbstractBaseScreen
                         changePageTo(_MENU_PAGE);
                     }
                 }
-                break;
-
-                case _MENU_PAGE:
-                {
+                case _MENU_PAGE -> {
                     panels.get(_MENU_PAGE).update();
                 }
-                break;
-
-                case _OPTIONS_PAGE:
-                {
+                case _OPTIONS_PAGE -> {
                     if (panels.get(_OPTIONS_PAGE).update())
                     {
                         AppConfig.backButton.setChecked(false);
                         changePageTo(_MENU_PAGE);
                     }
                 }
-                break;
-
-                default:
-                {
+                default -> {
                     Trace.__FILE_FUNC("ERROR:  illegal page - " + currentPage);
                 }
-                break;
             }
 
             //

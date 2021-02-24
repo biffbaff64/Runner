@@ -5,7 +5,7 @@ import com.richikin.runner.assets.GameAssets;
 import com.richikin.runner.audio.GameAudio;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.developer.Developer;
-import com.richikin.runner.screens.MainGameScreen;
+import com.richikin.runner.scenes.MainGameScreen;
 import com.richikin.utilslib.logging.Trace;
 
 import java.util.concurrent.TimeUnit;

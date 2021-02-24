@@ -1,4 +1,4 @@
-package com.richikin.runner.screens;
+package com.richikin.runner.scenes;
 
 import com.richikin.enumslib.ScreenID;
 import com.richikin.enumslib.StateID;

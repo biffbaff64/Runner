@@ -7,6 +7,7 @@ import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 import com.richikin.runner.config.Version;
 import com.richikin.runner.core.MainGame;
 import com.richikin.runner.graphics.Gfx;
+import com.richikin.runner.scenes.SplashScreen;
 
 /**
  * Launches the desktop (LWJGL) application.
