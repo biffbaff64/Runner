@@ -35,11 +35,11 @@ public class MapData
 
     public final LayerImage[] backgroundLayers =
         {
-            new LayerImage("data/background_layer.png", 0.0f, 0.0f),
-            new LayerImage("data/nebula_background.png", 0.0f, 0.0f),
-            new LayerImage("data/stars_background.png", 0.0f, 0.0f),
-            new LayerImage("data/dark_mountains.png", 1.2f, 0.01f),
-            new LayerImage("data/light_mountains.png", 2.4f, 0.015f),
+            new LayerImage("background_layer.png", 0.0f, 0.0f),
+            new LayerImage("nebula_background.png", 0.0f, 0.0f),
+            new LayerImage("stars_background.png", 0.0f, 0.0f),
+            new LayerImage("dark_mountains.png", 1.2f, 0.01f),
+            new LayerImage("light_mountains.png", 2.4f, 0.015f),
         };
 
     //
@@ -47,8 +47,8 @@ public class MapData
     // will be modified based on LJMs current speed.
     public LayerImage[] foregroundLayers =
         {
-            new LayerImage("data/foreground.png", 0.0f, 0.0f),
-            new LayerImage("data/foreground_near.png", 0.0f, 0.0f),
+            new LayerImage("foreground.png", 0.0f, 0.0f),
+            new LayerImage("foreground_near.png", 0.0f, 0.0f),
         };
 
     public OrthogonalTiledMapRenderer mapRenderer;

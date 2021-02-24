@@ -145,7 +145,7 @@ public class HiscorePage implements IUIPage, Disposable
      */
     private void addItems()
     {
-        foreground = App.assets.loadSingleAsset("data/hiscore_foreground.png", Texture.class);
+        foreground = App.assets.loadSingleAsset("hiscore_foreground.png", Texture.class);
 
         rankLabels  = new Label[_DISPLAYED_HISCORES];
         levelLabels = new Label[_DISPLAYED_HISCORES];

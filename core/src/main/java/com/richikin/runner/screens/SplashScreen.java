@@ -14,9 +14,30 @@ public class SplashScreen implements Disposable
 
     private SpriteBatch batch;
     private Texture     background;
+    private static final SplashScreen _INSTANCE;
+
+    // Instance initialiser block
+    static
+    {
+        try
+        {
+            _INSTANCE = new SplashScreen();
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public static SplashScreen inst()
+    {
+        return _INSTANCE;
+    }
 
     public SplashScreen()
     {
+        Gdx.app.debug("SpS: ", "[Init:]");
+
         batch      = new SpriteBatch();
         background = new Texture(GameAssets._SPLASH_SCREEN_ASSET);
 
@@ -31,6 +52,8 @@ public class SplashScreen implements Disposable
     {
         if (isAvailable)
         {
+            Gdx.app.debug("SpS: ", "[Render:]");
+
             Gdx.gl.glClearColor(1, 1, 1, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -43,6 +66,8 @@ public class SplashScreen implements Disposable
     @Override
     public void dispose()
     {
+        Gdx.app.debug("SpS: ", "[Dispose:]");
+
         batch.dispose();
         background.dispose();
 

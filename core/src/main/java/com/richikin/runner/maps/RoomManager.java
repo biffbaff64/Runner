@@ -13,7 +13,7 @@ public class RoomManager implements Disposable
     public static final int _MAX_TELEPORTERS = 2;
     public static final int _MAX_DEFENCE_STATIONS = 2;
 
-    private static final String _MAPS_PATH = "data/maps/";
+    private static final String _MAPS_PATH = "maps/";
 
     private final Room[] roomMap =
         {

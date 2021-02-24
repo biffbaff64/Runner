@@ -10,8 +10,6 @@ import com.richikin.runner.screens.SplashScreen;
 
 public class MainGame extends com.badlogic.gdx.Game
 {
-    public SplashScreen splashScreen;
-
     public MainGame()
     {
     }
@@ -20,8 +18,6 @@ public class MainGame extends com.badlogic.gdx.Game
     public void create()
     {
         App.mainGame = this;
-
-        splashScreen = new SplashScreen();
 
         //
         // Initialise all essential objects required before
@@ -36,10 +32,10 @@ public class MainGame extends com.badlogic.gdx.Game
     @Override
     public void render()
     {
-        if (splashScreen.isAvailable)
+        if (SplashScreen.inst().isAvailable)
         {
-            splashScreen.update();
-            splashScreen.render();
+            SplashScreen.inst().update();
+            SplashScreen.inst().render();
         }
         else
         {

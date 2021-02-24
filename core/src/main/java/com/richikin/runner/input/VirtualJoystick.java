@@ -26,8 +26,8 @@ public class VirtualJoystick
     public void create()
     {
         Skin touchpadSkin = new Skin();
-        touchpadSkin.add("background", new Texture("data/packedimages/input/touch_background.png"));
-        touchpadSkin.add("ball", new Texture("data/packedimages/input/joystick_ball.png"));
+        touchpadSkin.add("background", new Texture("packedimages/input/touch_background.png"));
+        touchpadSkin.add("ball", new Texture("packedimages/input/joystick_ball.png"));
 
         Touchpad.TouchpadStyle touchpadStyle = new Touchpad.TouchpadStyle();
 
@@ -52,63 +52,36 @@ public class VirtualJoystick
 
         switch (evaluateJoypadDirection())
         {
-            case _UP:
-            {
+            case _UP -> {
                 App.getHud().buttonUp.press();
             }
-            break;
-
-            case _DOWN:
-            {
+            case _DOWN -> {
                 App.getHud().buttonDown.press();
             }
-            break;
-
-            case _LEFT:
-            {
+            case _LEFT -> {
                 App.getHud().buttonLeft.press();
             }
-            break;
-
-            case _RIGHT:
-            {
+            case _RIGHT -> {
                 App.getHud().buttonRight.press();
             }
-            break;
-
-            case _UP_LEFT:
-            {
+            case _UP_LEFT -> {
                 App.getHud().buttonUp.press();
                 App.getHud().buttonLeft.press();
             }
-            break;
-
-            case _UP_RIGHT:
-            {
+            case _UP_RIGHT -> {
                 App.getHud().buttonUp.press();
                 App.getHud().buttonRight.press();
             }
-            break;
-
-            case _DOWN_LEFT:
-            {
+            case _DOWN_LEFT -> {
                 App.getHud().buttonDown.press();
                 App.getHud().buttonLeft.press();
             }
-            break;
-
-            case _DOWN_RIGHT:
-            {
+            case _DOWN_RIGHT -> {
                 App.getHud().buttonDown.press();
                 App.getHud().buttonRight.press();
             }
-            break;
-
-            case _STILL:
-            default:
-            {
+            default -> {
             }
-            break;
         }
     }
 

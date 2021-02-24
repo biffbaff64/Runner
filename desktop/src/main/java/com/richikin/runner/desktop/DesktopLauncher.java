@@ -20,7 +20,7 @@ public class DesktopLauncher
     // build and you add new images to a folder, YOU MUST build and run the desktop
     // version so that the atlases are rebuilt. If you don't do this then you will
     // experience errors when the program tries to access the new images.
-    private static final boolean _rebuildAtlas          = false;
+    private static final boolean _rebuildAtlas          = true;
     private static final boolean _drawDebugLines        = false;
     private static final boolean _removeDuplicateImages = false;
 

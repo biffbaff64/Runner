@@ -257,7 +257,8 @@ public class MainMenuScreen extends AbstractBaseScreen
         AppConfig.currentScreenID = ScreenID._MAIN_MENU;
         App.appState.set(StateID._STATE_MAIN_MENU);
 
-        App.mainGame.splashScreen.dispose();
+        SplashScreen.inst().isAvailable = false;
+        SplashScreen.inst().dispose();
 
         Trace.finishedMessage();
     }
@@ -275,7 +276,7 @@ public class MainMenuScreen extends AbstractBaseScreen
     @Override
     public void loadImages()
     {
-        background = App.assets.loadSingleAsset("data/empty_screen_dark.png", Texture.class);
+        background = App.assets.loadSingleAsset("empty_screen_dark.png", Texture.class);
     }
 
     public MenuPage getMenuPage()

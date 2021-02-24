@@ -13,11 +13,11 @@ public class AssetLoader implements IAssets, Disposable
      * Texture Atlas names.
      * For more information check DesktopLauncher::main()
      */
-    private static final String _BUTTONS_ATLAS      = "data/packedimages/output/buttons.atlas";
-    private static final String _ANIMATIONS_ATLAS   = "data/packedimages/output/animations.atlas";
-    private static final String _OBJECTS_ATLAS      = "data/packedimages/output/objects.atlas";
-    private static final String _TEXT_ATLAS         = "data/packedimages/output/text.atlas";
-    private static final String _ACHIEVEMENTS_ATLAS = "data/packedimages/output/achievements.atlas";
+    private static final String _BUTTONS_ATLAS      = "packedimages/output/buttons.atlas";
+    private static final String _ANIMATIONS_ATLAS   = "packedimages/output/animations.atlas";
+    private static final String _OBJECTS_ATLAS      = "packedimages/output/objects.atlas";
+    private static final String _TEXT_ATLAS         = "packedimages/output/text.atlas";
+    private static final String _ACHIEVEMENTS_ATLAS = "packedimages/output/achievements.atlas";
 
     public AssetManager assetManager;
 
