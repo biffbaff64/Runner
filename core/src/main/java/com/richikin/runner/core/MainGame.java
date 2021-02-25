@@ -10,6 +10,8 @@ import com.richikin.runner.scenes.SplashScreen;
 
 public class MainGame extends com.badlogic.gdx.Game
 {
+    private Startup startup;
+
     public MainGame()
     {
     }
@@ -26,9 +28,8 @@ public class MainGame extends com.badlogic.gdx.Game
         // the main screen is initialised.
 
         // TODO: 21/02/2021 - This is crap, change it
-        Startup startup = new Startup();
+        startup = new Startup();
         startup.startApp();
-        startup.closeStartup();
     }
 
     @Override
@@ -38,6 +39,11 @@ public class MainGame extends com.badlogic.gdx.Game
         {
             SplashScreen.inst().update();
             SplashScreen.inst().render();
+
+            if (!SplashScreen.inst().isAvailable)
+            {
+                startup.closeStartup();
+            }
         }
         else
         {
