@@ -141,36 +141,14 @@ public class  EntityManager implements IEntityManager
                     {
                         switch (entity.gid)
                         {
-                            case G_PLAYER:
-                            case G_BACKGROUND_UFO:
-                            case G_TWINKLE_STAR:
-                            case _CEILING:
-                            case _CRATER:
-                            case _GROUND:
-                            {
+                            case G_PLAYER, _CEILING, _CRATER, _GROUND -> {
                             }
-                            break;
 
-                            case G_TRANSPORTER:
-                            case G_MISSILE:
-                            case G_MISSILE_BASE:
-                            case G_DEFENDER:
-                            case G_ROVER:
-                            case G_ROVER_BULLET:
-                            case G_ROVER_WHEEL:
-                            case G_DEFENDER_BULLET:
-                            case G_UFO_BULLET:
-                            case G_EXPLOSION12:
-                            case G_EXPLOSION64:
-                            case G_EXPLOSION128:
-                            case G_EXPLOSION256:
-                            {
+                            case G_EXPLOSION12, G_EXPLOSION64, G_EXPLOSION128, G_EXPLOSION256 -> {
                                 entity.tidy(i);
                             }
-                            break;
 
-                            default:
-                            {
+                            default -> {
                                 if (entity.gid != GraphicID.G_NO_ID)
                                 {
                                     releaseEntity(entity);
@@ -179,7 +157,6 @@ public class  EntityManager implements IEntityManager
                                     App.entityData.removeEntity(i);
                                 }
                             }
-                            break;
                         }
 
                         updateIndexes();
