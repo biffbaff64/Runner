@@ -7,7 +7,6 @@ import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 import com.richikin.runner.config.Version;
 import com.richikin.runner.core.MainGame;
 import com.richikin.runner.graphics.Gfx;
-import com.richikin.runner.scenes.SplashScreen;
 
 /**
  * Launches the desktop (LWJGL) application.
@@ -31,15 +30,17 @@ public class DesktopLauncher
         createApplication();
     }
 
-    private static LwjglApplication createApplication()
+    private static void createApplication()
     {
-        return new LwjglApplication(new MainGame(), getDefaultConfiguration());
+        new LwjglApplication(new MainGame(), getDefaultConfiguration());
     }
 
     private static LwjglApplicationConfiguration getDefaultConfiguration()
     {
         LwjglApplicationConfiguration configuration = new LwjglApplicationConfiguration();
-        //// This prevents a confusing error that would appear after exiting normally.
+
+        //
+        // This prevents a confusing error that would appear after exiting normally.
         configuration.forceExit = false;
 
         configuration.title         = Version.getProjectID();

@@ -87,24 +87,24 @@ public class GameAudio
     {
         Trace.__FILE_FUNC();
 
-        AudioData.sounds[AudioData.SFX_LASER]          = App.assets.loadSingleAsset("sounds/laser.mp3", Sound.class);
-        AudioData.sounds[AudioData.SFX_PLAZMA]         = App.assets.loadSingleAsset("sounds/plazma.mp3", Sound.class);
-        AudioData.sounds[AudioData.SFX_EXPLOSION_1]    = App.assets.loadSingleAsset("sounds/explosion_1.mp3", Sound.class);
-        AudioData.sounds[AudioData.SFX_EXPLOSION_2]    = App.assets.loadSingleAsset("sounds/explosion_2.mp3", Sound.class);
-        AudioData.sounds[AudioData.SFX_EXPLOSION_3]    = App.assets.loadSingleAsset("sounds/explosion_3.mp3", Sound.class);
-        AudioData.sounds[AudioData.SFX_EXPLOSION_4]    = App.assets.loadSingleAsset("sounds/explosion_4.mp3", Sound.class);
-        AudioData.sounds[AudioData.SFX_EXPLOSION_5]    = App.assets.loadSingleAsset("sounds/explosion_5.mp3", Sound.class);
-        AudioData.sounds[AudioData.SFX_THRUST]         = App.assets.loadSingleAsset("sounds/thrust3.mp3", Sound.class);
-        AudioData.sounds[AudioData.SFX_PICKUP]         = App.assets.loadSingleAsset("sounds/pickup.mp3", Sound.class);
-        AudioData.sounds[AudioData.SFX_TELEPORT]       = App.assets.loadSingleAsset("sounds/teleport.mp3", Sound.class);
-        AudioData.sounds[AudioData.SFX_EXTRA_LIFE]     = App.assets.loadSingleAsset("sounds/extra_life.mp3", Sound.class);
-        AudioData.sounds[AudioData.SFX_LAUNCH_WARNING] = App.assets.loadSingleAsset("sounds/teleport.mp3", Sound.class);
-        AudioData.sounds[AudioData.SFX_TEST_SOUND]     = App.assets.loadSingleAsset("sounds/teleport.mp3", Sound.class);
-        AudioData.sounds[AudioData.SFX_BEEP]           = App.assets.loadSingleAsset("sounds/pickup.mp3", Sound.class);
+//        AudioData.sounds[AudioData.SFX_LASER]          = App.assets.loadSingleAsset("sounds/laser.mp3", Sound.class);
+//        AudioData.sounds[AudioData.SFX_PLAZMA]         = App.assets.loadSingleAsset("sounds/plazma.mp3", Sound.class);
+//        AudioData.sounds[AudioData.SFX_EXPLOSION_1]    = App.assets.loadSingleAsset("sounds/explosion_1.mp3", Sound.class);
+//        AudioData.sounds[AudioData.SFX_EXPLOSION_2]    = App.assets.loadSingleAsset("sounds/explosion_2.mp3", Sound.class);
+//        AudioData.sounds[AudioData.SFX_EXPLOSION_3]    = App.assets.loadSingleAsset("sounds/explosion_3.mp3", Sound.class);
+//        AudioData.sounds[AudioData.SFX_EXPLOSION_4]    = App.assets.loadSingleAsset("sounds/explosion_4.mp3", Sound.class);
+//        AudioData.sounds[AudioData.SFX_EXPLOSION_5]    = App.assets.loadSingleAsset("sounds/explosion_5.mp3", Sound.class);
+//        AudioData.sounds[AudioData.SFX_THRUST]         = App.assets.loadSingleAsset("sounds/thrust3.mp3", Sound.class);
+//        AudioData.sounds[AudioData.SFX_PICKUP]         = App.assets.loadSingleAsset("sounds/pickup.mp3", Sound.class);
+//        AudioData.sounds[AudioData.SFX_TELEPORT]       = App.assets.loadSingleAsset("sounds/teleport.mp3", Sound.class);
+//        AudioData.sounds[AudioData.SFX_EXTRA_LIFE]     = App.assets.loadSingleAsset("sounds/extra_life.mp3", Sound.class);
+//        AudioData.sounds[AudioData.SFX_LAUNCH_WARNING] = App.assets.loadSingleAsset("sounds/teleport.mp3", Sound.class);
+//        AudioData.sounds[AudioData.SFX_TEST_SOUND]     = App.assets.loadSingleAsset("sounds/teleport.mp3", Sound.class);
+//        AudioData.sounds[AudioData.SFX_BEEP]           = App.assets.loadSingleAsset("sounds/pickup.mp3", Sound.class);
 
-        AudioData.music[AudioData.MUS_TITLE]   = App.assets.loadSingleAsset("sounds/loseme2.mp3", Music.class);
-        AudioData.music[AudioData.MUS_HISCORE] = App.assets.loadSingleAsset("sounds/breath.mp3", Music.class);
-        AudioData.music[AudioData.MUS_GAME]    = App.assets.loadSingleAsset("sounds/fear_mon.mp3", Music.class);
+//        AudioData.music[AudioData.MUS_TITLE]   = App.assets.loadSingleAsset("sounds/loseme2.mp3", Music.class);
+//        AudioData.music[AudioData.MUS_HISCORE] = App.assets.loadSingleAsset("sounds/breath.mp3", Music.class);
+//        AudioData.music[AudioData.MUS_GAME]    = App.assets.loadSingleAsset("sounds/fear_mon.mp3", Music.class);
 
         App.settings.getPrefs().putInteger(Settings._MUSIC_VOLUME, AudioData._DEFAULT_MUSIC_VOLUME);
         App.settings.getPrefs().putInteger(Settings._FX_VOLUME, AudioData._DEFAULT_FX_VOLUME);

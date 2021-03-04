@@ -485,10 +485,6 @@ public class GameController implements ControllerListener
         ControllerMap._BUTTON_R3          = DefaultControllerMap._BUTTON_R3;
         ControllerMap._BUTTON_LB          = DefaultControllerMap._BUTTON_LB;
         ControllerMap._BUTTON_RB          = DefaultControllerMap._BUTTON_RB;
-
-        //
-        // PovDirection has now been removed from LibGDX.
-        // use getButton(getMapping().buttonDpad...) instead.
 //        ControllerMap._BUTTON_DPAD_LEFT   = DefaultControllerMap._BUTTON_DPAD_LEFT;
 //        ControllerMap._BUTTON_DPAD_RIGHT  = DefaultControllerMap._BUTTON_DPAD_RIGHT;
 //        ControllerMap._BUTTON_DPAD_UP     = DefaultControllerMap._BUTTON_DPAD_UP;
