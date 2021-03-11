@@ -37,8 +37,7 @@ public class OrthoGameCamera implements IGameCamera, Disposable
 
         switch (_viewType)
         {
-            case _STRETCH:
-            {
+            case _STRETCH -> {
                 viewport = new StretchViewport
                     (
                         camera.viewportWidth * Gfx._PPM,
@@ -47,10 +46,7 @@ public class OrthoGameCamera implements IGameCamera, Disposable
                     );
                 viewport.apply();
             }
-            break;
-
-            case _FIT:
-            {
+            case _FIT -> {
                 viewport = new FitViewport
                     (
                         camera.viewportWidth * Gfx._PPM,
@@ -59,17 +55,10 @@ public class OrthoGameCamera implements IGameCamera, Disposable
                     );
                 viewport.apply();
             }
-            break;
-
-            case _FILL:
-            case _SCREEN:
-            {
+            case _FILL, _SCREEN -> {
                 throw new NotImplementedException("Type " + _viewType + " not yet supported");
             }
-
-            case _EXTENDED:
-            default:
-            {
+            default -> {
                 viewport = new ExtendViewport
                     (
                         camera.viewportWidth * Gfx._PPM,
@@ -78,7 +67,6 @@ public class OrthoGameCamera implements IGameCamera, Disposable
                     );
                 viewport.apply();
             }
-            break;
         }
 
         setZoomDefault(Zoom._DEFAULT_ZOOM);

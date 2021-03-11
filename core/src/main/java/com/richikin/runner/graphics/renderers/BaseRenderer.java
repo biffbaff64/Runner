@@ -1,8 +1,9 @@
 package com.richikin.runner.graphics.renderers;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.richikin.enumslib.StateID;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.core.App;
@@ -102,8 +103,7 @@ public class BaseRenderer implements Disposable
      */
     public void render()
     {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        ScreenUtils.clear(Color.BLACK, false);
 
         //
         // Set the positioning reference point for the cameras. Cameras
@@ -126,7 +126,26 @@ public class BaseRenderer implements Disposable
 
         App.spriteBatch.enableBlending();
 
-        // ----- Draw the first set of Parallax Layers, if enabled -----
+        drawParallax();
+        drawTiledMap();
+        drawSprites();
+        drawHUD();
+
+        // ----- Draw the Stage, if enabled -----
+        if (isDrawingStage && (App.stage != null))
+        {
+            App.stage.act(Math.min(Gdx.graphics.getDeltaTime(), Gfx._STEP_TIME));
+            App.stage.draw();
+        }
+
+        gameZoom.stop();
+        hudZoom.stop();
+
+        App.worldModel.drawDebugMatrix();
+    }
+
+    private void drawParallax()
+    {
         if (parallaxGameCamera.isInUse)
         {
             parallaxGameCamera.viewport.apply();
@@ -143,8 +162,10 @@ public class BaseRenderer implements Disposable
             App.entityManager.renderSystem.drawBackgroundSprites();
             App.spriteBatch.end();
         }
+    }
 
-        // ----- Draw the TiledMap, if enabled -----
+    private void drawTiledMap()
+    {
         if (tiledGameCamera.isInUse)
         {
             tiledGameCamera.viewport.apply();
@@ -167,8 +188,10 @@ public class BaseRenderer implements Disposable
             App.mapData.render(tiledGameCamera.camera);
             App.spriteBatch.end();
         }
+    }
 
-        // ----- Draw the game sprites, if enabled -----
+    private void drawSprites()
+    {
         if (spriteGameCamera.isInUse)
         {
             spriteGameCamera.viewport.apply();
@@ -192,9 +215,14 @@ public class BaseRenderer implements Disposable
 
             App.spriteBatch.end();
         }
+    }
 
-        // ----- Draw the HUD and any related objects, if enabled -----
-        // ----- The Front End should only be using this camera -------
+    /**
+     * Draw the HUD and any related objects, if enabled.
+     * The Front End should only be using this camera.
+     */
+    private void drawHUD()
+    {
         if (hudGameCamera.isInUse)
         {
             hudGameCamera.viewport.apply();
@@ -211,18 +239,6 @@ public class BaseRenderer implements Disposable
 
             App.spriteBatch.end();
         }
-
-        // ----- Draw the Stage, if enabled -----
-        if (isDrawingStage && (App.stage != null))
-        {
-            App.stage.act(Math.min(Gdx.graphics.getDeltaTime(), Gfx._STEP_TIME));
-            App.stage.draw();
-        }
-
-        gameZoom.stop();
-        hudZoom.stop();
-
-        App.worldModel.drawDebugMatrix();
     }
 
     public void resizeCameras(int _width, int _height)
