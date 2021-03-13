@@ -7,6 +7,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.runner.assets.GameAssets;
+import com.richikin.utilslib.logging.StopWatch;
+
+import java.util.concurrent.TimeUnit;
 
 public class SplashScreen implements Disposable
 {
@@ -29,6 +32,7 @@ public class SplashScreen implements Disposable
 
     private SpriteBatch batch;
     private Texture     background;
+    private StopWatch   stopWatch;
 
     public static SplashScreen inst()
     {
@@ -37,14 +41,18 @@ public class SplashScreen implements Disposable
 
     public void setup()
     {
-        batch      = new SpriteBatch();
-        background = new Texture(GameAssets._SPLASH_SCREEN_ASSET);
-
+        batch       = new SpriteBatch();
+        background  = new Texture(GameAssets._SPLASH_SCREEN_ASSET);
+        stopWatch   = StopWatch.start();
         isAvailable = true;
     }
 
     public void update()
     {
+        if (stopWatch.time(TimeUnit.MILLISECONDS) > 1500)
+        {
+            isAvailable = false;
+        }
     }
 
     public void render()
@@ -66,6 +74,7 @@ public class SplashScreen implements Disposable
         batch.dispose();
         background.dispose();
 
+        stopWatch  = null;
         batch      = null;
         background = null;
     }

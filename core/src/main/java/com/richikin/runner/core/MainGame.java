@@ -29,7 +29,6 @@ public class MainGame extends com.badlogic.gdx.Game
 
         // TODO: 21/02/2021 - This is crap, change it
         startup = new Startup();
-        startup.startApp();
     }
 
     @Override
@@ -37,6 +36,11 @@ public class MainGame extends com.badlogic.gdx.Game
     {
         if (SplashScreen.inst().isAvailable)
         {
+            if (!startup.startupDone)
+            {
+                startup.startApp();
+            }
+
             SplashScreen.inst().update();
             SplashScreen.inst().render();
 

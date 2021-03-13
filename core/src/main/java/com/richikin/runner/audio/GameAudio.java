@@ -110,7 +110,7 @@ public class GameAudio
         App.settings.getPrefs().putInteger(Settings._FX_VOLUME, AudioData._DEFAULT_FX_VOLUME);
         App.settings.getPrefs().flush();
 
-        soundsLoaded = true;
+//        soundsLoaded = true;
     }
 
     public void playTune(boolean play)

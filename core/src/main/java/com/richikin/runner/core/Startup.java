@@ -16,8 +16,11 @@ import com.richikin.utilslib.logging.Trace;
 
 public class Startup
 {
+    public boolean startupDone;
+
     public Startup()
     {
+        startupDone = false;
     }
 
     /**
@@ -52,6 +55,8 @@ public class Startup
         Shake.setAllowed(false);
 
         AppConfig.addBackButton("back_arrow", "back_arrow_pressed");
+
+        startupDone = true;
 
         Trace.divider();
     }

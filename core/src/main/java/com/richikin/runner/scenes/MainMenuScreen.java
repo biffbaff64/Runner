@@ -30,7 +30,6 @@ public class MainMenuScreen extends AbstractBaseScreen
     private OptionsPage        optionsPage;
     private MenuPage           menuPage;
     private Texture            background;
-    private StarField          starField;
     private ArrayList<IUIPage> panels;
     private int                currentPage;
 
@@ -49,7 +48,6 @@ public class MainMenuScreen extends AbstractBaseScreen
         optionsPage = new OptionsPage();
         menuPage    = new MenuPage();
         panels      = new ArrayList<>();
-        starField   = new StarField();
         currentPage = _MENU_PAGE;
 
         panels.add(_MENU_PAGE, menuPage);
@@ -98,8 +96,6 @@ public class MainMenuScreen extends AbstractBaseScreen
             {
                 case _MENU_PAGE, _HISCORE_PAGE, _CREDITS_PAGE, _OPTIONS_PAGE -> {
                     spriteBatch.draw(background, AppConfig.hudOriginX, AppConfig.hudOriginY);
-
-                    starField.render();
 
                     panels.get(currentPage).draw(spriteBatch);
 
@@ -256,7 +252,7 @@ public class MainMenuScreen extends AbstractBaseScreen
     @Override
     public void loadImages()
     {
-        background = App.assets.loadSingleAsset("empty_screen_dark.png", Texture.class);
+        background = App.assets.loadSingleAsset("menu_background.png", Texture.class);
     }
 
     public MenuPage getMenuPage()
@@ -295,13 +291,10 @@ public class MainMenuScreen extends AbstractBaseScreen
     {
         Trace.__FILE_FUNC();
 
-        App.assets.unloadAsset("empty_screen_dark.png");
+        App.assets.unloadAsset("menu_background.png");
 
         menuPage.hide();
         menuPage.dispose();
-
-        starField.dispose();
-        starField = null;
 
         if (panels != null)
         {
