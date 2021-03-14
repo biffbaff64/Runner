@@ -152,7 +152,6 @@ public class MainGameScreen extends AbstractBaseScreen
     public void loadImages()
     {
         App.baseRenderer.parallaxBackground.setupLayers(App.mapData.backgroundLayers);
-        App.baseRenderer.parallaxForeground.setupLayers(App.mapData.foregroundLayers);
     }
 
     @Override
@@ -165,7 +164,6 @@ public class MainGameScreen extends AbstractBaseScreen
         App.gameProgress.dispose();
 
         App.baseRenderer.parallaxBackground.dispose();
-        App.baseRenderer.parallaxForeground.dispose();
 
         App.baseRenderer.gameZoom.setZoomValue(0.0f);
         App.baseRenderer.hudZoom.setZoomValue(0.0f);

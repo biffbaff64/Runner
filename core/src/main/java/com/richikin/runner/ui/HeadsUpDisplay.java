@@ -1,13 +1,18 @@
 package com.richikin.runner.ui;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.StateID;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.core.App;
 import com.richikin.runner.input.VirtualJoystick;
 import com.richikin.utilslib.input.Switch;
+import com.richikin.utilslib.logging.Trace;
 
 public class HeadsUpDisplay implements Disposable
 {
@@ -22,6 +27,7 @@ public class HeadsUpDisplay implements Disposable
     public Switch buttonLeft;
     public Switch buttonRight;
 
+    // ###############################################################
     // TODO: 27/11/2020 - Are these following switches still needed ??
     public Switch buttonAction;
     public Switch buttonAttack;
@@ -29,11 +35,16 @@ public class HeadsUpDisplay implements Disposable
     public Switch buttonY;
     public Switch buttonPause;
     public Switch buttonDevOptions;
+    // ###############################################################
 
     public ImageButton ActionButton;
     public ImageButton AttackButton;
     public ImageButton PauseButton;
 
+    public Image          scorePanel;
+    public BitmapFont     smallFont;
+    public BitmapFont     midFont;
+    public BitmapFont     bigFont;
     public MessageManager messageManager;
     public StateID        hudStateID;
 
@@ -43,7 +54,17 @@ public class HeadsUpDisplay implements Disposable
 
     public void createHud()
     {
+        Trace.__FILE_FUNC();
+
         AppConfig.hudExists = false;
+
+        Texture               texture  = App.assets.loadSingleAsset("hud_panel.png", Texture.class);
+        TextureRegionDrawable drawable = new TextureRegionDrawable(texture);
+        this.scorePanel = new Image(drawable);
+
+        this.messageManager = new MessageManager();
+
+        this.hudStateID = StateID._STATE_PANEL_START;
     }
 
     public void update()

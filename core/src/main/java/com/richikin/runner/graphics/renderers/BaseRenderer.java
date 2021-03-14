@@ -24,7 +24,6 @@ public class BaseRenderer implements Disposable
     public OrthoGameCamera parallaxGameCamera;
 
     public ParallaxBackground parallaxBackground;
-    public ParallaxBackground parallaxForeground;
     public Zoom               gameZoom;
     public Zoom               hudZoom;
     public boolean            isDrawingStage;
@@ -58,7 +57,6 @@ public class BaseRenderer implements Disposable
             );
 
         parallaxBackground  = new ParallaxBackground();
-        parallaxForeground  = new ParallaxBackground();
         App.parallaxManager = new ParallaxManager();
 
         // --------------------------------------
@@ -258,10 +256,7 @@ public class BaseRenderer implements Disposable
         hudGameCamera.dispose();
 
         parallaxBackground.dispose();
-        parallaxForeground.dispose();
-
         parallaxBackground = null;
-        parallaxForeground = null;
 
         gameZoom = null;
         hudZoom  = null;

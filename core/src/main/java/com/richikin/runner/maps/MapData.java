@@ -22,33 +22,31 @@ public class MapData
 {
     public static final int _GAME_TILES       = 0;
     public static final int _EXTRA_GAME_TILES = 1;
-    public static final int _OBJECT_TILES     = 2;
-    public static final int _COLLISION_LAYER  = 3;
+    public static final int _DECORATIONS      = 2;
+    public static final int _MARKER_TILES     = 3;
+    public static final int _COLLISION_LAYER  = 4;
 
     public final String[] mapLayerNames =
         {
             "game tiles",
             "extra game tiles",
-            "object tiles",
+            "decorations",
+            "marker tiles",
             "collision",
         };
 
     public final LayerImage[] backgroundLayers =
         {
-            new LayerImage("background_layer.png", 0.0f, 0.0f),
-            new LayerImage("nebula_background.png", 0.0f, 0.0f),
-            new LayerImage("stars_background.png", 0.0f, 0.0f),
-            new LayerImage("dark_mountains.png", 1.2f, 0.01f),
-            new LayerImage("light_mountains.png", 2.4f, 0.015f),
-        };
-
-    //
-    // NOTE: Not made final because _horizointalSpeed fields
-    // will be modified based on LJMs current speed.
-    public LayerImage[] foregroundLayers =
-        {
-            new LayerImage("foreground.png", 0.0f, 0.0f),
-            new LayerImage("foreground_near.png", 0.0f, 0.0f),
+            new LayerImage("layer10.png", 0.0f, 0.0f),
+            new LayerImage("layer5.png", 0.0f, 0.0f),
+            new LayerImage("layer6.png", 0.0f, 0.0f),
+            new LayerImage("layer9.png", 1.2f, 0.01f),
+            new LayerImage("layer1.png", 2.4f, 0.015f),
+            new LayerImage("layer8.png", 2.4f, 0.015f),
+            new LayerImage("layer7.png", 2.4f, 0.015f),
+            new LayerImage("layer2.png", 2.4f, 0.015f),
+            new LayerImage("layer3.png", 2.4f, 0.015f),
+            new LayerImage("layer4.png", 2.4f, 0.015f),
         };
 
     public OrthogonalTiledMapRenderer mapRenderer;
@@ -167,7 +165,7 @@ public class MapData
     {
         gameTilesLayer      = (TiledMapTileLayer) currentMap.getLayers().get(mapLayers[_GAME_TILES]);
         extraGameTilesLayer = (TiledMapTileLayer) currentMap.getLayers().get(mapLayers[_EXTRA_GAME_TILES]);
-        objectTiles         = currentMap.getLayers().get(mapLayers[_OBJECT_TILES]).getObjects();
+        objectTiles         = currentMap.getLayers().get(mapLayers[_MARKER_TILES]).getObjects();
         mapObjects          = currentMap.getLayers().get(mapLayers[_COLLISION_LAYER]).getObjects();
 
         Gfx.tileWidth  = currentMap.getProperties().get("tilewidth", Integer.class);

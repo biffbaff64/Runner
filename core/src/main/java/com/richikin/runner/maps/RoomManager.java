@@ -37,7 +37,7 @@ public class RoomManager implements Disposable
             // ####################################################################
             new Room
                 (
-                    "level1.tmx",
+                    "map1.tmx",
                     new MapEntry
                         (
                             -2.0f, 1200,
@@ -47,7 +47,7 @@ public class RoomManager implements Disposable
                 ),
             new Room
                 (
-                    "level1.tmx",
+                    "map1.tmx",
                     new MapEntry
                         (
                             3.0f, 1200,
@@ -57,7 +57,7 @@ public class RoomManager implements Disposable
                 ),
             new Room
                 (
-                    "level1.tmx",
+                    "map1.tmx",
                     new MapEntry
                         (
                             -3.5f, 1100,
