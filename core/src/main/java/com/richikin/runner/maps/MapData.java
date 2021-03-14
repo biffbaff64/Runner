@@ -22,15 +22,13 @@ public class MapData
 {
     public static final int _GAME_TILES       = 0;
     public static final int _EXTRA_GAME_TILES = 1;
-    public static final int _DECORATIONS      = 2;
-    public static final int _MARKER_TILES     = 3;
-    public static final int _COLLISION_LAYER  = 4;
+    public static final int _MARKER_TILES     = 2;
+    public static final int _COLLISION_LAYER  = 3;
 
     public final String[] mapLayerNames =
         {
             "game tiles",
             "extra game tiles",
-            "decorations",
             "marker tiles",
             "collision",
         };
