@@ -1,4 +1,6 @@
-package com.richikin.runner.physics.aabb;
+package com.richikin.utilslib.physics.aabb;
+
+import com.richikin.runner.physics.aabb.CollisionObject;
 
 public interface ICollisionListener
 {

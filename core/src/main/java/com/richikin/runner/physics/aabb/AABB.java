@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.utilslib.physics.aabb.AABBData;
 
 public class AABB implements Disposable
 {

@@ -1,5 +1,5 @@
 
-package com.richikin.runner.physics.aabb;
+package com.richikin.utilslib.physics.aabb;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;

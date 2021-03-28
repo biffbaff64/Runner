@@ -1,7 +1,8 @@
-package com.richikin.runner.physics.aabb;
+package com.richikin.utilslib.physics.aabb;
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
+import com.richikin.runner.physics.aabb.CollisionObject;
 
 public enum AABBData implements Disposable
 {

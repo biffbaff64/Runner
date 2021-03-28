@@ -7,7 +7,7 @@ import com.richikin.runner.entities.EntityUtils;
 import com.richikin.runner.entities.paths.PathUtils;
 import com.richikin.runner.maps.RoomManager;
 import com.richikin.runner.physics.CollisionUtils;
-import com.richikin.runner.physics.aabb.AABBData;
+import com.richikin.utilslib.physics.aabb.AABBData;
 import com.richikin.runner.ui.HeadsUpDisplay;
 import com.richikin.utilslib.logging.Trace;
 

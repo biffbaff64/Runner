@@ -1,4 +1,4 @@
-package com.richikin.runner.physics.box2d;
+package com.richikin.utilslib.physics.box2d;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;

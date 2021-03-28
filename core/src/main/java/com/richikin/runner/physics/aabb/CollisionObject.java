@@ -7,6 +7,8 @@ import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.runner.entities.objects.BaseEntity;
 import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.physics.aabb.AABBData;
+import com.richikin.utilslib.physics.aabb.CollisionRect;
 
 import java.util.concurrent.TimeUnit;
 

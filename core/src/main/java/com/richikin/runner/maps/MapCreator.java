@@ -10,7 +10,7 @@ import com.richikin.runner.entities.components.IEntityManagerComponent;
 import com.richikin.runner.entities.objects.BaseEntity;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.runner.graphics.Gfx;
-import com.richikin.runner.physics.aabb.AABBData;
+import com.richikin.utilslib.physics.aabb.AABBData;
 import com.richikin.runner.physics.aabb.CollisionObject;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.Box;

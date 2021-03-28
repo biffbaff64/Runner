@@ -7,7 +7,7 @@ import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.runner.core.App;
 import com.richikin.runner.entities.components.IEntityComponent;
-import com.richikin.runner.physics.aabb.AABBData;
+import com.richikin.utilslib.physics.aabb.AABBData;
 import com.richikin.runner.physics.aabb.CollisionObject;
 import com.richikin.utilslib.maths.SimpleVec2;
 

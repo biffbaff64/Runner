@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.runner.core.App;
-import com.richikin.runner.physics.aabb.ICollisionListener;
+import com.richikin.utilslib.physics.aabb.ICollisionListener;
 
 // TODO: 03/12/2020 - Eventually all enemy entities must extend from this class
 // TODO: 03/12/2020 - This class should handle all common enemy actions

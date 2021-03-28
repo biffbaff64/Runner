@@ -1,4 +1,4 @@
-package com.richikin.runner.physics.box2d;
+package com.richikin.utilslib.physics.box2d;
 
 public enum B2DConstants
 {
