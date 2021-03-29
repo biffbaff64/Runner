@@ -6,94 +6,127 @@ public enum GraphicID
     // ----------------------------
     // The Player
     G_PLAYER,
-
-    G_ROVER,
-    G_ROVER_BOOT,
-    G_ROVER_GUN,
-    G_ROVER_GUN_BARREL,
-    G_ROVER_WHEEL,
-    G_BOMB,
-    G_LASER,
-    G_ROVER_BULLET,
-
-    G_SPAWNER,
+    G_PLAYER_FIGHT,
+    G_PLAYER_CAST,
 
     // ----------------------------
-    G_ALIEN_BASE,
-    G_MISSILE_BASE,
-    G_MISSILE_LAUNCHER,
-    G_MISSILE,
+    // Other main, non-enemy, characters
+    G_PRISONER,
+    G_VILLAGER,
 
     // ----------------------------
-    G_TRANSPORTER,
-    G_TRANSPORTER_BEAM,
-    G_DEFENDER,
-    G_DEFENDER_ZAP,
-    G_DEFENDER_BULLET,
+    // Pickup Items
+    G_COIN,
+    G_SPECIAL_COIN,
+    G_HIDDEN_COIN,
+    G_ARROW,
+    G_SMALL_BULLET,
+    G_GEM,
+    G_SHIELD,
+    G_KEY,
+    G_HUD_KEY,
+    G_APPLE,
+    G_BOOK,
+    G_CAKE,
+    G_CHERRIES,
+    G_GRAPES,
+    G_SILVER_ARMOUR,
+    G_GOLD_ARMOUR,
+    G_LITTER,
+    G_RUNE,
 
     // ----------------------------
-    G_POWER_BEAM,
-    G_POWER_BEAM_SMALL,
+    // Decorations
+    G_POT,
+    G_CRATE,
+    G_BARREL,
+    G_GLOW_EYES,
+    G_ALCOVE_TORCH,
+    G_SACKS,
+    G_PLANT_POT,
 
     // ----------------------------
-    G_PICKUP,
-    G_FREEZER,
-    G_ADD_TIME,
-
-    // ----------------------------
-    G_STAIR_CLIMBER,
-    G_3BALLS_UFO,
-    G_UFO_BULLET,
-    G_3LEGS_ALIEN,
-    G_TOPSPIN,
-    G_TWINKLES,
-    G_STAR_SPINNER,
-    G_ASTEROID,
-    G_DOG,
-    G_GREEN_BLOCK,
-    G_SPINNING_BALL,
-    G_BLOB,
-    G_ALIEN_WHEEL,
-    G_WINDMILL,
-
-    // ----------------------------
-    G_TWINKLE_STAR,
-    G_BACKGROUND_UFO,
+    // Interactive items
+    G_DOOR,
+    G_OPEN_DOOR,
+    G_LOCKED_DOOR,
+    G_LASER_BEAM,
+    G_FLOOR_BUTTON,
+    G_LEVER_SWITCH,
+    G_TREASURE_CHEST,
+    G_MYSTERY_CHEST,
+    G_TELEPORTER,
+    G_PRIZE_BALLOON,
+    G_MESSAGE_BUBBLE,
+    G_MESSAGE_PANEL,
+    G_HELP_BUBBLE,
+    G_DOCUMENT,
+    G_QUESTION_MARK,
+    G_EXCLAMATION_MARK,
+    G_TALK_BOX,
+    G_FLOATING_PLATFORM,
+    G_SELECTION_RING,
+    G_CROSSHAIRS,
+    G_ESCALATOR,
+    G_ESCALATOR_LEFT,
+    G_ESCALATOR_RIGHT,
+    G_ESCALATOR_UP,
+    G_ESCALATOR_DOWN,
 
     // ----------------------------
     G_EXPLOSION12,
+    G_EXPLOSION32,
     G_EXPLOSION64,
     G_EXPLOSION128,
     G_EXPLOSION256,
-    G_PRIZE_BALLOON,
-    G_MESSAGE_BUBBLE,
-    G_ARROW,
+
+    // ----------------------------
+    // Enemies
+    G_STORM_DEMON,
+    G_BOUNCER,
+    G_MINI_FIRE_BALL,
+    G_SPIKE_BALL,
+    G_SPIKE_BLOCK_HORIZONTAL,
+    G_SPIKE_BLOCK_VERTICAL,
+    G_DOUBLE_SPIKE_BLOCK,
+    G_LOOP_BLOCK_HORIZONTAL,
+    G_LOOP_BLOCK_VERTICAL,
+    G_SPIKES,
+    G_SCORPION,
+    G_ENEMY_BULLET,
+    G_ENEMY_FIREBALL,
+    G_SOLDIER,
+    G_SOLDIER_FIGHT,
+    G_BIG_BLOCK_VERTICAL,
+    G_BIG_BLOCK_HORIZONTAL,
+
+    // ----------------------------
+    G_LASER,
+    G_LASER_BEAM_VERTICAL,
+    G_LASER_BEAM_HORIZONTAL,
+    G_FLAME_THROWER,
+    G_FLAME_THROWER_VERTICAL,
+    G_TURRET,
 
     // ----------------------------
     // Generic
     _MONSTER,
     _BLOCKS,
+
+    // ----------------------------
+    // object IDs for non-sprites
     _GROUND,
     _CEILING,
     _WALL,
     _LETHAL_OBJECT,
+    _ENEMY,
+    _MAIN,
     _SIGN,
     _SPEECH,
     _HUD_PANEL,
+    _ENTITY_BARRIER,
     _EXIT_BOX,
-    _BACKGROUND_ENTITY,
-    _BRIDGE,
-    _CRATER,
-    _ALIEN_MANAGER,
-
-    // ----------------------------
-    // Main Character type, i.e. Player
-    _MAIN,
-
-    // ----------------------------
-    // Enemy Character type, but not stationary entities
-    // like rocket launchers etc.
-    _ENEMY,
+    _AUTO_FLOOR,
 
     // ----------------------------
     // Encapsulating type, covering any collision IDs that can be stood on.
@@ -114,6 +147,14 @@ public enum GraphicID
     _INTERACTIVE,
     _PRISONER,
     _PLATFORM,
+
+    // ----------------------------
+    // Messages
+    _STORM_DEMON_WARNING,
+    _PRESS_FOR_TREASURE,
+    _PRESS_FOR_PRISONER,
+    _PRESS_FOR_GUIDE,
+    _KEY_NEEDED,
 
     // ----------------------------
 

@@ -1,303 +1,229 @@
 package com.richikin.runner.maps;
 
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.enumslib.GraphicID;
-import com.richikin.runner.core.App;
-import com.richikin.runner.entities.objects.SpriteDescriptor;
+import com.richikin.enumslib.TileID;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
+import com.richikin.utilslib.maths.SimpleVec2F;
 import org.jetbrains.annotations.NotNull;
 
 public class RoomManager implements Disposable
 {
-    public static final int _MAX_TELEPORTERS = 2;
-    public static final int _MAX_DEFENCE_STATIONS = 2;
+    private static final String _MAZE_NW        = "maze1_nw.tmx";         //
 
-    private static final String _MAPS_PATH = "maps/";
+    private static final String _PASSAGE_ES     = "passage_es.tmx";       //
+    private static final String _PASSAGE_ESW    = "passage_esw.tmx";      //
+    private static final String _PASSAGE_NS     = "passage_ns.tmx";       //
+    private static final String _PASSAGE_NES    = "passage_nes.tmx";      //
+    private static final String _PASSAGE_NE     = "passage_ne.tmx";       //
+    private static final String _PASSAGE_S      = "passage_s.tmx";        //
 
-    private final Room[] roomMap =
+    private static final String _PRISON_N       = "prison_room_n.tmx";    //
+    private static final String _PRISON_S       = "prison_room_s.tmx";    //
+
+    private static final String _E              = "room_e.tmx";           //
+    private static final String _E2             = "room_e2.tmx";          //
+    private static final String _EW             = "room_ew.tmx";          //
+    private static final String _N              = "room_n.tmx";           //
+    private static final String _N2             = "room_n2.tmx";          //
+    private static final String _S2             = "room_s2.tmx";          //
+    private static final String _NES            = "room_nes.tmx";         //
+    private static final String _NESW           = "room_nesw.tmx";        //
+    private static final String _NESW2          = "room_nesw2.tmx";       //
+    private static final String _N3             = "room_n3.tmx";          //
+    private static final String _NW             = "room_nw2.tmx";         //
+    private static final String _NWS            = "room_nws.tmx";         //
+    private static final String _S              = "room_s.tmx";           //
+    private static final String _SEW            = "room_sew.tmx";         //
+    private static final String _SN             = "room_sn.tmx";          //
+    private static final String _W              = "room_w.tmx";           //
+    private static final String _WS             = "room_ws.tmx";          //
+
+    private static final String _ROOM1_NS       = "room1_ns.tmx";         //
+    private static final String _ROOM2_NES      = "room2_nes.tmx";        //
+    private static final String _ROOM2_NS       = "room2_ns.tmx";         //
+    private static final String _ROOM3_NEW      = "room3_new.tmx";        //
+    private static final String _ROOM4_ES       = "room4_es.tmx";         //
+    private static final String _ROOM5_NE       = "room5_ne.tmx";         //
+    private static final String _ROOM5B_NE      = "room5b_ne.tmx";        //
+    private static final String _ROOM6_ESW      = "room6_esw.tmx";        //
+    private static final String _ROOM7_NS       = "room7_ns.tmx";         //
+    private static final String _ROOM8_NW       = "room8_nw.tmx";         //
+    private static final String _ROOM9_NESW     = "room9_nesw.tmx";       //
+    private static final String _ROOM10_NSW     = "room10_nsw.tmx";       //
+    private static final String _ROOM11_NESW    = "room11_nesw.tmx";      //
+    private static final String _ROOM12_NS      = "room12_ns.tmx";        //
+    private static final String _ROOM13_ESW     = "room13_esw.tmx";       //
+    private static final String _ROOM13B_EW     = "room13b_ew.tmx";       //
+    private static final String _ROOM14_NS      = "room14_ns.tmx";        //
+    private static final String _ROOM15_NE      = "room15_ne.tmx";        //
+    private static final String _ROOM16_NW      = "room16_nw.tmx";        //
+    private static final String _ROOM17_N       = "room17_n.tmx";         //
+    private static final String _ROOM18_NS      = "room18_ns.tmx";        //
+
+    private static final String _SECRET1        = "room_secret1.tmx";     //
+
+    private static final int    _DEFAULT_START_ROW    = 1;
+    private static final int    _DEFAULT_START_COLUMN = 1;
+    private static final String _START_ROOM           = _MAZE_NW;
+    private static final int    _START_POSITION       = Room._START;
+    private static final String _MAPS_PATH            = "maps/";
+
+    //@formatter:off
+    private final Room[][] roomMap =
         {
-            null,
-            // ####################################################################
-            // Test Level
-//            new Room
-//                (
-//                    "level1.tmx",
-//                    new MapEntry
-//                        (
-//                            -2.0f, 1200,
-                            // Zero Entities
-//                            0, 4, 0, 0, 0, 0,
-//                            0, 0, 0, 0, 0, 0
-                            // Lots of Entities
-//                            4, 4, 4, 4, 4, 4,
-//                            4, 4, 4, 4, 4, 4
-//                        )
-//                ),
-            // ####################################################################
-            new Room
-                (
-                    "map1.tmx",
-                    new MapEntry
-                        (
-                            -2.0f, 1200,
-                            6, 6, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0, 0
-                        )
-                ),
-            new Room
-                (
-                    "map1.tmx",
-                    new MapEntry
-                        (
-                            3.0f, 1200,
-                            6, 6, 2, 0, 0, 0,
-                            0, 0, 0, 0, 0, 0
-                        )
-                ),
-            new Room
-                (
-                    "map1.tmx",
-                    new MapEntry
-                        (
-                            -3.5f, 1100,
-                            6, 6, 3, 0, 1, 0,
-                            0, 0, 0, 0, 0, 0
-                        )
-                ),
-            new Room
-                (
-                    "level1.tmx",
-                    new MapEntry
-                        (
-                            3.0f, 1100,
-                            6, 6, 3, 2, 0, 0,
-                            0, 0, 0, 0, 0, 0
-                        )
-                ),
-            new Room
-                (
-                    "level1.tmx",
-                    new MapEntry
-                        (
-                            -5.0f, 1100,
-                            24, 4, 2, 0, 1, 0,
-                            0, 0, 0, 0, 0, 1
-                        )
-                ),
-            new Room
-                (
-                    "level1.tmx",
-                    new MapEntry
-                        (
-                            2.0f, 1100,
-                            6, 6, 3, 2, 2, 0,
-                            0, 0, 0, 0, 0, 0
-                        )
-                ),
-            new Room
-                (
-                    "level1.tmx",
-                    new MapEntry
-                        (
-                            -3.0f, 1100,
-                            6, 0, 3, 3, 0, 2,
-                            0, 0, 0, 0, 0, 0
-                        )
-                ),
-            new Room
-                (
-                    "level1.tmx",
-                    new MapEntry
-                        (
-                            2.5f, 1100,
-                            6, 0, 0, 3, 2, 2,
-                            1, 0, 0, 0, 0, 0
-                        )
-                ),
-            new Room
-                (
-                    "level1.tmx",
-                    new MapEntry
-                        (
-                            -2.5f, 1100,
-                            8, 0, 0, 3, 1, 1,
-                            2, 0, 0, 0, 0, 0
-                        )
-                ),
-            new Room
-                (
-                    "level1.tmx",
-                    new MapEntry
-                        (
-                            3.0f, 1100,
-                            28, 0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0, 1
-                        )
-                ),
-        };
+            // DO NOT CHANGE THIS LINE
+            // -----------------------------------------
+            {null, null, null, null, null, null, null, null},
+            // -----------------------------------------
+            // 0   1                        2                       3                       4                       5                       6                       7
+            {null, new Room(_S2),           null,                   null,                   null,                   null,                   new Room(_PRISON_S),    null},  // 1
+            {null, new Room(_ROOM1_NS),     new Room(_SECRET1),     new Room(_ROOM4_ES),    new Room(_W),           new Room(_S),           new Room(_SN),          null},  // 2
+            {null, new Room(_PASSAGE_NES),  new Room(_NESW2),       new Room(_NESW),        new Room(_ROOM6_ESW),   new Room(_ROOM11_NESW), new Room(_ROOM10_NSW),  null},  // 3
+            {null, new Room(_ROOM2_NES),    new Room(_ROOM3_NEW),   new Room(_ROOM9_NESW),  new Room(_MAZE_NW),     new Room(_ROOM7_NS),    new Room(_PASSAGE_NS),  null},  // 4
+            {null, new Room(_N),            new Room(_E),           new Room(_ROOM5_NE),    null,                   new Room(_NES),         new Room(_NW),          null},  // 5
+            {null, new Room(_PASSAGE_ES),   new Room(_WS),          null,                   null,                   new Room(_ROOM12_NS),   null,                   null},  // 6
+            {null, new Room(_ROOM14_NS),    new Room(_PASSAGE_NE),  new Room(_PASSAGE_ESW), new Room(_ROOM13_ESW),  new Room(_NWS),         new Room(_PASSAGE_S),   null},  // 7
+            {null, new Room(_ROOM17_N),     new Room(_N2),          new Room(_ROOM18_NS),   new Room(_ROOM2_NS),    new Room(_ROOM15_NE),   new Room(_ROOM16_NW),   null},  // 8
+            {null, null,                    null,                   new Room(_N3),          new Room(_PRISON_N),    null,                   null,                   null},  // 9
 
-    public Room activeRoom;
+            // -----------------------------------------
+            // DO NOT CHANGE THIS LINE
+            // -----------------------------------------
+            {null, null, null, null, null, null, null, null},
+            // -----------------------------------------
+        };
+    //@formatter:on
+
+    public int           roomIndex;
+    public Array<String> roomList;
+    public int           playerStart;
+    public Room          activeRoom;
+    public boolean       taskOffered;
+
+    private int worldWidth;
+    private int worldHeight;
 
     public RoomManager()
     {
         Trace.__FILE_FUNC();
+
+        worldWidth  = roomMap[0].length;
+        worldHeight = roomMap.length;
+
+        Trace.dbg("_WORLD_WIDTH : " + worldWidth);
+        Trace.dbg("_WORLD_HEIGHT: " + worldHeight);
     }
 
     public void initialise()
     {
         Trace.__FILE_FUNC();
 
-        setRoom(App.getLevel());
+        activeRoom = new Room();
+
+        SimpleVec2 roomPos = createRoomList();
+        storeEntryPoints();
+
+        int startRow    = (roomPos == null) ? _DEFAULT_START_ROW : roomPos.getX();
+        int startColumn = (roomPos == null) ? _DEFAULT_START_COLUMN : roomPos.getY();
+
+        Trace.dbg("startRow   : ", startRow);
+        Trace.dbg("startColumn: ", startColumn);
+        Trace.dbg("roomIndex  : ", roomIndex);
+
+        setRoom(startRow, startColumn, _START_POSITION);
     }
 
-    private void setRoom(int _index)
+    private SimpleVec2 findRoom(String roomName)
     {
-        if (roomMap[_index] != null)
+        SimpleVec2 roomPosition = null;
+
+        for (int row = 0; row < worldHeight && (roomPosition == null); row++)
         {
-            if (activeRoom == null)
+            for (int column = 0; column < worldWidth && (roomPosition == null); column++)
             {
-                activeRoom = new Room();
+                if (roomMap[row][column] != null)
+                {
+                    if (roomName.equals(roomMap[row][column].roomName))
+                    {
+                        roomPosition = new SimpleVec2(row, column);
+                    }
+                }
             }
-
-            activeRoom.set(roomMap[_index]);
-        }
-    }
-
-    public int getMaxAllowed(GraphicID gid)
-    {
-        int thisMax;
-
-        switch (gid)
-        {
-            case G_STAIR_CLIMBER:
-            {
-                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxStairClimbers);
-            }
-            break;
-
-            case G_3BALLS_UFO:
-            {
-                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.max3BallAliens);
-            }
-            break;
-
-            case G_3LEGS_ALIEN:
-            {
-                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.max3LegAliens);
-            }
-            break;
-
-            case G_ALIEN_WHEEL:
-            {
-                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxWheels);
-            }
-            break;
-
-            case G_ASTEROID:
-            {
-                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxAsteroids);
-            }
-            break;
-
-            case G_BLOB:
-            {
-                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxBlobs);
-            }
-            break;
-
-            case G_DOG:
-            {
-                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxDogs);
-            }
-            break;
-
-            case G_GREEN_BLOCK:
-            {
-                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxGreenBlocks);
-            }
-            break;
-
-            case G_SPINNING_BALL:
-            {
-                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxSpinningBalls);
-            }
-            break;
-
-            case G_TWINKLES:
-            {
-                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxTwinkles);
-            }
-            break;
-
-            case G_TOPSPIN:
-            {
-                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxTopSpinners);
-            }
-            break;
-
-            case G_STAR_SPINNER:
-            {
-                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxStarSpinners);
-            }
-            break;
-
-            case _CRATER:
-            {
-                thisMax = 4;
-            }
-            break;
-
-            default:
-            {
-                thisMax = 0;
-            }
-            break;
         }
 
-        return thisMax;
+        return roomPosition;
     }
 
-    public int getMaximumAllowed(GraphicID gid)
+    private void setRoom(int row, int column, int position)
     {
-        return 0;
-    }
-
-    public float getBaseOffset()
-    {
-        return roomMap[App.getLevel()].mapEntry.baseOffset;
-    }
-
-    public float getFireRate()
-    {
-        return roomMap[App.getLevel()].mapEntry.fireRate;
-    }
-
-    private int calculateEntityCount(int initialValue)
-    {
-        if (initialValue > 0)
+        if (roomMap[row][column] != null)
         {
-            return (int) ((float) initialValue * App.gameProgress.getGameDifficulty());
+            activeRoom.set(roomMap[row][column]);
+
+            activeRoom.row = row;
+            activeRoom.column = column;
         }
 
-        return initialValue;
+        playerStart = position;
     }
 
-    public String getCurrentMap()
+    public Room[][] getRoomMap()
     {
-        int index;
+        return roomMap;
+    }
 
-        if ((index = App.getLevel()) > roomMap.length)
+    public int getWorldWidth()
+    {
+        return worldWidth;
+    }
+
+    public int getWorldHeight()
+    {
+        return worldHeight;
+    }
+
+    public String getActiveRoomName()
+    {
+        String name = "null";
+
+        if (roomMap[activeRoom.row][activeRoom.column] != null)
         {
-            index = roomMap.length - 1;
+            name = roomMap[activeRoom.row][activeRoom.column].roomName;
         }
 
-        return _MAPS_PATH + roomMap[index].roomName;
+        return name;
+    }
+
+    public SimpleVec2F getStartPosition()
+    {
+        String      currentMap = roomMap[activeRoom.row][activeRoom.column].roomName;
+        SimpleVec2F positions  = new SimpleVec2F();
+
+        for (int row = 0; row < worldHeight; row++)
+        {
+            for (int column = 0; column < worldWidth; column++)
+            {
+                if (roomMap[row][column] != null)
+                {
+                    if (currentMap.equals(roomMap[row][column].roomName))
+                    {
+                        positions.set(roomMap[row][column].compassPoints[playerStart]);
+                    }
+                }
+            }
+        }
+
+        return positions;
     }
 
     public String getMapNameWithPath()
     {
-        return _MAPS_PATH + roomMap[App.getLevel()].roomName;
+        return _MAPS_PATH + roomMap[activeRoom.row][activeRoom.column].roomName;
     }
 
     @NotNull
@@ -306,19 +232,215 @@ public class RoomManager implements Disposable
         return _MAPS_PATH + roomName;
     }
 
-    public SimpleVec2 getStartPosition()
+    private SimpleVec2 createRoomList()
     {
-        SimpleVec2 position = new SimpleVec2();
+        SimpleVec2 startRoomPos = null;
+        roomList = new Array<>();
 
-        for (SpriteDescriptor tile : App.mapData.placementTiles)
+        for (int roomRow = 0; roomRow < worldHeight; roomRow++)
         {
-            if (tile._GID.equals(GraphicID.G_PLAYER))
+            for (int roomColumn = 0; roomColumn < worldWidth; roomColumn++)
             {
-                position.set(tile._POSITION.x, tile._POSITION.y);
+                Room room = roomMap[roomRow][roomColumn];
+
+                if (room != null)
+                {
+                    roomList.add(room.roomName.toUpperCase());
+
+                    if (room.roomName.equals(_START_ROOM))
+                    {
+                        startRoomPos = new SimpleVec2(roomRow, roomColumn);
+                    }
+                }
             }
         }
 
-        return position;
+        roomList.sort();
+
+        return startRoomPos;
+    }
+
+    private int countRoomMarkers(com.richikin.enumslib.TileID _marker, Room _room)
+    {
+        int markerCount = 0;
+
+        if ((_room != null) && (_room.roomName != null))
+        {
+            TmxMapLoader      tmxMapLoader = new TmxMapLoader();
+            TiledMap          map   = tmxMapLoader.load(getMapNameWithPath(_room.roomName));
+            TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(MapData._MARKER_TILES);
+
+            for (int row = 0; row < layer.getHeight(); row++)
+            {
+                for (int column = 0; column < layer.getWidth(); column++)
+                {
+                    TiledMapTileLayer.Cell cell = layer.getCell(column, row);
+
+                    if (cell != null)
+                    {
+                        if (_marker.equals(com.richikin.enumslib.TileID.fromValue(cell.getTile().getId())))
+                        {
+                            markerCount++;
+                        }
+                    }
+                }
+            }
+        }
+
+        return markerCount;
+    }
+
+    /**
+     * Check all rooms for entry points, and store the
+     * coordinates in the roomList array
+     */
+    private void storeEntryPoints()
+    {
+        Trace.__FILE_FUNC();
+
+        for (int roomRow = 0; roomRow < worldHeight; roomRow++)
+        {
+            for (int roomColumn = 0; roomColumn < worldWidth; roomColumn++)
+            {
+                Room room = roomMap[roomRow][roomColumn];
+
+                if (room != null)
+                {
+                    TmxMapLoader      tmxMapLoader = new TmxMapLoader();
+                    TiledMap          map          = tmxMapLoader.load(getMapNameWithPath(room.roomName));
+                    TiledMapTileLayer layer        = (TiledMapTileLayer) map.getLayers().get(MapData._MARKER_TILES);
+
+                    room.mysteryChestsAvailable = 0;
+
+                    for (int row = 0; row < layer.getHeight(); row++)
+                    {
+                        for (int column = 0; column < layer.getWidth(); column++)
+                        {
+                            TiledMapTileLayer.Cell cell = layer.getCell(column, row);
+
+                            if (cell != null)
+                            {
+                                com.richikin.enumslib.TileID tileID = TileID.fromValue(cell.getTile().getId());
+
+                                switch (tileID)
+                                {
+                                    case _NORTH_TILE:
+                                    {
+                                        room.compassPoints[Room._N].set(column, row);
+                                    }
+                                    break;
+
+                                    case _EAST_TILE:
+                                    {
+                                        room.compassPoints[Room._E].set(column, row);
+                                    }
+                                    break;
+
+                                    case _SOUTH_TILE:
+                                    {
+                                        room.compassPoints[Room._S].set(column, row);
+                                    }
+                                    break;
+
+                                    case _WEST_TILE:
+                                    {
+                                        room.compassPoints[Room._W].set(column, row);
+                                    }
+                                    break;
+
+                                    case _PLAYER_TILE:
+                                    {
+                                        room.compassPoints[Room._START].set(column, row);
+                                    }
+                                    break;
+
+                                    case _MYSTERY_CHEST_TILE:
+                                    {
+                                        room.mysteryChestsAvailable++;
+                                    }
+                                    break;
+
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void moveUp()
+    {
+        if (activeRoom.row > 0)
+        {
+            if (roomMap[activeRoom.row - 1][activeRoom.column] != null)
+            {
+                activeRoom.row--;
+
+                setRoom(activeRoom.row, activeRoom.column, Room._S);
+            }
+        }
+    }
+
+    public void moveDown()
+    {
+        if (activeRoom.row < roomMap.length)
+        {
+            if (roomMap[activeRoom.row + 1][activeRoom.column] != null)
+            {
+                activeRoom.row++;
+
+                setRoom(activeRoom.row, activeRoom.column, Room._N);
+            }
+        }
+    }
+
+    public void moveLeft()
+    {
+        if (activeRoom.column > 0)
+        {
+            if (roomMap[activeRoom.row][activeRoom.column - 1] != null)
+            {
+                activeRoom.column--;
+
+                setRoom(activeRoom.row, activeRoom.column, Room._E);
+            }
+        }
+    }
+
+    public void moveRight()
+    {
+        if (activeRoom.column < roomMap[activeRoom.column].length)
+        {
+            if (roomMap[activeRoom.row][activeRoom.column + 1] != null)
+            {
+                activeRoom.column++;
+
+                setRoom(activeRoom.row, activeRoom.column, Room._W);
+            }
+        }
+    }
+
+    private void debugRoomMap()
+    {
+        for (int _row = 0; _row < worldHeight; _row++)
+        {
+            Trace.divider();
+
+            for (int _column = 0; _column < worldWidth; _column++)
+            {
+                if (roomMap[_row][_column] == null)
+                {
+                    Trace.dbg("null room");
+                }
+                else
+                {
+                    Trace.dbg(roomMap[_row][_column].roomName);
+                }
+            }
+        }
     }
 
     @Override

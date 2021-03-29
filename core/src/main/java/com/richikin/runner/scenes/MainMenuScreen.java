@@ -176,14 +176,6 @@ public class MainMenuScreen extends AbstractBaseScreen
                     }
 
                     //
-                    // Check HISCORES button, open hiscores page if pressed
-                    if ((menuPage.buttonHiScores != null) && menuPage.buttonHiScores.isChecked())
-                    {
-                        menuPage.buttonHiScores.setChecked(false);
-                        changePageTo(_HISCORE_PAGE);
-                    }
-
-                    //
                     // Check CREDITS button, open credits page if pressed
                     if ((menuPage.buttonCredits != null) && menuPage.buttonCredits.isChecked())
                     {
