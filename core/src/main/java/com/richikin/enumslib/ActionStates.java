@@ -9,20 +9,10 @@ public enum ActionStates
     // ----------------------------
     _STANDING,
     _RUNNING,
-    _JUMPING,
-    _CLIMBING,
-    _FALLING,
-    _FALLING_TO_GROUND,
-    _RIDING,
-    _FLYING,
-    _CIRCLING,
-    _HOVERING,
-    _TALKING,
-    _SET_FIGHTING,
     _FIGHTING,
-    _HOLDING,
+    _TELEPORTING,
     _HELD,
-    _HIDING,
+    _HOLDING,
 
     // ----------------------------
     _STUNNED,
@@ -34,9 +24,14 @@ public enum ActionStates
     _KILLED,
 
     // ----------------------------
+    _HIDING,
+    _TALKING,
+
+    // ----------------------------
     _PAUSED,
     _RESETTING,
     _WAITING,
+    _RIDING,
     _RESTING,
     _RESTARTING,
 
@@ -53,6 +48,9 @@ public enum ActionStates
     _MOVING_OUT,
     _MOVING_UP,
     _MOVING_DOWN,
+
+    // ----------------------------
+    _CHANGING_ROOM,
 
     // ----------------------------
     _COLLIDABLE,
@@ -73,14 +71,15 @@ public enum ActionStates
     _OFFER_ABXY_Y,
 
     // ----------------------------
+    _PRESS_FLOOR_SWITCH,
+    _OPEN_MYSTERY_BOX,
+    _TALK_TO_VILLAGER,
+    _OPEN_TREASURE_CHEST,
+
+    // ----------------------------
     _ROTATING,
     _SCALING,
     _TO_AND_FRO,
-
-    // ----------------------------
-    _TELEPORTING,
-    _USE_TELEPORTER,
-    _STEAL_TELEPORTER,
 
     // ----------------------------
     _TEST_ACTION1,
@@ -89,9 +88,6 @@ public enum ActionStates
     _TEST_ACTION4,
     _TEST_ACTION5,
 
-    _NEGATIVE,
-    _POSITIVE,
-
+    // ----------------------------
     _NO_ACTION,
-    ;
 }

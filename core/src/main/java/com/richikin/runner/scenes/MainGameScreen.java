@@ -149,12 +149,6 @@ public class MainGameScreen extends AbstractBaseScreen
     }
 
     @Override
-    public void loadImages()
-    {
-        App.baseRenderer.parallaxBackground.setupLayers(App.mapData.backgroundLayers);
-    }
-
-    @Override
     public void dispose()
     {
         Trace.__FILE_FUNC();
@@ -162,8 +156,6 @@ public class MainGameScreen extends AbstractBaseScreen
         App.entityManager.dispose();
         App.getHud().dispose();
         App.gameProgress.dispose();
-
-        App.baseRenderer.parallaxBackground.dispose();
 
         App.baseRenderer.gameZoom.setZoomValue(0.0f);
         App.baseRenderer.hudZoom.setZoomValue(0.0f);

@@ -10,14 +10,14 @@ import com.richikin.runner.entities.components.IEntityManagerComponent;
 import com.richikin.runner.entities.objects.BaseEntity;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.runner.graphics.Gfx;
-import com.richikin.utilslib.physics.aabb.AABBData;
 import com.richikin.runner.physics.aabb.CollisionObject;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.Box;
-import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
+import com.richikin.utilslib.maths.SimpleVec3;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Movement;
+import com.richikin.utilslib.physics.aabb.AABBData;
 
 public class MapCreator
 {
@@ -40,6 +40,7 @@ public class MapCreator
         }
 
         App.mapData.placementTiles.clear();
+        App.mapData.autoFloors.clear();
 
         parseMarkerTiles();
         createCollisionBoxes();
@@ -154,7 +155,7 @@ public class MapCreator
         baseEntity                 = new BaseEntity();
         baseEntity.gid             = GraphicID.G_NO_ID;
         baseEntity.type            = GraphicID.G_NO_ID;
-        baseEntity.position        = new SimpleVec2();
+        baseEntity.position        = new SimpleVec3();
         baseEntity.collisionObject = App.collisionUtils.newObject();
         AABBData.add(baseEntity.collisionObject);
 
@@ -168,55 +169,37 @@ public class MapCreator
 
                     switch (mapObject.getName().toLowerCase())
                     {
-                        case "ceiling":
+                        case "Spawn Free Zone":
                         {
-                            baseEntity.gid          = GraphicID._CEILING;
-                            baseEntity.type         = GraphicID._OBSTACLE;
-                            baseEntity.bodyCategory = Gfx.CAT_CEILING;
-                            baseEntity.collidesWith = Gfx.CAT_PLAYER;
                         }
                         break;
 
-                        case "crater":
-                        {
-                            baseEntity.gid          = GraphicID._CRATER;
-                            baseEntity.type         = GraphicID._OBSTACLE;
-                            baseEntity.bodyCategory = Gfx.CAT_SCENERY;
-                            baseEntity.collidesWith = Gfx.CAT_PLAYER
-                                | Gfx.CAT_PLAYER_WEAPON
-                                | Gfx.CAT_MOBILE_ENEMY
-                                | Gfx.CAT_MISSILE_BASE
-                                | Gfx.CAT_TELEPORTER
-                                | Gfx.CAT_FIXED_ENEMY;
-                        }
-                        break;
-
-                        case "bridge":
-                        {
-                            baseEntity.gid          = GraphicID._BRIDGE;
-                            baseEntity.type         = GraphicID._OBSTACLE;
-                            baseEntity.bodyCategory = Gfx.CAT_GROUND;
-                            baseEntity.collidesWith = Gfx.CAT_PLAYER
-                                | Gfx.CAT_PLAYER_WEAPON
-                                | Gfx.CAT_MOBILE_ENEMY
-                                | Gfx.CAT_MISSILE_BASE
-                                | Gfx.CAT_TELEPORTER
-                                | Gfx.CAT_FIXED_ENEMY;
-                        }
-                        break;
-
-                        case "ground":
                         case "wall":
                         {
                             baseEntity.gid          = GraphicID._GROUND;
                             baseEntity.type         = GraphicID._OBSTACLE;
-                            baseEntity.bodyCategory = Gfx.CAT_GROUND;
-                            baseEntity.collidesWith = Gfx.CAT_PLAYER
-                                | Gfx.CAT_PLAYER_WEAPON
-                                | Gfx.CAT_MOBILE_ENEMY
-                                | Gfx.CAT_MISSILE_BASE
-                                | Gfx.CAT_TELEPORTER
-                                | Gfx.CAT_FIXED_ENEMY;
+                            baseEntity.bodyCategory = Gfx.CAT_WALL;
+                            baseEntity.collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON | Gfx.CAT_MOBILE_ENEMY | Gfx.CAT_FIXED_ENEMY;
+                        }
+                        break;
+
+                        case "Entity Barrier":
+                        {
+                            baseEntity.gid          = GraphicID._ENTITY_BARRIER;
+                            baseEntity.type         = GraphicID._OBSTACLE;
+                            baseEntity.bodyCategory = Gfx.CAT_ENTITY_BARRIER;
+                            baseEntity.collidesWith = Gfx.CAT_DECORATION | Gfx.CAT_VILLAGER | Gfx.CAT_INTERACTIVE;
+                        }
+                        break;
+
+                        case "Auto Floor":
+                        {
+                            baseEntity.gid          = GraphicID._AUTO_FLOOR;
+                            baseEntity.type         = GraphicID._INTERACTIVE;
+                            baseEntity.bodyCategory = Gfx.CAT_INTERACTIVE;
+                            baseEntity.collidesWith = Gfx.CAT_PLAYER;
+
+                            App.mapData.autoFloors.add(baseEntity);
                         }
                         break;
 
@@ -226,10 +209,11 @@ public class MapCreator
 
                     if (baseEntity.gid != GraphicID.G_NO_ID)
                     {
-                        baseEntity.position    = new SimpleVec2
+                        baseEntity.position    = new SimpleVec3
                             (
                                 (int) ((float) mapObject.getProperties().get("x")),
-                                (int) ((float) mapObject.getProperties().get("y"))
+                                (int) ((float) mapObject.getProperties().get("y")),
+                                0
                             );
                         baseEntity.frameWidth  = (int) ((float) mapObject.getProperties().get("width"));
                         baseEntity.frameHeight = (int) ((float) mapObject.getProperties().get("height"));

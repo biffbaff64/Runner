@@ -125,7 +125,6 @@ public class GameControlLoop extends AbstractControlLoop
 
         // All cameras ON
         App.cameraUtils.enableAllCameras();
-        App.baseRenderer.parallaxGameCamera.isLerpingEnabled = false;
         App.baseRenderer.tiledGameCamera.isLerpingEnabled    = false;
         App.baseRenderer.spriteGameCamera.isLerpingEnabled   = false;
 

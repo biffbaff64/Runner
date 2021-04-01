@@ -11,9 +11,10 @@ import com.richikin.runner.entities.objects.BaseEntity;
 import com.richikin.runner.entities.objects.GdxSprite;
 import com.richikin.runner.graphics.Gfx;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.maths.SimpleVec2;
+import com.richikin.utilslib.maths.SimpleVec3;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("unused")
 public class EntityUtils
 {
     public EntityUtils()
@@ -155,20 +156,12 @@ public class EntityUtils
      * @param graphicID The GraphicID.
      * @return Z position range is between 0 and Gfx._MAXIMUM_Z_DEPTH.
      */
-    // TODO: 07/12/2020 - This method is too long, shorten it.
     public int getInitialZPosition(@NotNull GraphicID graphicID)
     {
         int zed;
 
         switch (graphicID)
         {
-            case G_TWINKLE_STAR:
-            case G_BACKGROUND_UFO:
-            {
-                zed = Gfx._MAXIMUM_Z_DEPTH-1;
-            }
-            break;
-
             case G_PRIZE_BALLOON:
             case G_MESSAGE_BUBBLE:
             {
@@ -176,63 +169,10 @@ public class EntityUtils
             }
             break;
 
-            case G_DEFENDER:
-            case G_DEFENDER_ZAP:
-            {
-                zed = 9;
-            }
-            break;
-
-            case G_DEFENDER_BULLET:
-            case G_ROVER_BULLET:
-            case G_POWER_BEAM:
-            {
-                zed = 8;
-            }
-            break;
-
-            case G_MISSILE:
-            case G_MISSILE_BASE:
-            case G_MISSILE_LAUNCHER:
-            case G_TRANSPORTER:
-            case G_ROVER_GUN:
-            case G_ROVER_GUN_BARREL:
-            {
-                zed = 7;
-            }
-            break;
-
-            case G_ROVER:
-            case G_ROVER_BOOT:
-            case G_ROVER_WHEEL:
-            {
-                zed = 6;
-            }
-            break;
-
             case G_LASER:
-            case G_BOMB:
             case G_PLAYER:
             {
                 zed = 5;
-            }
-            break;
-
-            case G_STAIR_CLIMBER:
-            case G_UFO_BULLET:
-            case G_3BALLS_UFO:
-            case G_3LEGS_ALIEN:
-            case G_ALIEN_WHEEL:
-            case G_ASTEROID:
-            case G_BLOB:
-            case G_DOG:
-            case G_GREEN_BLOCK:
-            case G_SPINNING_BALL:
-            case G_STAR_SPINNER:
-            case G_TOPSPIN:
-            case G_TWINKLES:
-            {
-                zed = 4;
             }
             break;
 
@@ -307,21 +247,13 @@ public class EntityUtils
     {
         boolean isUpdateable;
 
-        switch (graphicID)
+        if (graphicID == GraphicID.G_ARROW)
         {
-            case G_TWINKLE_STAR:
-            case G_ARROW:
-            case G_BACKGROUND_UFO:
-            {
-                isUpdateable = true;
-            }
-            break;
-
-            default:
-            {
-                isUpdateable = isEntityEnabled(graphicID);
-            }
-            break;
+            isUpdateable = true;
+        }
+        else
+        {
+            isUpdateable = isEntityEnabled(graphicID);
         }
 
         return isUpdateable;
@@ -334,42 +266,14 @@ public class EntityUtils
 
         switch (graphicID)
         {
-            case G_BOMB:
-            case G_ROVER:
-            case G_ROVER_GUN:
-            case G_ROVER_WHEEL:
-            case G_ROVER_BOOT:
-            case G_ROVER_GUN_BARREL:
-            case G_ROVER_BULLET:
-            case G_TRANSPORTER:
-            case G_MISSILE:
-            case G_MISSILE_BASE:
-            case G_MISSILE_LAUNCHER:
-            case G_DEFENDER:
-            case G_DEFENDER_ZAP:
-            case G_DEFENDER_BULLET:
             case G_PLAYER:
             case G_LASER:
-            case G_STAIR_CLIMBER:
-            case G_3BALLS_UFO:
-            case G_UFO_BULLET:
-            case G_3LEGS_ALIEN:
-            case G_ASTEROID:
-            case G_DOG:
             case G_EXPLOSION12:
             case G_EXPLOSION64:
             case G_EXPLOSION128:
             case G_EXPLOSION256:
-            case G_GREEN_BLOCK:
             case G_MESSAGE_BUBBLE:
-            case G_BLOB:
             case G_PRIZE_BALLOON:
-            case G_SPINNING_BALL:
-            case G_STAR_SPINNER:
-            case G_TOPSPIN:
-            case G_TWINKLES:
-            case G_ALIEN_WHEEL:
-            case G_POWER_BEAM:
             {
                 isEnabled = true;
             }
@@ -385,13 +289,10 @@ public class EntityUtils
         return isEnabled;
     }
 
-    @SuppressWarnings("UnnecessaryLocalVariable")
-    public SimpleVec2 translateMapPosToEntityWindow(GdxSprite sprite)
+    public SimpleVec3 translateMapPosToEntityWindow(GdxSprite sprite)
     {
-        SimpleVec2 pos = sprite.position;
-
         // TODO: 07/12/2020
 
-        return pos;
+        return new SimpleVec3();
     }
 }

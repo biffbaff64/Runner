@@ -11,8 +11,6 @@ import com.richikin.runner.graphics.Gfx;
 import com.richikin.runner.graphics.camera.OrthoGameCamera;
 import com.richikin.runner.graphics.camera.ViewportType;
 import com.richikin.runner.graphics.camera.Zoom;
-import com.richikin.runner.graphics.parallax.ParallaxBackground;
-import com.richikin.runner.graphics.parallax.ParallaxManager;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec3F;
 
@@ -21,9 +19,7 @@ public class BaseRenderer implements Disposable
     public OrthoGameCamera hudGameCamera;
     public OrthoGameCamera spriteGameCamera;
     public OrthoGameCamera tiledGameCamera;
-    public OrthoGameCamera parallaxGameCamera;
 
-    public ParallaxBackground parallaxBackground;
     public Zoom               gameZoom;
     public Zoom               hudZoom;
     public boolean            isDrawingStage;
@@ -46,18 +42,6 @@ public class BaseRenderer implements Disposable
         Trace.__FILE_FUNC();
 
         AppConfig.camerasReady = false;
-
-        // --------------------------------------
-        // Camera for parallax scrolling backgrounds
-        parallaxGameCamera = new OrthoGameCamera
-            (
-                Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT,
-                ViewportType._STRETCH,
-                "Parallax Cam"
-            );
-
-        parallaxBackground  = new ParallaxBackground();
-        App.parallaxManager = new ParallaxManager();
 
         // --------------------------------------
         // Camera for displaying TiledMap game maps.
@@ -124,7 +108,6 @@ public class BaseRenderer implements Disposable
 
         App.spriteBatch.enableBlending();
 
-        drawParallax();
         drawTiledMap();
         drawSprites();
         drawHUD();
@@ -140,26 +123,6 @@ public class BaseRenderer implements Disposable
         hudZoom.stop();
 
         App.worldModel.drawDebugMatrix();
-    }
-
-    private void drawParallax()
-    {
-        if (parallaxGameCamera.isInUse)
-        {
-            parallaxGameCamera.viewport.apply();
-            App.spriteBatch.setProjectionMatrix(parallaxGameCamera.camera.combined);
-            App.spriteBatch.begin();
-
-            cameraPos.x = parallaxGameCamera.camera.viewportWidth / 2;
-            cameraPos.y = parallaxGameCamera.camera.viewportHeight / 2;
-            cameraPos.z = 0;
-
-            parallaxGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
-            parallaxBackground.render();
-
-            App.entityManager.renderSystem.drawBackgroundSprites();
-            App.spriteBatch.end();
-        }
     }
 
     private void drawTiledMap()
@@ -241,7 +204,6 @@ public class BaseRenderer implements Disposable
 
     public void resizeCameras(int _width, int _height)
     {
-        parallaxGameCamera.resizeViewport(_width, _height, true);
         tiledGameCamera.resizeViewport(_width, _height, true);
         spriteGameCamera.resizeViewport(_width, _height, true);
         hudGameCamera.resizeViewport(_width, _height, true);
@@ -250,13 +212,9 @@ public class BaseRenderer implements Disposable
     @Override
     public void dispose()
     {
-        parallaxGameCamera.dispose();
         tiledGameCamera.dispose();
         spriteGameCamera.dispose();
         hudGameCamera.dispose();
-
-        parallaxBackground.dispose();
-        parallaxBackground = null;
 
         gameZoom = null;
         hudZoom  = null;

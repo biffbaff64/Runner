@@ -83,7 +83,7 @@ public class  EntityManager implements IEntityManager
             {
                 entity = (GdxSprite) App.entityData.entityMap.get(i);
 
-                if ((entity.getAction() != ActionStates._DEAD) && (entity.gid != GraphicID.G_PLAYER))
+                if ((entity.getActionState() != ActionStates._DEAD) && (entity.gid != GraphicID.G_PLAYER))
                 {
                     entity.preUpdate();
                     entity.update(entity.spriteNumber);
@@ -94,7 +94,7 @@ public class  EntityManager implements IEntityManager
             // Main Player, updated after all other entities.
             // Updated last to allow for possible reacting to
             // other entities actions.
-            if (_playerReady && (App.getPlayer().getAction() != ActionStates._DEAD))
+            if (_playerReady && (App.getPlayer().getActionState() != ActionStates._DEAD))
             {
                 App.getPlayer().preUpdate();
                 App.getPlayer().update(_playerIndex);
@@ -129,7 +129,7 @@ public class  EntityManager implements IEntityManager
 
                 if (entity != null)
                 {
-                    if (entity.getAction() != ActionStates._DEAD)
+                    if (entity.getActionState() != ActionStates._DEAD)
                     {
                         entity.postUpdate(i);
                     }
@@ -137,11 +137,11 @@ public class  EntityManager implements IEntityManager
                     //
                     // NB: entity might have died in postUpdate, which is
                     // why this next if() is not an else.
-                    if (entity.getAction() == ActionStates._DEAD)
+                    if (entity.getActionState() == ActionStates._DEAD)
                     {
                         switch (entity.gid)
                         {
-                            case G_PLAYER, _CEILING, _CRATER, _GROUND -> {
+                            case G_PLAYER, _CEILING, _GROUND -> {
                             }
 
                             case G_EXPLOSION12, G_EXPLOSION64, G_EXPLOSION128, G_EXPLOSION256 -> {

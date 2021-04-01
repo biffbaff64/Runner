@@ -3,7 +3,7 @@ package com.richikin.runner.maps;
 
 import com.richikin.runner.entities.characters.JailKey;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.maths.SimpleVec2F;
+import com.richikin.utilslib.maths.SimpleVec2;
 
 public class Room
 {
@@ -14,12 +14,12 @@ public class Room
     public static final int _START     = 4;
     public static final int _UNDEFINED = 5;
 
-    public String        roomName;
-    public SimpleVec2F[] compassPoints;
-    public int           row;
-    public int     column;
-    public JailKey key;
-    public int     mysteryChestsAvailable;
+    public String       roomName;
+    public SimpleVec2[] compassPoints;
+    public int          row;
+    public int          column;
+    public JailKey      key;
+    public int          mysteryChestsAvailable;
 
     public Room()
     {
@@ -35,12 +35,12 @@ public class Room
         this.row    = 0;
         this.column = 0;
 
-        this.compassPoints         = new SimpleVec2F[5];
-        this.compassPoints[_N]     = new SimpleVec2F();
-        this.compassPoints[_E]     = new SimpleVec2F();
-        this.compassPoints[_S]     = new SimpleVec2F();
-        this.compassPoints[_W]     = new SimpleVec2F();
-        this.compassPoints[_START] = new SimpleVec2F();
+        this.compassPoints         = new SimpleVec2[5];
+        this.compassPoints[_N]     = new SimpleVec2();
+        this.compassPoints[_E]     = new SimpleVec2();
+        this.compassPoints[_S]     = new SimpleVec2();
+        this.compassPoints[_W]     = new SimpleVec2();
+        this.compassPoints[_START] = new SimpleVec2();
     }
 
     public void set(Room _reference)

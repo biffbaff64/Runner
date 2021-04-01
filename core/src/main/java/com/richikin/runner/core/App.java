@@ -109,7 +109,7 @@ public final class App extends LibApp
 
     public static SimpleVec2 getPlayerPos()
     {
-//        position.set(entities.mainPlayer.sprite.getX(), entities.mainPlayer.sprite.getY());
+        position.set(entities.mainPlayer.sprite.getX(), entities.mainPlayer.sprite.getY());
 
         return position;
     }

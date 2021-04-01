@@ -19,21 +19,16 @@ public class GenericCollisionListener implements ICollisionListener, Disposable
     @Override
     public void onPositiveCollision(CollisionObject cobjHitting)
     {
-        if ((cobjHitting.gid == GraphicID.G_LASER) || (cobjHitting.gid == GraphicID.G_ROVER_BULLET))
+        if (cobjHitting.gid == GraphicID.G_LASER)
         {
-            parent.setAction(ActionStates._KILLED);
+            parent.setActionState(ActionStates._KILLED);
         }
         else
         {
             if (cobjHitting.gid == GraphicID.G_PLAYER)
             {
                 parent.collisionObject.isHittingPlayer = true;
-
-                if ((parent.gid != GraphicID.G_MISSILE_BASE) && (parent.gid != GraphicID.G_MISSILE_LAUNCHER)
-                    && (parent.gid != GraphicID.G_DEFENDER))
-                {
-                    parent.setAction(ActionStates._HURT);
-                }
+                parent.setActionState(ActionStates._HURT);
             }
         }
 

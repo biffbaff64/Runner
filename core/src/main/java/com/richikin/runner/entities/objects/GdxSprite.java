@@ -13,15 +13,14 @@ import com.richikin.runner.core.GameConstants;
 import com.richikin.runner.entities.components.ISpriteComponent;
 import com.richikin.runner.graphics.Gfx;
 import com.richikin.runner.physics.aabb.AABB;
-import com.richikin.utilslib.physics.aabb.ICollisionListener;
-import com.richikin.utilslib.physics.box2d.B2DConstants;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.maths.SimpleVec3;
 import com.richikin.utilslib.maths.XYSetF;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Movement;
+import com.richikin.utilslib.physics.aabb.ICollisionListener;
+import com.richikin.utilslib.physics.box2d.B2DConstants;
 
 /**
  *  This should really be named GameSprite, but GdxSprite is a
@@ -120,7 +119,7 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
         spriteNumber = descriptor._INDEX;
         isAnimating  = (descriptor._FRAMES > 1);
 
-        setAction(ActionStates._NO_ACTION);
+        setActionState(ActionStates._NO_ACTION);
 
         if (descriptor._ASSET != null)
         {
@@ -148,8 +147,7 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
         sprite.setBounds(sprite.getX(), sprite.getY(), frameWidth, frameHeight);
         sprite.setOriginCenter();
 
-        position  = new SimpleVec2((int) sprite.getX(), (int) sprite.getY());
-        zPosition = vec3F.z;
+        position  = new SimpleVec3((int) sprite.getX(), (int) sprite.getY(), vec3F.z);
 
         initXYZ.set(sprite.getX(), sprite.getY(), vec3F.z);
     }
@@ -183,6 +181,17 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
                     B2DConstants.DEFAULT_RESTITUTION
                 );
         }
+    }
+
+    /**
+     * The LibGDX {@link Sprite} class doesn't have a
+     * getPosition() method, just getX() and getY(),
+     * so this is here to make up for that.
+     */
+    @Override
+    public Vector3 getPosition()
+    {
+        return new Vector3(sprite.getX(), sprite.getY(), super.position.z);
     }
 
     /**
@@ -258,10 +267,10 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
         lookingAt.setX(isFlippedX ? Movement._DIRECTION_LEFT : Movement._DIRECTION_RIGHT);
 
         // By default, sprites are always looking DOWN
-        if (lookingAt.getY() == Movement._DIRECTION_STILL)
-        {
-            lookingAt.setY(Movement._DIRECTION_DOWN);
-        }
+//        if (lookingAt.getY() == Movement._DIRECTION_STILL)
+//        {
+//            lookingAt.setY(Movement._DIRECTION_DOWN);
+//        }
     }
 
     @Override
@@ -440,16 +449,5 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
                 }
             }
         }
-    }
-
-    /**
-     * The LibGDX {@link Sprite} class doesn't have a
-     * getPosition() method, just getX() and getY(),
-     * so this is here to make up for that.
-     */
-    @Override
-    public Vector3 getPosition()
-    {
-        return new Vector3(sprite.getX(), sprite.getY(), zPosition);
     }
 }

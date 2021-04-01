@@ -18,21 +18,8 @@ public class PointsManager
 
     private static final Points[] pointsTable =
         {
-            new Points(GraphicID.G_MISSILE_BASE,    5000),
-            new Points(GraphicID.G_MISSILE,         500),
-            new Points(GraphicID.G_SPINNING_BALL,   210),
-            new Points(GraphicID.G_3BALLS_UFO,      170),
-            new Points(GraphicID.G_TWINKLES,        170),
-            new Points(GraphicID.G_ALIEN_WHEEL,     160),
-            new Points(GraphicID.G_3BALLS_UFO,      160),
-            new Points(GraphicID.G_GREEN_BLOCK,     120),
-            new Points(GraphicID.G_STAR_SPINNER,    120),
-            new Points(GraphicID.G_ASTEROID,        110),
-            new Points(GraphicID.G_DOG,             100),
-            new Points(GraphicID.G_BLOB,            100),
-            new Points(GraphicID.G_TOPSPIN,         90),
-            new Points(GraphicID.G_3LEGS_ALIEN,     90),
-            };
+            new Points(GraphicID.G_SOLDIER,     90),
+        };
 
     public static int getPoints(GraphicID gid)
     {

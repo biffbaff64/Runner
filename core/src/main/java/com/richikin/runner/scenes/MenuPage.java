@@ -40,7 +40,7 @@ public class MenuPage implements IUIPage, Disposable
     {
         Trace.__FILE_FUNC();
 
-        foreground = App.assets.loadSingleAsset("menu_foreground.png", Texture.class);
+        foreground = App.assets.loadSingleAsset("title_background.png", Texture.class);
 
         populateMenuScreen();
         addClickListeners();
@@ -98,7 +98,7 @@ public class MenuPage implements IUIPage, Disposable
             decoration = null;
         }
 
-        App.assets.unloadAsset("menu_foreground.png");
+        App.assets.unloadAsset("title_background.png");
 
         foreground = null;
     }

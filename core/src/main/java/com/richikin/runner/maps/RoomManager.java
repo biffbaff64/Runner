@@ -8,7 +8,6 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.TileID;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
-import com.richikin.utilslib.maths.SimpleVec2F;
 import org.jetbrains.annotations.NotNull;
 
 public class RoomManager implements Disposable
@@ -105,8 +104,8 @@ public class RoomManager implements Disposable
     public Room          activeRoom;
     public boolean       taskOffered;
 
-    private int worldWidth;
-    private int worldHeight;
+    private final int worldWidth;
+    private final int worldHeight;
 
     public RoomManager()
     {
@@ -199,10 +198,10 @@ public class RoomManager implements Disposable
         return name;
     }
 
-    public SimpleVec2F getStartPosition()
+    public SimpleVec2 getStartPosition()
     {
         String      currentMap = roomMap[activeRoom.row][activeRoom.column].roomName;
-        SimpleVec2F positions  = new SimpleVec2F();
+        SimpleVec2 positions  = new SimpleVec2();
 
         for (int row = 0; row < worldHeight; row++)
         {
@@ -260,7 +259,7 @@ public class RoomManager implements Disposable
         return startRoomPos;
     }
 
-    private int countRoomMarkers(com.richikin.enumslib.TileID _marker, Room _room)
+    private int countRoomMarkers(TileID _marker, Room _room)
     {
         int markerCount = 0;
 
@@ -278,7 +277,7 @@ public class RoomManager implements Disposable
 
                     if (cell != null)
                     {
-                        if (_marker.equals(com.richikin.enumslib.TileID.fromValue(cell.getTile().getId())))
+                        if (_marker.equals(TileID.fromValue(cell.getTile().getId())))
                         {
                             markerCount++;
                         }
@@ -320,7 +319,7 @@ public class RoomManager implements Disposable
 
                             if (cell != null)
                             {
-                                com.richikin.enumslib.TileID tileID = TileID.fromValue(cell.getTile().getId());
+                                TileID tileID = TileID.fromValue(cell.getTile().getId());
 
                                 switch (tileID)
                                 {

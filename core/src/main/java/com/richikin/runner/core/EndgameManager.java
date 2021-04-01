@@ -17,7 +17,7 @@ public class EndgameManager
         boolean returnFlag = false;
 
         if ((App.getPlayer() != null)
-            && (App.getPlayer().getAction() == ActionStates._DEAD))
+            && (App.getPlayer().getActionState() == ActionStates._DEAD))
         {
             App.getHud().hideControls();
 
@@ -44,7 +44,7 @@ public class EndgameManager
                 Trace.__FILE_FUNC_WithDivider("ROVER DESTROYED");
                 Trace.divider();
 
-                App.getPlayer().setAction(ActionStates._DEAD);
+                App.getPlayer().setActionState(ActionStates._DEAD);
             }
             //
             // Waheyy!! All levels completed!
@@ -87,7 +87,7 @@ public class EndgameManager
             else if (App.gameProgress.isRestarting)
             {
                 if ((App.getPlayer() != null)
-                    && (App.getPlayer().getAction() == ActionStates._RESETTING))
+                    && (App.getPlayer().getActionState() == ActionStates._RESETTING))
                 {
                     Trace.__FILE_FUNC_WithDivider();
                     Trace.__FILE_FUNC("LIFE LOST - TRY AGAIN");

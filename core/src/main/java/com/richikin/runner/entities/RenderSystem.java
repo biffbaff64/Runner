@@ -32,27 +32,14 @@ public class RenderSystem
 
                     if (entity != null)
                     {
-                        switch (entity.gid)
+                        if (entity.position.z == z)
                         {
-                            case G_BACKGROUND_UFO:
-                            case G_TWINKLE_STAR:
-                            {
-                            }
-                            break;
+                            entity.preDraw();
 
-                            default:
+                            if (isInViewWindow(entity) && entity.isDrawable)
                             {
-                                if (entity.zPosition == z)
-                                {
-                                    entity.preDraw();
-
-                                    if (isInViewWindow(entity) && entity.isDrawable)
-                                    {
-                                        entity.draw(App.spriteBatch);
-                                    }
-                                }
+                                entity.draw(App.spriteBatch);
                             }
-                            break;
                         }
                     }
                 }
@@ -67,30 +54,6 @@ public class RenderSystem
      */
     public void drawBackgroundSprites()
     {
-        GdxSprite entity;
-
-        for (int i = 0; i < App.entityData.entityMap.size; i++)
-        {
-            entity = (GdxSprite) App.entityData.entityMap.get(i);
-
-            if (entity != null)
-            {
-                switch (entity.gid)
-                {
-                    case G_BACKGROUND_UFO:
-                    case G_TWINKLE_STAR:
-                    {
-                        entity.draw(App.spriteBatch);
-                    }
-                    break;
-
-                    default:
-                    {
-                    }
-                    break;
-                }
-            }
-        }
     }
 
     /**

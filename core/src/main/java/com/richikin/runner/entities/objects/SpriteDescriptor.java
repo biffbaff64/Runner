@@ -24,8 +24,8 @@ public class SpriteDescriptor
     public int                _FRAMES;       // Number of frames in the asset above.
     public GraphicID          _TYPE;         // _MAIN, _INTERACTIVE, _PICKUP etc
     public SimpleVec3         _POSITION;     // X Pos of tile, in TileWidth units
-                                             // Y Pos of tile, in TileWidth units
-                                             // Z-Sort value.
+    // Y Pos of tile, in TileWidth units
+    // Z-Sort value.
     public SimpleVec2         _SIZE;         // Width and Height.
     public int                _INDEX;        // This entities position in the entity map.
     public Animation.PlayMode _PLAYMODE;     // Animation playmode for the asset frames above.
@@ -82,11 +82,13 @@ public class SpriteDescriptor
                             GraphicID type,
                             String asset,
                             int frames,
+                            SimpleVec2 assetSize,
                             Animation.PlayMode playMode,
                             TileID tileID)
     {
         this(objectName, graphicID, type, asset, frames, tileID);
         this._PLAYMODE = playMode;
+        this._SIZE     = assetSize;
     }
 
     public SpriteDescriptor(SpriteDescriptor descriptor)

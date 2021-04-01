@@ -21,7 +21,7 @@ public class BaseEnemy extends GdxSprite
     {
         create(descriptor);
 
-        setAction(ActionStates._STANDING);
+        setActionState(ActionStates._STANDING);
     }
 
     @Override

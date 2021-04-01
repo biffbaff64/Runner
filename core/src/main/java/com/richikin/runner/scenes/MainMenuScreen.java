@@ -11,7 +11,6 @@ import com.richikin.runner.config.Version;
 import com.richikin.runner.core.App;
 import com.richikin.runner.graphics.Gfx;
 import com.richikin.runner.graphics.camera.OrthoGameCamera;
-import com.richikin.runner.graphics.effects.StarField;
 import com.richikin.runner.ui.IUIPage;
 import com.richikin.utilslib.logging.Trace;
 
@@ -22,14 +21,15 @@ import java.util.ArrayList;
  */
 public class MainMenuScreen extends AbstractBaseScreen
 {
-    private static final int _MENU_PAGE      = 0;
-    private static final int _OPTIONS_PAGE   = 1;
-    private static final int _HISCORE_PAGE   = 2;
-    private static final int _CREDITS_PAGE   = 3;
+    private static final int _MENU_PAGE    = 0;
+    private static final int _OPTIONS_PAGE = 1;
+    private static final int _CREDITS_PAGE = 2;
 
     private OptionsPage        optionsPage;
     private MenuPage           menuPage;
     private Texture            background;
+    private Texture            overlay1;
+    private Texture            overlay2;
     private ArrayList<IUIPage> panels;
     private int                currentPage;
 
@@ -52,7 +52,6 @@ public class MainMenuScreen extends AbstractBaseScreen
 
         panels.add(_MENU_PAGE, menuPage);
         panels.add(_OPTIONS_PAGE, optionsPage);
-        panels.add(_HISCORE_PAGE, new HiscorePage());
         panels.add(_CREDITS_PAGE, new CreditsPage());
 
         menuPage.initialise();
@@ -94,8 +93,10 @@ public class MainMenuScreen extends AbstractBaseScreen
 
             switch (currentPage)
             {
-                case _MENU_PAGE, _HISCORE_PAGE, _CREDITS_PAGE, _OPTIONS_PAGE -> {
+                case _MENU_PAGE, _CREDITS_PAGE, _OPTIONS_PAGE -> {
                     spriteBatch.draw(background, AppConfig.hudOriginX, AppConfig.hudOriginY);
+                    spriteBatch.draw(overlay1, AppConfig.hudOriginX, AppConfig.hudOriginY);
+                    spriteBatch.draw(overlay2, AppConfig.hudOriginX, AppConfig.hudOriginY);
 
                     panels.get(currentPage).draw(spriteBatch);
 
@@ -123,7 +124,7 @@ public class MainMenuScreen extends AbstractBaseScreen
         {
             switch (currentPage)
             {
-                case _HISCORE_PAGE, _CREDITS_PAGE -> {
+                case _CREDITS_PAGE -> {
                     panels.get(currentPage).update();
 
                     if (AppConfig.backButton.isChecked())
@@ -217,8 +218,8 @@ public class MainMenuScreen extends AbstractBaseScreen
         App.cameraUtils.resetCameraZoom();
         App.cameraUtils.disableAllCameras();
 
-        App.baseRenderer.hudGameCamera.isInUse  = true;
-        App.baseRenderer.isDrawingStage         = true;
+        App.baseRenderer.hudGameCamera.isInUse = true;
+        App.baseRenderer.isDrawingStage        = true;
 
         Version.appDetails();
 
@@ -244,7 +245,9 @@ public class MainMenuScreen extends AbstractBaseScreen
     @Override
     public void loadImages()
     {
-        background = App.assets.loadSingleAsset("menu_background.png", Texture.class);
+        background = App.assets.loadSingleAsset("full_moon_scene.png", Texture.class);
+        overlay1   = App.assets.loadSingleAsset("title_overlay1.png", Texture.class);
+        overlay2   = App.assets.loadSingleAsset("title_overlay2.png", Texture.class);
     }
 
     public MenuPage getMenuPage()
@@ -283,7 +286,9 @@ public class MainMenuScreen extends AbstractBaseScreen
     {
         Trace.__FILE_FUNC();
 
-        App.assets.unloadAsset("menu_background.png");
+        App.assets.unloadAsset("full_moon_scene.png");
+        App.assets.unloadAsset("title_overlay1.png");
+        App.assets.unloadAsset("title_overlay2.png");
 
         menuPage.hide();
         menuPage.dispose();
@@ -294,8 +299,8 @@ public class MainMenuScreen extends AbstractBaseScreen
             panels = null;
         }
 
-        background = null;
+        background  = null;
         optionsPage = null;
-        menuPage = null;
+        menuPage    = null;
     }
 }

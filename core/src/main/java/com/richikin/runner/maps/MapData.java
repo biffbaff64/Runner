@@ -11,9 +11,9 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.runner.core.App;
+import com.richikin.runner.entities.objects.BaseEntity;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.runner.graphics.Gfx;
-import com.richikin.runner.graphics.parallax.LayerImage;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.physics.Movement;
@@ -31,20 +31,6 @@ public class MapData
             "extra game tiles",
             "marker tiles",
             "collision",
-        };
-
-    public final LayerImage[] backgroundLayers =
-        {
-            new LayerImage("layer10.png", 0.0f, 0.0f),
-            new LayerImage("layer5.png", 0.0f, 0.0f),
-            new LayerImage("layer6.png", 0.0f, 0.0f),
-            new LayerImage("layer9.png", 1.2f, 0.01f),
-            new LayerImage("layer1.png", 2.4f, 0.015f),
-            new LayerImage("layer8.png", 2.4f, 0.015f),
-            new LayerImage("layer7.png", 2.4f, 0.015f),
-            new LayerImage("layer2.png", 2.4f, 0.015f),
-            new LayerImage("layer3.png", 2.4f, 0.015f),
-            new LayerImage("layer4.png", 2.4f, 0.015f),
         };
 
     public OrthogonalTiledMapRenderer mapRenderer;
@@ -74,6 +60,7 @@ public class MapData
     public MapObjects              mapObjects;
     public Array<Rectangle>        enemyFreeZones;
     public Array<SpriteDescriptor> placementTiles;
+    public Array<BaseEntity>       autoFloors;
 
     private String currentMapName;
 
@@ -90,6 +77,7 @@ public class MapData
         mapBox              = new Rectangle();
         enemyFreeZones      = new Array<>();
         placementTiles      = new Array<>();
+        autoFloors          = new Array<>();
     }
 
     /**
@@ -188,11 +176,11 @@ public class MapData
     {
         enemyFreeZones.clear();
 
-        for (MapObject object : mapObjects)
+        for (MapObject mapObject : mapObjects)
         {
-            if (object instanceof RectangleMapObject)
+            if (mapObject instanceof RectangleMapObject)
             {
-                enemyFreeZones.add(new Rectangle(((RectangleMapObject) object).getRectangle()));
+                enemyFreeZones.add(new Rectangle(((RectangleMapObject) mapObject).getRectangle()));
             }
         }
     }

@@ -5,11 +5,12 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.TileID;
 import com.richikin.runner.assets.GameAssets;
-import com.richikin.runner.entities.hero.MainPlayer;
 import com.richikin.runner.core.App;
+import com.richikin.runner.entities.hero.MainPlayer;
 import com.richikin.runner.entities.objects.GdxSprite;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.maths.SimpleVec2;
 
 public class Entities
 {
@@ -25,9 +26,31 @@ public class Entities
                 (
                     "Player",
                     GraphicID.G_PLAYER, GraphicID._MAIN,
-                    GameAssets._PLAYER_IDLE_ASSET, GameAssets._PLAYER_STAND_FRAMES,
+                    GameAssets._IDLE_DOWN_ASSET, GameAssets._PLAYER_STAND_FRAMES,
+                    new SimpleVec2(192, 192),
                     Animation.PlayMode.LOOP,
                     TileID._PLAYER_TILE
+                ),
+
+            // Other Characters
+            new SpriteDescriptor
+                (
+                    "Prisoner",
+                    GraphicID.G_PRISONER, GraphicID._MAIN,
+                    GameAssets._PRISONER_IDLE_DOWN_ASSET, GameAssets._PRISONER_IDLE_FRAMES,
+                    new SimpleVec2(128, 128),
+                    Animation.PlayMode.LOOP,
+                    TileID._PRISONER_TILE
+                ),
+
+            new SpriteDescriptor
+                (
+                    "Villager",
+                    GraphicID.G_VILLAGER, GraphicID._MAIN,
+                    GameAssets._VILLAGER_IDLE_DOWN_ASSET, GameAssets._VILLAGER_IDLE_FRAMES,
+                    new SimpleVec2(128, 128),
+                    Animation.PlayMode.LOOP,
+                    TileID._VILLAGER_TILE
                 ),
 
             // Lasers, Bullets, Explosions, etc
@@ -41,6 +64,15 @@ public class Entities
             // Stationary Enemies
 
             // Mobile Enemies
+            new SpriteDescriptor
+                (
+                    "Soldier",
+                    GraphicID.G_SOLDIER, GraphicID._ENEMY,
+                    GameAssets._SOLDIER_IDLE_DOWN_ASSET, GameAssets._SOLDIER_IDLE_FRAMES,
+                    new SimpleVec2(148, 148),
+                    Animation.PlayMode.LOOP,
+                    TileID._SOLDIER_TILE
+                ),
 
             // Miscellaneous Enemy Related
 
@@ -89,19 +121,9 @@ public class Entities
         {
             switch (App.entityData.entityMap.get(i).gid)
             {
-                case G_BACKGROUND_UFO:
-                case G_TWINKLE_STAR:
                 case G_PRIZE_BALLOON:
                 case G_MESSAGE_BUBBLE:
-                case G_ROVER_BULLET:
-                case G_TRANSPORTER:
-                case G_ROVER_GUN:
-                case G_ROVER_GUN_BARREL:
-                case G_ROVER:
-                case G_ROVER_BOOT:
-                case G_ROVER_WHEEL:
                 case G_LASER:
-                case G_BOMB:
                 case G_PLAYER:
                 case G_EXPLOSION12:
                 case G_EXPLOSION64:

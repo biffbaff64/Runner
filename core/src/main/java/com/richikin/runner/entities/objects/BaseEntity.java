@@ -7,17 +7,14 @@ import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.runner.core.App;
 import com.richikin.runner.entities.components.IEntityComponent;
-import com.richikin.utilslib.physics.aabb.AABBData;
 import com.richikin.runner.physics.aabb.CollisionObject;
-import com.richikin.utilslib.maths.SimpleVec2;
+import com.richikin.utilslib.maths.SimpleVec3;
+import com.richikin.utilslib.physics.aabb.AABBData;
 
 public class BaseEntity implements IEntityComponent, Disposable
 {
     public GraphicID       gid;                 // Entity ID
     public GraphicID       type;                // Entity Type - _Entity, _OBSTACLE, etc.
-    // TODO: 18/01/2021 - is 'position' needed?
-    public SimpleVec2      position;            // Map position
-    public int             zPosition;           // Z-Sort position
     public int             frameWidth;          // Width in pixels, or width of frame for animations
     public int             frameHeight;         // Width in pixels, or width of frame for animations
     public CollisionObject collisionObject;     // ...
@@ -25,6 +22,7 @@ public class BaseEntity implements IEntityComponent, Disposable
     public short           bodyCategory;        // Bit-mask entity collision type
     public short           collidesWith;        // Bit-mask of entity types that can be collided with
     public ActionStates    entityAction;        // Current action/state
+    public SimpleVec3      position;            // Map position, only really needed for non-sprites
 
     public BaseEntity()
     {
@@ -74,13 +72,13 @@ public class BaseEntity implements IEntityComponent, Disposable
     }
 
     @Override
-    public void setAction(ActionStates action)
+    public void setActionState(ActionStates action)
     {
         this.entityAction = action;
     }
 
     @Override
-    public ActionStates getAction()
+    public ActionStates getActionState()
     {
         return this.entityAction;
     }
