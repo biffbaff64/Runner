@@ -17,6 +17,7 @@ public class HUDRenderer implements IGameScreenRenderer
     {
         if (!AppConfig.shutDownActive)
         {
+            //noinspection EnhancedSwitchMigration
             switch (App.appState.peek())
             {
                 case _STATE_MAIN_MENU:

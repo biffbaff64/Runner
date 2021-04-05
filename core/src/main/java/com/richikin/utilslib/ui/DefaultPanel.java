@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.StateID;
 import com.richikin.utilslib.LibApp;
+import com.richikin.utilslib.exceptions.NotImplementedException;
 import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
@@ -152,25 +153,41 @@ public abstract class DefaultPanel implements IDefaultUIPanel, Disposable
 
     // -------------------------------------------------------------------
     // Empty methods from IDefaultPanel interface
-    //@formatter:off
     @Override
-    public void initialise(TextureRegion _region, String _nameID, Object... args) {}
+    public void initialise(TextureRegion _region, String _nameID, Object... args)
+    {
+        throw new NotImplementedException("ERROR - method not implemented!");
+    }
 
     @Override
-    public void set(SimpleVec2F xy, SimpleVec2F distance, Direction direction, SimpleVec2F speed) {}
+    public void set(SimpleVec2F xy, SimpleVec2F distance, Direction direction, SimpleVec2F speed)
+    {
+        throw new NotImplementedException("ERROR - method not implemented!");
+    }
 
     @Override
-    public void setup() {}
+    public void setup()
+    {
+        throw new NotImplementedException("ERROR - method not implemented!");
+    }
 
     @Override
-    public void populateTable() {}
+    public void populateTable()
+    {
+        throw new NotImplementedException("ERROR - method not implemented!");
+    }
 
     @Override
-    public void setPauseTime(final int _time) {}
+    public void setPauseTime(final int _time)
+    {
+        throw new NotImplementedException("ERROR - method not implemented!");
+    }
 
     @Override
-    public void forceZoomOut() {}
-    //@formatter:on
+    public void forceZoomOut()
+    {
+        throw new NotImplementedException("ERROR - method not implemented!");
+    }
 
     // -------------------------------------------------------------------
     // From Disposable Interface

@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.StateID;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.core.App;
+import com.richikin.runner.graphics.Gfx;
 import com.richikin.runner.input.VirtualJoystick;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.logging.Trace;
@@ -65,6 +66,8 @@ public class HeadsUpDisplay implements Disposable
         this.messageManager = new MessageManager();
 
         this.hudStateID = StateID._STATE_PANEL_START;
+
+        AppConfig.hudExists = true;
     }
 
     public void update()
@@ -73,6 +76,16 @@ public class HeadsUpDisplay implements Disposable
 
     public void render(OrthographicCamera camera, boolean canDrawControls)
     {
+        if (AppConfig.hudExists)
+        {
+            drawPanels();
+        }
+    }
+
+    private void drawPanels()
+    {
+        scorePanel.setPosition(AppConfig.hudOriginX, AppConfig.hudOriginY + (Gfx._HUD_HEIGHT - scorePanel.getHeight()));
+        scorePanel.draw(App.spriteBatch, 1.0f);
     }
 
     public void showControls()
