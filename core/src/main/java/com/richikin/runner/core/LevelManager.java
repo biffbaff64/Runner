@@ -63,8 +63,6 @@ public class LevelManager
             }
         }
 
-        //
-        // Reset the bars. Each level must start with full fuel and maximum time.
         if (_firstTime)
         {
             App.getHud().refillItems();

@@ -6,23 +6,15 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.StateID;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.core.App;
 import com.richikin.runner.graphics.Gfx;
-import com.richikin.runner.input.VirtualJoystick;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.logging.Trace;
 
-public class HeadsUpDisplay implements Disposable
+public class HeadsUpDisplay implements IHud
 {
-    private static final int _X1     = 0;
-    private static final int _X2     = 1;
-    private static final int _Y      = 2;
-    private static final int _WIDTH  = 3;
-    private static final int _HEIGHT = 4;
-
     public Switch buttonUp;
     public Switch buttonDown;
     public Switch buttonLeft;
@@ -47,12 +39,39 @@ public class HeadsUpDisplay implements Disposable
     public BitmapFont     midFont;
     public BitmapFont     bigFont;
     public MessageManager messageManager;
+    public PausePanel     pausePanel;
     public StateID        hudStateID;
+
+    private static final int _X1     = 0;
+    private static final int _X2     = 1;
+    private static final int _Y      = 2;
+    private static final int _WIDTH  = 3;
+    private static final int _HEIGHT = 4;
+
+    //@formatter:off
+    private final int[][] displayPos =
+        {
+            {0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0},
+        };
+
+    private final int[][] livesDisplay =
+        {
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+        };
+    //@formatter:on
 
     public HeadsUpDisplay()
     {
     }
 
+    @Override
     public void createHud()
     {
         Trace.__FILE_FUNC();
@@ -64,16 +83,53 @@ public class HeadsUpDisplay implements Disposable
         this.scorePanel = new Image(drawable);
 
         this.messageManager = new MessageManager();
+        this.pausePanel     = new PausePanel();
+
+        createHUDButtons();
 
         this.hudStateID = StateID._STATE_PANEL_START;
 
         AppConfig.hudExists = true;
     }
 
+    @Override
     public void update()
     {
+        switch (hudStateID)
+        {
+            case _STATE_PANEL_START:
+            {
+                hudStateID = StateID._STATE_PANEL_UPDATE;
+            }
+            break;
+
+            case _STATE_PANEL_UPDATE:
+            {
+                if (buttonPause.isPressed())
+                {
+                    AppConfig.pause();
+                    buttonPause.release();
+                    pausePanel.setup();
+                    hideControls();
+                }
+                else
+                {
+                    messageManager.update();
+                }
+            }
+            break;
+
+            case _STATE_PAUSED:
+            {
+            }
+            break;
+
+            default:
+                break;
+        }
     }
 
+    @Override
     public void render(OrthographicCamera camera, boolean canDrawControls)
     {
         if (AppConfig.hudExists)
@@ -82,20 +138,17 @@ public class HeadsUpDisplay implements Disposable
         }
     }
 
-    private void drawPanels()
-    {
-        scorePanel.setPosition(AppConfig.hudOriginX, AppConfig.hudOriginY + (Gfx._HUD_HEIGHT - scorePanel.getHeight()));
-        scorePanel.draw(App.spriteBatch, 1.0f);
-    }
-
+    @Override
     public void showControls()
     {
     }
 
+    @Override
     public void hideControls()
     {
     }
 
+    @Override
     public void showPauseButton(boolean state)
     {
     }
@@ -108,30 +161,54 @@ public class HeadsUpDisplay implements Disposable
         buttonDown.release();
     }
 
+    @Override
     public void setStateID(StateID newState)
     {
         hudStateID = newState;
     }
 
-    public VirtualJoystick getJoystick()
+    @Override
+    public void refillItems()
     {
-        return App.inputManager.virtualJoystick;
+    }
+
+    private void drawPanels()
+    {
+        scorePanel.setPosition(AppConfig.hudOriginX, AppConfig.hudOriginY + (Gfx._HUD_HEIGHT - scorePanel.getHeight()));
+        scorePanel.draw(App.spriteBatch, 1.0f);
+    }
+
+    private void drawItems()
+    {
+    }
+
+    private void drawControls()
+    {
+    }
+
+    private void drawMessages()
+    {
+    }
+
+    private void drawHudDebug()
+    {
     }
 
     /**
      * Creates the game screen buttons and then
      * registers them with the Scene2D Stage.
      */
-    private void createHUDButtons()
+    @Override
+    public void createHUDButtons()
+    {
+    }
+
+    private void addButtonListeners()
     {
     }
 
     @Override
     public void dispose()
-    {
-    }
-
-    public void refillItems()
     {
     }
 }
