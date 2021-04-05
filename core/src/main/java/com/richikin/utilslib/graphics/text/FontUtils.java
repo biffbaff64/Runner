@@ -11,6 +11,13 @@ import com.richikin.utilslib.logging.Trace;
 
 public class FontUtils
 {
+    private static final FontUtils instance = new FontUtils();
+
+    public static FontUtils inst()
+    {
+        return instance;
+
+    }
     public BitmapFont createFont(String fontFile, int size, Color color)
     {
         BitmapFont font;

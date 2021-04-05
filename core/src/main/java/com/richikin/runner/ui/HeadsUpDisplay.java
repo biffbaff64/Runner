@@ -7,9 +7,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.richikin.enumslib.StateID;
+import com.richikin.runner.assets.GameAssets;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.core.App;
 import com.richikin.runner.graphics.Gfx;
+import com.richikin.utilslib.graphics.text.FontUtils;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.logging.Trace;
 
@@ -86,6 +88,10 @@ public class HeadsUpDisplay implements IHud
         this.pausePanel     = new PausePanel();
 
         createHUDButtons();
+
+        bigFont   = FontUtils.inst().createFont(GameAssets._PRO_WINDOWS_FONT, 28);
+        midFont   = FontUtils.inst().createFont(GameAssets._PRO_WINDOWS_FONT, 22);
+        smallFont = FontUtils.inst().createFont(GameAssets._PRO_WINDOWS_FONT, 14);
 
         this.hudStateID = StateID._STATE_PANEL_START;
 
