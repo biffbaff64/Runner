@@ -103,7 +103,7 @@ public class  EntityManager implements IEntityManager
             //
             // Update the various entity managers. These updates will check
             // to see if any entities need re-spawning etc.
-            if (!App.gameProgress.levelCompleted && !App.gameProgress.baseDestroyed)
+            if (!App.gameProgress.levelCompleted)
             {
                 for (final IEntityManagerComponent system : App.entityData.managerList)
                 {

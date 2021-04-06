@@ -136,12 +136,12 @@ public class Keyboard extends InputAdapter
         }
         else if (keycode == defaultValueB)
         {
-            App.getHud().buttonAttack.press();
+            App.getHud().buttonB.press();
             returnFlag = true;
         }
         else if (keycode == defaultValueA)
         {
-            App.getHud().buttonAction.press();
+            App.getHud().buttonA.press();
             returnFlag = true;
         }
         else
@@ -241,12 +241,12 @@ public class Keyboard extends InputAdapter
         }
         else if (keycode == defaultValueB)
         {
-            App.getHud().buttonAttack.release();
+            App.getHud().buttonB.release();
             returnFlag = true;
         }
         else if (keycode == defaultValueA)
         {
-            App.getHud().buttonAction.release();
+            App.getHud().buttonA.release();
             returnFlag = true;
         }
         else

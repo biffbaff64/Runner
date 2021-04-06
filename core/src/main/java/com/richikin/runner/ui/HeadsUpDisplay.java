@@ -1,19 +1,23 @@
 package com.richikin.runner.ui;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.richikin.enumslib.StateID;
 import com.richikin.runner.assets.GameAssets;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.core.App;
+import com.richikin.runner.core.GameConstants;
 import com.richikin.runner.graphics.Gfx;
+import com.richikin.runner.ui.panels.IUserInterfacePanel;
 import com.richikin.utilslib.graphics.text.FontUtils;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.ui.IUIProgressBar;
+import com.richikin.utilslib.ui.ProgressBar;
 
 public class HeadsUpDisplay implements IHud
 {
@@ -21,53 +25,26 @@ public class HeadsUpDisplay implements IHud
     public Switch buttonDown;
     public Switch buttonLeft;
     public Switch buttonRight;
-
-    // ###############################################################
-    // TODO: 27/11/2020 - Are these following switches still needed ??
-    public Switch buttonAction;
-    public Switch buttonAttack;
+    public Switch buttonA;
+    public Switch buttonB;
     public Switch buttonX;
     public Switch buttonY;
     public Switch buttonPause;
-    public Switch buttonDevOptions;
-    // ###############################################################
 
-    public ImageButton ActionButton;
-    public ImageButton AttackButton;
-    public ImageButton PauseButton;
+    public Image               scorePanel;
+    public BitmapFont          smallFont;
+    public BitmapFont          midFont;
+    public BitmapFont          bigFont;
+    public MessageManager      messageManager;
+    public PausePanel          pausePanel;
+    public IUserInterfacePanel conversationPanel;
+    public StateID             hudStateID;
 
-    public Image          scorePanel;
-    public BitmapFont     smallFont;
-    public BitmapFont     midFont;
-    public BitmapFont     bigFont;
-    public MessageManager messageManager;
-    public PausePanel     pausePanel;
-    public StateID        hudStateID;
+    public ItemBar itemBar;
+    public int     itemPanelIndex;
 
-    private static final int _X1     = 0;
-    private static final int _X2     = 1;
-    private static final int _Y      = 2;
-    private static final int _WIDTH  = 3;
-    private static final int _HEIGHT = 4;
-
-    //@formatter:off
-    private final int[][] displayPos =
-        {
-            {0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0},
-        };
-
-    private final int[][] livesDisplay =
-        {
-            {0, 0},
-            {0, 0},
-            {0, 0},
-            {0, 0},
-            {0, 0},
-        };
-    //@formatter:on
+    private IUIProgressBar healthBar;
+    private IUIProgressBar livesBar;
 
     public HeadsUpDisplay()
     {
@@ -80,12 +57,16 @@ public class HeadsUpDisplay implements IHud
 
         AppConfig.hudExists = false;
 
-        Texture               texture  = App.assets.loadSingleAsset("hud_panel.png", Texture.class);
+        Texture               texture  = App.assets.loadSingleAsset(GameAssets._HUD_PANEL_ASSET, Texture.class);
         TextureRegionDrawable drawable = new TextureRegionDrawable(texture);
         this.scorePanel = new Image(drawable);
 
         this.messageManager = new MessageManager();
         this.pausePanel     = new PausePanel();
+        this.livesBar       = new ProgressBar(1, 0, GameConstants._MAX_PROGRESSBAR_LENGTH, "bar9");
+        this.healthBar      = new ProgressBar(1, 0, GameConstants._MAX_PROGRESSBAR_LENGTH, "bar9");
+        this.livesBar.setHeightColorScale(19f, Color.GREEN, 3.0f);
+        this.healthBar.setHeightColorScale(19f, Color.GREEN, 3.0f);
 
         createHUDButtons();
 
@@ -207,6 +188,15 @@ public class HeadsUpDisplay implements IHud
     @Override
     public void createHUDButtons()
     {
+        buttonUp    = new Switch();
+        buttonDown  = new Switch();
+        buttonLeft  = new Switch();
+        buttonRight = new Switch();
+        buttonA     = new Switch();
+        buttonB     = new Switch();
+        buttonX     = new Switch();
+        buttonY     = new Switch();
+        buttonPause = new Switch();
     }
 
     private void addButtonListeners()

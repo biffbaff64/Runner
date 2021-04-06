@@ -1,5 +1,5 @@
 
-package com.richikin.runner.ui;
+package com.richikin.utilslib.ui;
 
 import com.badlogic.gdx.graphics.Color;
 
@@ -12,6 +12,12 @@ public interface IUIProgressBar
     void updateSlowDecrementWithWrap(int wrap);
 
     boolean updateSlowIncrement();
+
+    void setHeightColorScale(float height, Color color, float scale);
+
+    void setHeight(float _height);
+
+    boolean hasRefillRoom();
 
     void setColor(Color color);
 

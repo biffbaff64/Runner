@@ -3,6 +3,7 @@ package com.richikin.runner.core;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.StateID;
 import com.richikin.runner.config.AppConfig;
+import com.richikin.runner.ui.GameCompletedPanel;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 
@@ -36,58 +37,39 @@ public class EndgameManager
         }
         else
         {
-            //
-            // Rover destroyed, Earth destroyed, the apocalypse is here...
-            // The Human Race is no more, you failed...!!!
-            if (App.gameProgress.roverDestroyed)
-            {
-                Trace.__FILE_FUNC_WithDivider("ROVER DESTROYED");
-                Trace.divider();
-
-                App.getPlayer().setActionState(ActionStates._DEAD);
-            }
-            //
-            // Waheyy!! All levels completed!
-            else if (App.gameProgress.gameCompleted)
+            if (App.gameProgress.gameCompleted)
             {
                 Trace.__FILE_FUNC_WithDivider("GAME COMPLETED");
                 Trace.divider();
 
                 App.getHud().hideControls();
 
-//                App.mainGameScreen.completedPanel = new GameCompletedPanel();
-//                App.mainGameScreen.completedPanel.setup();
+                App.mainGameScreen.completedPanel = new GameCompletedPanel();
+                App.mainGameScreen.completedPanel.setup();
 
                 App.getHud().setStateID(StateID._STATE_GAME_FINISHED);
                 App.appState.set(StateID._STATE_GAME_FINISHED);
 
                 returnFlag = true;
             }
-            //
-            // LJM Successfully destroyed the missile base!
-            else if (App.gameProgress.baseDestroyed)
+            else if (App.gameProgress.levelCompleted)
             {
-                if (!App.getHud().messageManager.doesPanelExist("base_destroyed"))
-                {
-                    App.gameProgress.levelCompleted = true;
+                //
+                // For this game, 'levelCompleted' is actually 'roomExited'...
+                Trace.__FILE_FUNC_WithDivider("LEVEL COMPLETED");
+                Trace.divider();
 
-                    Trace.__FILE_FUNC_WithDivider("LEVEL COMPLETED");
-                    Trace.dbg("app.gameProgress.levelCompleted: " + App.gameProgress.levelCompleted);
-                    Trace.divider();
+                App.getHud().setStateID(StateID._STATE_LEVEL_FINISHED);
+                App.appState.set(StateID._STATE_LEVEL_FINISHED);
 
-                    App.getHud().setStateID(StateID._STATE_LEVEL_FINISHED);
-                    App.appState.set(StateID._STATE_LEVEL_FINISHED);
-
-                    returnFlag = true;
-                }
+                returnFlag = true;
             }
             //
             // Restarting due to life lost and
             // player is resetting...
             else if (App.gameProgress.isRestarting)
             {
-                if ((App.getPlayer() != null)
-                    && (App.getPlayer().getActionState() == ActionStates._RESETTING))
+                if (App.getPlayer().getActionState() == ActionStates._RESETTING)
                 {
                     Trace.__FILE_FUNC_WithDivider();
                     Trace.__FILE_FUNC("LIFE LOST - TRY AGAIN");
@@ -104,7 +86,7 @@ public class EndgameManager
             // For example, from pause menu...
             else if (AppConfig.forceQuitToMenu)
             {
-                App.appState.set(StateID._STATE_GAME_OVER);
+                App.appState.set(StateID._STATE_END_GAME);
                 returnFlag = true;
             }
         }

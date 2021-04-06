@@ -193,12 +193,12 @@ public class GameAssets
 
     //
     // Fonts and HUD assets
-    public static final String _GAME_BACKGROUND     = "data/water_background.png";
-    public static final String _CENTURY_FONT        = "data/fonts/CENSCBK.ttf";
-    public static final String _ACME_FONT           = "data/fonts/Acme-Regular.ttf";
-    public static final String _PRO_WINDOWS_FONT    = "data/fonts/ProFontWindows.ttf";
-    public static final String _HUD_PANEL_FONT      = "data/fonts/Acme-Regular.ttf";
-    public static final String _HUD_PANEL_ASSET     = "data/hud_panel_rework.png";
+    public static final String _GAME_BACKGROUND     = "water_background.png";
+    public static final String _CENTURY_FONT        = "fonts/CENSCBK.ttf";
+    public static final String _ACME_FONT           = "fonts/Acme-Regular.ttf";
+    public static final String _PRO_WINDOWS_FONT    = "fonts/ProFontWindows.ttf";
+    public static final String _HUD_PANEL_FONT      = "fonts/Acme-Regular.ttf";
+    public static final String _HUD_PANEL_ASSET     = "hud_panel_rework.png";
     public static final String _MESSAGE_PANEL_ASSET = "message_panel";
     public static final String _SPLASH_SCREEN_ASSET = "splash_screen.png";
     public static final String _CREDITS_PANEL_ASSET = "credits_panel.png";

@@ -6,4 +6,8 @@ public class GameCompletedPanel
     {
         return true;
     }
+
+    public void setup()
+    {
+    }
 }

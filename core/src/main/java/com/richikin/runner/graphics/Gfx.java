@@ -28,9 +28,9 @@ public class Gfx
     //
     // Pixels Per Meter in the Box2D World
     // In this instance, a meter is the length of a single TiledMap tile.
-    public static       float _PPM              = 32.0f;
+    public static       float _PPM              = 64.0f;
     public static       float _PIXELS_TO_METERS = (1.0f / _PPM);
-    public static final float _PPM_SETTING      = 32.0f;
+    public static final float _PPM_SETTING      = 64.0f;
 
     //
     // Maximum Z-sorting depth for sprites

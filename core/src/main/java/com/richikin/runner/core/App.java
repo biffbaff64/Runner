@@ -29,7 +29,7 @@ import com.richikin.utilslib.core.ISettings;
 import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.maths.SimpleVec2;
 
-public final class App extends LibApp
+public abstract class App extends LibApp
 {
     // =======================================================
     // Global access references
