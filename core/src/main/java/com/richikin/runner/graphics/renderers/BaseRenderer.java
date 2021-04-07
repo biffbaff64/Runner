@@ -20,9 +20,9 @@ public class BaseRenderer implements Disposable
     public OrthoGameCamera spriteGameCamera;
     public OrthoGameCamera tiledGameCamera;
 
-    public Zoom               gameZoom;
-    public Zoom               hudZoom;
-    public boolean            isDrawingStage;
+    public Zoom    gameZoom;
+    public Zoom    hudZoom;
+    public boolean isDrawingStage;
 
     private WorldRenderer worldRenderer;
     private HUDRenderer   hudRenderer;
@@ -103,7 +103,7 @@ public class BaseRenderer implements Disposable
         }
         else
         {
-            App.mapData.mapPosition.set(0, 0);
+            App.mapUtils.positionAt(0, 0);
         }
 
         App.spriteBatch.enableBlending();

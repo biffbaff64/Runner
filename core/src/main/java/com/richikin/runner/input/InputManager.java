@@ -24,10 +24,10 @@ public class InputManager
     public VirtualJoystick   virtualJoystick;
     public TouchScreen       touchScreen;
     public GameController    gameController;
-    public InputMultiplexer inputMultiplexer;
-    public Dir              currentRegisteredDirection;
-    public Dir              lastRegisteredDirection;
-    public float            _horizontalValue;
+    public InputMultiplexer  inputMultiplexer;
+    public Dir               currentRegisteredDirection;
+    public Dir               lastRegisteredDirection;
+    public float             _horizontalValue;
     public float             _verticalValue;
 
     public InputManager()

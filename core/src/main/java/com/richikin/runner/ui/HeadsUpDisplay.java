@@ -1,5 +1,6 @@
 package com.richikin.runner.ui;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -9,8 +10,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.richikin.enumslib.StateID;
 import com.richikin.runner.assets.GameAssets;
 import com.richikin.runner.config.AppConfig;
+import com.richikin.runner.config.Settings;
 import com.richikin.runner.core.App;
 import com.richikin.runner.core.GameConstants;
+import com.richikin.runner.developer.Developer;
 import com.richikin.runner.graphics.Gfx;
 import com.richikin.runner.ui.panels.IUserInterfacePanel;
 import com.richikin.utilslib.graphics.text.FontUtils;
@@ -18,6 +21,8 @@ import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.ui.IUIProgressBar;
 import com.richikin.utilslib.ui.ProgressBar;
+
+import java.util.Locale;
 
 public class HeadsUpDisplay implements IHud
 {
@@ -122,6 +127,8 @@ public class HeadsUpDisplay implements IHud
         if (AppConfig.hudExists)
         {
             drawPanels();
+
+            drawHudDebug();
         }
     }
 
@@ -179,6 +186,105 @@ public class HeadsUpDisplay implements IHud
 
     private void drawHudDebug()
     {
+        if (Developer.isDevMode())
+        {
+            smallFont.setColor(Color.WHITE);
+            smallFont.draw(App.spriteBatch, "DEV MODE", AppConfig.hudOriginX + 470, AppConfig.hudOriginY + (720 - 6));
+
+            if (Developer.isGodMode())
+            {
+                smallFont.draw(App.spriteBatch, "GOD MODE", AppConfig.hudOriginX + 790, AppConfig.hudOriginY + (720 - 6));
+            }
+
+            int yPosition = 600;
+
+            if (App.settings.isEnabled(Settings._SHOW_FPS))
+            {
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "FPS  : " + Gdx.graphics.getFramesPerSecond(),
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + yPosition
+                    );
+
+                yPosition -= 30;
+            }
+
+            if (App.settings.isEnabled(Settings._SHOW_DEBUG))
+            {
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        App.appState.peek().name(),
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + yPosition
+                    );
+
+                yPosition -= 30;
+
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "" + AppConfig.gameScreenActive(),
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + yPosition
+                    );
+
+                yPosition -= 30;
+
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "Player x: " + App.getPlayer().sprite.getX() + ", y: " + App.getPlayer().sprite.getY(),
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + yPosition
+                    );
+
+                yPosition -= 30;
+
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "Map " + App.mapData.mapPosition.toString(),
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + yPosition
+                    );
+
+                yPosition -= 30;
+            }
+
+            if (App.settings.isEnabled(Settings._MENU_HEAPS))
+            {
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        String.format
+                            (
+                                Locale.UK,
+                                "JAVA HEAP: %3.2fMB",
+                                ((((float) Gdx.app.getJavaHeap()) / 1024) / 1024)
+                            ),
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + yPosition
+                    );
+
+                yPosition -= 30;
+
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        String.format
+                            (
+                                Locale.UK,
+                                "NATIVE HEAP: %3.2fMB",
+                                ((((float) Gdx.app.getNativeHeap()) / 1024) / 1024)
+                            ),
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + yPosition
+                    );
+            }
+        }
     }
 
     /**

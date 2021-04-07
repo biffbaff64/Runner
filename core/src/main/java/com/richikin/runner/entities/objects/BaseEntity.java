@@ -17,12 +17,14 @@ public class BaseEntity implements IEntityComponent, Disposable
     public GraphicID       type;                // Entity Type - _Entity, _OBSTACLE, etc.
     public int             frameWidth;          // Width in pixels, or width of frame for animations
     public int             frameHeight;         // Width in pixels, or width of frame for animations
+    public ActionStates    entityAction;        // Current action/state
+    public SimpleVec3      position;            // Map position, only really needed for non-sprites
     public CollisionObject collisionObject;     // ...
+    public float           rightEdge;           // The right edge of this entities collision box
+    public float           topEdge;             // The top edge of this entities collision box
     public Body            b2dBody;             // Box2D Physics body
     public short           bodyCategory;        // Bit-mask entity collision type
     public short           collidesWith;        // Bit-mask of entity types that can be collided with
-    public ActionStates    entityAction;        // Current action/state
-    public SimpleVec3      position;            // Map position, only really needed for non-sprites
 
     public BaseEntity()
     {
