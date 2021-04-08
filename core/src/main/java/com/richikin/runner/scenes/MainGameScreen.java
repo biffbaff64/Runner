@@ -72,6 +72,7 @@ public class MainGameScreen extends AbstractBaseScreen
     @Override
     public void update()
     {
+        //noinspection EnhancedSwitchMigration
         switch (App.appState.peek())
         {
             case _STATE_MAIN_MENU:

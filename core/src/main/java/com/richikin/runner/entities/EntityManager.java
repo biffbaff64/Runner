@@ -60,9 +60,9 @@ public class  EntityManager implements IEntityManager
 
         addBackgroundEntities();
 
-        for (final IEntityManagerComponent system : App.entityData.managerList)
+        for (final IEntityManagerComponent component : App.entityData.managerList)
         {
-            system.init();
+            component.init();
         }
 
         App.entities.setAllEnemyStatuses();
@@ -105,9 +105,9 @@ public class  EntityManager implements IEntityManager
             // to see if any entities need re-spawning etc.
             if (!App.gameProgress.levelCompleted)
             {
-                for (final IEntityManagerComponent system : App.entityData.managerList)
+                for (final IEntityManagerComponent component : App.entityData.managerList)
                 {
-                    system.update();
+                    component.update();
                 }
             }
         }
@@ -145,10 +145,12 @@ public class  EntityManager implements IEntityManager
                             }
 
                             case G_EXPLOSION12, G_EXPLOSION64, G_EXPLOSION128, G_EXPLOSION256 -> {
+
                                 entity.tidy(i);
                             }
 
                             default -> {
+
                                 if (entity.gid != GraphicID.G_NO_ID)
                                 {
                                     releaseEntity(entity);

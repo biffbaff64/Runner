@@ -103,7 +103,7 @@ public class BaseRenderer implements Disposable
         }
         else
         {
-            App.mapUtils.positionAt(0, 0);
+            App.mapData.mapPosition.set(0, 0);
         }
 
         App.spriteBatch.enableBlending();

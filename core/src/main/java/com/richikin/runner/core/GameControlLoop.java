@@ -25,90 +25,62 @@ public class GameControlLoop extends AbstractControlLoop
             // Initialise the current level.
             // If the level is restarting, that will
             // also be handled here.
-            case _STATE_SETUP:
-            {
+            case _STATE_SETUP -> {
+
                 stateSetup();
             }
-            break;
 
             //
             // Display and update the 'Get Ready' message.
-            case _STATE_GET_READY:
-            {
+            case _STATE_GET_READY -> {
+
                 stateGetReady();
             }
-            break;
 
-            case _STATE_DEVELOPER_PANEL:
-            case _STATE_PAUSED:
-            case _STATE_GAME:
-            {
+            case _STATE_DEVELOPER_PANEL, _STATE_PAUSED, _STATE_GAME -> {
+
                 stateGame();
             }
-            break;
 
             //
             // Player lost a life.
             // Trying again.
-            case _STATE_LEVEL_RETRY:
-            {
+            case _STATE_LEVEL_RETRY -> {
+
                 stateSetForRetry();
             }
-            break;
 
-            //
-            // Missile base destroyed, on to the next one
-            case _STATE_LEVEL_FINISHED:
-            {
+            case _STATE_LEVEL_FINISHED -> {
+
                 stateSetForLevelFinished();
             }
-            break;
 
             //
-            // 'GAME OVER' Message, LJM has lost all lives.
-            case _STATE_GAME_OVER:
-            {
+            // 'GAME OVER' Message, Player has lost all lives.
+            case _STATE_GAME_OVER -> {
+
                 stateSetForGameOverMessage();
             }
-            break;
 
-            //
-            // All Levels finished, Earth is saved, LJM is a Hero!!!
-            case _STATE_GAME_FINISHED:
-            {
+            case _STATE_GAME_FINISHED -> {
+
                 stateSetForGameFinished();
             }
-            break;
-
-            //
-            // Update during the 'Missile Launched' message,
-            // and also when LJM is teleporting
-            case _STATE_ANNOUNCE_MISSILE:
-            case _STATE_TELEPORTING:
-            {
-                App.entityManager.updateSprites();
-                App.getHud().update();
-            }
-            break;
 
             //
             // Back to MainMenuScreen
-            case _STATE_END_GAME:
-            {
+            case _STATE_END_GAME -> {
+
                 stateSetForEndGame();
             }
-            break;
 
-            case _STATE_CLOSING:
-            {
+            case _STATE_CLOSING -> {
             }
-            break;
 
-            default:
-            {
+            default -> {
+
                 Trace.__FILE_FUNC("Unsupported gameState: " + App.appState.peek());
             }
-            break;
         }
     }
 
@@ -213,7 +185,7 @@ public class GameControlLoop extends AbstractControlLoop
 
     /**
      * Handles the preparation for retrying the current
-     * level, after LJM loses a life.
+     * level, after Player loses a life.
      */
     private void stateSetForRetry()
     {
@@ -255,7 +227,7 @@ public class GameControlLoop extends AbstractControlLoop
 
     /**
      * Game Over, due to losing all lives.
-     * (Waits for the 'Game Over' message to disappear.
+     * (Waits for the 'Game Over' message to disappear.)
      */
     private void stateSetForGameOverMessage()
     {
