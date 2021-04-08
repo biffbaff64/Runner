@@ -30,9 +30,14 @@ public class MainPlayer extends GdxSprite
     private static final float _PLAYER_X_SPEED = 6;
     private static final float _PLAYER_Y_SPEED = 6;
 
+    private static final int _ABXY_A = 0;
+    private static final int _ABXY_B = 1;
+    private static final int _ABXY_X = 2;
+    private static final int _ABXY_Y = 3;
+
     public ButtonInputHandler  buttons;
 //    public CollisionHandler    collision;
-//    public ActionButtonHandler actionButton;
+    public ActionButtonHandler actionButton;
 //    public PlayerBulletManager bulletManager;
     public SimpleVec2F         maxMoveSpeed;
 
@@ -452,9 +457,62 @@ public class MainPlayer extends GdxSprite
     }
 
     @Override
+    public void preDraw()
+    {
+        super.preDraw();
+    }
+
+    @Override
     public void draw(SpriteBatch spriteBatch)
     {
         super.draw(spriteBatch);
+
+        if (actionButton.getActionMode() == ActionStates._OFFER_ABXY_A)
+        {
+            spriteBatch.draw
+                (
+                    abxy[_ABXY_A],
+                    this.sprite.getX() + (this.frameWidth / 3f),
+                    this.sprite.getY() + this.frameHeight
+                );
+        }
+        else if (actionButton.getActionMode() == ActionStates._OFFER_ABXY_B)
+        {
+            spriteBatch.draw
+                (
+                    abxy[_ABXY_B],
+                    this.sprite.getX() + (this.frameWidth / 3f),
+                    this.sprite.getY() + this.frameHeight
+                );
+        }
+        else if (actionButton.getActionMode() == ActionStates._OFFER_ABXY_X)
+        {
+            spriteBatch.draw
+                (
+                    abxy[_ABXY_X],
+                    this.sprite.getX() + (this.frameWidth / 3f),
+                    this.sprite.getY() + this.frameHeight
+                );
+        }
+        else if (actionButton.getActionMode() == ActionStates._OFFER_ABXY_Y)
+        {
+            spriteBatch.draw
+                (
+                    abxy[_ABXY_Y],
+                    this.sprite.getX() + (this.frameWidth / 3f),
+                    this.sprite.getY() + this.frameHeight
+                );
+        }
+        else if (isOnFloorButton && App.gameProgress.keyCount.isEmpty() && !App.getHud().messageManager.isEnabled())
+        {
+            App.getHud().messageManager.addZoomMessage
+                (
+                    GameAssets._KEY_NEEDED_MSG_ASSET,
+                    5000,
+                    (Gfx._VIEW_WIDTH - GameAssets.getAssetSize(GraphicID._KEY_NEEDED).getX()) / 2,
+                    300
+                );
+        }
     }
 
     @Override
@@ -464,8 +522,8 @@ public class MainPlayer extends GdxSprite
         {
             switch (newAction)
             {
-                case _SPAWNING:
-                {
+                case _SPAWNING -> {
+
                     SpriteDescriptor descriptor = App.entities.getDescriptor(this.gid);
 
                     descriptor._ASSET    = GameAssets._PLAYER_SPAWN_ASSET;
@@ -476,10 +534,9 @@ public class MainPlayer extends GdxSprite
 
                     elapsedAnimTime = 0;
                 }
-                break;
 
-                case _STANDING:
-                {
+                case _STANDING -> {
+
                     SpriteDescriptor descriptor = App.entities.getDescriptor(this.gid);
 
                     descriptor._ASSET    = GameAssets._IDLE_DOWN_ASSET;
@@ -490,34 +547,42 @@ public class MainPlayer extends GdxSprite
 
                     elapsedAnimTime = 0;
                 }
-                break;
 
-                case _PAUSED:
-                case _WAITING:
-                case _TELEPORTING:
-                case _CHANGING_ROOM:
-                case _DEAD:
-                case _NO_ACTION:
-                case _RUNNING:
-                case _FIGHTING:
-                case _LAST_RITES:
-                case _HURT:
-                case _DYING:
-                case _RIDING:
-                {
+                case _PAUSED,
+                    _WAITING,
+                    _TELEPORTING,
+                    _CHANGING_ROOM,
+                    _DEAD,
+                    _NO_ACTION,
+                    _RUNNING,
+                    _FIGHTING,
+                    _LAST_RITES,
+                    _HURT,
+                    _DYING,
+                    _RIDING -> {
                 }
-                break;
 
-                default:
-                {
+                default -> {
+
                     Trace.__FILE_FUNC("Unsupported player action: " + newAction);
 
                     Stats.incMeter(Meters._BAD_PLAYER_ACTION.get());
                 }
-                break;
             }
         }
 
         super.setActionState(newAction);
+    }
+
+    @Override
+    public void dispose()
+    {
+        super.dispose();
+
+        buttons.dispose();
+
+        tileRectangle = null;
+        buttons = null;
+        actionButton = null;
     }
 }

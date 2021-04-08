@@ -161,7 +161,7 @@ public class Keyboard extends InputAdapter
 
                 case Input.Keys.E:
                 {
-                    App.gameProgress.getLives().setTotal(1);
+                    App.gameProgress.lives.setTotal(1);
                     returnFlag = true;
                 }
                 break;

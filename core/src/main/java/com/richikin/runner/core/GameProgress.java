@@ -32,12 +32,12 @@ public class GameProgress implements Disposable
         _VILLAGER,
     }
 
-    private Item score;
-    private Item lives;
-    private Item gemCount;
-    private Item coinCount;
-    private Item keyCount;
-    private Item rescuedVillagers;
+    public Item score;
+    public Item lives;
+    public Item gemCount;
+    public Item coinCount;
+    public Item keyCount;
+    public Item rescuedVillagers;
 
     private int scoreStack;
 
@@ -119,16 +119,6 @@ public class GameProgress implements Disposable
             score.add(amount);
             scoreStack -= amount;
         }
-    }
-
-    public Item getScore()
-    {
-        return score;
-    }
-
-    public Item getLives()
-    {
-        return lives;
     }
 
     public void closeLastGame()

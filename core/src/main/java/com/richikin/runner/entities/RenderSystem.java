@@ -4,6 +4,7 @@ import com.richikin.runner.config.Settings;
 import com.richikin.runner.core.App;
 import com.richikin.runner.entities.objects.GdxSprite;
 import com.richikin.runner.graphics.Gfx;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Movement;
 import org.jetbrains.annotations.NotNull;
 
@@ -35,6 +36,8 @@ public class RenderSystem
                         if (entity.position.z == z)
                         {
                             entity.preDraw();
+
+                            Trace.__FILE_FUNC("isDrawable: " + entity.isDrawable + ", isInViewWindow: " + isInViewWindow(entity));
 
                             if (isInViewWindow(entity) && entity.isDrawable)
                             {

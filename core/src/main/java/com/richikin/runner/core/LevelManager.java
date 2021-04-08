@@ -55,11 +55,11 @@ public class LevelManager
 
         //
         // The player is rewarded with an extra life every 4th level.
-        if (App.gameProgress.getLives().getTotal() < GameConstants._MAX_LIVES)
+        if (App.gameProgress.lives.getTotal() < GameConstants._MAX_LIVES)
         {
             if ((App.gameProgress.playerLevel % 4) == 0)
             {
-                App.gameProgress.getLives().add(1);
+                App.gameProgress.lives.add(1);
             }
         }
 
