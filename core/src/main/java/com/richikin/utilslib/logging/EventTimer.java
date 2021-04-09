@@ -4,18 +4,17 @@ package com.richikin.utilslib.logging;
 import java.util.Arrays;
 import java.util.Locale;
 
-@SuppressWarnings("WeakerAccess")
 public class EventTimer
 {
-    private final int MAX_EVENTS = 20;
+    private static final int MAX_EVENTS = 20;
 
     private long beginTime;
     private long endTime;
     private long events;
 
     private       double   averageDuration;
-    private final double[] eventsStore;
     private       String   averageDurationString;
+    private final double[] eventsStore;
 
     private boolean hasStarted;
     private boolean isFrozen;

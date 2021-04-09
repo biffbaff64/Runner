@@ -5,25 +5,27 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.StringBuilder;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.GregorianCalendar;
 
 public class Trace
 {
     /*
      * NB: Do not make these final, as they can be modified
      */
-    private static final String _LOGFILE_PATH_ = "C:/Development/LogFiles/";
-    private static final String debugTag       = "DEBUG";
-    private static final String errorTag       = "ERROR";
-
-    private static File logFile;
+    private static final String debugTag = "DEBUG";
+    private static final String errorTag = "ERROR";
+    private static       File   logFile;
 
     /**
      * Write a debug string to logcat or console.
      * The string can contain format options.
      *
-     * @param formatString  The string, or format string, to display.
-     * @param args          Arguments for use in format strings.
+     * @param formatString The string, or format string, to display.
+     * @param args         Arguments for use in format strings.
      */
     public static void dbg(String formatString, Object... args)
     {
@@ -46,13 +48,15 @@ public class Trace
             debugString.append(" ]");
 
             Gdx.app.debug(debugTag, debugString.toString());
+
+            writeToFile(debugString.toString());
         }
     }
 
     /**
      * Write an error string to logcat or console.
      *
-     * @param string    The string to write.
+     * @param string The string to write.
      */
     public static void err(String string)
     {
@@ -68,9 +72,14 @@ public class Trace
         }
     }
 
-    public static void __LINE__(Object ... args)
+    /**
+     * Write the line number of the Trace call
+     * to logcat or console.
+     */
+    public static void __LINE__(Object... args)
     {
         StringBuilder sb = new StringBuilder("Line: ");
+
         sb.append(new Throwable().getStackTrace()[1].getLineNumber());
 
         if (args.length > 0)
@@ -110,9 +119,10 @@ public class Trace
     /**
      * Write the current method name to logcat or console.
      */
-    public static void __FUNC__(Object ... args)
+    public static void __FUNC__(Object... args)
     {
         StringBuilder sb = new StringBuilder("Func: ");
+
         sb.append(new Throwable().getStackTrace()[1].getMethodName());
 
         if (args.length > 0)
@@ -130,7 +140,7 @@ public class Trace
      * Write the current method name to logcat or console,
      * with a dividing line beforehand.
      */
-    public static void __FUNC_WithDivider(Object ... args)
+    public static void __FUNC_WithDivider(Object... args)
     {
         dbg("--------------------------------------------------");
 
@@ -151,9 +161,10 @@ public class Trace
     /**
      * Write the current filename and method name to logcat or console.
      */
-    public static void __FILE_FUNC(Object ... args)
+    public static void __FILE_FUNC(Object... args)
     {
         StringBuilder sb = new StringBuilder("Func: ");
+
         sb.append(new Throwable().getStackTrace()[1].getFileName());
         sb.append("::");
         sb.append(new Throwable().getStackTrace()[1].getMethodName());
@@ -173,11 +184,12 @@ public class Trace
      * Write the current filename and method name to logcat or console,
      * with a dividing line beforehand.
      */
-    public static void __FILE_FUNC_WithDivider(Object ... args)
+    public static void __FILE_FUNC_WithDivider(Object... args)
     {
         dbg("--------------------------------------------------");
 
         StringBuilder sb = new StringBuilder("Func: ");
+
         sb.append(new Throwable().getStackTrace()[1].getFileName());
         sb.append("::");
         sb.append(new Throwable().getStackTrace()[1].getMethodName());
@@ -197,7 +209,7 @@ public class Trace
      * Writes the current file name to logcat or console.
      * Also writes the current method name plus the current line number.
      */
-    public static void __FILE_FUNC_LINE(Object ... args)
+    public static void __FILE_FUNC_LINE(Object... args)
     {
         StringBuilder sb = new StringBuilder("Func: ");
         sb.append(new Throwable().getStackTrace()[1].getFileName());
@@ -239,13 +251,13 @@ public class Trace
      * Writes a divider line to logcat or console.
      *
      * @param _length The length of the divider.
-     * @param _char The character to use for the divider.
+     * @param _char   The character to use for the divider.
      */
     public static void divider(char _char, int _length)
     {
         StringBuilder sb = new StringBuilder();
 
-        for (int i=0; i<_length; i++)
+        for (int i = 0; i < _length; i++)
         {
             sb.append(_char);
         }
@@ -256,7 +268,7 @@ public class Trace
     /**
      * Writes two divider lines, with a message between them, to logcat or console.
      *
-     * @param string    The message to write.
+     * @param string The message to write.
      */
     public static void megaDivider(String string)
     {
@@ -267,6 +279,9 @@ public class Trace
         divider(50);
     }
 
+    /**
+     * Writes a 'Finished' message to output window.
+     */
     public static void finishedMessage()
     {
         StringBuilder sb = new StringBuilder("Func: ");
@@ -276,5 +291,90 @@ public class Trace
         sb.append("::...Finished...");
 
         dbg(sb.toString());
+    }
+
+    /**
+     * Opens a physical file for writing copies of debug messages to.
+     * Note: Only messages output via Trace#dbg() are written to file.
+     * Note: An option to specify target directory is to be added.
+     *
+     * @param fileName       - The filename. This should be filename only,
+     *                       - and the file will be created in the working directory.
+     * @param deleteExisting - True to delete existing copies of the file.
+     *                       - False to append to existing file.
+     */
+    public static void openDebugFile(String fileName, boolean deleteExisting)
+    {
+        boolean isSuccess = true;
+
+        if (Gdx.app.getType() == Application.ApplicationType.Desktop)
+        {
+            logFile = new File(fileName);
+
+            if (logFile.exists())
+            {
+                if (deleteExisting)
+                {
+                    if (logFile.delete())
+                    {
+                        Gdx.app.debug(debugTag, "Existing logfile deleted.");
+                    }
+                }
+            }
+
+            if (!logFile.exists())
+            {
+                try
+                {
+                    if (isSuccess = logFile.createNewFile())
+                    {
+                        Gdx.app.debug(debugTag, "LOGGER: Logfile created: " + logFile.getName());
+                    }
+                }
+                catch (IOException ioe)
+                {
+                    err("Cannot create log file: " + logFile);
+                    Stats.incMeter(Meters._IO_EXCEPTION.get());
+                    isSuccess = false;
+                }
+            }
+
+            if (isSuccess)
+            {
+                GregorianCalendar c = new GregorianCalendar();
+
+                writeToFile("-----------------------------------------------------------");
+                writeToFile("Filename: " + logFile.toString());
+                writeToFile("Created: " + c.getTime().toString());
+                writeToFile("-----------------------------------------------------------");
+            }
+        }
+    }
+
+    /**
+     * Writes text to the logFile, if it exists.
+     *
+     * @param text String holding the text to write.
+     */
+    public static void writeToFile(String text)
+    {
+        if ((logFile != null) && logFile.exists())
+        {
+            try
+            {
+                //
+                // BufferedWriter for performance.
+                // Pass TRUE to set append to file flag.
+                BufferedWriter bw = new BufferedWriter(new FileWriter(logFile, true));
+
+                bw.append(text);
+                bw.write('\r');
+                bw.close();
+            }
+            catch (IOException ioe)
+            {
+                Stats.incMeter(Meters._IO_EXCEPTION.get());
+            }
+        }
     }
 }
