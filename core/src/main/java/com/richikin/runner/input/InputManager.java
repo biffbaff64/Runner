@@ -130,7 +130,8 @@ public class InputManager
             }
             else
             {
-                if (AppConfig.availableInputs.contains(ControllerType._EXTERNAL, true))
+                if (AppConfig.availableInputs.contains(ControllerType._EXTERNAL, true)
+                    && gameController != null)
                 {
                     yPercent = _verticalValue;
 

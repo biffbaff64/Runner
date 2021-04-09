@@ -4,8 +4,6 @@ import com.richikin.runner.config.Settings;
 import com.richikin.runner.core.App;
 import com.richikin.runner.entities.objects.GdxSprite;
 import com.richikin.runner.graphics.Gfx;
-import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.physics.Movement;
 import org.jetbrains.annotations.NotNull;
 
 public class RenderSystem
@@ -37,8 +35,6 @@ public class RenderSystem
                         {
                             entity.preDraw();
 
-                            Trace.__FILE_FUNC("isDrawable: " + entity.isDrawable + ", isInViewWindow: " + isInViewWindow(entity));
-
                             if (isInViewWindow(entity) && entity.isDrawable)
                             {
                                 entity.draw(App.spriteBatch);
@@ -55,6 +51,7 @@ public class RenderSystem
      * These can be the twinkling stars, ufos, or anything else
      * which is animating.
      */
+    @SuppressWarnings("unused")
     public void drawBackgroundSprites()
     {
     }
@@ -74,36 +71,5 @@ public class RenderSystem
         }
 
         return true;
-    }
-
-    /**
-     * Relocate enemy entities when crossing the map loop boundary.
-     */
-    public void relocateSprites()
-    {
-        GdxSprite entity;
-
-        for (int i = 0; i < App.entityData.entityMap.size; i++)
-        {
-            entity = (GdxSprite) App.entityData.entityMap.get(i);
-
-            if (EntityManager.enemies.contains(entity.gid, true))
-            {
-                final int _WRAP_POINT_LEFT = 1600;
-                final int _WRAP_POINT_RIGHT = 14400;
-
-                if (entity.sprite.getX() < _WRAP_POINT_LEFT)
-                {
-                    entity.sprite.translateX((Gfx.getMapWidth() - Gfx._VIEW_WIDTH) * Movement._DIRECTION_RIGHT);
-                }
-                else
-                {
-                    if (entity.sprite.getX() > _WRAP_POINT_RIGHT)
-                    {
-                        entity.sprite.translateX((Gfx.getMapWidth() - Gfx._VIEW_WIDTH) * Movement._DIRECTION_LEFT);
-                    }
-                }
-            }
-        }
     }
 }

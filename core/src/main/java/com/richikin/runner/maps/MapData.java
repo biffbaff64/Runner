@@ -118,7 +118,7 @@ public class MapData
             viewportBox.set
                 (
                     (App.getPlayerPos().getX() - Gfx._VIEW_HALF_WIDTH),
-                    0,
+                    (App.getPlayerPos().getY() - Gfx._VIEW_HALF_HEIGHT),
                     Gfx._VIEW_WIDTH,
                     Gfx._VIEW_HEIGHT
                 );
@@ -128,9 +128,9 @@ public class MapData
             entityWindow.set
                 (
                     (App.getPlayerPos().getX() - (Gfx._VIEW_WIDTH + Gfx._VIEW_HALF_WIDTH)),
-                    0,
+                    (App.getPlayerPos().getY() - (Gfx._VIEW_HEIGHT + Gfx._VIEW_HALF_HEIGHT)),
                     (Gfx._VIEW_WIDTH * 3),
-                    Gfx._VIEW_HEIGHT
+                    (Gfx._VIEW_HEIGHT * 3)
                 );
         }
     }

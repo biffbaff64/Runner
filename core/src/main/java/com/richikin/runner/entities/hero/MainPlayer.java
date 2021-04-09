@@ -83,6 +83,7 @@ public class MainPlayer extends GdxSprite
         canOpenMessagePanel = false;
 
         buttons       = new ButtonInputHandler();
+        actionButton  = new ActionButtonHandler();
         viewBox       = new Box();
         maxMoveSpeed  = new SimpleVec2F();
         tileRectangle = new CollisionRect(this.gid);
@@ -318,6 +319,9 @@ public class MainPlayer extends GdxSprite
                 new DirectionAnim(Movement._DIRECTION_STILL, Movement._DIRECTION_DOWN, GameAssets._DYING_DOWN_ASSET),
             };
 
+        // TODO: 09/04/2021
+        // The contents of each of these cases are quite similar to each other.
+        // Try and refactor this to reduce the footprint of this method.
         switch (getActionState())
         {
             case _RUNNING -> {
