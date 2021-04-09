@@ -56,6 +56,7 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
     public boolean isRotating;
     public boolean isFlippedX;
     public boolean isFlippedY;
+    public boolean canFlip;
     public boolean isAnimating;
     public boolean isLinked;
     public boolean isMainCharacter;
@@ -114,6 +115,7 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
         isRotating      = false;
         isFlippedX      = false;
         isFlippedY      = false;
+        canFlip         = true;
         isMainCharacter = false;
 
         spriteNumber = descriptor._INDEX;
@@ -248,8 +250,6 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
     /**
      * Common updates needed for all entities
      */
-    // TODO: 04/12/2020 - Remove Feature Envy warning (Suppressed for now).
-    @SuppressWarnings("FeatureEnvy")
     @Override
     public void updateCommon()
     {
@@ -258,19 +258,10 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
             sprite.rotate(rotateSpeed);
         }
 
-        sprite.setFlip(isFlippedX, isFlippedY);
-
-        //
-        // A sprite can be looking left but moving right etc...
-        // (This does, of course, rely on all animations
-        // facing RIGHT by default)
-        lookingAt.setX(isFlippedX ? Movement._DIRECTION_LEFT : Movement._DIRECTION_RIGHT);
-
-        // By default, sprites are always looking DOWN
-//        if (lookingAt.getY() == Movement._DIRECTION_STILL)
-//        {
-//            lookingAt.setY(Movement._DIRECTION_DOWN);
-//        }
+        if (canFlip)
+        {
+            sprite.setFlip(isFlippedX, isFlippedY);
+        }
     }
 
     @Override
@@ -354,9 +345,7 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
      * Wrap an entities position in the map if it
      * has gone beyond either if the maps borders.
      */
-    // TODO: 04/12/2020 - Remove Feature Envy warning (Suppressed for now).
     // TODO: 11/01/2021 - relocate this method to a utility class
-    @SuppressWarnings("FeatureEnvy")
     @Override
     public void wrap()
     {
@@ -395,8 +384,6 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
     /**
      * Check for any collisions.
      */
-    // TODO: 04/12/2020 - Remove Feature Envy warning (Suppressed for now).
-    @SuppressWarnings("FeatureEnvy")
     @Override
     public void updateCollisionCheck()
     {

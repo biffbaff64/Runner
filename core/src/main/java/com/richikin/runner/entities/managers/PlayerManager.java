@@ -39,6 +39,8 @@ public class PlayerManager extends GenericEntityManager
         App.entityManager.updateIndexes();
         App.entityManager._playerReady = true;
         App.entityManager._playerIndex = descriptor._INDEX;
+
+        App.entities.mainPlayer.addCollisionListener(App.entities.mainPlayer.collision);
     }
 
     public void setSpawnPoint()

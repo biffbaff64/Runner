@@ -1,5 +1,5 @@
 
-package com.richikin.runner.entities.objects;
+package com.richikin.utilslib.entities;
 
 public interface ILinker
 {

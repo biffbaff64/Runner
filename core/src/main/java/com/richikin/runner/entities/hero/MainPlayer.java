@@ -36,10 +36,11 @@ public class MainPlayer extends GdxSprite
     private static final int _ABXY_Y = 3;
 
     public ButtonInputHandler  buttons;
-//    public CollisionHandler    collision;
+    public CollisionHandler    collision;
     public ActionButtonHandler actionButton;
 //    public PlayerBulletManager bulletManager;
     public SimpleVec2F         maxMoveSpeed;
+    public GdxSprite           platformSprite;
 
     public Box     viewBox;
     public boolean isOnPlatform;
@@ -83,6 +84,7 @@ public class MainPlayer extends GdxSprite
         canOpenMessagePanel = false;
 
         buttons       = new ButtonInputHandler();
+        collision     = new CollisionHandler();
         actionButton  = new ActionButtonHandler();
         viewBox       = new Box();
         maxMoveSpeed  = new SimpleVec2F();
@@ -117,6 +119,7 @@ public class MainPlayer extends GdxSprite
         isRotating          = false;
         isFlippedX          = false;
         isFlippedY          = false;
+        canFlip             = false;
         isHurting           = false;
         isShooting          = false;
         isCasting           = false;
@@ -156,6 +159,14 @@ public class MainPlayer extends GdxSprite
         animate();
 
         updateCommon();
+    }
+
+    @Override
+    public void postUpdate(int spriteNum)
+    {
+        super.postUpdate(spriteNum);
+
+        isOnFloorButton = collision.isNextTo(GraphicID.G_FLOOR_BUTTON);
     }
 
     private void updateMainPlayer()
@@ -251,12 +262,11 @@ public class MainPlayer extends GdxSprite
     {
     }
 
-    public void handleDying()
+    public void kill()
     {
     }
 
-    @Override
-    public void postUpdate(int spriteNum)
+    public void handleDying()
     {
     }
 
@@ -588,5 +598,6 @@ public class MainPlayer extends GdxSprite
         tileRectangle = null;
         buttons = null;
         actionButton = null;
+        collision = null;
     }
 }

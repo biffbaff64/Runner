@@ -91,12 +91,12 @@ public class ButtonInputHandler implements Disposable
         {
             directionButtonPressed = true;
 
-//            if (App.getPlayer().collision.isBlockedTop())
-//            {
-//                App.getPlayer().isMovingY = false;
-//                App.getHud().buttonUp.release();
-//            }
-//            else
+            if (App.getPlayer().collision.isBlockedTop())
+            {
+                App.getPlayer().isMovingY = false;
+                App.getHud().buttonUp.release();
+            }
+            else
             {
                 App.getPlayer().direction.setY(Movement._DIRECTION_UP);
                 App.getPlayer().isMovingY = true;
@@ -111,12 +111,12 @@ public class ButtonInputHandler implements Disposable
         {
             directionButtonPressed = true;
 
-//            if (App.getPlayer().collision.isBlockedBottom())
-//            {
-//                App.getPlayer().isMovingY = false;
-//                App.getHud().buttonDown.release();
-//            }
-//            else
+            if (App.getPlayer().collision.isBlockedBottom())
+            {
+                App.getPlayer().isMovingY = false;
+                App.getHud().buttonDown.release();
+            }
+            else
             {
                 App.getPlayer().direction.setY(Movement._DIRECTION_DOWN);
                 App.getPlayer().isMovingY = true;
@@ -137,12 +137,12 @@ public class ButtonInputHandler implements Disposable
         {
             directionButtonPressed = true;
 
-//            if (App.getPlayer().collision.isBlockedRight())
-//            {
-//                App.getPlayer().isMovingX = false;
-//                App.getHud().buttonRight.release();
-//            }
-//            else
+            if (App.getPlayer().collision.isBlockedRight())
+            {
+                App.getPlayer().isMovingX = false;
+                App.getHud().buttonRight.release();
+            }
+            else
             {
                 App.getPlayer().direction.setX(Movement._DIRECTION_RIGHT);
                 App.getPlayer().isMovingX = true;
@@ -156,12 +156,12 @@ public class ButtonInputHandler implements Disposable
         {
             directionButtonPressed = true;
 
-//            if (App.getPlayer().collision.isBlockedLeft())
-//            {
-//                App.getPlayer().isMovingX = false;
-//                App.getHud().buttonLeft.release();
-//            }
-//            else
+            if (App.getPlayer().collision.isBlockedLeft())
+            {
+                App.getPlayer().isMovingX = false;
+                App.getHud().buttonLeft.release();
+            }
+            else
             {
                 App.getPlayer().direction.setX(Movement._DIRECTION_LEFT);
                 App.getPlayer().isMovingX = true;

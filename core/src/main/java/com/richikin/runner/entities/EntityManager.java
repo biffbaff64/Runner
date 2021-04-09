@@ -9,7 +9,7 @@ import com.richikin.runner.entities.components.IEntityManagerComponent;
 import com.richikin.runner.entities.managers.AlienManager;
 import com.richikin.runner.entities.managers.PlayerManager;
 import com.richikin.runner.entities.objects.GdxSprite;
-import com.richikin.runner.entities.objects.IEntityManager;
+import com.richikin.utilslib.entities.IEntityManager;
 import com.richikin.utilslib.logging.Trace;
 
 public class  EntityManager implements IEntityManager

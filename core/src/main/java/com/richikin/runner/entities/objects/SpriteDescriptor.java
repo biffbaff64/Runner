@@ -29,9 +29,9 @@ public class SpriteDescriptor
     public SimpleVec2         _SIZE;         // Width and Height.
     public int                _INDEX;        // This entities position in the entity map.
     public Animation.PlayMode _PLAYMODE;     // Animation playmode for the asset frames above.
-    public float              _ANIM_RATE;    // Animation speed
-    public GdxSprite          _PARENT;       // Parent GDXSprite (if applicable).
-    public int                _LINK;         // Linked GDXSprite (if applicable).
+    public float     _ANIM_RATE;    // Animation speed
+    public GdxSprite _PARENT;       // Parent GDXSprite (if applicable).
+    public int       _LINK;         // Linked GDXSprite (if applicable).
     public Direction          _DIR;          // Initial direction of travel.
     public SimpleVec2F        _DIST;         // Initial travel distance. Useful for moving blocks etc.
     public SimpleVec2F        _SPEED;        // Initial speed.
