@@ -71,7 +71,16 @@ public class MainPlayer extends GdxSprite
         create(descriptor);
 
         bodyCategory = Gfx.CAT_PLAYER;
-        collidesWith = Gfx.CAT_WALL | Gfx.CAT_COLLECTIBLE;
+        collidesWith = Gfx.CAT_MOBILE_ENEMY
+            | Gfx.CAT_FIXED_ENEMY
+            | Gfx.CAT_ENEMY_WEAPON
+            | Gfx.CAT_COLLECTIBLE
+            | Gfx.CAT_OBSTACLE
+            | Gfx.CAT_EXIT_BOX
+            | Gfx.CAT_INTERACTIVE
+            | Gfx.CAT_PLATFORM
+            | Gfx.CAT_VILLAGER
+            | Gfx.CAT_DOOR;
 
         isHurting           = false;
         isShooting          = false;

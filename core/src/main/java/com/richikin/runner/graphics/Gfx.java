@@ -26,6 +26,12 @@ public class Gfx
     public static final short _UNDEFINED_15      = 0x4000;   // - 15 (16384 )
 
     //
+    // Combined Categories
+    public static final short CAT_ENEMY    = (CAT_MOBILE_ENEMY | CAT_FIXED_ENEMY);
+    public static final short CAT_OBSTACLE = (CAT_WALL | CAT_DECORATION);
+    public static final short CAT_WEAPON   = (CAT_PLAYER_WEAPON | CAT_ENEMY_WEAPON);
+
+    //
     // Pixels Per Meter in the Box2D World
     // In this instance, a meter is the length of a single TiledMap tile.
     public static       float _PPM              = 64.0f;

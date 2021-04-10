@@ -176,7 +176,7 @@ public class MapCreator
 
                         case "wall":
                         {
-                            baseEntity.gid          = GraphicID._GROUND;
+                            baseEntity.gid          = GraphicID._WALL;
                             baseEntity.type         = GraphicID._OBSTACLE;
                             baseEntity.bodyCategory = Gfx.CAT_WALL;
                             baseEntity.collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON | Gfx.CAT_MOBILE_ENEMY | Gfx.CAT_FIXED_ENEMY;
@@ -229,6 +229,7 @@ public class MapCreator
         }
     }
 
+    @SuppressWarnings("unused")
     private ObjectTileProperties setObjectTileProperties(SpriteDescriptor _descriptor)
     {
         // TODO: 13/08/2020 - set properties based on the type of entity passed.
@@ -237,6 +238,7 @@ public class MapCreator
         return new ObjectTileProperties();
     }
 
+    @SuppressWarnings("unused")
     private void debugPlacementsTiles()
     {
         for (SpriteDescriptor tile : App.mapData.placementTiles)
@@ -245,6 +247,7 @@ public class MapCreator
         }
     }
 
+    @SuppressWarnings("unused")
     private void debugCollisionBoxes()
     {
         Trace.__FILE_FUNC();

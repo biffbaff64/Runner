@@ -32,6 +32,8 @@ public class MapUtils
                 );
 
             App.mapData.mapPosition.setY(Math.min(App.mapData.mapPosition.getY(), App.mapData.maxScrollY));
+
+            App.parallaxManager.scroll();
         }
         catch (NullPointerException npe)
         {

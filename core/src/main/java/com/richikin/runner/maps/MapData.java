@@ -14,6 +14,7 @@ import com.richikin.runner.core.App;
 import com.richikin.runner.entities.objects.BaseEntity;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.runner.graphics.Gfx;
+import com.richikin.runner.graphics.parallax.LayerImage;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.physics.Movement;
@@ -31,6 +32,13 @@ public class MapData
             "extra game tiles",
             "marker tiles",
             "collision",
+        };
+
+    public final LayerImage[] backgroundLayers =
+        {
+            new LayerImage("full_moon_scene.png", 0.4f, 0.0f),
+            new LayerImage("title_overlay1.png", 1.2f, 0.0f),
+            new LayerImage("title_overlay2.png", 2.4f, 0.0f),
         };
 
     public OrthogonalTiledMapRenderer mapRenderer;

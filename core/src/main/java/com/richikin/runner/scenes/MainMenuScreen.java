@@ -1,6 +1,5 @@
 package com.richikin.runner.scenes;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.enumslib.ScreenID;
 import com.richikin.enumslib.StateID;
@@ -27,9 +26,6 @@ public class MainMenuScreen extends AbstractBaseScreen
 
     private OptionsPage        optionsPage;
     private MenuPage           menuPage;
-    private Texture            background;
-    private Texture            overlay1;
-    private Texture            overlay2;
     private ArrayList<IUIPage> panels;
     private int                currentPage;
 
@@ -94,9 +90,6 @@ public class MainMenuScreen extends AbstractBaseScreen
             switch (currentPage)
             {
                 case _MENU_PAGE, _CREDITS_PAGE, _OPTIONS_PAGE -> {
-                    spriteBatch.draw(background, AppConfig.hudOriginX, AppConfig.hudOriginY);
-                    spriteBatch.draw(overlay1, AppConfig.hudOriginX, AppConfig.hudOriginY);
-                    spriteBatch.draw(overlay2, AppConfig.hudOriginX, AppConfig.hudOriginY);
 
                     panels.get(currentPage).draw(spriteBatch);
 
@@ -105,7 +98,9 @@ public class MainMenuScreen extends AbstractBaseScreen
                         AppConfig.backButton.setPosition(AppConfig.hudOriginX + 20, AppConfig.hudOriginY + 20);
                     }
                 }
+
                 default -> {
+
                     Trace.__FILE_FUNC("ERROR: Illegal panel: " + currentPage);
                 }
             }
@@ -218,6 +213,7 @@ public class MainMenuScreen extends AbstractBaseScreen
         App.cameraUtils.resetCameraZoom();
         App.cameraUtils.disableAllCameras();
 
+        App.baseRenderer.parallaxCamera.isInUse = true;
         App.baseRenderer.hudGameCamera.isInUse = true;
         App.baseRenderer.isDrawingStage        = true;
 
@@ -245,9 +241,7 @@ public class MainMenuScreen extends AbstractBaseScreen
     @Override
     public void loadImages()
     {
-        background = App.assets.loadSingleAsset("full_moon_scene.png", Texture.class);
-        overlay1   = App.assets.loadSingleAsset("title_overlay1.png", Texture.class);
-        overlay2   = App.assets.loadSingleAsset("title_overlay2.png", Texture.class);
+        App.baseRenderer.parallaxBackground.setupLayers(App.mapData.backgroundLayers);
     }
 
     public MenuPage getMenuPage()
@@ -286,9 +280,7 @@ public class MainMenuScreen extends AbstractBaseScreen
     {
         Trace.__FILE_FUNC();
 
-        App.assets.unloadAsset("full_moon_scene.png");
-        App.assets.unloadAsset("title_overlay1.png");
-        App.assets.unloadAsset("title_overlay2.png");
+        App.baseRenderer.parallaxBackground.dispose();
 
         menuPage.hide();
         menuPage.dispose();
@@ -299,7 +291,6 @@ public class MainMenuScreen extends AbstractBaseScreen
             panels = null;
         }
 
-        background  = null;
         optionsPage = null;
         menuPage    = null;
     }
