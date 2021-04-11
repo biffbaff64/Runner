@@ -10,9 +10,11 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.richikin.enumslib.ScreenID;
 import com.richikin.runner.assets.GameAssets;
 import com.richikin.runner.config.AppConfig;
@@ -20,6 +22,7 @@ import com.richikin.runner.config.Settings;
 import com.richikin.runner.core.App;
 import com.richikin.runner.developer.Developer;
 import com.richikin.runner.ui.IUIPage;
+import com.richikin.utilslib.input.controllers.ControllerData;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.ui.Scene2DUtils;
 
@@ -35,6 +38,10 @@ public class OptionsPage implements IUIPage
     private CheckBox    vibrateCheckBox;
     private CheckBox    hintsCheckBox;
     private Texture     foreground;
+    private Texture     controllerTestPanel;
+    private Label       controllerLabel;
+    private Label       buttonLabel;
+    private Label       axisLabel;
     private Skin        skin;
     private ScreenID    activePanel;
     private boolean     isJustFinishedOptionsPanel;
@@ -62,7 +69,8 @@ public class OptionsPage implements IUIPage
             }
         }
 
-        foreground = App.assets.loadSingleAsset(GameAssets._OPTIONS_PANEL_ASSET, Texture.class);
+        foreground          = App.assets.loadSingleAsset(GameAssets._OPTIONS_PANEL_ASSET, Texture.class);
+        controllerTestPanel = App.assets.loadSingleAsset(GameAssets._CONTROLLER_TEST_ASSET, Texture.class);
 
         skin = new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET));
 
@@ -91,10 +99,12 @@ public class OptionsPage implements IUIPage
                 case _STATS_SCREEN,
                     _INSTRUCTIONS_SCREEN,
                     _PRIVACY_POLICY_SCREEN -> {
+
                     // TODO: 22/02/2021 - Panel updates here
                 }
 
                 default -> {
+
                     updateSettings();
                     isJustFinishedOptionsPanel = true;
                 }
@@ -106,6 +116,18 @@ public class OptionsPage implements IUIPage
                 activePanel = ScreenID._SETTINGS_SCREEN;
                 AppConfig.backButton.setChecked(false);
             }
+        }
+
+        if (Developer.isDevMode())
+        {
+            controllerLabel.setText(App.inputManager.gameController.controller.getName());
+            buttonLabel.setText(ControllerData.controllerButtonCode);
+            axisLabel.setText
+                (
+                    "" + ControllerData.controllerAxisCode
+                    + "    /    "
+                    + ControllerData.controllerAxisValue
+                );
         }
 
         if (enteredDeveloperPanel && !Developer.developerPanelActive)
@@ -133,6 +155,7 @@ public class OptionsPage implements IUIPage
             }
 
             default -> {
+
                 if (Developer.developerPanelActive)
                 {
                     // TODO: 22/02/2021 - Draw developer panel here
@@ -142,6 +165,11 @@ public class OptionsPage implements IUIPage
                     if (foreground != null)
                     {
                         spriteBatch.draw(foreground, AppConfig.hudOriginX, AppConfig.hudOriginY);
+
+                        if (Developer.isDevMode())
+                        {
+                            spriteBatch.draw(controllerTestPanel, AppConfig.hudOriginX, AppConfig.hudOriginY);
+                        }
                     }
                 }
             }
@@ -226,6 +254,37 @@ public class OptionsPage implements IUIPage
                     (int) AppConfig.hudOriginX + 648,
                     (int) AppConfig.hudOriginY + (720 - 558)
                 );
+
+            controllerLabel = scene2DUtils.addLabel
+                (
+                    "",
+                    (int) AppConfig.hudOriginX + 180,
+                    (int) AppConfig.hudOriginY + 50,
+                    Color.WHITE,
+                    new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET))
+                );
+
+            buttonLabel = scene2DUtils.addLabel
+                (
+                    "",
+                    (int) AppConfig.hudOriginX + 680,
+                    (int) AppConfig.hudOriginY + 50,
+                    Color.WHITE,
+                    new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET))
+                );
+
+            axisLabel = scene2DUtils.addLabel
+                (
+                    "",
+                    (int) AppConfig.hudOriginX + 980,
+                    (int) AppConfig.hudOriginY + 50,
+                    Color.WHITE,
+                    new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET))
+                );
+
+            controllerLabel.setAlignment(Align.left);
+            buttonLabel.setAlignment(Align.left);
+            axisLabel.setAlignment(Align.left);
         }
 
         showActors(true);
@@ -265,6 +324,10 @@ public class OptionsPage implements IUIPage
         {
             buttonDevOptions.setVisible(_visibilty);
             buttonStats.setVisible(_visibilty);
+
+            controllerLabel.setVisible(_visibilty);
+            buttonLabel.setVisible(_visibilty);
+            axisLabel.setVisible(_visibilty);
         }
 
         if (buttonGoogle != null)
@@ -504,9 +567,28 @@ public class OptionsPage implements IUIPage
         }
 
         App.assets.unloadAsset(GameAssets._OPTIONS_PANEL_ASSET);
+        App.assets.unloadAsset(GameAssets._CONTROLLER_TEST_ASSET);
 
-        foreground   = null;
-        skin         = null;
+        if (controllerLabel != null)
+        {
+            controllerLabel.addAction(Actions.removeActor());
+            controllerLabel = null;
+        }
+
+        if (buttonLabel != null)
+        {
+            buttonLabel.addAction(Actions.removeActor());
+            buttonLabel = null;
+        }
+
+        if (axisLabel != null)
+        {
+            axisLabel.addAction(Actions.removeActor());
+            axisLabel = null;
+        }
+
+        foreground = null;
+        skin       = null;
     }
 
     public void setActivePanel(ScreenID screenID)

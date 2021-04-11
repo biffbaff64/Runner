@@ -447,8 +447,8 @@ public class Keyboard extends InputAdapter
     {
         Direction direction = new Direction
             (
-                (int) App.inputManager._horizontalValue,
-                (int) App.inputManager._verticalValue
+                (int) App.inputManager.horizontalValue,
+                (int) App.inputManager.verticalValue
             );
 
         Dir keyDir = DirectionMap.map[DirectionMap.map.length - 1].translated;
@@ -468,11 +468,11 @@ public class Keyboard extends InputAdapter
 
     public void translateXPercent()
     {
-        App.inputManager._horizontalValue = App.getPlayer().lookingAt.getX();
+        App.inputManager.horizontalValue = App.getPlayer().lookingAt.getX();
     }
 
     public void translateYPercent()
     {
-        App.inputManager._verticalValue = App.getPlayer().lookingAt.getY();
+        App.inputManager.verticalValue = App.getPlayer().lookingAt.getY();
     }
 }

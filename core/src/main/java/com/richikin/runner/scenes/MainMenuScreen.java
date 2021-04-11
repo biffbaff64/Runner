@@ -120,6 +120,7 @@ public class MainMenuScreen extends AbstractBaseScreen
             switch (currentPage)
             {
                 case _CREDITS_PAGE -> {
+
                     panels.get(currentPage).update();
 
                     if (AppConfig.backButton.isChecked())
@@ -128,17 +129,23 @@ public class MainMenuScreen extends AbstractBaseScreen
                         changePageTo(_MENU_PAGE);
                     }
                 }
+
                 case _MENU_PAGE -> {
+
                     panels.get(_MENU_PAGE).update();
                 }
+
                 case _OPTIONS_PAGE -> {
+
                     if (panels.get(_OPTIONS_PAGE).update())
                     {
                         AppConfig.backButton.setChecked(false);
                         changePageTo(_MENU_PAGE);
                     }
                 }
+
                 default -> {
+
                     Trace.__FILE_FUNC("ERROR:  illegal page - " + currentPage);
                 }
             }

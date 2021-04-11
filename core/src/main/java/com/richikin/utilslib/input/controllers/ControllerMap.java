@@ -15,12 +15,6 @@ public abstract class ControllerMap
     public static int _BUTTON_BACK;
     public static int _BUTTON_START;
 
-//    public static PovDirection _BUTTON_DPAD_UP;
-//    public static PovDirection _BUTTON_DPAD_DOWN;
-//    public static PovDirection _BUTTON_DPAD_RIGHT;
-//    public static PovDirection _BUTTON_DPAD_LEFT;
-//    public static PovDirection _BUTTON_DPAD_CENTRE;
-
     public static int _BUTTON_LB;
     public static int _BUTTON_L3;
     public static int _BUTTON_RB;
@@ -36,7 +30,12 @@ public abstract class ControllerMap
     public static int _LEFT_TRIGGER;
     public static int _RIGHT_TRIGGER;
 
-    public static void setDataFrom(ControlMapData _mapData)
+    public static int _DPAD_UP;
+    public static int _DPAD_DOWN;
+    public static int _DPAD_LEFT;
+    public static int _DPAD_RIGHT;
+
+    public static void setDataFrom(ControlMapData mapData)
     {
     }
 

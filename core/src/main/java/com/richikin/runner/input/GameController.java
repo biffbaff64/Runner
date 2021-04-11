@@ -349,7 +349,7 @@ public class GameController implements ControllerListener
 
         if ((axisCode == ControllerMap._AXIS_LEFT_X) || (axisCode == ControllerMap._AXIS_RIGHT_X))
         {
-            App.inputManager._horizontalValue = value;
+            App.inputManager.horizontalValue = value;
 
             if (ControllerMap.isInNegativeRange(value))
             {
@@ -399,7 +399,7 @@ public class GameController implements ControllerListener
         }
         else if ((axisCode == ControllerMap._AXIS_LEFT_Y) || (axisCode == ControllerMap._AXIS_RIGHT_Y))
         {
-            App.inputManager._verticalValue = value;
+            App.inputManager.verticalValue = value;
 
             if (ControllerMap.isInNegativeRange(value))
             {
@@ -485,13 +485,13 @@ public class GameController implements ControllerListener
         ControllerMap._BUTTON_R3          = DefaultControllerMap._BUTTON_R3;
         ControllerMap._BUTTON_LB          = DefaultControllerMap._BUTTON_LB;
         ControllerMap._BUTTON_RB          = DefaultControllerMap._BUTTON_RB;
-//        ControllerMap._BUTTON_DPAD_LEFT   = DefaultControllerMap._BUTTON_DPAD_LEFT;
-//        ControllerMap._BUTTON_DPAD_RIGHT  = DefaultControllerMap._BUTTON_DPAD_RIGHT;
-//        ControllerMap._BUTTON_DPAD_UP     = DefaultControllerMap._BUTTON_DPAD_UP;
-//        ControllerMap._BUTTON_DPAD_DOWN   = DefaultControllerMap._BUTTON_DPAD_DOWN;
-//        ControllerMap._BUTTON_DPAD_CENTRE = DefaultControllerMap._BUTTON_DPAD_CENTRE;
-        ControllerMap._LEFT_TRIGGER       = DefaultControllerMap._LEFT_TRIGGER;
-        ControllerMap._RIGHT_TRIGGER      = DefaultControllerMap._RIGHT_TRIGGER;
+        ControllerMap._DPAD_LEFT          = DefaultControllerMap._DPAD_LEFT;
+        ControllerMap._DPAD_RIGHT         = DefaultControllerMap._DPAD_RIGHT;
+        ControllerMap._DPAD_UP            = DefaultControllerMap._DPAD_UP;
+        ControllerMap._DPAD_DOWN          = DefaultControllerMap._DPAD_DOWN;
+//        ControllerMap._DPAD_CENTRE = DefaultControllerMap._DPAD_CENTRE;
+        ControllerMap._LEFT_TRIGGER  = DefaultControllerMap._LEFT_TRIGGER;
+        ControllerMap._RIGHT_TRIGGER = DefaultControllerMap._RIGHT_TRIGGER;
 
         Trace.finishedMessage();
     }

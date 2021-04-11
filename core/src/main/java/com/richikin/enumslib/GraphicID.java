@@ -112,6 +112,7 @@ public enum GraphicID
     // Generic
     _MONSTER,
     _BLOCKS,
+    _ENEMY_MANAGER,
 
     // ----------------------------
     // object IDs for non-sprites

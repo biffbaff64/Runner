@@ -27,8 +27,8 @@ public class InputManager
     public InputMultiplexer  inputMultiplexer;
     public Dir               currentRegisteredDirection;
     public Dir               lastRegisteredDirection;
-    public float             _horizontalValue;
-    public float             _verticalValue;
+    public float             horizontalValue;
+    public float             verticalValue;
 
     public InputManager()
     {
@@ -98,7 +98,7 @@ public class InputManager
             {
                 if (AppConfig.availableInputs.contains(ControllerType._EXTERNAL, true))
                 {
-                    xPercent = _horizontalValue;
+                    xPercent = horizontalValue;
                 }
                 else
                 {
@@ -133,7 +133,7 @@ public class InputManager
                 if (AppConfig.availableInputs.contains(ControllerType._EXTERNAL, true)
                     && gameController != null)
                 {
-                    yPercent = _verticalValue;
+                    yPercent = verticalValue;
 
                     switch (gameController.controller.getName())
                     {
