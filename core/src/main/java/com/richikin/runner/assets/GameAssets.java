@@ -4,6 +4,7 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.assets.AssetSize;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
+import com.richikin.utilslib.maths.Vec2;
 
 public class GameAssets
 {
@@ -362,9 +363,9 @@ public class GameAssets
 
     private GameAssets() {}
 
-    public static SimpleVec2 getAssetSize(GraphicID _gid)
+    public static Vec2 getAssetSize(GraphicID _gid)
     {
-        SimpleVec2 size = new SimpleVec2();
+        Vec2 size = new Vec2(0, 0);
 
         for (final AssetSize assetSize : assetSizes)
         {
@@ -374,7 +375,7 @@ public class GameAssets
             }
         }
 
-        if (size.isEmpty())
+        if ((size.x == 0) && (size.y == 0))
         {
             Trace.__FILE_FUNC("***** Size for " + _gid + " not found! *****");
         }
