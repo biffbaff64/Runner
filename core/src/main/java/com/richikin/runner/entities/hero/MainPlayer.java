@@ -532,7 +532,7 @@ public class MainPlayer extends GdxSprite
                 (
                     GameAssets._KEY_NEEDED_MSG_ASSET,
                     5000,
-                    (Gfx._VIEW_WIDTH - GameAssets.getAssetSize(GraphicID._KEY_NEEDED).getX()) / 2,
+                    (Gfx._VIEW_WIDTH - GameAssets.getAssetSize(GraphicID._KEY_NEEDED).x) / 2,
                     300
                 );
         }

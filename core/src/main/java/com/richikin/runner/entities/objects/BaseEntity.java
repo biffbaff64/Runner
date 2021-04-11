@@ -11,6 +11,11 @@ import com.richikin.runner.physics.aabb.CollisionObject;
 import com.richikin.utilslib.maths.SimpleVec3;
 import com.richikin.utilslib.physics.aabb.AABBData;
 
+/**
+ * BaseEntity object.
+ * GdxSprite extends from this. Entities also include anything that
+ * has a {@link CollisionObject} and/or {@link Body}.
+ */
 public class BaseEntity implements IEntityComponent, Disposable
 {
     public GraphicID       gid;                 // Entity ID

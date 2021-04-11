@@ -11,6 +11,7 @@ import com.richikin.runner.entities.objects.GdxSprite;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
+import com.richikin.utilslib.maths.Vec2;
 
 public class Entities
 {
@@ -27,7 +28,7 @@ public class Entities
                     "Player",
                     GraphicID.G_PLAYER, GraphicID._MAIN,
                     GameAssets._IDLE_DOWN_ASSET, GameAssets._PLAYER_STAND_FRAMES,
-                    new SimpleVec2(192, 192),
+                    new Vec2(192, 192),
                     Animation.PlayMode.LOOP,
                     TileID._PLAYER_TILE
                 ),
@@ -38,7 +39,7 @@ public class Entities
                     "Prisoner",
                     GraphicID.G_PRISONER, GraphicID._MAIN,
                     GameAssets._PRISONER_IDLE_DOWN_ASSET, GameAssets._PRISONER_IDLE_FRAMES,
-                    new SimpleVec2(128, 128),
+                    new Vec2(128, 128),
                     Animation.PlayMode.LOOP,
                     TileID._PRISONER_TILE
                 ),
@@ -48,7 +49,7 @@ public class Entities
                     "Villager",
                     GraphicID.G_VILLAGER, GraphicID._MAIN,
                     GameAssets._VILLAGER_IDLE_DOWN_ASSET, GameAssets._VILLAGER_IDLE_FRAMES,
-                    new SimpleVec2(128, 128),
+                    new Vec2(128, 128),
                     Animation.PlayMode.LOOP,
                     TileID._VILLAGER_TILE
                 ),
@@ -69,7 +70,7 @@ public class Entities
                     "Soldier",
                     GraphicID.G_SOLDIER, GraphicID._ENEMY,
                     GameAssets._SOLDIER_IDLE_DOWN_ASSET, GameAssets._SOLDIER_IDLE_FRAMES,
-                    new SimpleVec2(148, 148),
+                    new Vec2(148, 148),
                     Animation.PlayMode.LOOP,
                     TileID._SOLDIER_TILE
                 ),
@@ -121,24 +122,16 @@ public class Entities
         {
             switch (App.entityData.entityMap.get(i).gid)
             {
-                case G_PRIZE_BALLOON:
-                case G_MESSAGE_BUBBLE:
-                case G_LASER:
-                case G_PLAYER:
-                case G_EXPLOSION12:
-                case G_EXPLOSION64:
-                case G_EXPLOSION128:
-                case G_EXPLOSION256:
-                {
+                case G_PRIZE_BALLOON, G_MESSAGE_BUBBLE, G_LASER, G_PLAYER,
+                    G_EXPLOSION12, G_EXPLOSION64, G_EXPLOSION128, G_EXPLOSION256 -> {
+
                     isEnemy = false;
                 }
-                break;
 
-                default:
-                {
+                default -> {
+
                     isEnemy = true;
                 }
-                break;
             }
 
             ((GdxSprite) App.entityData.entityMap.get(i)).isEnemy = isEnemy;
