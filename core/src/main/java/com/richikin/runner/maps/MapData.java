@@ -67,7 +67,6 @@ public class MapData
     public TiledMapTileLayer markerTilesLayer;
 
     public TiledMap                currentMap;
-    public MapObjects              objectTiles;
     public MapObjects              mapObjects;
     public Array<Rectangle>        enemyFreeZones;
     public Array<SpriteDescriptor> placementTiles;
@@ -163,7 +162,7 @@ public class MapData
     {
         gameTilesLayer      = (TiledMapTileLayer) currentMap.getLayers().get(mapLayers[_GAME_TILES]);
         extraGameTilesLayer = (TiledMapTileLayer) currentMap.getLayers().get(mapLayers[_EXTRA_GAME_TILES]);
-        objectTiles         = currentMap.getLayers().get(mapLayers[_MARKER_TILES]).getObjects();
+        markerTilesLayer    = (TiledMapTileLayer) currentMap.getLayers().get(mapLayers[_MARKER_TILES]);
         mapObjects          = currentMap.getLayers().get(mapLayers[_COLLISION_LAYER]).getObjects();
 
         Gfx.tileWidth  = currentMap.getProperties().get("tilewidth", Integer.class);
@@ -212,23 +211,21 @@ public class MapData
         Trace.__FILE_FUNC();
 
         mapRenderer.dispose();
-        mapRenderer  = null;
-        tmxMapLoader = null;
 
+        mapRenderer         = null;
+        tmxMapLoader        = null;
         gameTilesLayer      = null;
         extraGameTilesLayer = null;
-
+        markerTilesLayer    = null;
         currentMap          = null;
-        objectTiles         = null;
         mapObjects          = null;
         mapPosition         = null;
         previousMapPosition = null;
         checkPoint          = null;
         currentMapName      = null;
-
-        viewportBox  = null;
-        entityWindow = null;
-        mapBox       = null;
+        viewportBox         = null;
+        entityWindow        = null;
+        mapBox              = null;
 
         enemyFreeZones.clear();
         placementTiles.clear();

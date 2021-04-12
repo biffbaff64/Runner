@@ -28,9 +28,10 @@ public class MapCreator
     }
 
     /**
-     * Create the map data for the current level
-     * Load the TileMap data, then create the
-     * game map from that data.
+     * ------------------------------------------------------------------------------
+     * Create the map data for the current level, Load the TileMap data, then
+     * create the game map from that data.
+     * ------------------------------------------------------------------------------
      */
     public void createMap()
     {
@@ -56,11 +57,13 @@ public class MapCreator
     }
 
     /**
+     * ------------------------------------------------------------------------------
      * Parse marker tiles from the TILES marker tiles layer. This layer
      * is for basic marker tiles with no properties. Eventually MarkerTiles and
      * ObjectTiles layers should be combined.
      * NB: Does NOT create entities. This just extracts markers from
      * the Tile map (Object Layer) and creates the necessary information from them.
+     * ------------------------------------------------------------------------------
      */
     protected void parseMarkerTiles()
     {
@@ -219,14 +222,16 @@ public class MapCreator
     }
 
     /**
+     * ------------------------------------------------------------------------------
      * Parse marker tiles from the OBJECT marker tiles layer. This layer
      * is for complicated markers that have a set of properties.
      * NB: Does NOT create entities. This just extracts markers from
      * the Tile map (Object Layer) and creates the necessary information from them.
+     * ------------------------------------------------------------------------------
      */
     protected void parseObjectTiles()
     {
-        for (MapObject mapObject : App.mapData.objectTiles)
+        for (MapObject mapObject : App.mapData.mapObjects)
         {
             if (mapObject instanceof TiledMapTileMapObject)
             {

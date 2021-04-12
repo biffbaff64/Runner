@@ -2,7 +2,6 @@
 package com.richikin.utilslib.assets;
 
 import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.Vec2;
 
 /**
@@ -14,9 +13,9 @@ public class AssetSize
     public final GraphicID graphicID;
     public final Vec2      size;
 
-    public AssetSize(GraphicID _gid, int _width, int _height)
+    public AssetSize(GraphicID gid, int width, int height)
     {
-        this.graphicID  = _gid;
-        this.size       = new Vec2(_width, _height);
+        this.graphicID  = gid;
+        this.size       = new Vec2(width, height);
     }
 }
