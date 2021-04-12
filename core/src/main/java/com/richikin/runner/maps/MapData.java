@@ -25,6 +25,7 @@ public class MapData
     public static final int _EXTRA_GAME_TILES = 1;
     public static final int _MARKER_TILES     = 2;
     public static final int _COLLISION_LAYER  = 3;
+    public static final int _PATHS_LAYER      = 4;
 
     public final String[] mapLayerNames =
         {
@@ -32,6 +33,7 @@ public class MapData
             "extra game tiles",
             "marker tiles",
             "collision",
+            "navigation",
         };
 
     public final LayerImage[] backgroundLayers =
@@ -62,6 +64,7 @@ public class MapData
 
     public TiledMapTileLayer gameTilesLayer;
     public TiledMapTileLayer extraGameTilesLayer;
+    public TiledMapTileLayer markerTilesLayer;
 
     public TiledMap                currentMap;
     public MapObjects              objectTiles;
@@ -122,6 +125,7 @@ public class MapData
     public void update()
     {
         if (App.getPlayer() != null)
+
         {
             viewportBox.set
                 (

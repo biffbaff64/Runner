@@ -2,8 +2,10 @@ package com.richikin.runner.maps;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.enumslib.TileID;
 import com.richikin.runner.config.Settings;
 import com.richikin.runner.core.App;
 import com.richikin.runner.entities.components.IEntityManagerComponent;
@@ -43,14 +45,186 @@ public class MapCreator
         App.mapData.autoFloors.clear();
 
         parseMarkerTiles();
+        parseObjectTiles();
+
+        if (AABBData.boxes().size == 0)
+        {
+            addDummyCollisionObject();
+        }
+
         createCollisionBoxes();
     }
 
     /**
+     * Parse marker tiles from the TILES marker tiles layer. This layer
+     * is for basic marker tiles with no properties. Eventually MarkerTiles and
+     * ObjectTiles layers should be combined.
      * NB: Does NOT create entities. This just extracts markers from
      * the Tile map (Object Layer) and creates the necessary information from them.
      */
     protected void parseMarkerTiles()
+    {
+        int xOffset = 0;
+        int yOffset = 0;
+
+        TileID    tileID;
+        GraphicID graphicID = GraphicID.G_NO_ID;
+
+        for (int y = 0; y < App.mapData.markerTilesLayer.getHeight(); y++)
+        {
+            for (int x = 0; x < App.mapData.markerTilesLayer.getWidth(); x++)
+            {
+                // getCell() returns null if the raw data at x,y is zero.
+                // This is Ok because, here, that means there is no
+                // marker tile to process.
+                TiledMapTileLayer.Cell cell = App.mapData.markerTilesLayer.getCell(x, y);
+
+                if (cell != null)
+                {
+                    tileID = TileID.fromValue(cell.getTile().getId());
+
+                    boolean isSpawnPoint = false;
+                    boolean isIgnoreTile = false;
+
+                    for (SpriteDescriptor descriptor : App.entities.entityList)
+                    {
+                        if (descriptor._TILE.equals(tileID))
+                        {
+                            graphicID       = descriptor._GID;
+                            isSpawnPoint    = true;
+                        }
+                    }
+
+                    if (!isSpawnPoint)
+                    {
+                        switch (tileID)
+                        {
+                            case _NORTH_TILE:
+                            case _EAST_TILE:
+                            case _SOUTH_TILE:
+                            case _WEST_TILE:
+                            {
+                                //
+                                // These aren't spawn point tiles, but they also
+                                // should not write error messages.
+                                isIgnoreTile = true;
+                            }
+                            break;
+
+                            default:
+                                break;
+                        }
+                    }
+
+                    if (isSpawnPoint)
+                    {
+                        switch (tileID)
+                        {
+                            case _ARROW_TILE:
+                            case _GEM_TILE:
+                            case _KEY_TILE:
+                            case _COIN_TILE:
+                            case _SHIELD_TILE:
+                            case _CHEST_TILE:
+                            case _MYSTERY_COIN:
+                            case _MYSTERY_CHEST_TILE:
+                            case _HIDDEN_COIN_TILE:
+                            {
+                                setEntityPlaceable(GraphicID._PICKUP, true);
+                            }
+                            break;
+
+                            case _TORCH2_TILE:
+                            case _CRATE_TILE:
+                            case _BARREL_TILE:
+                            case _POT_TILE:
+                            case _SACKS_TILE:
+                            case _GLOW_EYES_TILE:
+                            {
+                                setEntityPlaceable(GraphicID._DECORATION, true);
+                            }
+                            break;
+
+                            case _VILLAGER_TILE:
+                            {
+                                setEntityPlaceable(GraphicID.G_VILLAGER, true);
+                            }
+                            break;
+
+                            case _SOLDIER_TILE:
+                            {
+                                setEntityPlaceable(GraphicID.G_SOLDIER, true);
+                            }
+                            break;
+
+                            case _TURRET_TILE:
+                            {
+                                setEntityPlaceable(GraphicID.G_TURRET, true);
+                            }
+                            break;
+
+                            case _STORM_DEMON_TILE:
+                            case _SCORPION_TILE:
+                            case _BOUNCER_TILE:
+                            {
+                                setEntityPlaceable(GraphicID._MONSTER, true);
+                            }
+                            break;
+
+                            case _LEVER_TILE:
+                            case _DOOR_TILE:
+                            case _ESCALATOR_UP_TILE:
+                            case _ESCALATOR_DOWN_TILE:
+                            case _ESCALATOR_LEFT_TILE:
+                            case _ESCALATOR_RIGHT_TILE:
+                            {
+                                setEntityPlaceable(GraphicID._INTERACTIVE, true);
+                            }
+                            break;
+
+                            default:
+                                break;
+                        }
+
+                        SpriteDescriptor descriptor = App.entities.getDescriptor(graphicID);
+                        descriptor._POSITION.x = xOffset;
+                        descriptor._POSITION.y = yOffset;
+                        descriptor._INDEX = App.entityData.entityMap.size;
+
+                        App.mapData.placementTiles.add(descriptor);
+                    }
+                    else
+                    {
+                        if (!isIgnoreTile)
+                        {
+                            Trace.dbg
+                                (
+                                    " - Unknown tile: "
+                                        + tileID
+                                        + "(" + tileID.get() + ")"
+                                        + " at " + x + ", " + y
+                                );
+                        }
+                    }
+                }
+
+                xOffset++;
+            }
+
+            xOffset = 0;
+            yOffset++;
+        }
+
+        Trace.divider();
+    }
+
+    /**
+     * Parse marker tiles from the OBJECT marker tiles layer. This layer
+     * is for complicated markers that have a set of properties.
+     * NB: Does NOT create entities. This just extracts markers from
+     * the Tile map (Object Layer) and creates the necessary information from them.
+     */
+    protected void parseObjectTiles()
     {
         for (MapObject mapObject : App.mapData.objectTiles)
         {
@@ -77,78 +251,28 @@ public class MapCreator
         }
     }
 
-    private void createPlacementTile(MapObject _mapObject, SpriteDescriptor _descriptor, ObjectTileProperties _properties)
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
+    private void setEntityPlaceable(GraphicID _gid, boolean _placeable)
     {
-        SpriteDescriptor markerTile = new SpriteDescriptor();
-
-        markerTile._POSITION.x = (int) (((TiledMapTileMapObject) _mapObject).getX() / Gfx.getTileWidth());
-        markerTile._POSITION.y = (int) (((TiledMapTileMapObject) _mapObject).getY() / Gfx.getTileHeight());
-        markerTile._GID        = _descriptor._GID;
-        markerTile._TILE       = _descriptor._TILE;
-        markerTile._ASSET      = _descriptor._ASSET;
-        markerTile._INDEX      = _descriptor._INDEX;
-        markerTile._DIST       = new SimpleVec2F();
-        markerTile._DIR        = new Direction();
-        markerTile._SPEED      = new SimpleVec2F();
-
-        //
-        // Create the bounding box for this placement tile.
-        markerTile._BOX = new Box
-            (
-                (int) (((TiledMapTileMapObject) _mapObject).getX()),
-                (int) (((TiledMapTileMapObject) _mapObject).getY()),
-                Gfx.getTileWidth(),
-                Gfx.getTileHeight()
-            );
-
-        if (_properties.hasDistance)
+        for (IEntityManagerComponent component : App.entityData.managerList)
         {
-            markerTile._DIST.set
-                (
-                    ((int) _mapObject.getProperties().get("xdistance")),
-                    ((int) _mapObject.getProperties().get("ydistance"))
-                );
-        }
-
-        if (_properties.hasDirection)
-        {
-            markerTile._DIR.set
-                (
-                    _mapObject.getProperties().get("xdirection")
-                        .equals("right") ? Movement._DIRECTION_RIGHT :
-                        _mapObject.getProperties().get("xdirection")
-                            .equals("left") ? Movement._DIRECTION_LEFT : Movement._DIRECTION_STILL,
-
-                    _mapObject.getProperties().get("ydirection")
-                        .equals("up") ? Movement._DIRECTION_UP :
-                        _mapObject.getProperties().get("ydirection")
-                            .equals("down") ? Movement._DIRECTION_DOWN : Movement._DIRECTION_STILL
-                );
-        }
-
-        if (_properties.hasSpeed)
-        {
-            markerTile._SPEED.set
-                (
-                    ((float) _mapObject.getProperties().get("xspeed")),
-                    ((float) _mapObject.getProperties().get("yspeed"))
-                );
-        }
-
-        if (_properties.isLinked)
-        {
-            //
-            // Fetch the link ID of the attached entity
-            if (_mapObject.getProperties().get("connection") != null)
+            if (component.getGID() == _gid)
             {
-                markerTile._LINK = (int) _mapObject.getProperties().get("connection");
+                component.setPlaceable(_placeable);
             }
         }
-
-        App.mapData.placementTiles.add(markerTile);
     }
 
-    protected void createCollisionBoxes()
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
+    private void addDummyCollisionObject()
     {
         BaseEntity baseEntity;
 
@@ -158,6 +282,16 @@ public class MapCreator
         baseEntity.position        = new SimpleVec3();
         baseEntity.collisionObject = App.collisionUtils.newObject();
         AABBData.add(baseEntity.collisionObject);
+    }
+
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
+    protected void createCollisionBoxes()
+    {
+        BaseEntity baseEntity;
 
         for (MapObject mapObject : App.mapData.mapObjects)
         {
@@ -229,7 +363,96 @@ public class MapCreator
         }
     }
 
-    @SuppressWarnings("unused")
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
+    private void createPlacementTile(int x, int y)
+    {
+    }
+
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
+    private void createPlacementTile(MapObject _mapObject, SpriteDescriptor _descriptor, ObjectTileProperties _properties)
+    {
+        SpriteDescriptor markerTile = new SpriteDescriptor();
+
+        markerTile._POSITION.x = (int) (((TiledMapTileMapObject) _mapObject).getX() / Gfx.getTileWidth());
+        markerTile._POSITION.y = (int) (((TiledMapTileMapObject) _mapObject).getY() / Gfx.getTileHeight());
+        markerTile._GID        = _descriptor._GID;
+        markerTile._TILE       = _descriptor._TILE;
+        markerTile._ASSET      = _descriptor._ASSET;
+        markerTile._INDEX      = _descriptor._INDEX;
+        markerTile._DIST       = new SimpleVec2F();
+        markerTile._DIR        = new Direction();
+        markerTile._SPEED      = new SimpleVec2F();
+
+        //
+        // Create the bounding box for this placement tile.
+        markerTile._BOX = new Box
+            (
+                (int) (((TiledMapTileMapObject) _mapObject).getX()),
+                (int) (((TiledMapTileMapObject) _mapObject).getY()),
+                Gfx.getTileWidth(),
+                Gfx.getTileHeight()
+            );
+
+        if (_properties.hasDistance)
+        {
+            markerTile._DIST.set
+                (
+                    ((int) _mapObject.getProperties().get("xdistance")),
+                    ((int) _mapObject.getProperties().get("ydistance"))
+                );
+        }
+
+        if (_properties.hasDirection)
+        {
+            markerTile._DIR.set
+                (
+                    _mapObject.getProperties().get("xdirection")
+                        .equals("right") ? Movement._DIRECTION_RIGHT :
+                        _mapObject.getProperties().get("xdirection")
+                            .equals("left") ? Movement._DIRECTION_LEFT : Movement._DIRECTION_STILL,
+
+                    _mapObject.getProperties().get("ydirection")
+                        .equals("up") ? Movement._DIRECTION_UP :
+                        _mapObject.getProperties().get("ydirection")
+                            .equals("down") ? Movement._DIRECTION_DOWN : Movement._DIRECTION_STILL
+                );
+        }
+
+        if (_properties.hasSpeed)
+        {
+            markerTile._SPEED.set
+                (
+                    ((float) _mapObject.getProperties().get("xspeed")),
+                    ((float) _mapObject.getProperties().get("yspeed"))
+                );
+        }
+
+        if (_properties.isLinked)
+        {
+            //
+            // Fetch the link ID of the attached entity
+            if (_mapObject.getProperties().get("connection") != null)
+            {
+                markerTile._LINK = (int) _mapObject.getProperties().get("connection");
+            }
+        }
+
+        App.mapData.placementTiles.add(markerTile);
+    }
+
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     private ObjectTileProperties setObjectTileProperties(SpriteDescriptor _descriptor)
     {
         // TODO: 13/08/2020 - set properties based on the type of entity passed.
@@ -238,7 +461,11 @@ public class MapCreator
         return new ObjectTileProperties();
     }
 
-    @SuppressWarnings("unused")
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     private void debugPlacementsTiles()
     {
         for (SpriteDescriptor tile : App.mapData.placementTiles)
@@ -247,7 +474,11 @@ public class MapCreator
         }
     }
 
-    @SuppressWarnings("unused")
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     private void debugCollisionBoxes()
     {
         Trace.__FILE_FUNC();

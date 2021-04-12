@@ -6,7 +6,7 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.core.App;
 import com.richikin.runner.entities.components.IEntityManagerComponent;
-import com.richikin.runner.entities.managers.EnemyManager;
+import com.richikin.runner.entities.managers.EnemyHandler;
 import com.richikin.runner.entities.managers.PlayerManager;
 import com.richikin.runner.entities.objects.GdxSprite;
 import com.richikin.utilslib.entities.IEntityManager;
@@ -46,7 +46,7 @@ public class  EntityManager implements IEntityManager
     {
         Trace.__FILE_FUNC();
 
-        _alienManagerIndex = App.entityData.addManager(new EnemyManager());
+        _alienManagerIndex = App.entityData.addManager(new EnemyHandler());
     }
 
     public void initialiseForLevel()
