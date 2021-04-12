@@ -89,6 +89,7 @@ public class EnemyManager extends GenericEntityManager
      */
     private SimpleVec2 setInitialPosition(GraphicID graphicID)
     {
+        return new SimpleVec2();
     }
 
     @Override

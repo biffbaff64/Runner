@@ -1,6 +1,8 @@
 
 package com.richikin.utilslib.exceptions;
 
+import java.io.Serial;
+
 /**
  * <p>Thrown to indicate that a block of code has not been implemented.
  * This exception supplements <code>UnsupportedOperationException</code>
@@ -25,12 +27,14 @@ package com.richikin.utilslib.exceptions;
  * }
  * </pre>
  * <p>
- *
+ * <p>
  * Based on org.apache.commons.lang3.notimplementedexception.java
  */
 public class NotImplementedException extends UnsupportedOperationException
 {
+    @Serial
     private static final long serialVersionUID = 1L;
+
     private final String code;
 
     /**

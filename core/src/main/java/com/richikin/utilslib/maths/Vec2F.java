@@ -2,8 +2,14 @@ package com.richikin.utilslib.maths;
 
 public class Vec2F
 {
-    public final float x;
-    public final float y;
+    public float x;
+    public float y;
+
+    public Vec2F()
+    {
+        this.x = 0;
+        this.y = 0;
+    }
 
     public Vec2F(float x, float y)
     {
