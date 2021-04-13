@@ -25,7 +25,7 @@ public class MapData
     public static final int _EXTRA_GAME_TILES = 1;
     public static final int _MARKER_TILES     = 2;
     public static final int _COLLISION_LAYER  = 3;
-    public static final int _PATHS_LAYER      = 4;
+    public static final int _NAVIGATION_LAYER = 4;
 
     public final String[] mapLayerNames =
         {
@@ -68,7 +68,7 @@ public class MapData
 
     public TiledMap                currentMap;
     public MapObjects              mapObjects;
-    public Array<Rectangle>        enemyFreeZones;
+    public Array<Rectangle>        spawnFreeZones;
     public Array<SpriteDescriptor> placementTiles;
     public Array<BaseEntity>       autoFloors;
 
@@ -85,7 +85,7 @@ public class MapData
         viewportBox         = new Rectangle();
         entityWindow        = new Rectangle();
         mapBox              = new Rectangle();
-        enemyFreeZones      = new Array<>();
+        spawnFreeZones      = new Array<>();
         placementTiles      = new Array<>();
         autoFloors          = new Array<>();
     }
@@ -99,7 +99,7 @@ public class MapData
         currentMap     = tmxMapLoader.load(currentMapName);
 
         setGameLevelMap(mapLayerNames);
-        setEnemyFreeZones();
+        setNoSpawnZones();
 
         if (mapRenderer != null)
         {
@@ -183,15 +183,15 @@ public class MapData
     /**
      * Creates a map of areas that enemies cannot spawn into.
      */
-    private void setEnemyFreeZones()
+    private void setNoSpawnZones()
     {
-        enemyFreeZones.clear();
+        spawnFreeZones.clear();
 
         for (MapObject mapObject : mapObjects)
         {
             if (mapObject instanceof RectangleMapObject)
             {
-                enemyFreeZones.add(new Rectangle(((RectangleMapObject) mapObject).getRectangle()));
+                spawnFreeZones.add(new Rectangle(((RectangleMapObject) mapObject).getRectangle()));
             }
         }
     }
@@ -227,9 +227,9 @@ public class MapData
         entityWindow        = null;
         mapBox              = null;
 
-        enemyFreeZones.clear();
+        spawnFreeZones.clear();
         placementTiles.clear();
-        enemyFreeZones = null;
+        spawnFreeZones = null;
         placementTiles = null;
     }
 }

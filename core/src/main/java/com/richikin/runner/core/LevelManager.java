@@ -124,7 +124,7 @@ public class LevelManager
         }
 
         App.mapData.placementTiles.clear();
-        App.mapData.enemyFreeZones.clear();
+        App.mapData.spawnFreeZones.clear();
         App.mapData.currentMap.dispose();
     }
 

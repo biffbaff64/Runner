@@ -93,8 +93,8 @@ public class MapCreator
                     {
                         if (descriptor._TILE.equals(tileID))
                         {
-                            graphicID       = descriptor._GID;
-                            isSpawnPoint    = true;
+                            graphicID    = descriptor._GID;
+                            isSpawnPoint = true;
                         }
                     }
 
@@ -102,20 +102,19 @@ public class MapCreator
                     {
                         switch (tileID)
                         {
-                            case _NORTH_TILE:
-                            case _EAST_TILE:
-                            case _SOUTH_TILE:
-                            case _WEST_TILE:
-                            {
-                                //
+                            case _NORTH_TILE,
+                                _EAST_TILE,
+                                _SOUTH_TILE,
+                                _WEST_TILE -> {
+
                                 // These aren't spawn point tiles, but they also
                                 // should not write error messages.
                                 isIgnoreTile = true;
                             }
-                            break;
 
-                            default:
-                                break;
+                            default -> {
+
+                            }
                         }
                     }
 
@@ -123,76 +122,71 @@ public class MapCreator
                     {
                         switch (tileID)
                         {
-                            case _ARROW_TILE:
-                            case _GEM_TILE:
-                            case _KEY_TILE:
-                            case _COIN_TILE:
-                            case _SHIELD_TILE:
-                            case _CHEST_TILE:
-                            case _MYSTERY_COIN:
-                            case _MYSTERY_CHEST_TILE:
-                            case _HIDDEN_COIN_TILE:
-                            {
+                            case _ARROW_TILE,
+                                _GEM_TILE,
+                                _KEY_TILE,
+                                _COIN_TILE,
+                                _SHIELD_TILE,
+                                _CHEST_TILE,
+                                _MYSTERY_COIN,
+                                _MYSTERY_CHEST_TILE,
+                                _HIDDEN_COIN_TILE -> {
+
                                 setEntityPlaceable(GraphicID._PICKUP, true);
                             }
-                            break;
 
-                            case _TORCH2_TILE:
-                            case _CRATE_TILE:
-                            case _BARREL_TILE:
-                            case _POT_TILE:
-                            case _SACKS_TILE:
-                            case _GLOW_EYES_TILE:
-                            {
+                            case _TORCH2_TILE,
+                                _CRATE_TILE,
+                                _BARREL_TILE,
+                                _POT_TILE,
+                                _SACKS_TILE,
+                                _GLOW_EYES_TILE -> {
+
                                 setEntityPlaceable(GraphicID._DECORATION, true);
                             }
-                            break;
 
-                            case _VILLAGER_TILE:
-                            {
+                            case _VILLAGER_TILE -> {
+
                                 setEntityPlaceable(GraphicID.G_VILLAGER, true);
                             }
-                            break;
 
-                            case _SOLDIER_TILE:
-                            {
+                            case _SOLDIER_TILE -> {
+
                                 setEntityPlaceable(GraphicID.G_SOLDIER, true);
                             }
-                            break;
 
-                            case _TURRET_TILE:
-                            {
+                            case _TURRET_TILE -> {
+
                                 setEntityPlaceable(GraphicID.G_TURRET, true);
                             }
-                            break;
 
-                            case _STORM_DEMON_TILE:
-                            case _SCORPION_TILE:
-                            case _BOUNCER_TILE:
-                            {
+                            case _STORM_DEMON_TILE,
+                                _SCORPION_TILE,
+                                _BOUNCER_TILE -> {
+
                                 setEntityPlaceable(GraphicID._MONSTER, true);
                             }
-                            break;
 
-                            case _LEVER_TILE:
-                            case _DOOR_TILE:
-                            case _ESCALATOR_UP_TILE:
-                            case _ESCALATOR_DOWN_TILE:
-                            case _ESCALATOR_LEFT_TILE:
-                            case _ESCALATOR_RIGHT_TILE:
-                            {
+                            case _LEVER_TILE,
+                                _DOOR_TILE,
+                                _ESCALATOR_UP_TILE,
+                                _ESCALATOR_DOWN_TILE,
+                                _ESCALATOR_LEFT_TILE,
+                                _ESCALATOR_RIGHT_TILE -> {
+
                                 setEntityPlaceable(GraphicID._INTERACTIVE, true);
                             }
-                            break;
 
-                            default:
-                                break;
+                            default -> {
+
+                                setEntityPlaceable(graphicID, false);
+                            }
                         }
 
                         SpriteDescriptor descriptor = App.entities.getDescriptor(graphicID);
                         descriptor._POSITION.x = xOffset;
                         descriptor._POSITION.y = yOffset;
-                        descriptor._INDEX = App.entityData.entityMap.size;
+                        descriptor._INDEX      = App.entityData.entityMap.size;
 
                         App.mapData.placementTiles.add(descriptor);
                     }
@@ -258,23 +252,23 @@ public class MapCreator
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
-    private void setEntityPlaceable(GraphicID _gid, boolean _placeable)
+    private void setEntityPlaceable(GraphicID gid, boolean placeable)
     {
         for (IEntityManagerComponent component : App.entityData.managerList)
         {
-            if (component.getGID() == _gid)
+            if (component.getGID() == gid)
             {
-                component.setPlaceable(_placeable);
+                component.setPlaceable(placeable);
             }
         }
     }
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     private void addDummyCollisionObject()
@@ -291,7 +285,7 @@ public class MapCreator
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     protected void createCollisionBoxes()
@@ -370,7 +364,7 @@ public class MapCreator
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     private void createPlacementTile(int x, int y)
@@ -379,7 +373,7 @@ public class MapCreator
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     private void createPlacementTile(MapObject _mapObject, SpriteDescriptor _descriptor, ObjectTileProperties _properties)
@@ -455,7 +449,7 @@ public class MapCreator
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     private ObjectTileProperties setObjectTileProperties(SpriteDescriptor _descriptor)
@@ -468,7 +462,7 @@ public class MapCreator
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     private void debugPlacementsTiles()
@@ -481,7 +475,7 @@ public class MapCreator
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     private void debugCollisionBoxes()

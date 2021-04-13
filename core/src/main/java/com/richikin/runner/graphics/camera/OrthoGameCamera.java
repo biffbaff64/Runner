@@ -127,6 +127,8 @@ public class OrthoGameCamera implements IGameCamera, Disposable
     @Override
     public void updatePosition(float targetX, float targetY)
     {
+        // TODO: 13/04/2021 - Is this still needed? Has lerpTo replaced it?
+
         if (isInUse)
         {
             Vector3 position = camera.position;

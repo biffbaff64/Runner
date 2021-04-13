@@ -4,9 +4,7 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.runner.config.Settings;
 import com.richikin.runner.core.App;
 import com.richikin.runner.developer.Developer;
-import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.utilslib.graphics.GraphicIndex;
-import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
 
 public class EnemyHandler extends GenericEntityManager
@@ -22,22 +20,33 @@ public class EnemyHandler extends GenericEntityManager
     {
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * Initialises all enemy tracking objects.
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void init()
     {
         if (!Developer.isDevMode() || App.settings.isEnabled(Settings._ENABLE_ENEMIES))
         {
-            Trace.__FILE_FUNC();
-
             for (GraphicIndex item : enemies)
             {
                 item.currentTotal = 0;
+                item.maxTotal = 0;
             }
 
             update();
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * Update all enemy trackers.
+     * If the number of active enemies of a type is less than the max allowed,
+     * a new enemy will be spawned.
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void update()
     {
@@ -54,6 +63,11 @@ public class EnemyHandler extends GenericEntityManager
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * Free an enemy of the specified type to allow for respawning.
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void free(final GraphicID gid)
     {
@@ -66,27 +80,39 @@ public class EnemyHandler extends GenericEntityManager
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * Spawn an enemy of the specified type. WIP
+     * ------------------------------------------------------------------------------
+     */
     private void create(GraphicID graphicID)
     {
         if (App.entityUtils.canUpdate(graphicID))
         {
-            SpriteDescriptor descriptor = App.entities.getDescriptor(graphicID);
+//            SpriteDescriptor descriptor = App.entities.getDescriptor(graphicID);
 
         }
     }
 
     /**
+     * ------------------------------------------------------------------------------
      * Set up the initial position for the enemy specified
      * by graphicID.
      *
      * @param graphicID The GraphicID of the enemy.
      * @return SimpleVec2 holding X and Y.
+     * ------------------------------------------------------------------------------
      */
     private SimpleVec2 setInitialPosition(GraphicID graphicID)
     {
         return new SimpleVec2();
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public GraphicID getGID()
     {
