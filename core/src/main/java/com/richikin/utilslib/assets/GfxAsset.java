@@ -15,13 +15,13 @@ import com.richikin.enumslib.GraphicID;
  */
 public class GfxAsset
 {
-    public final GraphicID graphicID;
-    public final String    asset;
-    public final String    preference;
-    public final int                frames;
-    public final Animation.PlayMode playMode;
+    public GraphicID          graphicID;
+    public String             asset;
+    public String             preference;
+    public int                frames;
+    public Animation.PlayMode playMode;
 
-    public GfxAsset(final GraphicID _gid, final String _preference, final String _asset)
+    public GfxAsset(GraphicID _gid, String _preference, String _asset)
     {
         this.graphicID  = _gid;
         this.preference = _preference;
@@ -30,7 +30,7 @@ public class GfxAsset
         this.playMode   = Animation.PlayMode.NORMAL;
     }
 
-    public GfxAsset(final GraphicID _gid, final String _preference, final String _asset, int _frames)
+    public GfxAsset(GraphicID _gid, String _preference, String _asset, int _frames)
     {
         this.graphicID  = _gid;
         this.preference = _preference;
@@ -39,7 +39,7 @@ public class GfxAsset
         this.playMode   = Animation.PlayMode.NORMAL;
     }
 
-    public GfxAsset(final GraphicID _gid, final String _preference, final String _asset, int _frames, Animation.PlayMode _playmode)
+    public GfxAsset(GraphicID _gid, String _preference, String _asset, int _frames, Animation.PlayMode _playmode)
     {
         this.graphicID  = _gid;
         this.preference = _preference;

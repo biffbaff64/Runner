@@ -378,21 +378,15 @@ public class MapCreator
      */
     private void createPlacementTile(MapObject _mapObject, SpriteDescriptor _descriptor, ObjectTileProperties _properties)
     {
-        SpriteDescriptor markerTile = new SpriteDescriptor();
-
-        markerTile._POSITION.x = (int) (((TiledMapTileMapObject) _mapObject).getX() / Gfx.getTileWidth());
-        markerTile._POSITION.y = (int) (((TiledMapTileMapObject) _mapObject).getY() / Gfx.getTileHeight());
-        markerTile._GID        = _descriptor._GID;
-        markerTile._TILE       = _descriptor._TILE;
-        markerTile._ASSET      = _descriptor._ASSET;
-        markerTile._INDEX      = _descriptor._INDEX;
-        markerTile._DIST       = new SimpleVec2F();
-        markerTile._DIR        = new Direction();
-        markerTile._SPEED      = new SimpleVec2F();
+        _descriptor._POSITION.x = (int) (((TiledMapTileMapObject) _mapObject).getX() / Gfx.getTileWidth());
+        _descriptor._POSITION.y = (int) (((TiledMapTileMapObject) _mapObject).getY() / Gfx.getTileHeight());
+        _descriptor._DIST       = new SimpleVec2F();
+        _descriptor._DIR        = new Direction();
+        _descriptor._SPEED      = new SimpleVec2F();
 
         //
         // Create the bounding box for this placement tile.
-        markerTile._BOX = new Box
+        _descriptor._BOX = new Box
             (
                 (int) (((TiledMapTileMapObject) _mapObject).getX()),
                 (int) (((TiledMapTileMapObject) _mapObject).getY()),
@@ -402,7 +396,7 @@ public class MapCreator
 
         if (_properties.hasDistance)
         {
-            markerTile._DIST.set
+            _descriptor._DIST.set
                 (
                     ((int) _mapObject.getProperties().get("xdistance")),
                     ((int) _mapObject.getProperties().get("ydistance"))
@@ -411,7 +405,7 @@ public class MapCreator
 
         if (_properties.hasDirection)
         {
-            markerTile._DIR.set
+            _descriptor._DIR.set
                 (
                     _mapObject.getProperties().get("xdirection")
                         .equals("right") ? Movement._DIRECTION_RIGHT :
@@ -427,7 +421,7 @@ public class MapCreator
 
         if (_properties.hasSpeed)
         {
-            markerTile._SPEED.set
+            _descriptor._SPEED.set
                 (
                     ((float) _mapObject.getProperties().get("xspeed")),
                     ((float) _mapObject.getProperties().get("yspeed"))
@@ -440,11 +434,11 @@ public class MapCreator
             // Fetch the link ID of the attached entity
             if (_mapObject.getProperties().get("connection") != null)
             {
-                markerTile._LINK = (int) _mapObject.getProperties().get("connection");
+                _descriptor._LINK = (int) _mapObject.getProperties().get("connection");
             }
         }
 
-        App.mapData.placementTiles.add(markerTile);
+        App.mapData.placementTiles.add(_descriptor);
     }
 
     /**
