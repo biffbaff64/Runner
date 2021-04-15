@@ -245,41 +245,41 @@ public class HeadsUpDisplay implements IHud
 
     private void drawCompass()
     {
-        if (!App.roomManager.activeRoom.compassPoints[Room._N].isEmpty())
+        if (!App.roomManager.activeRoom.compassPoints[Room._NORTH].isEmpty())
         {
             App.spriteBatch.draw
                 (
-                    compassTexture[Room._N + 1],
+                    compassTexture[Room._NORTH + 1],
                     AppConfig.hudOriginX + displayPos[_COMPASS][_X1],
                     AppConfig.hudOriginY + (Gfx._HUD_HEIGHT - displayPos[_COMPASS][_Y])
                 );
         }
 
-        if (!App.roomManager.activeRoom.compassPoints[Room._E].isEmpty())
+        if (!App.roomManager.activeRoom.compassPoints[Room._EAST].isEmpty())
         {
             App.spriteBatch.draw
                 (
-                    compassTexture[Room._E + 1],
+                    compassTexture[Room._EAST + 1],
                     AppConfig.hudOriginX + displayPos[_COMPASS][_X1],
                     AppConfig.hudOriginY + (Gfx._HUD_HEIGHT - displayPos[_COMPASS][_Y])
                 );
         }
 
-        if (!App.roomManager.activeRoom.compassPoints[Room._S].isEmpty())
+        if (!App.roomManager.activeRoom.compassPoints[Room._SOUTH].isEmpty())
         {
             App.spriteBatch.draw
                 (
-                    compassTexture[Room._S + 1],
+                    compassTexture[Room._SOUTH + 1],
                     AppConfig.hudOriginX + displayPos[_COMPASS][_X1],
                     AppConfig.hudOriginY + (Gfx._HUD_HEIGHT - displayPos[_COMPASS][_Y])
                 );
         }
 
-        if (!App.roomManager.activeRoom.compassPoints[Room._W].isEmpty())
+        if (!App.roomManager.activeRoom.compassPoints[Room._WEST].isEmpty())
         {
             App.spriteBatch.draw
                 (
-                    compassTexture[Room._W + 1],
+                    compassTexture[Room._WEST + 1],
                     AppConfig.hudOriginX + displayPos[_COMPASS][_X1],
                     AppConfig.hudOriginY + (Gfx._HUD_HEIGHT - displayPos[_COMPASS][_Y])
                 );

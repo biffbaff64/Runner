@@ -389,44 +389,25 @@ public class RoomManager implements Disposable
 
                                 switch (tileID)
                                 {
-                                    case _NORTH_TILE:
-                                    {
-                                        room.compassPoints[Room._N].set(column, row);
-                                    }
-                                    break;
+                                    case _NORTH_TILE ->
+                                        room.compassPoints[Room._NORTH].set(column, row);
 
-                                    case _EAST_TILE:
-                                    {
-                                        room.compassPoints[Room._E].set(column, row);
-                                    }
-                                    break;
+                                    case _EAST_TILE ->
+                                        room.compassPoints[Room._EAST].set(column, row);
 
-                                    case _SOUTH_TILE:
-                                    {
-                                        room.compassPoints[Room._S].set(column, row);
-                                    }
-                                    break;
+                                    case _SOUTH_TILE ->
+                                        room.compassPoints[Room._SOUTH].set(column, row);
 
-                                    case _WEST_TILE:
-                                    {
-                                        room.compassPoints[Room._W].set(column, row);
-                                    }
-                                    break;
+                                    case _WEST_TILE ->
+                                        room.compassPoints[Room._WEST].set(column, row);
 
-                                    case _PLAYER_TILE:
-                                    {
+                                    case _PLAYER_TILE ->
                                         room.compassPoints[Room._START].set(column, row);
-                                    }
-                                    break;
 
-                                    case _MYSTERY_CHEST_TILE:
-                                    {
+                                    case _MYSTERY_CHEST_TILE ->
                                         room.mysteryChestsAvailable++;
-                                    }
-                                    break;
 
-                                    default:
-                                        break;
+                                    default -> {}
                                 }
                             }
                         }
@@ -438,7 +419,7 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * Leave the current room and enter the room to the North.
      * ------------------------------------------------------------------------------
      */
     public void moveUp()
@@ -449,14 +430,18 @@ public class RoomManager implements Disposable
             {
                 activeRoom.row--;
 
-                setRoom(activeRoom.row, activeRoom.column, Room._S);
+                //
+                // Room._SOUTH is passed here because that is the
+                // position in the room where the player will
+                // appear upon entering.
+                setRoom(activeRoom.row, activeRoom.column, Room._SOUTH);
             }
         }
     }
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * Leave the current room and enter the room to the South.
      * ------------------------------------------------------------------------------
      */
     public void moveDown()
@@ -467,14 +452,15 @@ public class RoomManager implements Disposable
             {
                 activeRoom.row++;
 
-                setRoom(activeRoom.row, activeRoom.column, Room._N);
+                // see moveUp()
+                setRoom(activeRoom.row, activeRoom.column, Room._NORTH);
             }
         }
     }
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * Leave the current room and enter the room to the left.
      * ------------------------------------------------------------------------------
      */
     public void moveLeft()
@@ -485,14 +471,15 @@ public class RoomManager implements Disposable
             {
                 activeRoom.column--;
 
-                setRoom(activeRoom.row, activeRoom.column, Room._E);
+                // see moveUp()
+                setRoom(activeRoom.row, activeRoom.column, Room._EAST);
             }
         }
     }
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * Leave the current room and enter the room to the right.
      * ------------------------------------------------------------------------------
      */
     public void moveRight()
@@ -503,7 +490,8 @@ public class RoomManager implements Disposable
             {
                 activeRoom.column++;
 
-                setRoom(activeRoom.row, activeRoom.column, Room._W);
+                // see moveUp()
+                setRoom(activeRoom.row, activeRoom.column, Room._WEST);
             }
         }
     }

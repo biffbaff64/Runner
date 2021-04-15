@@ -7,10 +7,10 @@ import com.richikin.utilslib.maths.SimpleVec2;
 
 public class Room
 {
-    public static final int _N         = 0;
-    public static final int _E         = 1;
-    public static final int _S         = 2;
-    public static final int _W         = 3;
+    public static final int _NORTH     = 0;
+    public static final int _EAST      = 1;
+    public static final int _SOUTH     = 2;
+    public static final int _WEST      = 3;
     public static final int _START     = 4;
     public static final int _UNDEFINED = 5;
 
@@ -23,7 +23,7 @@ public class Room
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     public Room()
@@ -33,7 +33,7 @@ public class Room
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     public Room(final String roomName)
@@ -46,16 +46,16 @@ public class Room
         this.column = 0;
 
         this.compassPoints         = new SimpleVec2[5];
-        this.compassPoints[_N]     = new SimpleVec2();
-        this.compassPoints[_E]     = new SimpleVec2();
-        this.compassPoints[_S]     = new SimpleVec2();
-        this.compassPoints[_W]     = new SimpleVec2();
+        this.compassPoints[_NORTH] = new SimpleVec2();
+        this.compassPoints[_EAST]  = new SimpleVec2();
+        this.compassPoints[_SOUTH] = new SimpleVec2();
+        this.compassPoints[_WEST]  = new SimpleVec2();
         this.compassPoints[_START] = new SimpleVec2();
     }
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     public void set(Room _reference)
@@ -67,16 +67,16 @@ public class Room
         this.row    = _reference.row;
         this.column = _reference.column;
 
-        this.compassPoints[_N]     = _reference.compassPoints[_N];
-        this.compassPoints[_E]     = _reference.compassPoints[_E];
-        this.compassPoints[_S]     = _reference.compassPoints[_S];
-        this.compassPoints[_W]     = _reference.compassPoints[_W];
+        this.compassPoints[_NORTH] = _reference.compassPoints[_NORTH];
+        this.compassPoints[_EAST]  = _reference.compassPoints[_EAST];
+        this.compassPoints[_SOUTH] = _reference.compassPoints[_SOUTH];
+        this.compassPoints[_WEST]  = _reference.compassPoints[_WEST];
         this.compassPoints[_START] = _reference.compassPoints[_START];
     }
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     public void debug()
@@ -85,10 +85,10 @@ public class Room
         Trace.dbg("roomName: " + roomName);
         Trace.dbg("row: " + row);
         Trace.dbg("column: " + column);
-        Trace.dbg("compassPoints[_N]: " + compassPoints[_N]);
-        Trace.dbg("compassPoints[_E]: " + compassPoints[_E]);
-        Trace.dbg("compassPoints[_S]: " + compassPoints[_S]);
-        Trace.dbg("compassPoints[_W]: " + compassPoints[_W]);
+        Trace.dbg("compassPoints[_N]: " + compassPoints[_NORTH]);
+        Trace.dbg("compassPoints[_E]: " + compassPoints[_EAST]);
+        Trace.dbg("compassPoints[_S]: " + compassPoints[_SOUTH]);
+        Trace.dbg("compassPoints[_W]: " + compassPoints[_WEST]);
         Trace.dbg("compassPoints[_START]: " + compassPoints[_START]);
     }
 }
