@@ -29,16 +29,16 @@ public class PlayerManager extends GenericEntityManager
     {
         Trace.__FILE_FUNC();
 
-        App.entityManager._playerIndex = 0;
-        App.entityManager._playerReady = false;
+        App.entityManager.playerIndex = 0;
+        App.entityManager.playerReady = false;
 
         App.entities.mainPlayer = new MainPlayer();
         App.entities.mainPlayer.initialise(descriptor);
         App.entityData.addEntity(App.entities.mainPlayer);
 
         App.entityManager.updateIndexes();
-        App.entityManager._playerReady = true;
-        App.entityManager._playerIndex = descriptor._INDEX;
+        App.entityManager.playerReady = true;
+        App.entityManager.playerIndex = descriptor._INDEX;
 
         App.entities.mainPlayer.addCollisionListener(App.entities.mainPlayer.collision);
     }

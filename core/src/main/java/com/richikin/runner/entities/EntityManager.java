@@ -6,56 +6,68 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.core.App;
 import com.richikin.runner.entities.components.IEntityManagerComponent;
+import com.richikin.runner.entities.managers.BlocksHandler;
+import com.richikin.runner.entities.managers.DecorationsHandler;
 import com.richikin.runner.entities.managers.EnemyHandler;
 import com.richikin.runner.entities.managers.PlayerManager;
 import com.richikin.runner.entities.objects.GdxSprite;
 import com.richikin.utilslib.entities.IEntityManager;
 import com.richikin.utilslib.logging.Trace;
 
-public class  EntityManager implements IEntityManager
+public class EntityManager implements IEntityManager
 {
-    // --------------------------------------------------
-    //
-    public static Array<GraphicID> enemies;
+    public Array<GraphicID> enemies;
+    public int              alienManagerIndex;
+    public int              blocksManagerIndex;
+    public int              decorationsManagerIndex;
+    public int              playerIndex;
+    public PlayerManager    playerManager;
+    public RenderSystem     renderSystem;
+    public boolean          playerReady;
 
-    static
-    {
-        enemies = new Array<>();
-    }
-
-    // --------------------------------------------------
-    // Indexes into manager list
-    public int _alienManagerIndex;
-
-    // --------------------------------------------------
-    // Indexes into entity list
-    public int   _playerIndex;
-
-    public PlayerManager playerManager;
-    public RenderSystem  renderSystem;
-
-    public boolean _playerReady;
-
+    /**
+     * ------------------------------------------------------------------------------
+     * <p>
+     * ------------------------------------------------------------------------------
+     */
     public EntityManager()
     {
+        this.enemies      = new Array<>();
         this.renderSystem = new RenderSystem();
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * <p>
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void initialise()
     {
         Trace.__FILE_FUNC();
 
-        _alienManagerIndex = App.entityData.addManager(new EnemyHandler());
+        this.enemies.add(GraphicID.G_BOUNCER);
+        this.enemies.add(GraphicID.G_SOLDIER);
+        this.enemies.add(GraphicID.G_SCORPION);
+
+        this.playerManager = new PlayerManager();
+
+        this.alienManagerIndex       = App.entityData.addManager(new EnemyHandler());
+        this.blocksManagerIndex      = App.entityData.addManager(new BlocksHandler());
+        this.decorationsManagerIndex = App.entityData.addManager(new DecorationsHandler());
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * <p>
+     * ------------------------------------------------------------------------------
+     */
     public void initialiseForLevel()
     {
         Trace.__FILE_FUNC();
 
         AppConfig.entitiesExist = false;
 
-        playerManager = new PlayerManager();
         playerManager.init();
 
         addBackgroundEntities();
@@ -70,6 +82,11 @@ public class  EntityManager implements IEntityManager
         AppConfig.entitiesExist = true;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * <p>
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void updateSprites()
     {
@@ -94,10 +111,10 @@ public class  EntityManager implements IEntityManager
             // Main Player, updated after all other entities.
             // Updated last to allow for possible reacting to
             // other entities actions.
-            if (_playerReady && (App.getPlayer().getActionState() != ActionStates._DEAD))
+            if (playerReady && (App.getPlayer().getActionState() != ActionStates._DEAD))
             {
                 App.getPlayer().preUpdate();
-                App.getPlayer().update(_playerIndex);
+                App.getPlayer().update(playerIndex);
             }
 
             //
@@ -114,9 +131,10 @@ public class  EntityManager implements IEntityManager
     }
 
     /**
+     * ------------------------------------------------------------------------------
      * Entity Tidy actions.
-     * These are actions performed at the end
-     * of each update.
+     * These are actions performed at the end of each update.
+     * ------------------------------------------------------------------------------
      */
     @Override
     public void tidySprites()
@@ -171,7 +189,9 @@ public class  EntityManager implements IEntityManager
     }
 
     /**
+     * ------------------------------------------------------------------------------
      * Draw all game entities
+     * ------------------------------------------------------------------------------
      */
     @Override
     public void drawSprites()
@@ -182,6 +202,11 @@ public class  EntityManager implements IEntityManager
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * <p>
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void releaseEntity(GdxSprite entity)
     {
@@ -189,19 +214,20 @@ public class  EntityManager implements IEntityManager
         {
             if (gid == entity.gid)
             {
-                App.entityData.managerList.get(_alienManagerIndex).free(gid);
+                App.entityData.managerList.get(alienManagerIndex).free(gid);
             }
         }
     }
 
     /**
-     * Update the indexes into the entity map
-     * for the main entities
+     * ------------------------------------------------------------------------------
+     * Update the indexes into the entity map for the main entities
+     * ------------------------------------------------------------------------------
      */
     @Override
     public void updateIndexes()
     {
-        _playerIndex = 0;
+        playerIndex = 0;
 
         for (int i = 0; i < App.entityData.entityMap.size; i++)
         {
@@ -211,12 +237,17 @@ public class  EntityManager implements IEntityManager
             {
                 if (entity.gid == GraphicID.G_PLAYER)
                 {
-                    _playerIndex = i;
+                    playerIndex = i;
                 }
             }
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * <p>
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public boolean isEntityUpdateAllowed()
     {
@@ -224,22 +255,19 @@ public class  EntityManager implements IEntityManager
     }
 
     /**
-     * Background entities which are essentially just
-     * decorations, such as ufos and twinkling stars.
+     * ------------------------------------------------------------------------------
+     * Background entities which are essentially just decorations.
+     * ------------------------------------------------------------------------------
      */
     private void addBackgroundEntities()
     {
-        // --------------------------------------------------
-        //
-//        BackgroundObjectsManager backgroundObjectsManager = new BackgroundObjectsManager();
-//        backgroundObjectsManager.addUFOs(2 + MathUtils.random(2));
-//        backgroundObjectsManager.addTwinkleStars();
-//
-//        BarrierManager barrierManager = new BarrierManager();
-//        barrierManager.init();
-//        barrierManager.create();
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * <p>
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void dispose()
     {

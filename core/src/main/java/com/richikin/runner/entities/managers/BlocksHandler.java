@@ -1,63 +1,120 @@
 package com.richikin.runner.entities.managers;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.runner.assets.GameAssets;
-import com.richikin.runner.config.Settings;
 import com.richikin.runner.core.App;
+import com.richikin.runner.entities.EntityStats;
+import com.richikin.runner.entities.characters.*;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.runner.maps.TiledUtils;
-import com.richikin.utilslib.assets.GfxAsset;
+import com.richikin.utilslib.graphics.GraphicIndex;
 
 public class BlocksHandler extends GenericEntityManager
 {
-    private final GraphicID[] blockTypes =
+    private final GraphicIndex[] blockTypes =
         {
-            GraphicID.G_SPIKE_BALL,
-            GraphicID.G_SPIKE_BLOCK_HORIZONTAL,
-            GraphicID.G_SPIKE_BLOCK_VERTICAL,
-            GraphicID.G_LOOP_BLOCK_HORIZONTAL,
-            GraphicID.G_LOOP_BLOCK_VERTICAL,
-            GraphicID.G_FLOATING_PLATFORM,
-            GraphicID.G_BIG_BLOCK_HORIZONTAL,
-            GraphicID.G_BIG_BLOCK_VERTICAL,
+            new GraphicIndex(GraphicID.G_SPIKE_BALL, 0, 0),
+            new GraphicIndex(GraphicID.G_SPIKE_BLOCK_HORIZONTAL, 0, 0),
+            new GraphicIndex(GraphicID.G_SPIKE_BLOCK_VERTICAL, 0, 0),
+            new GraphicIndex(GraphicID.G_LOOP_BLOCK_HORIZONTAL, 0, 0),
+            new GraphicIndex(GraphicID.G_LOOP_BLOCK_VERTICAL, 0, 0),
+            new GraphicIndex(GraphicID.G_FLOATING_PLATFORM, 0, 0),
+            new GraphicIndex(GraphicID.G_BIG_BLOCK_HORIZONTAL, 0, 0),
+            new GraphicIndex(GraphicID.G_BIG_BLOCK_VERTICAL, 0, 0),
         };
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public BlocksHandler()
     {
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void create()
     {
         TiledUtils tiledUtils = new TiledUtils();
 
-        for (GraphicID gid : blockTypes)
+        for (GraphicIndex item : blockTypes)
         {
-            Array<SpriteDescriptor> tiles = tiledUtils.findMultiTiles(gid);
+            Array<SpriteDescriptor> tiles = tiledUtils.findMultiTiles(item.graphicID);
 
             if (tiles.size > 0)
             {
                 for (SpriteDescriptor descriptor : tiles)
                 {
-                    create
-                        (
-                            checkAssetName(gid).asset,
-                            descriptor._FRAMES,
-                            descriptor._PLAYMODE,
-                            descriptor._POSITION.x,
-                            descriptor._POSITION.y
-                        );
+                    descriptor._ASSET = checkAssetName(descriptor)._ASSET;
 
-                    super.descriptor._SIZE 
+                    switch (item.graphicID)
+                    {
+                        case G_SPIKE_BALL -> {
+
+                            SpikeBall spikeBall = new SpikeBall(item.graphicID);
+                            spikeBall.initialise(descriptor);
+
+                            App.entityData.addEntity(spikeBall);
+                        }
+
+                        case G_SPIKE_BLOCK_HORIZONTAL,
+                            G_SPIKE_BLOCK_VERTICAL -> {
+
+                            SpikeBlock spikeBlock = new SpikeBlock(item.graphicID);
+                            spikeBlock.initialise(descriptor);
+
+                            App.entityData.addEntity(spikeBlock);
+                        }
+
+                        case G_LOOP_BLOCK_HORIZONTAL,
+                            G_LOOP_BLOCK_VERTICAL -> {
+
+                            LoopBlock loopBlock = new LoopBlock(item.graphicID);
+                            loopBlock.initialise(descriptor);
+
+                            App.entityData.addEntity(loopBlock);
+                        }
+
+                        case G_FLOATING_PLATFORM -> {
+
+                            FloatingPlatform platform = new FloatingPlatform(item.graphicID);
+                            platform.initialise(descriptor);
+
+                            App.entityData.addEntity(platform);
+                        }
+
+                        case G_BIG_BLOCK_HORIZONTAL,
+                            G_BIG_BLOCK_VERTICAL -> {
+
+                            BigBlock bigBlock = new BigBlock(item.graphicID);
+                            bigBlock.initialise(descriptor);
+
+                            App.entityData.addEntity(bigBlock);
+                        }
+
+                        default -> {
+                        }
+                    }
+
+                    EntityStats.log(item.graphicID);
                 }
             }
         }
     }
 
-    private GfxAsset checkAssetName(GfxAsset gfxAsset)
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
+    private SpriteDescriptor checkAssetName(SpriteDescriptor descriptor)
     {
         final String[] spikeBallAssets =
             {
@@ -66,11 +123,21 @@ public class BlocksHandler extends GenericEntityManager
                 GameAssets._SPIKE_BALL_3_ASSET,
             };
 
-        if (gfxAsset.graphicID == GraphicID.G_SPIKE_BALL)
+        if (graphicID == GraphicID.G_SPIKE_BALL)
         {
-            gfxAsset.asset = spikeBallAssets[MathUtils.random(spikeBallAssets.length - 1)];
+            descriptor._ASSET = spikeBallAssets[MathUtils.random(spikeBallAssets.length - 1)];
         }
 
-        return gfxAsset;
+        return descriptor;
+    }
+
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
+    public GraphicIndex[] getBlockTypes()
+    {
+        return blockTypes;
     }
 }

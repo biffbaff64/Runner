@@ -1,3 +1,6 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.5.0-RC'
+}
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 eclipse.project.name = appName + '-core'
 
@@ -17,4 +20,18 @@ dependencies {
 	api "com.rafaskoberg.gdx:typing-label:$typingLabelVersion"
 	api "com.github.tommyettinger:regexodus:$regExodusVersion"
     implementation 'org.jetbrains:annotations:20.1.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+repositories {
+    mavenCentral()
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }

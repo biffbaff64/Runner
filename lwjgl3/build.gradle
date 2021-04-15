@@ -1,41 +1,65 @@
 apply plugin: 'application'
+apply plugin: 'kotlin'
 
-sourceSets.main.resources.srcDirs += [ rootProject.file('assets').path ]
+sourceSets.main.resources.srcDirs += [rootProject.file('assets').path]
 mainClassName = 'com.richikin.runner.lwjgl3.Lwjgl3Launcher'
 eclipse.project.name = appName + '-lwjgl3'
 sourceCompatibility = 15.0
 
 dependencies {
-	implementation project(':core')
-	implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
-	implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-	implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
-	implementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
-	implementation "com.badlogicgames.gdx-controllers:gdx-controllers-desktop:$gdxControllersVersion"
-	implementation "com.github.crykn.guacamole:gdx-desktop:$guacamoleVersion"
-	implementation "de.tomgrill.gdxdialogs:gdx-dialogs-desktop:$dialogsVersion"
+    implementation project(':core')
+    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
+    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+    implementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
+    implementation "com.badlogicgames.gdx-controllers:gdx-controllers-desktop:$gdxControllersVersion"
+    implementation "com.github.crykn.guacamole:gdx-desktop:$guacamoleVersion"
+    implementation "de.tomgrill.gdxdialogs:gdx-dialogs-desktop:$dialogsVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 
 import org.gradle.internal.os.OperatingSystem
 
 run {
-	workingDir = rootProject.file('assets').path
-	setIgnoreExitValue(true)
-	
-	if (OperatingSystem.current() == OperatingSystem.MAC_OS) {
-		// Required to run LWJGL3 Java apps on MacOS
-		jvmArgs += "-XstartOnFirstThread"
-	}
+    workingDir = rootProject.file('assets').path
+    setIgnoreExitValue(true)
+
+    if (OperatingSystem.current() == OperatingSystem.MAC_OS) {
+        // Required to run LWJGL3 Java apps on MacOS
+        jvmArgs += "-XstartOnFirstThread"
+    }
 }
 jar {
-	archiveBaseName = appName
-	dependsOn configurations.runtimeClasspath
-	from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } } 
-	manifest {
-		attributes 'Main-Class': project.mainClassName
-	}
-	doLast {
-		file(archivePath).setExecutable(true, false)
-	}
+    archiveBaseName = appName
+    dependsOn configurations.runtimeClasspath
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+        attributes 'Main-Class': project.mainClassName
+    }
+    doLast {
+        file(archivePath).setExecutable(true, false)
+    }
+}
+buildscript {
+    ext.kotlin_version = '1.5.0-RC'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+repositories {
+    mavenCentral()
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
