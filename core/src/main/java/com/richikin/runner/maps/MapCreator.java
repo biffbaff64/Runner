@@ -239,9 +239,7 @@ public class MapCreator
                         {
                             if (descriptor._GID != GraphicID.G_NO_ID)
                             {
-                                ObjectTileProperties properties = setObjectTileProperties(descriptor);
-
-                                createPlacementTile(mapObject, descriptor, properties);
+                                createPlacementTile(mapObject, descriptor);
                             }
                         }
                     }
@@ -342,7 +340,7 @@ public class MapCreator
 
                     if (baseEntity.gid != GraphicID.G_NO_ID)
                     {
-                        baseEntity.position    = new SimpleVec3
+                        baseEntity.position = new SimpleVec3
                             (
                                 (int) ((float) mapObject.getProperties().get("x")),
                                 (int) ((float) mapObject.getProperties().get("y")),
@@ -376,82 +374,109 @@ public class MapCreator
      * <p>
      * ------------------------------------------------------------------------------
      */
-    private void createPlacementTile(MapObject _mapObject, SpriteDescriptor _descriptor, ObjectTileProperties _properties)
+    private void createPlacementTile(MapObject mapObject, SpriteDescriptor descriptor)
     {
-        _descriptor._POSITION.x = (int) (((TiledMapTileMapObject) _mapObject).getX() / Gfx.getTileWidth());
-        _descriptor._POSITION.y = (int) (((TiledMapTileMapObject) _mapObject).getY() / Gfx.getTileHeight());
-        _descriptor._DIST       = new SimpleVec2F();
-        _descriptor._DIR        = new Direction();
-        _descriptor._SPEED      = new SimpleVec2F();
+        descriptor._POSITION.x = (int) (((TiledMapTileMapObject) mapObject).getX() / Gfx.getTileWidth());
+        descriptor._POSITION.y = (int) (((TiledMapTileMapObject) mapObject).getY() / Gfx.getTileHeight());
+        descriptor._DIST       = new SimpleVec2F();
+        descriptor._DIR        = new Direction();
+        descriptor._SPEED      = new SimpleVec2F();
 
         //
         // Create the bounding box for this placement tile.
-        _descriptor._BOX = new Box
+        descriptor._BOX = new Box
             (
-                (int) (((TiledMapTileMapObject) _mapObject).getX()),
-                (int) (((TiledMapTileMapObject) _mapObject).getY()),
+                (int) (((TiledMapTileMapObject) mapObject).getX()),
+                (int) (((TiledMapTileMapObject) mapObject).getY()),
                 Gfx.getTileWidth(),
                 Gfx.getTileHeight()
             );
 
-        if (_properties.hasDistance)
+        ObjectTileProperties properties = setObjectTileProperties(descriptor);
+
+        if (properties.hasDistance)
         {
-            _descriptor._DIST.set
+            descriptor._DIST.set
                 (
-                    ((int) _mapObject.getProperties().get("xdistance")),
-                    ((int) _mapObject.getProperties().get("ydistance"))
+                    ((int) mapObject.getProperties().get("xdistance")),
+                    ((int) mapObject.getProperties().get("ydistance"))
                 );
         }
 
-        if (_properties.hasDirection)
+        if (properties.hasDirection)
         {
-            _descriptor._DIR.set
+            descriptor._DIR.set
                 (
-                    _mapObject.getProperties().get("xdirection")
+                    mapObject.getProperties().get("xdirection")
                         .equals("right") ? Movement._DIRECTION_RIGHT :
-                        _mapObject.getProperties().get("xdirection")
+                        mapObject.getProperties().get("xdirection")
                             .equals("left") ? Movement._DIRECTION_LEFT : Movement._DIRECTION_STILL,
 
-                    _mapObject.getProperties().get("ydirection")
+                    mapObject.getProperties().get("ydirection")
                         .equals("up") ? Movement._DIRECTION_UP :
-                        _mapObject.getProperties().get("ydirection")
+                        mapObject.getProperties().get("ydirection")
                             .equals("down") ? Movement._DIRECTION_DOWN : Movement._DIRECTION_STILL
                 );
         }
 
-        if (_properties.hasSpeed)
+        if (properties.hasSpeed)
         {
-            _descriptor._SPEED.set
+            descriptor._SPEED.set
                 (
-                    ((float) _mapObject.getProperties().get("xspeed")),
-                    ((float) _mapObject.getProperties().get("yspeed"))
+                    ((float) mapObject.getProperties().get("xspeed")),
+                    ((float) mapObject.getProperties().get("yspeed"))
                 );
         }
 
-        if (_properties.isLinked)
+        if (properties.isLinked)
         {
             //
             // Fetch the link ID of the attached entity
-            if (_mapObject.getProperties().get("connection") != null)
+            if (mapObject.getProperties().get("connection") != null)
             {
-                _descriptor._LINK = (int) _mapObject.getProperties().get("connection");
+                descriptor._LINK = (int) mapObject.getProperties().get("connection");
             }
         }
 
-        App.mapData.placementTiles.add(_descriptor);
+        App.mapData.placementTiles.add(descriptor);
     }
 
     /**
      * ------------------------------------------------------------------------------
-     * <p>
+     * Identifies the properties associated with this ObjectTile.
      * ------------------------------------------------------------------------------
      */
-    private ObjectTileProperties setObjectTileProperties(SpriteDescriptor _descriptor)
+    private ObjectTileProperties setObjectTileProperties(SpriteDescriptor descriptor)
     {
-        // TODO: 13/08/2020 - set properties based on the type of entity passed.
-        // eg: The entity might have an initial direction and speed...
+        ObjectTileProperties properties = new ObjectTileProperties();
 
-        return new ObjectTileProperties();
+        switch (descriptor._TILE)
+        {
+            case _FLOOR_BUTTON_TILE,
+                _LEVER_TILE -> {
+
+                properties.isLinked = true;
+            }
+
+            case _BIG_BLOCK_TILE,
+                _LOOP_BLOCK_HORIZONTAL_TILE,
+                _LOOP_BLOCK_VERTICAL_TILE,
+                _SPIKE_BALL_TILE,
+                _SPIKE_BLOCK_DOWN_TILE,
+                _SPIKE_BLOCK_UP_TILE,
+                _SPIKE_BLOCK_LEFT_TILE,
+                _SPIKE_BLOCK_RIGHT_TILE -> {
+
+                properties.hasDirection = true;
+                properties.hasDistance = true;
+                properties.hasSpeed = true;
+            }
+
+            default -> {
+            }
+        }
+
+        return properties;
     }
 
     /**

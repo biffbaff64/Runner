@@ -11,6 +11,11 @@ public class MapUtils
     {
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * Updates the map position with the supplied coordinates.
+     * ------------------------------------------------------------------------------
+     */
     public void positionAt(int x, int y)
     {
         App.mapData.previousMapPosition.set(App.mapData.mapPosition);

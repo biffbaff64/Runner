@@ -107,6 +107,11 @@ public class RoomManager implements Disposable
     private final int worldWidth;
     private final int worldHeight;
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public RoomManager()
     {
         Trace.__FILE_FUNC();
@@ -118,6 +123,11 @@ public class RoomManager implements Disposable
         Trace.dbg("_WORLD_HEIGHT: " + worldHeight);
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public void initialise()
     {
         Trace.__FILE_FUNC();
@@ -137,6 +147,11 @@ public class RoomManager implements Disposable
         setRoom(startRow, startColumn, _START_POSITION);
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     private SimpleVec2 findRoom(String roomName)
     {
         SimpleVec2 roomPosition = null;
@@ -158,6 +173,11 @@ public class RoomManager implements Disposable
         return roomPosition;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     private void setRoom(int row, int column, int position)
     {
         if (roomMap[row][column] != null)
@@ -171,21 +191,41 @@ public class RoomManager implements Disposable
         playerStart = position;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public Room[][] getRoomMap()
     {
         return roomMap;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public int getWorldWidth()
     {
         return worldWidth;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public int getWorldHeight()
     {
         return worldHeight;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public String getActiveRoomName()
     {
         String name = "null";
@@ -198,6 +238,11 @@ public class RoomManager implements Disposable
         return name;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public SimpleVec2 getStartPosition()
     {
         String      currentMap = roomMap[activeRoom.row][activeRoom.column].roomName;
@@ -220,17 +265,32 @@ public class RoomManager implements Disposable
         return positions;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public String getMapNameWithPath()
     {
         return _MAPS_PATH + roomMap[activeRoom.row][activeRoom.column].roomName;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     @NotNull
     public String getMapNameWithPath(String roomName)
     {
         return _MAPS_PATH + roomName;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     private SimpleVec2 createRoomList()
     {
         SimpleVec2 startRoomPos = null;
@@ -259,6 +319,11 @@ public class RoomManager implements Disposable
         return startRoomPos;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     private int countRoomMarkers(TileID _marker, Room _room)
     {
         int markerCount = 0;
@@ -290,8 +355,9 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * Check all rooms for entry points, and store the
-     * coordinates in the roomList array
+     * ------------------------------------------------------------------------------
+     * Check all rooms for entry points, and store the coordinates in the roomList array
+     * ------------------------------------------------------------------------------
      */
     private void storeEntryPoints()
     {
@@ -370,6 +436,11 @@ public class RoomManager implements Disposable
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public void moveUp()
     {
         if (activeRoom.row > 0)
@@ -383,6 +454,11 @@ public class RoomManager implements Disposable
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public void moveDown()
     {
         if (activeRoom.row < roomMap.length)
@@ -396,6 +472,11 @@ public class RoomManager implements Disposable
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public void moveLeft()
     {
         if (activeRoom.column > 0)
@@ -409,6 +490,11 @@ public class RoomManager implements Disposable
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public void moveRight()
     {
         if (activeRoom.column < roomMap[activeRoom.column].length)
@@ -422,6 +508,11 @@ public class RoomManager implements Disposable
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     private void debugRoomMap()
     {
         for (int _row = 0; _row < worldHeight; _row++)
@@ -442,6 +533,11 @@ public class RoomManager implements Disposable
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void dispose()
     {

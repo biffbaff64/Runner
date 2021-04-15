@@ -91,7 +91,9 @@ public class MapData
     }
 
     /**
+     * ------------------------------------------------------------------------------
      * Load and set up the current room.
+     * ------------------------------------------------------------------------------
      */
     public void initialiseRoom()
     {
@@ -117,9 +119,10 @@ public class MapData
     }
 
     /**
+     * ------------------------------------------------------------------------------
      * Update the screen virtual window.
-     * This box is used for checking that entities are
-     * visible on screen.1
+     * This box is used for checking that entities are visible on screen.
+     * ------------------------------------------------------------------------------
      */
     public void update()
     {
@@ -147,9 +150,11 @@ public class MapData
     }
 
     /**
+     * ------------------------------------------------------------------------------
      * Draws the TiledMap game tile layers.
      *
      * @param camera The {@link OrthographicCamera} to use.
+     * ------------------------------------------------------------------------------
      */
     public void render(OrthographicCamera camera)
     {
@@ -158,6 +163,11 @@ public class MapData
         mapRenderer.renderTileLayer(extraGameTilesLayer);
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     private void setGameLevelMap(String[] mapLayers)
     {
         gameTilesLayer      = (TiledMapTileLayer) currentMap.getLayers().get(mapLayers[_GAME_TILES]);
@@ -181,7 +191,9 @@ public class MapData
     }
 
     /**
+     * ------------------------------------------------------------------------------
      * Creates a map of areas that enemies cannot spawn into.
+     * ------------------------------------------------------------------------------
      */
     private void setNoSpawnZones()
     {
@@ -196,6 +208,11 @@ public class MapData
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     private void debugMap()
     {
         Trace.__FILE_FUNC();
@@ -206,6 +223,11 @@ public class MapData
         Trace.dbg("tileHeight: " + Gfx.getTileHeight());
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public void dispose()
     {
         Trace.__FILE_FUNC();

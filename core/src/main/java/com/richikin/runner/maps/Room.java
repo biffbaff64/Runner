@@ -21,14 +21,24 @@ public class Room
     public JailKey      key;
     public int          mysteryChestsAvailable;
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public Room()
     {
         this("");
     }
 
-    public Room(final String _roomName)
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
+    public Room(final String roomName)
     {
-        this.roomName               = _roomName;
+        this.roomName               = roomName;
         this.key                    = new JailKey();
         this.mysteryChestsAvailable = 0;
 
@@ -43,6 +53,11 @@ public class Room
         this.compassPoints[_START] = new SimpleVec2();
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public void set(Room _reference)
     {
         this.roomName        = _reference.roomName;
@@ -59,6 +74,11 @@ public class Room
         this.compassPoints[_START] = _reference.compassPoints[_START];
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public void debug()
     {
         Trace.__FILE_FUNC_WithDivider();
