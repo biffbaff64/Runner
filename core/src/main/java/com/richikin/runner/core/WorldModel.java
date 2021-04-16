@@ -19,6 +19,11 @@ public class WorldModel implements Disposable
     public Box2DContactListener box2DContactListener;
     public BodyBuilder          bodyBuilder;
 
+    /**
+     * ------------------------------------------------------------------------------
+     * <p>
+     * ------------------------------------------------------------------------------
+     */
     public WorldModel()
     {
         Trace.__FILE_FUNC();
@@ -42,6 +47,11 @@ public class WorldModel implements Disposable
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * <p>
+     * ------------------------------------------------------------------------------
+     */
     public void createB2DRenderer()
     {
         if (Developer.isDevMode())
@@ -50,16 +60,21 @@ public class WorldModel implements Disposable
 
             b2dr = new Box2DDebugRenderer
                 (
-                    true,
-                    true,
-                    true,
-                    true,
-                    false,
-                    true
+                    true,       // drawBodies
+                    true,       // drawJoints
+                    true,       // drawAABBs
+                    true,       // drawInactiveBodies
+                    false,      // drawVelocities
+                    true        // drawContacts
                 );
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * <p>
+     * ------------------------------------------------------------------------------
+     */
     public void drawDebugMatrix()
     {
         if (App.settings.isEnabled(Settings._BOX2D_PHYSICS))
@@ -76,6 +91,11 @@ public class WorldModel implements Disposable
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * <p>
+     * ------------------------------------------------------------------------------
+     */
     public void worldStep()
     {
         if (box2DWorld != null)
@@ -84,19 +104,23 @@ public class WorldModel implements Disposable
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     * <p>
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void dispose()
     {
         Trace.__FILE_FUNC();
 
         b2dr.dispose();
-        b2dr = null;
-
-        box2DContactListener = null;
-        bodyBuilder = null;
-
         box2DWorld.dispose();
-        box2DWorld = null;
+
+        b2dr                 = null;
+        box2DContactListener = null;
+        bodyBuilder          = null;
+        box2DWorld           = null;
     }
 }
 

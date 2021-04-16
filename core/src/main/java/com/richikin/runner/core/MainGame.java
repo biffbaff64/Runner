@@ -26,8 +26,6 @@ public class MainGame extends com.badlogic.gdx.Game
         //
         // Initialise all essential objects required before
         // the main screen is initialised.
-
-        // TODO: 21/02/2021 - This is crap, change it
         startup = new Startup();
     }
 

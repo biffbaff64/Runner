@@ -364,8 +364,6 @@ public class RoomManager implements Disposable
     // TODO: 16/04/2021 - and store these values in a final array?
     private void storeEntryPoints()
     {
-        Trace.__FILE_FUNC();
-
         for (int roomRow = 0; roomRow < worldHeight; roomRow++)
         {
             for (int roomColumn = 0; roomColumn < worldWidth; roomColumn++)
@@ -374,8 +372,6 @@ public class RoomManager implements Disposable
 
                 if (room != null)
                 {
-                    Trace.dbg(room.roomName);
-
                     TmxMapLoader      tmxMapLoader = new TmxMapLoader();
                     TiledMap          map          = tmxMapLoader.load(getMapNameWithPath(room.roomName));
                     TiledMapTileLayer layer        = (TiledMapTileLayer) map.getLayers().get(MapData._MARKER_TILES);
