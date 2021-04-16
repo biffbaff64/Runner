@@ -10,6 +10,7 @@ import com.richikin.runner.entities.characters.*;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.runner.maps.TiledUtils;
 import com.richikin.utilslib.graphics.GraphicIndex;
+import com.richikin.utilslib.logging.Trace;
 
 public class BlocksHandler extends GenericEntityManager
 {
@@ -32,6 +33,31 @@ public class BlocksHandler extends GenericEntityManager
      */
     public BlocksHandler()
     {
+    }
+
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
+    @Override
+    public void init()
+    {
+        Trace.__FILE_FUNC();
+
+        for (GraphicIndex item : blockTypes)
+        {
+            for (SpriteDescriptor descriptor : App.mapData.placementTiles)
+            {
+                if (descriptor._GID.equals(item.graphicID))
+                {
+                    item.currentTotal = 0;
+                    item.maxTotal++;
+                }
+            }
+
+            Trace.dbg("Entity " + item.graphicID + " : maxTotal = " + item.maxTotal);
+        }
     }
 
     /**

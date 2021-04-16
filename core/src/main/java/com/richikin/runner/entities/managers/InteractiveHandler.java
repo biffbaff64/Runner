@@ -6,17 +6,20 @@ import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.utilslib.graphics.GraphicIndex;
 import com.richikin.utilslib.logging.Trace;
 
-public class DecorationsHandler extends GenericEntityManager
+public class InteractiveHandler extends GenericEntityManager
 {
-    private GraphicIndex[] decorations =
+    private GraphicIndex[] interactives =
         {
-            new GraphicIndex(GraphicID.G_ALCOVE_TORCH, 0, 0),
-            new GraphicIndex(GraphicID.G_BARREL, 0, 0),
-            new GraphicIndex(GraphicID.G_CRATE, 0, 0),
-            new GraphicIndex(GraphicID.G_GLOW_EYES, 0, 0),
-            new GraphicIndex(GraphicID.G_PLANT_POT, 0, 0),
-            new GraphicIndex(GraphicID.G_POT, 0, 0),
-            new GraphicIndex(GraphicID.G_SACKS, 0, 0),
+            new GraphicIndex(GraphicID.G_DOOR, 0, 0),
+            new GraphicIndex(GraphicID.G_LEVER_SWITCH, 0, 0),
+            new GraphicIndex(GraphicID.G_ESCALATOR, 0, 0),
+            new GraphicIndex(GraphicID.G_VILLAGER, 0, 0),
+            new GraphicIndex(GraphicID.G_TREASURE_CHEST, 0, 0),
+            new GraphicIndex(GraphicID.G_TELEPORTER, 0, 0),
+            new GraphicIndex(GraphicID.G_PRISONER, 0, 0),
+            new GraphicIndex(GraphicID.G_MYSTERY_CHEST, 0, 0),
+            new GraphicIndex(GraphicID.G_FLOOR_BUTTON, 0, 0),
+            new GraphicIndex(GraphicID.G_FLOATING_PLATFORM, 0, 0),
         };
 
     /**
@@ -24,7 +27,7 @@ public class DecorationsHandler extends GenericEntityManager
      *
      * ------------------------------------------------------------------------------
      */
-    public DecorationsHandler()
+    public InteractiveHandler()
     {
     }
 
@@ -38,7 +41,7 @@ public class DecorationsHandler extends GenericEntityManager
     {
         Trace.__FILE_FUNC();
 
-        for (GraphicIndex item : decorations)
+        for (GraphicIndex item : interactives)
         {
             for (SpriteDescriptor descriptor : App.mapData.placementTiles)
             {
@@ -78,8 +81,8 @@ public class DecorationsHandler extends GenericEntityManager
      *
      * ------------------------------------------------------------------------------
      */
-    public GraphicIndex[] getDecorations()
+    public GraphicIndex[] getInteractives()
     {
-        return decorations;
+        return interactives;
     }
 }
