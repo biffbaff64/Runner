@@ -97,7 +97,7 @@ public class MapData
      */
     public void initialiseRoom()
     {
-        currentMapName = App.roomManager.getMapNameWithPath();
+        currentMapName = App.roomManager.getCurrentMapNameWithPath();
         currentMap     = tmxMapLoader.load(currentMapName);
 
         setGameLevelMap(mapLayerNames);

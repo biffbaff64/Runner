@@ -270,7 +270,7 @@ public class RoomManager implements Disposable
      *
      * ------------------------------------------------------------------------------
      */
-    public String getMapNameWithPath()
+    public String getCurrentMapNameWithPath()
     {
         return _MAPS_PATH + roomMap[activeRoom.row][activeRoom.column].roomName;
     }
@@ -290,7 +290,7 @@ public class RoomManager implements Disposable
      * ------------------------------------------------------------------------------
      *
      * ------------------------------------------------------------------------------
-     */
+`     */
     private SimpleVec2 createRoomList()
     {
         SimpleVec2 startRoomPos = null;
@@ -359,6 +359,9 @@ public class RoomManager implements Disposable
      * Check all rooms for entry points, and store the coordinates in the roomList array
      * ------------------------------------------------------------------------------
      */
+    // TODO: 16/04/2021 - This is not a good idea and is far too slow. 
+    // TODO: 16/04/2021 - Maybe it would be better to do this once during development 
+    // TODO: 16/04/2021 - and store these values in a final array?
     private void storeEntryPoints()
     {
         Trace.__FILE_FUNC();
@@ -371,6 +374,8 @@ public class RoomManager implements Disposable
 
                 if (room != null)
                 {
+                    Trace.dbg(room.roomName);
+
                     TmxMapLoader      tmxMapLoader = new TmxMapLoader();
                     TiledMap          map          = tmxMapLoader.load(getMapNameWithPath(room.roomName));
                     TiledMapTileLayer layer        = (TiledMapTileLayer) map.getLayers().get(MapData._MARKER_TILES);
