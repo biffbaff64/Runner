@@ -159,9 +159,11 @@ public class EntityManager implements IEntityManager
                     {
                         switch (entity.gid)
                         {
-                            case G_PLAYER, _CEILING, _GROUND -> {
+                            case G_PLAYER, _WALL, _GROUND -> {
                             }
 
+                            //
+                            // Explosions release and remove themselves
                             case G_EXPLOSION12, G_EXPLOSION64, G_EXPLOSION128, G_EXPLOSION256 -> {
 
                                 entity.tidy(i);
