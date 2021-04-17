@@ -48,12 +48,19 @@ public class OptionsPage implements IUIPage
     private boolean     enteredDeveloperPanel;
 
     /**
-     * Instantiates a new Options page.
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
      */
     public OptionsPage()
     {
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void initialise()
     {
@@ -87,7 +94,9 @@ public class OptionsPage implements IUIPage
     }
 
     /**
-     * Update panel.
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
      */
     @Override
     public boolean update()
@@ -120,14 +129,17 @@ public class OptionsPage implements IUIPage
 
         if (Developer.isDevMode())
         {
-            controllerLabel.setText(App.inputManager.gameController.controller.getName());
-            buttonLabel.setText(ControllerData.controllerButtonCode);
-            axisLabel.setText
-                (
-                    "" + ControllerData.controllerAxisCode
-                    + "    /    "
-                    + ControllerData.controllerAxisValue
-                );
+            if (AppConfig.isControllerFitted())
+            {
+                controllerLabel.setText(App.inputManager.gameController.controller.getName());
+                buttonLabel.setText(ControllerData.controllerButtonCode);
+                axisLabel.setText
+                    (
+                        "" + ControllerData.controllerAxisCode
+                            + "    /    "
+                            + ControllerData.controllerAxisValue
+                    );
+            }
         }
 
         if (enteredDeveloperPanel && !Developer.developerPanelActive)
@@ -145,6 +157,11 @@ public class OptionsPage implements IUIPage
         return isJustFinishedOptionsPanel;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public void draw(SpriteBatch spriteBatch)
     {
         switch (activePanel)
@@ -177,7 +194,9 @@ public class OptionsPage implements IUIPage
     }
 
     /**
-     * Show.
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
      */
     public void show()
     {
@@ -185,7 +204,9 @@ public class OptionsPage implements IUIPage
     }
 
     /**
-     * Hide.
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
      */
     public void hide()
     {
@@ -193,7 +214,9 @@ public class OptionsPage implements IUIPage
     }
 
     /**
-     * Populate table.
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
      */
     private void populateTable()
     {
@@ -255,43 +278,48 @@ public class OptionsPage implements IUIPage
                     (int) AppConfig.hudOriginY + (720 - 558)
                 );
 
-            controllerLabel = scene2DUtils.addLabel
-                (
-                    "",
-                    (int) AppConfig.hudOriginX + 180,
-                    (int) AppConfig.hudOriginY + 50,
-                    Color.WHITE,
-                    new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET))
-                );
+            if (AppConfig.isControllerFitted())
+            {
+                controllerLabel = scene2DUtils.addLabel
+                    (
+                        "",
+                        (int) AppConfig.hudOriginX + 180,
+                        (int) AppConfig.hudOriginY + 50,
+                        Color.WHITE,
+                        new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET))
+                    );
 
-            buttonLabel = scene2DUtils.addLabel
-                (
-                    "",
-                    (int) AppConfig.hudOriginX + 680,
-                    (int) AppConfig.hudOriginY + 50,
-                    Color.WHITE,
-                    new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET))
-                );
+                buttonLabel = scene2DUtils.addLabel
+                    (
+                        "",
+                        (int) AppConfig.hudOriginX + 680,
+                        (int) AppConfig.hudOriginY + 50,
+                        Color.WHITE,
+                        new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET))
+                    );
 
-            axisLabel = scene2DUtils.addLabel
-                (
-                    "",
-                    (int) AppConfig.hudOriginX + 980,
-                    (int) AppConfig.hudOriginY + 50,
-                    Color.WHITE,
-                    new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET))
-                );
+                axisLabel = scene2DUtils.addLabel
+                    (
+                        "",
+                        (int) AppConfig.hudOriginX + 980,
+                        (int) AppConfig.hudOriginY + 50,
+                        Color.WHITE,
+                        new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET))
+                    );
 
-            controllerLabel.setAlignment(Align.left);
-            buttonLabel.setAlignment(Align.left);
-            axisLabel.setAlignment(Align.left);
+                controllerLabel.setAlignment(Align.left);
+                buttonLabel.setAlignment(Align.left);
+                axisLabel.setAlignment(Align.left);
+            }
         }
 
         showActors(true);
     }
 
     /**
-     * Update settings.
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
      */
     private void updateSettings()
     {
@@ -303,7 +331,9 @@ public class OptionsPage implements IUIPage
     }
 
     /**
-     * Update settings on entry.
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
      */
     private void updateSettingsOnEntry()
     {
@@ -314,9 +344,9 @@ public class OptionsPage implements IUIPage
     }
 
     /**
-     * Show the OptionsPage actors.
+     * ------------------------------------------------------------------------------
      *
-     * @param _visibilty Either TRUE or FALSE
+     * ------------------------------------------------------------------------------
      */
     private void showActors(boolean _visibilty)
     {
@@ -325,9 +355,12 @@ public class OptionsPage implements IUIPage
             buttonDevOptions.setVisible(_visibilty);
             buttonStats.setVisible(_visibilty);
 
-            controllerLabel.setVisible(_visibilty);
-            buttonLabel.setVisible(_visibilty);
-            axisLabel.setVisible(_visibilty);
+            if (AppConfig.isControllerFitted())
+            {
+                controllerLabel.setVisible(_visibilty);
+                buttonLabel.setVisible(_visibilty);
+                axisLabel.setVisible(_visibilty);
+            }
         }
 
         if (buttonGoogle != null)
@@ -352,7 +385,9 @@ public class OptionsPage implements IUIPage
     }
 
     /**
-     * Create button listeners.
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
      */
     private void createButtonListeners()
     {
@@ -438,7 +473,9 @@ public class OptionsPage implements IUIPage
     }
 
     /**
-     * Create checkbox listeners.
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
      */
     private void createCheckboxListeners()
     {
@@ -511,6 +548,11 @@ public class OptionsPage implements IUIPage
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void dispose()
     {
@@ -591,11 +633,21 @@ public class OptionsPage implements IUIPage
         skin       = null;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public void setActivePanel(ScreenID screenID)
     {
         activePanel = screenID;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public ScreenID getActivePanel()
     {
         return activePanel;

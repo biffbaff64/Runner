@@ -244,6 +244,16 @@ public class AppConfig
      *
      * ------------------------------------------------------------------------------
      */
+    public static boolean isControllerFitted()
+    {
+        return App.inputManager.gameController != null;
+    }
+
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public static void freshInstallCheck()
     {
         Trace.__FILE_FUNC();

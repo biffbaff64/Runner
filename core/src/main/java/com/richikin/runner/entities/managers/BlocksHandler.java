@@ -9,21 +9,21 @@ import com.richikin.runner.entities.EntityStats;
 import com.richikin.runner.entities.characters.*;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.runner.maps.TiledUtils;
-import com.richikin.utilslib.graphics.GraphicIndex;
+import com.richikin.utilslib.graphics.EntityCounts;
 import com.richikin.utilslib.logging.Trace;
 
 public class BlocksHandler extends GenericEntityManager
 {
-    private final GraphicIndex[] blockTypes =
+    private final EntityCounts[] blockTypes =
         {
-            new GraphicIndex(GraphicID.G_SPIKE_BALL, 0, 0),
-            new GraphicIndex(GraphicID.G_SPIKE_BLOCK_HORIZONTAL, 0, 0),
-            new GraphicIndex(GraphicID.G_SPIKE_BLOCK_VERTICAL, 0, 0),
-            new GraphicIndex(GraphicID.G_LOOP_BLOCK_HORIZONTAL, 0, 0),
-            new GraphicIndex(GraphicID.G_LOOP_BLOCK_VERTICAL, 0, 0),
-            new GraphicIndex(GraphicID.G_FLOATING_PLATFORM, 0, 0),
-            new GraphicIndex(GraphicID.G_BIG_BLOCK_HORIZONTAL, 0, 0),
-            new GraphicIndex(GraphicID.G_BIG_BLOCK_VERTICAL, 0, 0),
+            new EntityCounts(GraphicID.G_SPIKE_BALL, 0, 0),
+            new EntityCounts(GraphicID.G_SPIKE_BLOCK_HORIZONTAL, 0, 0),
+            new EntityCounts(GraphicID.G_SPIKE_BLOCK_VERTICAL, 0, 0),
+            new EntityCounts(GraphicID.G_LOOP_BLOCK_HORIZONTAL, 0, 0),
+            new EntityCounts(GraphicID.G_LOOP_BLOCK_VERTICAL, 0, 0),
+            new EntityCounts(GraphicID.G_FLOATING_PLATFORM, 0, 0),
+            new EntityCounts(GraphicID.G_BIG_BLOCK_HORIZONTAL, 0, 0),
+            new EntityCounts(GraphicID.G_BIG_BLOCK_VERTICAL, 0, 0),
         };
 
     /**
@@ -45,7 +45,7 @@ public class BlocksHandler extends GenericEntityManager
     {
         Trace.__FILE_FUNC();
 
-        for (GraphicIndex item : blockTypes)
+        for (EntityCounts item : blockTypes)
         {
             for (SpriteDescriptor descriptor : App.mapData.placementTiles)
             {
@@ -70,7 +70,7 @@ public class BlocksHandler extends GenericEntityManager
     {
         TiledUtils tiledUtils = new TiledUtils();
 
-        for (GraphicIndex item : blockTypes)
+        for (EntityCounts item : blockTypes)
         {
             Array<SpriteDescriptor> tiles = tiledUtils.findMultiTiles(item.graphicID);
 
@@ -162,7 +162,7 @@ public class BlocksHandler extends GenericEntityManager
      *
      * ------------------------------------------------------------------------------
      */
-    public GraphicIndex[] getBlockTypes()
+    public EntityCounts[] getBlockTypes()
     {
         return blockTypes;
     }

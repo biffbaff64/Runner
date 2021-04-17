@@ -4,16 +4,16 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.runner.config.Settings;
 import com.richikin.runner.core.App;
 import com.richikin.runner.developer.Developer;
-import com.richikin.utilslib.graphics.GraphicIndex;
+import com.richikin.utilslib.graphics.EntityCounts;
 import com.richikin.utilslib.maths.SimpleVec2;
 
 public class EnemyHandler extends GenericEntityManager
 {
-    private final GraphicIndex[] enemies =
+    private final EntityCounts[] enemies =
         {
-            new GraphicIndex(GraphicID.G_SOLDIER, 0, 0),
-            new GraphicIndex(GraphicID.G_BOUNCER, 0, 0),
-            new GraphicIndex(GraphicID.G_SCORPION, 0, 0),
+            new EntityCounts(GraphicID.G_SOLDIER, 0, 0),
+            new EntityCounts(GraphicID.G_BOUNCER, 0, 0),
+            new EntityCounts(GraphicID.G_SCORPION, 0, 0),
         };
 
     public EnemyHandler()
@@ -30,7 +30,7 @@ public class EnemyHandler extends GenericEntityManager
     {
         if (!Developer.isDevMode() || App.settings.isEnabled(Settings._ENABLE_ENEMIES))
         {
-            for (GraphicIndex item : enemies)
+            for (EntityCounts item : enemies)
             {
                 item.currentTotal = 0;
                 item.maxTotal = 0;
@@ -52,7 +52,7 @@ public class EnemyHandler extends GenericEntityManager
     {
         if (!Developer.isDevMode() || App.settings.isEnabled(Settings._ENABLE_ENEMIES))
         {
-            for (GraphicIndex enemy : enemies)
+            for (EntityCounts enemy : enemies)
             {
                 if (enemy.currentTotal < enemy.maxTotal)
                 {
@@ -71,7 +71,7 @@ public class EnemyHandler extends GenericEntityManager
     @Override
     public void free(final GraphicID gid)
     {
-        for (GraphicIndex item : enemies)
+        for (EntityCounts item : enemies)
         {
             if (item.graphicID == gid)
             {
