@@ -73,7 +73,7 @@ public class AppConfig
         // Temporary development settings
         if (Developer.isDevMode() && AppConfig.isDesktopApp())
         {
-            Developer.setAndroidOnDesktop(false);
+            Developer.setAndroidOnDesktop(true);
             Developer.setGodMode(false);
 
 //            App.settings.disable(Settings._BOX2D_PHYSICS);

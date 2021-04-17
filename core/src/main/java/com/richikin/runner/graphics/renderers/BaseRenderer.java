@@ -32,14 +32,20 @@ public class BaseRenderer implements Disposable
     private HUDRenderer   hudRenderer;
     private SimpleVec3F   cameraPos;
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public BaseRenderer()
     {
         createCameras();
     }
 
     /**
-     * Create all game cameras and
-     * associated viewports.
+     * ------------------------------------------------------------------------------
+     * Create all game cameras and associated viewports.
+     * ------------------------------------------------------------------------------
      */
     private void createCameras()
     {
@@ -97,7 +103,9 @@ public class BaseRenderer implements Disposable
     }
 
     /**
+     * ------------------------------------------------------------------------------
      * Process all cameras.
+     * ------------------------------------------------------------------------------
      */
     public void render()
     {
@@ -142,6 +150,11 @@ public class BaseRenderer implements Disposable
         App.worldModel.drawDebugMatrix();
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     private void drawParallaxLayers()
     {
         if (parallaxCamera.isInUse)
@@ -167,8 +180,39 @@ public class BaseRenderer implements Disposable
             parallaxBackground.render();
             App.spriteBatch.end();
         }
+        else
+        {
+            drawGameScreenBackdrop();
+        }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
+    private void drawGameScreenBackdrop()
+    {
+        if (AppConfig.gameScreenActive() && (App.mainGameScreen.getBackground() != null))
+        {
+            parallaxCamera.viewport.apply();
+            App.spriteBatch.setProjectionMatrix(parallaxCamera.camera.combined);
+            App.spriteBatch.begin();
+
+            cameraPos.setEmpty();
+            parallaxCamera.setPosition(cameraPos);
+
+            App.mainGameScreen.draw(App.spriteBatch, parallaxCamera);
+
+            App.spriteBatch.end();
+        }
+    }
+
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     private void drawTiledMap()
     {
         if (tiledGameCamera.isInUse)
@@ -195,6 +239,11 @@ public class BaseRenderer implements Disposable
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     private void drawSprites()
     {
         if (spriteGameCamera.isInUse)
@@ -223,8 +272,10 @@ public class BaseRenderer implements Disposable
     }
 
     /**
+     * ------------------------------------------------------------------------------
      * Draw the HUD and any related objects, if enabled.
      * The Front End should only be using this camera.
+     * ------------------------------------------------------------------------------
      */
     private void drawHUD()
     {
@@ -246,6 +297,11 @@ public class BaseRenderer implements Disposable
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public void resizeCameras(int _width, int _height)
     {
         parallaxCamera.resizeViewport(_width, _height, true);
@@ -254,6 +310,11 @@ public class BaseRenderer implements Disposable
         hudGameCamera.resizeViewport(_width, _height, true);
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void dispose()
     {

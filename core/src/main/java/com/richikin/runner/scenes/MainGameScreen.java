@@ -1,5 +1,7 @@
 package com.richikin.runner.scenes;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.enumslib.ScreenID;
 import com.richikin.enumslib.StateID;
 import com.richikin.runner.config.AppConfig;
@@ -9,6 +11,8 @@ import com.richikin.runner.core.EndgameManager;
 import com.richikin.runner.core.GameControlLoop;
 import com.richikin.runner.core.LevelManager;
 import com.richikin.runner.developer.Developer;
+import com.richikin.runner.graphics.Gfx;
+import com.richikin.runner.graphics.camera.OrthoGameCamera;
 import com.richikin.runner.graphics.camera.Shake;
 import com.richikin.runner.ui.GameCompletedPanel;
 import com.richikin.utilslib.input.controllers.ControllerType;
@@ -32,7 +36,13 @@ public class MainGameScreen extends AbstractBaseScreen
      * will be processed.
      */
     public boolean firstTime;
+    public Texture background;
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public MainGameScreen()
     {
         super();
@@ -40,6 +50,11 @@ public class MainGameScreen extends AbstractBaseScreen
         this.firstTime = true;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void initialise()
     {
@@ -69,6 +84,11 @@ public class MainGameScreen extends AbstractBaseScreen
         Shake.setAllowed(App.settings.isEnabled(Settings._VIBRATIONS));
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void update()
     {
@@ -108,10 +128,12 @@ public class MainGameScreen extends AbstractBaseScreen
     }
 
     /**
+     * ------------------------------------------------------------------------------
      * Update and Render the game, and step the physics world.
      * Called from {@link com.badlogic.gdx.Game}
      *
      * @param delta Time since the last update.
+     * ------------------------------------------------------------------------------
      */
     @Override
     public void render(float delta)
@@ -128,6 +150,39 @@ public class MainGameScreen extends AbstractBaseScreen
         }
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
+    public void draw(final SpriteBatch spriteBatch, OrthoGameCamera camera)
+    {
+        if (background != null)
+        {
+            spriteBatch.draw
+                (
+                    background,
+                    camera.getPosition().x - Gfx._VIEW_HALF_WIDTH,
+                    camera.getPosition().y - Gfx._VIEW_HALF_HEIGHT
+                );
+        }
+    }
+
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
+    public Texture getBackground()
+    {
+        return background;
+    }
+
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     public void reset()
     {
         firstTime = true;
@@ -136,6 +191,11 @@ public class MainGameScreen extends AbstractBaseScreen
         AppConfig.gamePaused            = false;
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void show()
     {
@@ -149,6 +209,22 @@ public class MainGameScreen extends AbstractBaseScreen
         App.appState.set(StateID._STATE_SETUP);
     }
 
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
+    @Override
+    public void loadImages()
+    {
+        background = App.assets.loadSingleAsset("water_background.png", Texture.class);
+    }
+
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
     @Override
     public void dispose()
     {
@@ -160,6 +236,8 @@ public class MainGameScreen extends AbstractBaseScreen
 
         App.baseRenderer.gameZoom.setZoomValue(0.0f);
         App.baseRenderer.hudZoom.setZoomValue(0.0f);
+
+        App.assets.unloadAsset("water_background.png");
 
         App.hud          = null;
         App.levelManager = null;
