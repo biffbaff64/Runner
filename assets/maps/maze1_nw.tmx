@@ -393,7 +393,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup color="#ffaa00" id="14" name="collision" visible="0">
+ <objectgroup color="#ffaa00" id="14" name="collision">
   <object id="647" name="Wall" type="Collision" x="0" y="6528" width="1856" height="1472"/>
   <object id="654" name="Wall" type="Collision" x="576" y="2048" width="2624" height="192"/>
   <object id="661" name="Wall" type="Collision" x="7424" y="1600" width="576" height="4928"/>

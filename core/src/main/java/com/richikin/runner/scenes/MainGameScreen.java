@@ -69,8 +69,8 @@ public class MainGameScreen extends AbstractBaseScreen
 
             endGameManager   = new EndgameManager();
             gameControlLoop  = new GameControlLoop();
-            App.levelManager = new LevelManager();
 
+            App.levelManager = new LevelManager();
             App.levelManager.prepareNewGame();
 
             App.appState.set(StateID._STATE_SETUP);
@@ -92,35 +92,31 @@ public class MainGameScreen extends AbstractBaseScreen
     @Override
     public void update()
     {
-        //noinspection EnhancedSwitchMigration
         switch (App.appState.peek())
         {
-            case _STATE_MAIN_MENU:
-            case _STATE_CLOSING:
-            {
+            case _STATE_MAIN_MENU,
+                _STATE_CLOSING -> {
             }
-            break;
 
-            case _STATE_SETUP:
-            case _STATE_GET_READY:
-            case _STATE_DEVELOPER_PANEL:
-            case _STATE_PAUSED:
-            case _STATE_GAME:
-            case _STATE_MESSAGE_PANEL:
-            case _STATE_LEVEL_RETRY:
-            case _STATE_LEVEL_FINISHED:
-            case _STATE_GAME_OVER:
-            case _STATE_GAME_FINISHED:
-            case _STATE_ANNOUNCE_MISSILE:
-            case _STATE_TELEPORTING:
-            case _STATE_END_GAME:
-            {
+            case _STATE_SETUP,
+                 _STATE_GET_READY,
+                 _STATE_DEVELOPER_PANEL,
+                 _STATE_PAUSED,
+                 _STATE_GAME,
+                 _STATE_MESSAGE_PANEL,
+                 _STATE_LEVEL_RETRY,
+                 _STATE_LEVEL_FINISHED,
+                 _STATE_GAME_OVER,
+                 _STATE_GAME_FINISHED,
+                 _STATE_ANNOUNCE_MISSILE,
+                 _STATE_TELEPORTING,
+                 _STATE_END_GAME -> {
+
                 gameControlLoop.update();
             }
-            break;
 
-            default:
-            {
+            default -> {
+
                 Trace.__FILE_FUNC();
                 Trace.dbg("Unsupported game state: " + App.appState.peek());
             }

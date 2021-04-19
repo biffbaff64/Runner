@@ -75,11 +75,11 @@ public class SpriteDescriptor
     public SpriteDescriptor(String objectName,
                             GraphicID graphicID,
                             GraphicID type,
+                            TileID tileID,
                             String asset,
                             int frames,
                             Vec2 assetSize,
-                            Animation.PlayMode playMode,
-                            TileID tileID)
+                            Animation.PlayMode playMode)
     {
         this(objectName, graphicID, type, asset, frames, tileID);
         this._PLAYMODE = playMode;

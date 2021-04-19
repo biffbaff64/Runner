@@ -10,7 +10,6 @@ import com.richikin.runner.entities.hero.MainPlayer;
 import com.richikin.runner.entities.objects.GdxSprite;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.Vec2;
 
 public class Entities
@@ -26,32 +25,31 @@ public class Entities
             new SpriteDescriptor
                 (
                     "Player",
-                    GraphicID.G_PLAYER, GraphicID._MAIN,
+                    GraphicID.G_PLAYER, GraphicID._MAIN, TileID._PLAYER_TILE,
                     GameAssets._IDLE_DOWN_ASSET, GameAssets._PLAYER_STAND_FRAMES,
                     new Vec2(192, 192),
-                    Animation.PlayMode.LOOP,
-                    TileID._PLAYER_TILE
+                    Animation.PlayMode.LOOP
                 ),
 
             // Other Characters
             new SpriteDescriptor
                 (
                     "Prisoner",
-                    GraphicID.G_PRISONER, GraphicID._MAIN,
+                    GraphicID.G_PRISONER, GraphicID._MAIN, TileID._PRISONER_TILE,
                     GameAssets._PRISONER_IDLE_DOWN_ASSET, GameAssets._PRISONER_IDLE_FRAMES,
                     new Vec2(128, 128),
-                    Animation.PlayMode.LOOP,
-                    TileID._PRISONER_TILE
+                    Animation.PlayMode.LOOP
+
                 ),
 
             new SpriteDescriptor
                 (
                     "Villager",
-                    GraphicID.G_VILLAGER, GraphicID._MAIN,
+                    GraphicID.G_VILLAGER, GraphicID._MAIN, TileID._VILLAGER_TILE,
                     GameAssets._VILLAGER_IDLE_DOWN_ASSET, GameAssets._VILLAGER_IDLE_FRAMES,
                     new Vec2(128, 128),
-                    Animation.PlayMode.LOOP,
-                    TileID._VILLAGER_TILE
+                    Animation.PlayMode.LOOP
+
                 ),
 
             // Lasers, Bullets, Explosions, etc
@@ -59,6 +57,24 @@ public class Entities
             // Pickups
 
             // Decorations
+            new SpriteDescriptor
+                (
+                    "Alcove Torch",
+                    GraphicID.G_ALCOVE_TORCH, GraphicID._DECORATION, TileID._ALCOVE_TORCH_TILE,
+                    GameAssets._ALCOVE_TORCH_ASSET, GameAssets._ALCOVE_TORCH_FRAMES,
+                    new Vec2(64, 192),
+                    Animation.PlayMode.LOOP
+                ),
+
+            new SpriteDescriptor
+                (
+                    "Barrel",
+                    GraphicID.G_BARREL, GraphicID._DECORATION, TileID._BARREL_TILE,
+                    GameAssets._BARREL_1_ASSET, GameAssets._BARREL_FRAMES,
+                    new Vec2(90, 152),
+                    Animation.PlayMode.NORMAL
+
+                ),
 
             // Interactive
 
@@ -68,11 +84,11 @@ public class Entities
             new SpriteDescriptor
                 (
                     "Soldier",
-                    GraphicID.G_SOLDIER, GraphicID._ENEMY,
+                    GraphicID.G_SOLDIER, GraphicID._ENEMY, TileID._SOLDIER_TILE,
                     GameAssets._SOLDIER_IDLE_DOWN_ASSET, GameAssets._SOLDIER_IDLE_FRAMES,
                     new Vec2(148, 148),
-                    Animation.PlayMode.LOOP,
-                    TileID._SOLDIER_TILE
+                    Animation.PlayMode.LOOP
+
                 ),
 
             // Miscellaneous Enemy Related

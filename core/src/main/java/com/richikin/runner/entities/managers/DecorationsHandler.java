@@ -1,8 +1,14 @@
 package com.richikin.runner.entities.managers;
 
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.runner.assets.GameAssets;
 import com.richikin.runner.core.App;
+import com.richikin.runner.entities.EntityStats;
+import com.richikin.runner.entities.characters.Decoration;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
+import com.richikin.runner.maps.TiledUtils;
 import com.richikin.utilslib.graphics.EntityCounts;
 import com.richikin.utilslib.logging.Trace;
 
@@ -64,6 +70,28 @@ public class DecorationsHandler extends GenericEntityManager
     @Override
     public void create()
     {
+        TiledUtils tiledUtils = new TiledUtils();
+
+        for (EntityCounts item : decorations)
+        {
+            Array<SpriteDescriptor> tiles = tiledUtils.findMultiTiles(item.graphicID);
+
+            if (tiles.size > 0)
+            {
+                for (SpriteDescriptor descriptor : tiles)
+                {
+                    descriptor._ASSET = checkAssetName(descriptor)._ASSET;
+                    descriptor._SIZE  = GameAssets.getAssetSize(descriptor._GID);
+
+                    Decoration decoration = new Decoration(descriptor._GID);
+                    decoration.initialise(descriptor);
+
+                    App.entityData.addEntity(decoration);
+
+                    EntityStats.log(descriptor._GID);
+                }
+            }
+        }
     }
 
     /**
@@ -84,5 +112,40 @@ public class DecorationsHandler extends GenericEntityManager
     public EntityCounts[] getDecorations()
     {
         return decorations;
+    }
+
+    /**
+     * ------------------------------------------------------------------------------
+     *
+     * ------------------------------------------------------------------------------
+     */
+    private SpriteDescriptor checkAssetName(SpriteDescriptor descriptor)
+    {
+        final String[] barrels =
+            {
+                GameAssets._BARREL_1_ASSET,
+                GameAssets._BARREL_2_ASSET,
+                GameAssets._BARREL_3_ASSET,
+                GameAssets._BARREL_4_ASSET
+            };
+
+        final String[] pots =
+            {
+                GameAssets._POT_1_ASSET,
+                GameAssets._POT_2_ASSET,
+                GameAssets._POT_3_ASSET,
+                GameAssets._POT_4_ASSET,
+            };
+
+        if (graphicID == GraphicID.G_BARREL)
+        {
+            descriptor._ASSET = barrels[MathUtils.random(barrels.length-1)];
+        }
+        else if (graphicID == GraphicID.G_POT)
+        {
+            descriptor._ASSET = pots[MathUtils.random(pots.length-1)];
+        }
+
+        return descriptor;
     }
 }

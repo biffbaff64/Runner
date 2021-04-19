@@ -31,7 +31,7 @@ public enum TileID
 
     // Row 3
     _GEM_TILE(21),
-    _TORCH2_TILE(22),
+    _ALCOVE_TORCH_TILE(22),
     _LOOP_BLOCK_HORIZONTAL_TILE(23),
     _LOOP_BLOCK_VERTICAL_TILE(24),
     _PRISONER_TILE(25),

@@ -135,7 +135,7 @@ public class MapCreator
                                 setEntityPlaceable(GraphicID._PICKUP, true);
                             }
 
-                            case _TORCH2_TILE,
+                            case _ALCOVE_TORCH_TILE,
                                 _CRATE_TILE,
                                 _BARREL_TILE,
                                 _POT_TILE,

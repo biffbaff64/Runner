@@ -28,16 +28,16 @@ public class SplashScreen implements Disposable
         }
     }
 
+    public static SplashScreen inst()
+    {
+        return _INSTANCE;
+    }
+
     public boolean isAvailable;
 
     private SpriteBatch batch;
     private Texture     background;
     private StopWatch   stopWatch;
-
-    public static SplashScreen inst()
-    {
-        return _INSTANCE;
-    }
 
     public void setup()
     {
