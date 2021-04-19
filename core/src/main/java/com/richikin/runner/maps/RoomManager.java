@@ -12,59 +12,59 @@ import org.jetbrains.annotations.NotNull;
 
 public class RoomManager implements Disposable
 {
-    private static final String _MAZE_NW        = "maze1_nw.tmx";         //
+    private static final String _MAZE_NW = "maze1_nw.tmx";         //
 
-    private static final String _PASSAGE_ES     = "passage_es.tmx";       //
-    private static final String _PASSAGE_ESW    = "passage_esw.tmx";      //
-    private static final String _PASSAGE_NS     = "passage_ns.tmx";       //
-    private static final String _PASSAGE_NES    = "passage_nes.tmx";      //
-    private static final String _PASSAGE_NE     = "passage_ne.tmx";       //
-    private static final String _PASSAGE_S      = "passage_s.tmx";        //
+    private static final String _PASSAGE_ES  = "passage_es.tmx";       //
+    private static final String _PASSAGE_ESW = "passage_esw.tmx";      //
+    private static final String _PASSAGE_NS  = "passage_ns.tmx";       //
+    private static final String _PASSAGE_NES = "passage_nes.tmx";      //
+    private static final String _PASSAGE_NE  = "passage_ne.tmx";       //
+    private static final String _PASSAGE_S   = "passage_s.tmx";        //
 
-    private static final String _PRISON_N       = "prison_room_n.tmx";    //
-    private static final String _PRISON_S       = "prison_room_s.tmx";    //
+    private static final String _PRISON_N = "prison_room_n.tmx";    //
+    private static final String _PRISON_S = "prison_room_s.tmx";    //
 
-    private static final String _E              = "room_e.tmx";           //
-    private static final String _E2             = "room_e2.tmx";          //
-    private static final String _EW             = "room_ew.tmx";          //
-    private static final String _N              = "room_n.tmx";           //
-    private static final String _N2             = "room_n2.tmx";          //
-    private static final String _S2             = "room_s2.tmx";          //
-    private static final String _NES            = "room_nes.tmx";         //
-    private static final String _NESW           = "room_nesw.tmx";        //
-    private static final String _NESW2          = "room_nesw2.tmx";       //
-    private static final String _N3             = "room_n3.tmx";          //
-    private static final String _NW             = "room_nw2.tmx";         //
-    private static final String _NWS            = "room_nws.tmx";         //
-    private static final String _S              = "room_s.tmx";           //
-    private static final String _SEW            = "room_sew.tmx";         //
-    private static final String _SN             = "room_sn.tmx";          //
-    private static final String _W              = "room_w.tmx";           //
-    private static final String _WS             = "room_ws.tmx";          //
+    private static final String _E     = "room_e.tmx";           //
+    private static final String _E2    = "room_e2.tmx";          //
+    private static final String _EW    = "room_ew.tmx";          //
+    private static final String _N     = "room_n.tmx";           //
+    private static final String _N2    = "room_n2.tmx";          //
+    private static final String _S2    = "room_s2.tmx";          //
+    private static final String _NES   = "room_nes.tmx";         //
+    private static final String _NESW  = "room_nesw.tmx";        //
+    private static final String _NESW2 = "room_nesw2.tmx";       //
+    private static final String _N3    = "room_n3.tmx";          //
+    private static final String _NW    = "room_nw2.tmx";         //
+    private static final String _NWS   = "room_nws.tmx";         //
+    private static final String _S     = "room_s.tmx";           //
+    private static final String _SEW   = "room_sew.tmx";         //
+    private static final String _SN    = "room_sn.tmx";          //
+    private static final String _W     = "room_w.tmx";           //
+    private static final String _WS    = "room_ws.tmx";          //
 
-    private static final String _ROOM1_NS       = "room1_ns.tmx";         //
-    private static final String _ROOM2_NES      = "room2_nes.tmx";        //
-    private static final String _ROOM2_NS       = "room2_ns.tmx";         //
-    private static final String _ROOM3_NEW      = "room3_new.tmx";        //
-    private static final String _ROOM4_ES       = "room4_es.tmx";         //
-    private static final String _ROOM5_NE       = "room5_ne.tmx";         //
-    private static final String _ROOM5B_NE      = "room5b_ne.tmx";        //
-    private static final String _ROOM6_ESW      = "room6_esw.tmx";        //
-    private static final String _ROOM7_NS       = "room7_ns.tmx";         //
-    private static final String _ROOM8_NW       = "room8_nw.tmx";         //
-    private static final String _ROOM9_NESW     = "room9_nesw.tmx";       //
-    private static final String _ROOM10_NSW     = "room10_nsw.tmx";       //
-    private static final String _ROOM11_NESW    = "room11_nesw.tmx";      //
-    private static final String _ROOM12_NS      = "room12_ns.tmx";        //
-    private static final String _ROOM13_ESW     = "room13_esw.tmx";       //
-    private static final String _ROOM13B_EW     = "room13b_ew.tmx";       //
-    private static final String _ROOM14_NS      = "room14_ns.tmx";        //
-    private static final String _ROOM15_NE      = "room15_ne.tmx";        //
-    private static final String _ROOM16_NW      = "room16_nw.tmx";        //
-    private static final String _ROOM17_N       = "room17_n.tmx";         //
-    private static final String _ROOM18_NS      = "room18_ns.tmx";        //
+    private static final String _ROOM1_NS    = "room1_ns.tmx";         //
+    private static final String _ROOM2_NES   = "room2_nes.tmx";        //
+    private static final String _ROOM2_NS    = "room2_ns.tmx";         //
+    private static final String _ROOM3_NEW   = "room3_new.tmx";        //
+    private static final String _ROOM4_ES    = "room4_es.tmx";         //
+    private static final String _ROOM5_NE    = "room5_ne.tmx";         //
+    private static final String _ROOM5B_NE   = "room5b_ne.tmx";        //
+    private static final String _ROOM6_ESW   = "room6_esw.tmx";        //
+    private static final String _ROOM7_NS    = "room7_ns.tmx";         //
+    private static final String _ROOM8_NW    = "room8_nw.tmx";         //
+    private static final String _ROOM9_NESW  = "room9_nesw.tmx";       //
+    private static final String _ROOM10_NSW  = "room10_nsw.tmx";       //
+    private static final String _ROOM11_NESW = "room11_nesw.tmx";      //
+    private static final String _ROOM12_NS   = "room12_ns.tmx";        //
+    private static final String _ROOM13_ESW  = "room13_esw.tmx";       //
+    private static final String _ROOM13B_EW  = "room13b_ew.tmx";       //
+    private static final String _ROOM14_NS   = "room14_ns.tmx";        //
+    private static final String _ROOM15_NE   = "room15_ne.tmx";        //
+    private static final String _ROOM16_NW   = "room16_nw.tmx";        //
+    private static final String _ROOM17_N    = "room17_n.tmx";         //
+    private static final String _ROOM18_NS   = "room18_ns.tmx";        //
 
-    private static final String _SECRET1        = "room_secret1.tmx";     //
+    private static final String _SECRET1 = "room_secret1.tmx";     //
 
     private static final int    _DEFAULT_START_ROW    = 1;
     private static final int    _DEFAULT_START_COLUMN = 1;
@@ -80,15 +80,15 @@ public class RoomManager implements Disposable
             {null, null, null, null, null, null, null, null},
             // -----------------------------------------
             // 0   1                        2                       3                       4                       5                       6                       7
-            {null, new Room(_S2),           null,                   null,                   null,                   null,                   new Room(_PRISON_S),    null},  // 1
-            {null, new Room(_ROOM1_NS),     new Room(_SECRET1),     new Room(_ROOM4_ES),    new Room(_W),           new Room(_S),           new Room(_SN),          null},  // 2
-            {null, new Room(_PASSAGE_NES),  new Room(_NESW2),       new Room(_NESW),        new Room(_ROOM6_ESW),   new Room(_ROOM11_NESW), new Room(_ROOM10_NSW),  null},  // 3
-            {null, new Room(_ROOM2_NES),    new Room(_ROOM3_NEW),   new Room(_ROOM9_NESW),  new Room(_MAZE_NW),     new Room(_ROOM7_NS),    new Room(_PASSAGE_NS),  null},  // 4
-            {null, new Room(_N),            new Room(_E),           new Room(_ROOM5_NE),    null,                   new Room(_NES),         new Room(_NW),          null},  // 5
-            {null, new Room(_PASSAGE_ES),   new Room(_WS),          null,                   null,                   new Room(_ROOM12_NS),   null,                   null},  // 6
-            {null, new Room(_ROOM14_NS),    new Room(_PASSAGE_NE),  new Room(_PASSAGE_ESW), new Room(_ROOM13_ESW),  new Room(_NWS),         new Room(_PASSAGE_S),   null},  // 7
-            {null, new Room(_ROOM17_N),     new Room(_N2),          new Room(_ROOM18_NS),   new Room(_ROOM2_NS),    new Room(_ROOM15_NE),   new Room(_ROOM16_NW),   null},  // 8
-            {null, null,                    null,                   new Room(_N3),          new Room(_PRISON_N),    null,                   null,                   null},  // 9
+            {null, new Room(_S2), null, null, null, null, new Room(_PRISON_S), null},  // 1
+            {null, new Room(_ROOM1_NS), new Room(_SECRET1), new Room(_ROOM4_ES), new Room(_W), new Room(_S), new Room(_SN), null},  // 2
+            {null, new Room(_PASSAGE_NES), new Room(_NESW2), new Room(_NESW), new Room(_ROOM6_ESW), new Room(_ROOM11_NESW), new Room(_ROOM10_NSW), null},  // 3
+            {null, new Room(_ROOM2_NES), new Room(_ROOM3_NEW), new Room(_ROOM9_NESW), new Room(_MAZE_NW), new Room(_ROOM7_NS), new Room(_PASSAGE_NS), null},  // 4
+            {null, new Room(_N), new Room(_E), new Room(_ROOM5_NE), null, new Room(_NES), new Room(_NW), null},  // 5
+            {null, new Room(_PASSAGE_ES), new Room(_WS), null, null, new Room(_ROOM12_NS), null, null},  // 6
+            {null, new Room(_ROOM14_NS), new Room(_PASSAGE_NE), new Room(_PASSAGE_ESW), new Room(_ROOM13_ESW), new Room(_NWS), new Room(_PASSAGE_S), null},  // 7
+            {null, new Room(_ROOM17_N), new Room(_N2), new Room(_ROOM18_NS), new Room(_ROOM2_NS), new Room(_ROOM15_NE), new Room(_ROOM16_NW), null},  // 8
+            {null, null, null, new Room(_N3), new Room(_PRISON_N), null, null, null},  // 9
 
             // -----------------------------------------
             // DO NOT CHANGE THIS LINE
@@ -109,7 +109,7 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     public RoomManager()
@@ -125,7 +125,7 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     public void initialise()
@@ -149,7 +149,7 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     private SimpleVec2 findRoom(String roomName)
@@ -175,7 +175,7 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     private void setRoom(int row, int column, int position)
@@ -184,7 +184,7 @@ public class RoomManager implements Disposable
         {
             activeRoom.set(roomMap[row][column]);
 
-            activeRoom.row = row;
+            activeRoom.row    = row;
             activeRoom.column = column;
         }
 
@@ -193,7 +193,7 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     public Room[][] getRoomMap()
@@ -203,7 +203,7 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     public int getWorldWidth()
@@ -213,7 +213,7 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     public int getWorldHeight()
@@ -223,7 +223,7 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     public String getActiveRoomName()
@@ -240,12 +240,12 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     public SimpleVec2 getStartPosition()
     {
-        String      currentMap = roomMap[activeRoom.row][activeRoom.column].roomName;
+        String     currentMap = roomMap[activeRoom.row][activeRoom.column].roomName;
         SimpleVec2 positions  = new SimpleVec2();
 
         for (int row = 0; row < worldHeight; row++)
@@ -267,7 +267,7 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     public String getCurrentMapNameWithPath()
@@ -277,7 +277,7 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     @NotNull
@@ -288,9 +288,10 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
-`     */
+     * `
+     */
     private SimpleVec2 createRoomList()
     {
         SimpleVec2 startRoomPos = null;
@@ -321,7 +322,7 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     private int countRoomMarkers(TileID _marker, Room _room)
@@ -331,8 +332,8 @@ public class RoomManager implements Disposable
         if ((_room != null) && (_room.roomName != null))
         {
             TmxMapLoader      tmxMapLoader = new TmxMapLoader();
-            TiledMap          map   = tmxMapLoader.load(getMapNameWithPath(_room.roomName));
-            TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(MapData._MARKER_TILES);
+            TiledMap          map          = tmxMapLoader.load(getMapNameWithPath(_room.roomName));
+            TiledMapTileLayer layer        = (TiledMapTileLayer) map.getLayers().get(MapData._MARKER_TILES);
 
             for (int row = 0; row < layer.getHeight(); row++)
             {
@@ -390,25 +391,20 @@ public class RoomManager implements Disposable
 
                                 switch (tileID)
                                 {
-                                    case _NORTH_TILE ->
-                                        room.compassPoints[Room._NORTH].set(column, row);
+                                    case _NORTH_TILE -> room.compassPoints[Room._NORTH].set(column, row);
 
-                                    case _EAST_TILE ->
-                                        room.compassPoints[Room._EAST].set(column, row);
+                                    case _EAST_TILE -> room.compassPoints[Room._EAST].set(column, row);
 
-                                    case _SOUTH_TILE ->
-                                        room.compassPoints[Room._SOUTH].set(column, row);
+                                    case _SOUTH_TILE -> room.compassPoints[Room._SOUTH].set(column, row);
 
-                                    case _WEST_TILE ->
-                                        room.compassPoints[Room._WEST].set(column, row);
+                                    case _WEST_TILE -> room.compassPoints[Room._WEST].set(column, row);
 
-                                    case _PLAYER_TILE ->
-                                        room.compassPoints[Room._START].set(column, row);
+                                    case _PLAYER_TILE -> room.compassPoints[Room._START].set(column, row);
 
-                                    case _MYSTERY_CHEST_TILE ->
-                                        room.mysteryChestsAvailable++;
+                                    case _MYSTERY_CHEST_TILE -> room.mysteryChestsAvailable++;
 
-                                    default -> {}
+                                    default -> {
+                                    }
                                 }
                             }
                         }
@@ -499,7 +495,7 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     private void debugRoomMap()
@@ -524,7 +520,7 @@ public class RoomManager implements Disposable
 
     /**
      * ------------------------------------------------------------------------------
-     *
+     * <p>
      * ------------------------------------------------------------------------------
      */
     @Override
