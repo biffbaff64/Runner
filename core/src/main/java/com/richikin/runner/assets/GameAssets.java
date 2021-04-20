@@ -3,7 +3,6 @@ package com.richikin.runner.assets;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.assets.AssetSize;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.Vec2;
 
 public class GameAssets

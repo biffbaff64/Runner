@@ -45,9 +45,9 @@ public class CollisionObject implements Disposable
     public boolean isHittingPlayer;
     public boolean isObstacle;
     public boolean isContactObstacle;
-    public boolean isInvisibilityAllowed;
 
-    private StopWatch invisibilityTimer;
+    public boolean isInvisibilityAllowed;
+    public StopWatch invisibilityTimer;
     private int       invisibilityDelay;    // How long this collision object is ignored for
 
     public CollisionObject()

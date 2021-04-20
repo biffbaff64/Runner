@@ -139,6 +139,7 @@ public class MapCreator
                                 _CRATE_TILE,
                                 _BARREL_TILE,
                                 _POT_TILE,
+                                _PLANT_POT_TILE,
                                 _SACKS_TILE,
                                 _GLOW_EYES_TILE -> {
 

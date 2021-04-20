@@ -11,6 +11,7 @@ import com.richikin.runner.entities.managers.DecorationsHandler;
 import com.richikin.runner.entities.managers.EnemyHandler;
 import com.richikin.runner.entities.managers.PlayerManager;
 import com.richikin.runner.entities.objects.GdxSprite;
+import com.richikin.runner.entities.systems.RenderSystem;
 import com.richikin.utilslib.entities.IEntityManager;
 import com.richikin.utilslib.logging.Trace;
 
@@ -21,9 +22,9 @@ public class EntityManager implements IEntityManager
     public int              blocksManagerIndex;
     public int              decorationsManagerIndex;
     public int              playerIndex;
-    public PlayerManager    playerManager;
-    public RenderSystem     renderSystem;
-    public boolean          playerReady;
+    public PlayerManager playerManager;
+    public RenderSystem  renderSystem;
+    public boolean       playerReady;
 
     /**
      * ------------------------------------------------------------------------------

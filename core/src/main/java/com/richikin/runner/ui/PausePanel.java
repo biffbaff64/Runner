@@ -5,4 +5,8 @@ public class PausePanel
     public void setup()
     {
     }
+
+    public void draw()
+    {
+    }
 }

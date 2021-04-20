@@ -63,7 +63,6 @@ public class SpriteDescriptor
                             TileID tileID)
     {
         this();
-
         this._NAME   = objectName;
         this._GID    = graphicID;
         this._TILE   = tileID;

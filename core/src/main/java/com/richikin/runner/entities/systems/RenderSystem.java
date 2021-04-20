@@ -1,4 +1,4 @@
-package com.richikin.runner.entities;
+package com.richikin.runner.entities.systems;
 
 import com.richikin.runner.config.Settings;
 import com.richikin.runner.core.App;
@@ -29,16 +29,13 @@ public class RenderSystem
                 {
                     entity = (GdxSprite) App.entityData.entityMap.get(i);
 
-                    if (entity != null)
+                    if ((entity != null) && (entity.position.z == z))
                     {
-                        if (entity.position.z == z)
-                        {
-                            entity.preDraw();
+                        entity.preDraw();
 
-                            if (isInViewWindow(entity) && entity.isDrawable)
-                            {
-                                entity.draw(App.spriteBatch);
-                            }
+                        if (isInViewWindow(entity) && entity.isDrawable)
+                        {
+                            entity.draw(App.spriteBatch);
                         }
                     }
                 }

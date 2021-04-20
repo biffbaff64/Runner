@@ -16,11 +16,14 @@ import com.richikin.runner.core.App;
 import com.richikin.runner.core.GameConstants;
 import com.richikin.runner.developer.Developer;
 import com.richikin.runner.graphics.Gfx;
+import com.richikin.runner.input.buttons.GameButton;
 import com.richikin.runner.maps.Room;
 import com.richikin.runner.ui.panels.IUserInterfacePanel;
 import com.richikin.utilslib.graphics.GfxUtils;
 import com.richikin.utilslib.graphics.text.FontUtils;
+import com.richikin.utilslib.input.IGDXButton;
 import com.richikin.utilslib.input.Switch;
+import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.ui.IUIProgressBar;
 import com.richikin.utilslib.ui.ProgressBar;
@@ -72,26 +75,17 @@ public class HeadsUpDisplay implements IHud
             { 835,  835,   53,    0,    0},             // Villagers
             {1172, 1172,  101,    0,    0},             // Compass
         };
-
-    public final int[][] livesDisplay =
-        {
-            {0, 0},
-            {0, 0},
-            {0, 0},
-            {0, 0},
-            {0, 0},
-        };
     //@formatter:on
 
-    public Switch buttonUp;
-    public Switch buttonDown;
-    public Switch buttonLeft;
-    public Switch buttonRight;
-    public Switch buttonA;
-    public Switch buttonB;
-    public Switch buttonX;
-    public Switch buttonY;
-    public Switch buttonPause;
+    public Switch     buttonUp;
+    public Switch     buttonDown;
+    public Switch     buttonLeft;
+    public Switch     buttonRight;
+    public Switch     buttonPause;
+    public IGDXButton buttonA;
+    public IGDXButton buttonB;
+    public IGDXButton buttonX;
+    public IGDXButton buttonY;
 
     public Image               scorePanel;
     public BitmapFont          smallFont;
@@ -137,7 +131,7 @@ public class HeadsUpDisplay implements IHud
         compassTexture = new TextureRegion[5];
         gfxUtils.splitRegion(App.assets.getObjectRegion("compass"), 5, compassTexture);
 
-        itemBar = new ItemBar();
+        itemBar        = new ItemBar();
         itemPanelIndex = 0;
 
         bigFont   = FontUtils.inst().createFont(GameAssets._PRO_WINDOWS_FONT, 28);
@@ -192,6 +186,19 @@ public class HeadsUpDisplay implements IHud
         if (AppConfig.hudExists)
         {
             drawPanels();
+            drawItems();
+            drawCompass();
+            drawMessages();
+
+            if (canDrawControls && App.gameProgress.gameSetupDone)
+            {
+                drawControls();
+            }
+
+            if (hudStateID == StateID._STATE_PAUSED)
+            {
+                pausePanel.draw();
+            }
 
             drawHudDebug();
         }
@@ -200,24 +207,40 @@ public class HeadsUpDisplay implements IHud
     @Override
     public void showControls()
     {
+        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+        {
+            buttonB.setDrawable(true);
+            buttonA.setDrawable(true);
+            buttonX.setDrawable(true);
+            buttonY.setDrawable(true);
+
+            if (App.inputManager.virtualJoystick != null)
+            {
+                App.inputManager.virtualJoystick.show();
+            }
+        }
     }
 
     @Override
     public void hideControls()
     {
+        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+        {
+            buttonB.setDrawable(false);
+            buttonA.setDrawable(false);
+            buttonX.setDrawable(false);
+            buttonY.setDrawable(false);
+
+            if (App.inputManager.virtualJoystick != null)
+            {
+                App.inputManager.virtualJoystick.hide();
+            }
+        }
     }
 
     @Override
     public void showPauseButton(boolean state)
     {
-    }
-
-    public void releaseDirectionButtons()
-    {
-        buttonRight.release();
-        buttonLeft.release();
-        buttonUp.release();
-        buttonDown.release();
     }
 
     @Override
@@ -288,10 +311,44 @@ public class HeadsUpDisplay implements IHud
 
     private void drawControls()
     {
+        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+        {
+            if (!AppConfig.gamePaused && (App.appState.peek() != StateID._STATE_MESSAGE_PANEL))
+            {
+                if (App.inputManager.virtualJoystick != null)
+                {
+                    App.inputManager.virtualJoystick.getTouchpad().setPosition
+                        (
+                            AppConfig.hudOriginX + displayPos[_JOYSTICK][_X1],
+                            AppConfig.hudOriginY + displayPos[_JOYSTICK][_Y]
+                        );
+
+                    App.inputManager.virtualJoystick.getTouchpad().setBounds
+                        (
+                            AppConfig.hudOriginX + displayPos[_JOYSTICK][_X1],
+                            AppConfig.hudOriginY + displayPos[_JOYSTICK][_Y],
+                            App.inputManager.virtualJoystick.getTouchpad().getWidth(),
+                            App.inputManager.virtualJoystick.getTouchpad().getHeight()
+                        );
+                }
+
+                ((GameButton) buttonA).draw();
+                ((GameButton) buttonB).draw();
+                ((GameButton) buttonX).draw();
+                ((GameButton) buttonY).draw();
+            }
+        }
     }
 
     private void drawMessages()
     {
+        if (!AppConfig.gamePaused)
+        {
+            if (messageManager.isEnabled())
+            {
+                messageManager.draw();
+            }
+        }
     }
 
     private void drawHudDebug()
@@ -358,10 +415,34 @@ public class HeadsUpDisplay implements IHud
         }
     }
 
-    /**
-     * Creates the game screen buttons and then
-     * registers them with the Scene2D Stage.
-     */
+    public int getItemPanelIndex()
+    {
+        return itemPanelIndex;
+    }
+
+    public void setItemPanelIndex(int index)
+    {
+        itemPanelIndex = index;
+    }
+
+    public IUIProgressBar getHealthBar()
+    {
+        return healthBar;
+    }
+
+    public IUIProgressBar getLivesBar()
+    {
+        return livesBar;
+    }
+
+    public void releaseDirectionButtons()
+    {
+        buttonRight.release();
+        buttonLeft.release();
+        buttonUp.release();
+        buttonDown.release();
+    }
+
     @Override
     public void createHUDButtons()
     {
@@ -369,19 +450,106 @@ public class HeadsUpDisplay implements IHud
         buttonDown  = new Switch();
         buttonLeft  = new Switch();
         buttonRight = new Switch();
-        buttonA     = new Switch();
-        buttonB     = new Switch();
-        buttonX     = new Switch();
-        buttonY     = new Switch();
         buttonPause = new Switch();
-    }
 
-    private void addButtonListeners()
-    {
+        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+        {
+            buttonA = new GameButton
+                (
+                    App.assets.getButtonRegion("button_a"),
+                    App.assets.getButtonRegion("button_a_pressed"),
+                    (int) AppConfig.hudOriginX + displayPos[_BUTTON_A][_X1],
+                    (int) AppConfig.hudOriginY + displayPos[_BUTTON_A][_Y],
+                    displayPos[_BUTTON_A][_WIDTH], displayPos[_BUTTON_A][_HEIGHT]
+                );
+
+            buttonB = new GameButton
+                (
+                    App.assets.getButtonRegion("button_b"),
+                    App.assets.getButtonRegion("button_b_pressed"),
+                    (int) AppConfig.hudOriginX + displayPos[_BUTTON_B][_X1],
+                    (int) AppConfig.hudOriginY + displayPos[_BUTTON_B][_Y],
+                    displayPos[_BUTTON_B][_WIDTH], displayPos[_BUTTON_B][_HEIGHT]
+                );
+
+            buttonX = new GameButton
+                (
+                    App.assets.getButtonRegion("button_x"),
+                    App.assets.getButtonRegion("button_x_pressed"),
+                    (int) AppConfig.hudOriginX + displayPos[_BUTTON_X][_X1],
+                    (int) AppConfig.hudOriginY + displayPos[_BUTTON_X][_Y],
+                    displayPos[_BUTTON_X][_WIDTH], displayPos[_BUTTON_X][_HEIGHT]
+                );
+
+            buttonY = new GameButton
+                (
+                    App.assets.getButtonRegion("button_y"),
+                    App.assets.getButtonRegion("button_y_pressed"),
+                    (int) AppConfig.hudOriginX + displayPos[_BUTTON_Y][_X1],
+                    (int) AppConfig.hudOriginY + displayPos[_BUTTON_Y][_Y],
+                    displayPos[_BUTTON_Y][_WIDTH], displayPos[_BUTTON_Y][_HEIGHT]
+                );
+        }
+        else
+        {
+            buttonA = new Switch();
+            buttonB = new Switch();
+            buttonX = new Switch();
+            buttonY = new Switch();
+        }
+
+        hideControls();
+
+        AppConfig.gameButtonsReady = true;
     }
 
     @Override
     public void dispose()
     {
+        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+        {
+            buttonUp    = null;
+            buttonDown  = null;
+            buttonLeft  = null;
+            buttonRight = null;
+
+            //
+            // These buttons will be on-screen if a _VIRTUAL controller
+            // is defined, otherwise they will be switches and do not
+            // need disposing.
+            ((GameButton) buttonA).dispose();
+            ((GameButton) buttonB).dispose();
+            ((GameButton) buttonX).dispose();
+            ((GameButton) buttonY).dispose();
+        }
+
+        buttonA = null;
+        buttonB = null;
+        buttonX = null;
+        buttonY = null;
+
+        if (App.inputManager.virtualJoystick != null)
+        {
+            App.inputManager.virtualJoystick.removeTouchpad();
+        }
+
+        App.assets.unloadAsset(GameAssets._HUD_PANEL_ASSET);
+
+        bigFont.dispose();
+        midFont.dispose();
+        smallFont.dispose();
+
+        // TODO: 20/04/2021
+//        messageManager.dispose();
+//        pausePanel.dispose();
+//        healthBar.dispose();
+//        livesBar.dispose();
+
+        healthBar = null;
+        livesBar  = null;
+
+        messageManager = null;
+        pausePanel     = null;
+        scorePanel     = null;
     }
 }

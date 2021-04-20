@@ -70,6 +70,8 @@ public class DecorationsHandler extends GenericEntityManager
     @Override
     public void create()
     {
+        Trace.__FILE_FUNC();
+
         TiledUtils tiledUtils = new TiledUtils();
 
         for (EntityCounts item : decorations)

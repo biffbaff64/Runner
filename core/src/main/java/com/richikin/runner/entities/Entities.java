@@ -55,6 +55,15 @@ public class Entities
             // Lasers, Bullets, Explosions, etc
 
             // Pickups
+            new SpriteDescriptor
+                (
+                    "Key",
+                    GraphicID.G_KEY, GraphicID._PICKUP, TileID._KEY_TILE,
+                    GameAssets._KEY_ASSET, GameAssets._KEY_FRAMES,
+                    new Vec2(64, 64),
+                    Animation.PlayMode.LOOP
+                ),
+
 
             // Decorations
             new SpriteDescriptor
@@ -76,7 +85,36 @@ public class Entities
 
                 ),
 
+            new SpriteDescriptor
+                (
+                    "Plant Pot",
+                    GraphicID.G_PLANT_POT, GraphicID._DECORATION, TileID._PLANT_POT_TILE,
+                    GameAssets._PLANT_POT_ASSET, GameAssets._PLANT_POT_FRAMES,
+                    new Vec2(64, 146),
+                    Animation.PlayMode.NORMAL
+
+                ),
+
+            new SpriteDescriptor
+                (
+                    "Pot",
+                    GraphicID.G_POT, GraphicID._DECORATION, TileID._POT_TILE,
+                    GameAssets._POT_1_ASSET, GameAssets._POT_FRAMES,
+                    new Vec2(93, 128),
+                    Animation.PlayMode.NORMAL
+
+                ),
+
             // Interactive
+            new SpriteDescriptor
+                (
+                    "Door",
+                    GraphicID.G_DOOR, GraphicID._INTERACTIVE, TileID._DOOR_TILE,
+                    GameAssets._WOOD_DOOR_ASSET, GameAssets._DOOR_FRAMES,
+                    new Vec2(512, 384),
+                    Animation.PlayMode.NORMAL
+
+                ),
 
             // Stationary Enemies
 
@@ -128,6 +166,11 @@ public class Entities
     public SpriteDescriptor getDescriptor(GraphicID gid)
     {
         return entityList[getDescriptorIndex(gid)];
+    }
+
+    public Vec2 getAssetSize(GraphicID gid)
+    {
+        return entityList[getDescriptorIndex(gid)]._SIZE;
     }
 
     public void setAllEnemyStatuses()

@@ -15,8 +15,8 @@ public class GameButton extends Switch implements Disposable
     public TextureRegion bg;
     public TextureRegion bgPressed;
     public TextureRegion bgDisabled;
-    public Box          buttonRect;
-    public ActionStates buttonAction;
+    public Box           buttonRect;
+    public ActionStates  buttonAction;
 
     public int x;
     public int y;
@@ -25,6 +25,28 @@ public class GameButton extends Switch implements Disposable
 
     private       boolean _isDrawable;
     private final int     mapIndex;
+
+    /**
+     * Define a GameButton
+     *
+     * @param textureRegion        - Image used for default state
+     * @param textureRegionPressed - Image used for PRESSED state
+     * @param x                    - X Display co-ordinate
+     * @param y                    - Y Display co-ordinate
+     * @param width                - Width in pixels
+     * @param height               - Height in pixels
+     */
+    public GameButton(TextureRegion textureRegion, TextureRegion textureRegionPressed, int x, int y, int width, int height)
+    {
+        this(x, y);
+
+        this.bg          = textureRegion;
+        this.bgPressed   = textureRegionPressed;
+        this.width       = width;
+        this.height      = height;
+        this._isDrawable = true;
+        this.buttonRect  = new Box(this.x, this.y, this.width, this.height);
+    }
 
     /**
      * Define a GameButton
@@ -49,8 +71,8 @@ public class GameButton extends Switch implements Disposable
     /**
      * Define a GameButton
      *
-     * @param x    - X Display co-ordinate
-     * @param y    - Y Display co-ordinate
+     * @param x - X Display co-ordinate
+     * @param y - Y Display co-ordinate
      */
     public GameButton(int x, int y)
     {
