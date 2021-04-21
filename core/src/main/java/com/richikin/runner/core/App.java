@@ -60,24 +60,21 @@ public abstract class App extends LibApp
     public static MapCreator     mapCreator;
     public static EntityManager  entityManager;
 
-    private App()
-    {
-    }
-
     public static void initialiseObjects()
     {
-        appState = new StateManager(StateID._STATE_POWER_UP);
+        LibApp.setAppState(new StateManager(StateID._STATE_POWER_UP));
+        LibApp.setAssets(new AssetLoader());
+        LibApp.setSpriteBatch(new SpriteBatch());
 
         settings     = new Settings();
-        assets       = new AssetLoader();
-        spriteBatch  = new SpriteBatch();
         cameraUtils  = new CameraUtils();
         worldModel   = new WorldModel();
         baseRenderer = new BaseRenderer();
 
         //
-        // This needs setting here as InputManager needs access to it.
-        stage = new Stage(baseRenderer.hudGameCamera.viewport, spriteBatch);
+        // This needs setting here as InputManager needs access to it, and cannot be done
+        // until baseRenderer has been initialised.
+        LibApp.setStage(new Stage(baseRenderer.hudGameCamera.viewport, getSpriteBatch()));
 
         inputManager   = new InputManager();
         panelManager   = new PanelManager();
