@@ -126,6 +126,15 @@ public class Scene2DUtils
         return slider;
     }
 
+    /**
+     * Create a {@link CheckBox} without adding it to stage.
+     * @param imageOn The image to display when box is selected.
+     * @param imageOff The image to display when box is deselected.
+     * @param x X Display coordinate.
+     * @param y Y Display coordinate.
+     * @param color The Tint.
+     * @param skin The skin to use.
+     */
     // FIXME: 12/12/2020 - Too many parameters
     public CheckBox makeCheckBox(String imageOn, String imageOff, int x, int y, Color color, Skin skin)
     {
@@ -146,6 +155,9 @@ public class Scene2DUtils
         return checkBox;
     }
 
+    /**
+     * Create an {@link Image} from the Objects TextureAtlas.
+     */
     public Image makeObjectsImage(String imageName)
     {
         TextureRegion         region   = LibApp.getAssets().getObjectRegion(imageName);

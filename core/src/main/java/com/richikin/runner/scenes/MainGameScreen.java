@@ -39,9 +39,7 @@ public class MainGameScreen extends AbstractBaseScreen
     public Texture background;
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     public MainGameScreen()
     {
@@ -51,9 +49,7 @@ public class MainGameScreen extends AbstractBaseScreen
     }
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void initialise()
@@ -85,9 +81,7 @@ public class MainGameScreen extends AbstractBaseScreen
     }
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void update()
@@ -124,12 +118,10 @@ public class MainGameScreen extends AbstractBaseScreen
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * Update and Render the game, and step the physics world.
      * Called from {@link com.badlogic.gdx.Game}
      *
      * @param delta Time since the last update.
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void render(float delta)
@@ -147,9 +139,7 @@ public class MainGameScreen extends AbstractBaseScreen
     }
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     public void draw(final SpriteBatch spriteBatch, OrthoGameCamera camera)
     {
@@ -165,9 +155,7 @@ public class MainGameScreen extends AbstractBaseScreen
     }
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     public Texture getBackground()
     {
@@ -175,9 +163,7 @@ public class MainGameScreen extends AbstractBaseScreen
     }
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     public void reset()
     {
@@ -188,9 +174,7 @@ public class MainGameScreen extends AbstractBaseScreen
     }
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void show()
@@ -206,9 +190,7 @@ public class MainGameScreen extends AbstractBaseScreen
     }
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void loadImages()
@@ -217,9 +199,7 @@ public class MainGameScreen extends AbstractBaseScreen
     }
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void dispose()

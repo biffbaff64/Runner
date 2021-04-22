@@ -16,13 +16,11 @@ public class EntityCounts
     public       int       maxTotal;
 
     /**
-     * ------------------------------------------------------------------------------
      * Constructor.
      * @param gid           The {@link GraphicID} of the entity to track.
      * @param currentTotal  Initial value for currently active entities.
      * @param maxTotal      Initializer for maximum allowed. This may initially be
      *                      set to zero, and then set correctly later.
-     * ------------------------------------------------------------------------------
      */
     public EntityCounts(GraphicID gid, int currentTotal, int maxTotal)
     {

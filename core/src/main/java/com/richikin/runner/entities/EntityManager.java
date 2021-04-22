@@ -27,9 +27,7 @@ public class EntityManager implements IEntityManager
     public boolean       playerReady;
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     public EntityManager()
     {
@@ -38,9 +36,7 @@ public class EntityManager implements IEntityManager
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void initialise()
@@ -59,9 +55,7 @@ public class EntityManager implements IEntityManager
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     public void initialiseForLevel()
     {
@@ -84,9 +78,7 @@ public class EntityManager implements IEntityManager
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void updateSprites()
@@ -132,10 +124,8 @@ public class EntityManager implements IEntityManager
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * Entity Tidy actions.
      * These are actions performed at the end of each update.
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void tidySprites()
@@ -192,9 +182,7 @@ public class EntityManager implements IEntityManager
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * Draw all game entities
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void drawSprites()
@@ -206,9 +194,7 @@ public class EntityManager implements IEntityManager
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void releaseEntity(GdxSprite entity)
@@ -223,9 +209,7 @@ public class EntityManager implements IEntityManager
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * Update the indexes into the entity map for the main entities
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void updateIndexes()
@@ -247,9 +231,7 @@ public class EntityManager implements IEntityManager
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     @Override
     public boolean isEntityUpdateAllowed()
@@ -258,18 +240,14 @@ public class EntityManager implements IEntityManager
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * Background entities which are essentially just decorations.
-     * ------------------------------------------------------------------------------
      */
     private void addBackgroundEntities()
     {
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void dispose()

@@ -12,9 +12,7 @@ public class MapUtils
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * Updates the map position with the supplied coordinates.
-     * ------------------------------------------------------------------------------
      */
     public void positionAt(int x, int y)
     {

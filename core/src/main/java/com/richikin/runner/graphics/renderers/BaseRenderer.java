@@ -33,9 +33,7 @@ public class BaseRenderer implements Disposable
     private SimpleVec3F   cameraPos;
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     public BaseRenderer()
     {
@@ -43,9 +41,7 @@ public class BaseRenderer implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * Create all game cameras and associated viewports.
-     * ------------------------------------------------------------------------------
      */
     private void createCameras()
     {
@@ -103,9 +99,7 @@ public class BaseRenderer implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * Process all cameras.
-     * ------------------------------------------------------------------------------
      */
     public void render()
     {
@@ -151,9 +145,7 @@ public class BaseRenderer implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     private void drawParallaxLayers()
     {
@@ -187,9 +179,7 @@ public class BaseRenderer implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     private void drawGameScreenBackdrop()
     {
@@ -209,9 +199,7 @@ public class BaseRenderer implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     private void drawTiledMap()
     {
@@ -240,9 +228,7 @@ public class BaseRenderer implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     private void drawSprites()
     {
@@ -272,10 +258,8 @@ public class BaseRenderer implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * Draw the HUD and any related objects, if enabled.
      * The Front End should only be using this camera.
-     * ------------------------------------------------------------------------------
      */
     private void drawHUD()
     {
@@ -298,9 +282,7 @@ public class BaseRenderer implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     public void resizeCameras(int _width, int _height)
     {
@@ -311,9 +293,7 @@ public class BaseRenderer implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      *
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void dispose()

@@ -108,9 +108,7 @@ public class RoomManager implements Disposable
     private final int worldHeight;
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     public RoomManager()
     {
@@ -124,9 +122,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     public void initialise()
     {
@@ -148,9 +144,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     private SimpleVec2 findRoom(String roomName)
     {
@@ -174,9 +168,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     private void setRoom(int row, int column, int position)
     {
@@ -192,9 +184,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     public Room[][] getRoomMap()
     {
@@ -202,9 +192,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     public int getWorldWidth()
     {
@@ -212,9 +200,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     public int getWorldHeight()
     {
@@ -222,9 +208,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     public String getActiveRoomName()
     {
@@ -239,9 +223,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     public SimpleVec2 getStartPosition()
     {
@@ -266,9 +248,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     public String getCurrentMapNameWithPath()
     {
@@ -276,9 +256,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     @NotNull
     public String getMapNameWithPath(String roomName)
@@ -287,9 +265,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      * `
      */
     private SimpleVec2 createRoomList()
@@ -321,9 +297,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     private int countRoomMarkers(TileID _marker, Room _room)
     {
@@ -356,9 +330,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * Check all rooms for entry points, and store the coordinates in the roomList array
-     * ------------------------------------------------------------------------------
      */
     // TODO: 16/04/2021 - This is not a good idea and is far too slow. 
     // TODO: 16/04/2021 - Maybe it would be better to do this once during development 
@@ -415,9 +387,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * Leave the current room and enter the room to the North.
-     * ------------------------------------------------------------------------------
      */
     public void moveUp()
     {
@@ -437,9 +407,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * Leave the current room and enter the room to the South.
-     * ------------------------------------------------------------------------------
      */
     public void moveDown()
     {
@@ -456,9 +424,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * Leave the current room and enter the room to the left.
-     * ------------------------------------------------------------------------------
      */
     public void moveLeft()
     {
@@ -475,9 +441,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * Leave the current room and enter the room to the right.
-     * ------------------------------------------------------------------------------
      */
     public void moveRight()
     {
@@ -494,9 +458,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     private void debugRoomMap()
     {
@@ -519,9 +481,7 @@ public class RoomManager implements Disposable
     }
 
     /**
-     * ------------------------------------------------------------------------------
      * <p>
-     * ------------------------------------------------------------------------------
      */
     @Override
     public void dispose()
