@@ -71,22 +71,22 @@ public class Scene2DUtils
     {
         Label label = makeLabel(labelText, x, y, color, skin);
 
-        LibApp.stage.addActor(label);
+        LibApp.getStage().addActor(label);
 
         return label;
     }
 
     public ImageButton addButton(String upButton, String downButton, int x, int y)
     {
-        Image       imageUp     = new Image(LibApp.assets.getButtonRegion(upButton));
-        Image       imageDown   = new Image(LibApp.assets.getButtonRegion(downButton));
+        Image       imageUp     = new Image(LibApp.getAssets().getButtonRegion(upButton));
+        Image       imageDown   = new Image(LibApp.getAssets().getButtonRegion(downButton));
         ImageButton imageButton = new ImageButton(imageUp.getDrawable(), imageDown.getDrawable());
 
         imageButton.setPosition(x, y);
         imageButton.setVisible(true);
         imageButton.setZIndex(1);
 
-        LibApp.stage.addActor(imageButton);
+        LibApp.getStage().addActor(imageButton);
 
         return imageButton;
     }
@@ -96,7 +96,7 @@ public class Scene2DUtils
     {
         CheckBox checkBox = makeCheckBox(imageOn, imageOff, x, y, color, skin);
 
-        LibApp.stage.addActor(checkBox);
+        LibApp.getStage().addActor(checkBox);
 
         return checkBox;
     }
@@ -129,8 +129,8 @@ public class Scene2DUtils
     // FIXME: 12/12/2020 - Too many parameters
     public CheckBox makeCheckBox(String imageOn, String imageOff, int x, int y, Color color, Skin skin)
     {
-        TextureRegion regionOn  = LibApp.assets.getButtonRegion(imageOn);
-        TextureRegion regionOff = LibApp.assets.getButtonRegion(imageOff);
+        TextureRegion regionOn  = LibApp.getAssets().getButtonRegion(imageOn);
+        TextureRegion regionOff = LibApp.getAssets().getButtonRegion(imageOff);
 
         CheckBox               checkBox = new CheckBox("", skin);
         CheckBox.CheckBoxStyle style    = checkBox.getStyle();
@@ -148,7 +148,7 @@ public class Scene2DUtils
 
     public Image makeObjectsImage(String imageName)
     {
-        TextureRegion         region   = LibApp.assets.getObjectRegion(imageName);
+        TextureRegion         region   = LibApp.getAssets().getObjectRegion(imageName);
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
 
         return new Image(drawable);

@@ -85,7 +85,7 @@ public class GameProgress implements Disposable
 
     public void update()
     {
-        switch (App.appState.peek())
+        switch (App.getAppState().peek())
         {
             case _STATE_PAUSED:
             case _STATE_GAME:

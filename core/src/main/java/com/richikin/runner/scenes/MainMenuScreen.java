@@ -66,7 +66,7 @@ public class MainMenuScreen extends AbstractBaseScreen
     {
         super.update();
 
-        if (App.appState.peek() == StateID._STATE_MAIN_MENU)
+        if (App.getAppState().peek() == StateID._STATE_MAIN_MENU)
         {
             update();
 
@@ -82,7 +82,7 @@ public class MainMenuScreen extends AbstractBaseScreen
      */
     public void draw(final SpriteBatch spriteBatch, final OrthoGameCamera _camera)
     {
-        if (App.appState.peek() == StateID._STATE_MAIN_MENU)
+        if (App.getAppState().peek() == StateID._STATE_MAIN_MENU)
         {
             AppConfig.hudOriginX = (_camera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
             AppConfig.hudOriginY = (_camera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
@@ -115,7 +115,7 @@ public class MainMenuScreen extends AbstractBaseScreen
             GameAudio.inst().playTitleTune(true);
         }
 
-        if (App.appState.peek() == StateID._STATE_MAIN_MENU)
+        if (App.getAppState().peek() == StateID._STATE_MAIN_MENU)
         {
             switch (currentPage)
             {
@@ -168,7 +168,7 @@ public class MainMenuScreen extends AbstractBaseScreen
             else
             {
                 // If we're still on the title screen...
-                if (App.appState.peek() == StateID._STATE_MAIN_MENU)
+                if (App.getAppState().peek() == StateID._STATE_MAIN_MENU)
                 {
                     //
                     // Check OPTIONS button, open settings page if pressed
@@ -204,7 +204,7 @@ public class MainMenuScreen extends AbstractBaseScreen
         else
         {
             Trace.__FILE_FUNC();
-            Trace.dbg("Unsupported game state: " + App.appState.peek());
+            Trace.dbg("Unsupported game state: " + App.getAppState().peek());
         }
     }
 
@@ -227,7 +227,7 @@ public class MainMenuScreen extends AbstractBaseScreen
         Version.appDetails();
 
         AppConfig.currentScreenID = ScreenID._MAIN_MENU;
-        App.appState.set(StateID._STATE_MAIN_MENU);
+        App.getAppState().set(StateID._STATE_MAIN_MENU);
 
         SplashScreen.inst().isAvailable = false;
         SplashScreen.inst().dispose();

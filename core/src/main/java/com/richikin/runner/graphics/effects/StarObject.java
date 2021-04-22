@@ -28,7 +28,7 @@ public class StarObject implements Disposable
     {
         position = new SimpleVec3F();
         velocity = new SimpleVec3F();
-        region   = App.assets.getObjectRegion("solid_white32x32");
+        region   = App.getAssets().getObjectRegion("solid_white32x32");
 
         resetPosition();
     }
@@ -47,7 +47,7 @@ public class StarObject implements Disposable
 
         float radius = ((_MAXIMUM_STAR_RADIUS - ((position.z * _MAXIMUM_STAR_RADIUS) * 0.001f)) * velocity.z) * 0.2f;
 
-        App.spriteBatch.draw(region, x, y, radius, radius);
+        App.getSpriteBatch().draw(region, x, y, radius, radius);
     }
 
     /**

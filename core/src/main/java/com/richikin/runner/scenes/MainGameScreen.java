@@ -73,7 +73,7 @@ public class MainGameScreen extends AbstractBaseScreen
             App.levelManager = new LevelManager();
             App.levelManager.prepareNewGame();
 
-            App.appState.set(StateID._STATE_SETUP);
+            App.getAppState().set(StateID._STATE_SETUP);
         }
 
         if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
@@ -92,7 +92,7 @@ public class MainGameScreen extends AbstractBaseScreen
     @Override
     public void update()
     {
-        switch (App.appState.peek())
+        switch (App.getAppState().peek())
         {
             case _STATE_MAIN_MENU,
                 _STATE_CLOSING -> {
@@ -118,7 +118,7 @@ public class MainGameScreen extends AbstractBaseScreen
             default -> {
 
                 Trace.__FILE_FUNC();
-                Trace.dbg("Unsupported game state: " + App.appState.peek());
+                Trace.dbg("Unsupported game state: " + App.getAppState().peek());
             }
         }
     }
@@ -202,7 +202,7 @@ public class MainGameScreen extends AbstractBaseScreen
 
         initialise();
 
-        App.appState.set(StateID._STATE_SETUP);
+        App.getAppState().set(StateID._STATE_SETUP);
     }
 
     /**
@@ -213,7 +213,7 @@ public class MainGameScreen extends AbstractBaseScreen
     @Override
     public void loadImages()
     {
-        background = App.assets.loadSingleAsset("water_background.png", Texture.class);
+        background = App.getAssets().loadSingleAsset("water_background.png", Texture.class);
     }
 
     /**
@@ -233,7 +233,7 @@ public class MainGameScreen extends AbstractBaseScreen
         App.baseRenderer.gameZoom.setZoomValue(0.0f);
         App.baseRenderer.hudZoom.setZoomValue(0.0f);
 
-        App.assets.unloadAsset("water_background.png");
+        App.getAssets().unloadAsset("water_background.png");
 
         App.hud          = null;
         App.levelManager = null;

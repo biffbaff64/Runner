@@ -29,7 +29,7 @@ public class ParallaxLayer implements Disposable
     {
         this.name = textureName;
 
-        Texture texture = App.assets.loadSingleAsset(textureName, Texture.class);
+        Texture texture = App.getAssets().loadSingleAsset(textureName, Texture.class);
 
         texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
@@ -50,7 +50,7 @@ public class ParallaxLayer implements Disposable
     {
         if (isActive)
         {
-            App.spriteBatch.draw(textureRegion, position.getX(), position.getY());
+            App.getSpriteBatch().draw(textureRegion, position.getX(), position.getY());
         }
     }
 
@@ -94,7 +94,7 @@ public class ParallaxLayer implements Disposable
     @Override
     public void dispose()
     {
-        App.assets.unloadAsset(name);
+        App.getAssets().unloadAsset(name);
         textureRegion.getTexture().dispose();
 
         textureRegion = null;

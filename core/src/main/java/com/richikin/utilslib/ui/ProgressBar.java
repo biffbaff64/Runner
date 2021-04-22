@@ -27,7 +27,7 @@ public class ProgressBar extends ItemF implements IUIProgressBar, Disposable
 
     public ProgressBar(int _speed, int size, int maxSize, String texture)
     {
-        ninePatch = new NinePatch(LibApp.assets.getObjectRegion(texture), 1, 1, 1, 1);
+        ninePatch = new NinePatch(LibApp.getAssets().getObjectRegion(texture), 1, 1, 1, 1);
 
         this.minimum         = 0;
         this.maximum         = maxSize;
@@ -48,7 +48,7 @@ public class ProgressBar extends ItemF implements IUIProgressBar, Disposable
     {
         if (total > 0)
         {
-            ninePatch.draw(LibApp.spriteBatch, x, y, total * scale, height);
+            ninePatch.draw(LibApp.getSpriteBatch(), x, y, total * scale, height);
         }
     }
 

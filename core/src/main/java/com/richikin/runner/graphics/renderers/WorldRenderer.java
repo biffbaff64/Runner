@@ -15,7 +15,7 @@ public class WorldRenderer implements IGameScreenRenderer
     @Override
     public void render(SpriteBatch spriteBatch, OrthoGameCamera gameCamera)
     {
-        switch (App.appState.peek())
+        switch (App.getAppState().peek())
         {
             case _STATE_SETUP:
             case _STATE_GET_READY:

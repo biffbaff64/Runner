@@ -19,7 +19,7 @@ public class GameControlLoop extends AbstractControlLoop
 
     public void update()
     {
-        switch (App.appState.peek())
+        switch (App.getAppState().peek())
         {
             //
             // Initialise the current level.
@@ -79,7 +79,7 @@ public class GameControlLoop extends AbstractControlLoop
 
             default -> {
 
-                Trace.__FILE_FUNC("Unsupported gameState: " + App.appState.peek());
+                Trace.__FILE_FUNC("Unsupported gameState: " + App.getAppState().peek());
             }
         }
     }
@@ -108,7 +108,7 @@ public class GameControlLoop extends AbstractControlLoop
             App.getHud().messageManager.addZoomMessage(GameAssets._GETREADY_MSG_ASSET, 1500);
         }
 
-        App.appState.set(StateID._STATE_GET_READY);
+        App.getAppState().set(StateID._STATE_GET_READY);
         App.gameProgress.gameSetupDone = true;
     }
 
@@ -126,7 +126,7 @@ public class GameControlLoop extends AbstractControlLoop
         {
             Trace.__FILE_FUNC("----- START GAME (GET READY) -----");
 
-            App.appState.set(StateID._STATE_GAME);
+            App.getAppState().set(StateID._STATE_GAME);
             App.getHud().setStateID(StateID._STATE_PANEL_UPDATE);
 
             App.getHud().showControls();
@@ -154,11 +154,11 @@ public class GameControlLoop extends AbstractControlLoop
     {
         App.getHud().update();
 
-        if (App.appState.peek() == StateID._STATE_DEVELOPER_PANEL)
+        if (App.getAppState().peek() == StateID._STATE_DEVELOPER_PANEL)
         {
             if (!Developer.developerPanelActive)
             {
-                App.appState.set(StateID._STATE_GAME);
+                App.getAppState().set(StateID._STATE_GAME);
                 App.getHud().setStateID(StateID._STATE_PANEL_UPDATE);
             }
         }
@@ -173,11 +173,11 @@ public class GameControlLoop extends AbstractControlLoop
             {
                 //
                 // Tasks to perform if the game has not ended
-                if (App.appState.peek() == StateID._STATE_PAUSED)
+                if (App.getAppState().peek() == StateID._STATE_PAUSED)
                 {
                     if (!AppConfig.gamePaused)
                     {
-                        App.appState.set(StateID._STATE_GAME);
+                        App.getAppState().set(StateID._STATE_GAME);
                     }
                 }
             }
@@ -199,11 +199,11 @@ public class GameControlLoop extends AbstractControlLoop
                 App.getHud().hideControls();
                 App.getHud().messageManager.addZoomMessage(GameAssets._GAMEOVER_MSG_ASSET, 3000);
 
-                App.appState.set(StateID._STATE_GAME_OVER);
+                App.getAppState().set(StateID._STATE_GAME_OVER);
             }
             else
             {
-                App.appState.set(StateID._STATE_SETUP);
+                App.getAppState().set(StateID._STATE_SETUP);
             }
 
             scr().retryDelay = null;
@@ -223,7 +223,7 @@ public class GameControlLoop extends AbstractControlLoop
         App.getHud().update();
 
         scr().reset();
-        App.appState.set(StateID._STATE_SETUP);
+        App.getAppState().set(StateID._STATE_SETUP);
     }
 
     /**
@@ -236,7 +236,7 @@ public class GameControlLoop extends AbstractControlLoop
 
         if (!App.getHud().messageManager.doesPanelExist(GameAssets._GAMEOVER_MSG_ASSET))
         {
-            App.appState.set(StateID._STATE_END_GAME);
+            App.getAppState().set(StateID._STATE_END_GAME);
         }
     }
 
@@ -249,7 +249,7 @@ public class GameControlLoop extends AbstractControlLoop
 
         if (scr().completedPanel.update())
         {
-            App.appState.set(StateID._STATE_END_GAME);
+            App.getAppState().set(StateID._STATE_END_GAME);
         }
     }
 

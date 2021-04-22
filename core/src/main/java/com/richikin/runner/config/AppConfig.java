@@ -158,14 +158,14 @@ public class AppConfig
     public static void addBackButton(String _default, String _pressed)
     {
         // TODO: 11/11/2020 - Use Scene2DUtils instead
-        Image imageUp   = new Image(App.assets.getButtonRegion(_default));
-        Image imageDown = new Image(App.assets.getButtonRegion(_pressed));
+        Image imageUp   = new Image(App.getAssets().getButtonRegion(_default));
+        Image imageDown = new Image(App.getAssets().getButtonRegion(_pressed));
 
         backButton = new ImageButton(imageUp.getDrawable(), imageDown.getDrawable());
         backButton.setPosition(0, 0);
         backButton.setVisible(false);
 
-        App.stage.addActor(backButton);
+        App.getStage().addActor(backButton);
 
         backButton.addListener(new ClickListener()
         {
@@ -279,7 +279,7 @@ public class AppConfig
      */
     public static void pause()
     {
-        App.appState.set(StateID._STATE_PAUSED);
+        App.getAppState().set(StateID._STATE_PAUSED);
         gamePaused = true;
 
         if (App.getHud().hudStateID != StateID._STATE_SETTINGS_PANEL)
@@ -295,7 +295,7 @@ public class AppConfig
      */
     public static void unPause()
     {
-        App.appState.set(StateID._STATE_GAME);
+        App.getAppState().set(StateID._STATE_GAME);
         gamePaused              = false;
         App.getHud().hudStateID = StateID._STATE_PANEL_UPDATE;
     }

@@ -37,7 +37,7 @@ public class InputManager
     public void setup()
     {
         inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(App.stage);
+        inputMultiplexer.addProcessor(App.getStage());
 
         currentRegisteredDirection = Dir._STILL;
         lastRegisteredDirection    = Dir._STILL;

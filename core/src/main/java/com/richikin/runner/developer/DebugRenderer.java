@@ -34,7 +34,7 @@ public class DebugRenderer implements Disposable
 
     public static void drawText(String _message, float _x, float _y)
     {
-        font.draw(LibApp.spriteBatch, _message, _x, _y);
+        font.draw(App.getSpriteBatch(), _message, _x, _y);
     }
 
     public static void drawBoxes()
@@ -72,15 +72,15 @@ public class DebugRenderer implements Disposable
 
                     if (collisionObject.action == ActionStates._COLLIDABLE)
                     {
-                        debugTextureRegion = App.assets.getObjectRegion("solid_red32x32");
+                        debugTextureRegion = App.getAssets().getObjectRegion("solid_red32x32");
                     }
                     else if (collisionObject.action == ActionStates._COLLIDING)
                     {
-                        debugTextureRegion = App.assets.getObjectRegion("solid_blue32x32");
+                        debugTextureRegion = App.getAssets().getObjectRegion("solid_blue32x32");
                     }
                     else
                     {
-                        debugTextureRegion = App.assets.getObjectRegion("solid_white32x32");
+                        debugTextureRegion = App.getAssets().getObjectRegion("solid_white32x32");
                     }
 
                     drawRect
@@ -116,23 +116,23 @@ public class DebugRenderer implements Disposable
 
                 if (collisionObject.rectangle.colour == Color.BLUE)
                 {
-                    debugTextureRegion = App.assets.getObjectRegion("solid_blue32x32");
+                    debugTextureRegion = App.getAssets().getObjectRegion("solid_blue32x32");
                 }
                 else if ((collisionObject.rectangle.colour == Color.RED) || (collisionObject.action == ActionStates._COLLIDING))
                 {
-                    debugTextureRegion = App.assets.getObjectRegion("solid_red32x32");
+                    debugTextureRegion = App.getAssets().getObjectRegion("solid_red32x32");
                 }
                 else if (collisionObject.rectangle.colour == Color.YELLOW)
                 {
-                    debugTextureRegion = App.assets.getObjectRegion("solid_yellow32x32");
+                    debugTextureRegion = App.getAssets().getObjectRegion("solid_yellow32x32");
                 }
                 else if (collisionObject.rectangle.colour == Color.GREEN)
                 {
-                    debugTextureRegion = App.assets.getObjectRegion("solid_green32x32");
+                    debugTextureRegion = App.getAssets().getObjectRegion("solid_green32x32");
                 }
                 else
                 {
-                    debugTextureRegion = App.assets.getObjectRegion("solid_white32x32");
+                    debugTextureRegion = App.getAssets().getObjectRegion("solid_white32x32");
                 }
 
                 drawRect
@@ -150,7 +150,7 @@ public class DebugRenderer implements Disposable
 
     public static void drawRect(int x, int y, int width, int height, int thickness)
     {
-        debugTextureRegion = App.assets.getObjectRegion("solid_red32x32");
+        debugTextureRegion = App.getAssets().getObjectRegion("solid_red32x32");
 
         drawRect
             (
@@ -188,7 +188,7 @@ public class DebugRenderer implements Disposable
             asset = "solid_white32x32";
         }
 
-        debugTextureRegion = App.assets.getObjectRegion(asset);
+        debugTextureRegion = App.getAssets().getObjectRegion(asset);
 
         drawRect
             (
@@ -205,10 +205,10 @@ public class DebugRenderer implements Disposable
     {
         try
         {
-            LibApp.spriteBatch.draw(textureRegion, x, y, width, thickness);
-            LibApp.spriteBatch.draw(textureRegion, x, y, thickness, height);
-            LibApp.spriteBatch.draw(textureRegion, x, (y + height) - thickness, width, thickness);
-            LibApp.spriteBatch.draw(textureRegion, (x + width) - thickness, y, thickness, height);
+            App.getSpriteBatch().draw(textureRegion, x, y, width, thickness);
+            App.getSpriteBatch().draw(textureRegion, x, y, thickness, height);
+            App.getSpriteBatch().draw(textureRegion, x, (y + height) - thickness, width, thickness);
+            App.getSpriteBatch().draw(textureRegion, (x + width) - thickness, y, thickness, height);
         }
         catch (NullPointerException exception)
         {

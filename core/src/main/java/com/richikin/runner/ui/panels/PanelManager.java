@@ -56,7 +56,7 @@ public class PanelManager
 
             SlidePanel panel = new SlidePanel();
 
-            panel.initialise(App.assets.getObjectRegion(imageName), imageName);
+            panel.initialise(App.getAssets().getObjectRegion(imageName), imageName);
             panel.activate();
             panel.action = ActionStates._OPENING;
 
@@ -95,14 +95,14 @@ public class PanelManager
 
             IUserInterfacePanel panel = new ZoomPanel();
 
-            if (App.assets.getTextRegion(imageName) == null)
+            if (App.getAssets().getTextRegion(imageName) == null)
             {
                 Trace.__FILE_FUNC("ERROR: " + imageName + " not loaded!");
             }
 
             panel.initialise
                 (
-                    App.assets.getTextRegion(imageName),
+                    App.getAssets().getTextRegion(imageName),
                     imageName,
                     /* _canPause   */(displayDelay > 0),
                     /* _bounceBack */ true

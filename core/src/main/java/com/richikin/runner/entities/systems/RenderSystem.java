@@ -35,7 +35,7 @@ public class RenderSystem
 
                         if (isInViewWindow(entity) && entity.isDrawable)
                         {
-                            entity.draw(App.spriteBatch);
+                            entity.draw(App.getSpriteBatch());
                         }
                     }
                 }

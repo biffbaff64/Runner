@@ -99,7 +99,7 @@ public class MainPlayer extends GdxSprite
         maxMoveSpeed  = new SimpleVec2F();
         tileRectangle = new CollisionRect(this.gid);
 
-        TextureRegion abxyTexture = App.assets.getAnimationRegion(GameAssets._ABXY_ASSET);
+        TextureRegion abxyTexture = App.getAssets().getAnimationRegion(GameAssets._ABXY_ASSET);
         abxy = new TextureRegion[4];
 
         TextureRegion[] tmpFrames = abxyTexture.split
@@ -158,7 +158,7 @@ public class MainPlayer extends GdxSprite
     @Override
     public void update(int spriteNum)
     {
-        if (App.appState.peek() == StateID._STATE_PAUSED)
+        if (App.getAppState().peek() == StateID._STATE_PAUSED)
         {
             setActionState(ActionStates._PAUSED);
         }

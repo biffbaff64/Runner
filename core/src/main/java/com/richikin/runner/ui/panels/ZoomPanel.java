@@ -173,7 +173,7 @@ public class ZoomPanel extends DefaultPanel implements IUserInterfacePanel
     {
         if (!isFinished)
         {
-            App.spriteBatch.draw
+            App.getSpriteBatch().draw
                 (
                     textureRegion,
                     getPosition().getX(),

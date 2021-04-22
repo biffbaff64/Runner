@@ -40,7 +40,7 @@ public class MenuPage implements IUIPage, Disposable
     {
         Trace.__FILE_FUNC();
 
-        foreground = App.assets.loadSingleAsset("title_background.png", Texture.class);
+        foreground = App.getAssets().loadSingleAsset("title_background.png", Texture.class);
 
         populateMenuScreen();
         addClickListeners();
@@ -98,7 +98,7 @@ public class MenuPage implements IUIPage, Disposable
             decoration = null;
         }
 
-        App.assets.unloadAsset("title_background.png");
+        App.getAssets().unloadAsset("title_background.png");
 
         foreground = null;
     }
@@ -157,7 +157,7 @@ public class MenuPage implements IUIPage, Disposable
             {
                 decoration = scene2DUtils.makeObjectsImage("poppy");
                 decoration.setPosition(AppConfig.hudOriginX + 1160, AppConfig.hudOriginY + (720 - 90));
-                App.stage.addActor(decoration);
+                App.getStage().addActor(decoration);
             }
         }
         else
@@ -168,7 +168,7 @@ public class MenuPage implements IUIPage, Disposable
                 {
                     decoration = scene2DUtils.makeObjectsImage("xmas_tree");
                     decoration.setPosition(AppConfig.hudOriginX + 1075, AppConfig.hudOriginY + (720 - 342));
-                    App.stage.addActor(decoration);
+                    App.getStage().addActor(decoration);
                 }
             }
         }

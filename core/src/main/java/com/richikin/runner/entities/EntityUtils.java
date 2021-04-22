@@ -27,7 +27,7 @@ public class EntityUtils
 
         try
         {
-            TextureRegion textureRegion = App.assets.getAnimationRegion(filename);
+            TextureRegion textureRegion = App.getAssets().getAnimationRegion(filename);
 
             TextureRegion[] tmpFrames = textureRegion.split
                 (

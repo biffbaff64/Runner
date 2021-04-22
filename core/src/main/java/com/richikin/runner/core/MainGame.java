@@ -74,8 +74,8 @@ public class MainGame extends com.badlogic.gdx.Game
         super.pause();
 
         if (!Developer.isDevMode()
-            && (App.appState != null)
-            && (App.appState.equalTo(StateID._STATE_GAME)))
+            && (App.getAppState() != null)
+            && (App.getAppState().equalTo(StateID._STATE_GAME)))
         {
             AppConfig.pause();
         }
@@ -90,8 +90,8 @@ public class MainGame extends com.badlogic.gdx.Game
         super.resume();
 
         if (!Developer.isDevMode()
-            && (App.appState != null)
-            && (App.appState.equalTo(StateID._STATE_GAME)))
+            && (App.getAppState() != null)
+            && (App.getAppState().equalTo(StateID._STATE_GAME)))
         {
             AppConfig.unPause();
         }

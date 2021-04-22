@@ -116,7 +116,7 @@ public class BaseRenderer implements Disposable
         // will centre on the main character.
         if (AppConfig.gameScreenActive())
         {
-            if ((App.getPlayer() != null) && App.appState.after(StateID._STATE_SETUP))
+            if ((App.getPlayer() != null) && App.getAppState().after(StateID._STATE_SETUP))
             {
                 App.mapUtils.positionAt
                     (
@@ -130,7 +130,7 @@ public class BaseRenderer implements Disposable
             App.mapData.mapPosition.set(0, 0);
         }
 
-        App.spriteBatch.enableBlending();
+        App.getSpriteBatch().enableBlending();
 
         drawParallaxLayers();
         drawTiledMap();
@@ -138,10 +138,10 @@ public class BaseRenderer implements Disposable
         drawHUD();
 
         // ----- Draw the Stage, if enabled -----
-        if (isDrawingStage && (App.stage != null))
+        if (isDrawingStage && (App.getStage() != null))
         {
-            App.stage.act(Math.min(Gdx.graphics.getDeltaTime(), Gfx._STEP_TIME));
-            App.stage.draw();
+            App.getStage().act(Math.min(Gdx.graphics.getDeltaTime(), Gfx._STEP_TIME));
+            App.getStage().draw();
         }
 
         gameZoom.stop();
@@ -160,8 +160,8 @@ public class BaseRenderer implements Disposable
         if (parallaxCamera.isInUse)
         {
             parallaxCamera.viewport.apply();
-            App.spriteBatch.setProjectionMatrix(parallaxCamera.camera.combined);
-            App.spriteBatch.begin();
+            App.getSpriteBatch().setProjectionMatrix(parallaxCamera.camera.combined);
+            App.getSpriteBatch().begin();
 
             cameraPos.x = (App.mapData.mapPosition.getX() + (parallaxCamera.camera.viewportWidth / 2));
             cameraPos.y = (App.mapData.mapPosition.getY() + (parallaxCamera.camera.viewportHeight / 2));
@@ -178,7 +178,7 @@ public class BaseRenderer implements Disposable
 
             App.baseRenderer.parallaxBackground.scrollLayersRight();
             parallaxBackground.render();
-            App.spriteBatch.end();
+            App.getSpriteBatch().end();
         }
         else
         {
@@ -196,15 +196,15 @@ public class BaseRenderer implements Disposable
         if (AppConfig.gameScreenActive() && (App.mainGameScreen.getBackground() != null))
         {
             parallaxCamera.viewport.apply();
-            App.spriteBatch.setProjectionMatrix(parallaxCamera.camera.combined);
-            App.spriteBatch.begin();
+            App.getSpriteBatch().setProjectionMatrix(parallaxCamera.camera.combined);
+            App.getSpriteBatch().begin();
 
             cameraPos.setEmpty();
             parallaxCamera.setPosition(cameraPos);
 
-            App.mainGameScreen.draw(App.spriteBatch, parallaxCamera);
+            App.mainGameScreen.draw(App.getSpriteBatch(), parallaxCamera);
 
-            App.spriteBatch.end();
+            App.getSpriteBatch().end();
         }
     }
 
@@ -218,8 +218,8 @@ public class BaseRenderer implements Disposable
         if (tiledGameCamera.isInUse)
         {
             tiledGameCamera.viewport.apply();
-            App.spriteBatch.setProjectionMatrix(tiledGameCamera.camera.combined);
-            App.spriteBatch.begin();
+            App.getSpriteBatch().setProjectionMatrix(tiledGameCamera.camera.combined);
+            App.getSpriteBatch().begin();
 
             cameraPos.x = (App.mapData.mapPosition.getX() + (tiledGameCamera.camera.viewportWidth / 2));
             cameraPos.y = (App.mapData.mapPosition.getY() + (tiledGameCamera.camera.viewportHeight / 2));
@@ -235,7 +235,7 @@ public class BaseRenderer implements Disposable
             }
 
             App.mapData.render(tiledGameCamera.camera);
-            App.spriteBatch.end();
+            App.getSpriteBatch().end();
         }
     }
 
@@ -249,8 +249,8 @@ public class BaseRenderer implements Disposable
         if (spriteGameCamera.isInUse)
         {
             spriteGameCamera.viewport.apply();
-            App.spriteBatch.setProjectionMatrix(spriteGameCamera.camera.combined);
-            App.spriteBatch.begin();
+            App.getSpriteBatch().setProjectionMatrix(spriteGameCamera.camera.combined);
+            App.getSpriteBatch().begin();
 
             cameraPos.x = (App.mapData.mapPosition.getX() + (spriteGameCamera.camera.viewportWidth / 2));
             cameraPos.y = (App.mapData.mapPosition.getY() + (spriteGameCamera.camera.viewportHeight / 2));
@@ -265,9 +265,9 @@ public class BaseRenderer implements Disposable
                 spriteGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
             }
 
-            worldRenderer.render(App.spriteBatch, spriteGameCamera);
+            worldRenderer.render(App.getSpriteBatch(), spriteGameCamera);
 
-            App.spriteBatch.end();
+            App.getSpriteBatch().end();
         }
     }
 
@@ -282,8 +282,8 @@ public class BaseRenderer implements Disposable
         if (hudGameCamera.isInUse)
         {
             hudGameCamera.viewport.apply();
-            App.spriteBatch.setProjectionMatrix(hudGameCamera.camera.combined);
-            App.spriteBatch.begin();
+            App.getSpriteBatch().setProjectionMatrix(hudGameCamera.camera.combined);
+            App.getSpriteBatch().begin();
 
             cameraPos.x = (hudGameCamera.camera.viewportWidth / 2);
             cameraPos.y = (hudGameCamera.camera.viewportHeight / 2);
@@ -291,9 +291,9 @@ public class BaseRenderer implements Disposable
 
             hudGameCamera.setPosition(cameraPos, hudZoom.getZoomValue(), false);
 
-            hudRenderer.render(App.spriteBatch, hudGameCamera);
+            hudRenderer.render(App.getSpriteBatch(), hudGameCamera);
 
-            App.spriteBatch.end();
+            App.getSpriteBatch().end();
         }
     }
 

@@ -28,7 +28,7 @@ public class EndgameManager
             // Setting appState to Level Retry, but setting quitToMainMenu to true
             // will redirect flow to Game Over state after a short delay followed
             // by a 'Game Over' message.
-            App.appState.set(StateID._STATE_LEVEL_RETRY);
+            App.getAppState().set(StateID._STATE_LEVEL_RETRY);
             App.mainGameScreen.retryDelay = StopWatch.start();
 
             AppConfig.quitToMainMenu = true;
@@ -48,7 +48,7 @@ public class EndgameManager
                 App.mainGameScreen.completedPanel.setup();
 
                 App.getHud().setStateID(StateID._STATE_GAME_FINISHED);
-                App.appState.set(StateID._STATE_GAME_FINISHED);
+                App.getAppState().set(StateID._STATE_GAME_FINISHED);
 
                 returnFlag = true;
             }
@@ -60,7 +60,7 @@ public class EndgameManager
                 Trace.divider();
 
                 App.getHud().setStateID(StateID._STATE_LEVEL_FINISHED);
-                App.appState.set(StateID._STATE_LEVEL_FINISHED);
+                App.getAppState().set(StateID._STATE_LEVEL_FINISHED);
 
                 returnFlag = true;
             }
@@ -76,7 +76,7 @@ public class EndgameManager
                     Trace.divider();
 
                     App.mainGameScreen.retryDelay = StopWatch.start();
-                    App.appState.set(StateID._STATE_LEVEL_RETRY);
+                    App.getAppState().set(StateID._STATE_LEVEL_RETRY);
                 }
 
                 returnFlag = true;
@@ -86,7 +86,7 @@ public class EndgameManager
             // For example, from pause menu...
             else if (AppConfig.forceQuitToMenu)
             {
-                App.appState.set(StateID._STATE_END_GAME);
+                App.getAppState().set(StateID._STATE_END_GAME);
                 returnFlag = true;
             }
         }

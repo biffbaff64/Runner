@@ -114,7 +114,7 @@ public class HeadsUpDisplay implements IHud
 
         AppConfig.hudExists = false;
 
-        Texture               texture  = App.assets.loadSingleAsset(GameAssets._HUD_PANEL_ASSET, Texture.class);
+        Texture               texture  = App.getAssets().loadSingleAsset(GameAssets._HUD_PANEL_ASSET, Texture.class);
         TextureRegionDrawable drawable = new TextureRegionDrawable(texture);
         this.scorePanel = new Image(drawable);
 
@@ -129,7 +129,7 @@ public class HeadsUpDisplay implements IHud
 
         GfxUtils gfxUtils = new GfxUtils();
         compassTexture = new TextureRegion[5];
-        gfxUtils.splitRegion(App.assets.getObjectRegion("compass"), 5, compassTexture);
+        gfxUtils.splitRegion(App.getAssets().getObjectRegion("compass"), 5, compassTexture);
 
         itemBar        = new ItemBar();
         itemPanelIndex = 0;
@@ -257,7 +257,7 @@ public class HeadsUpDisplay implements IHud
     private void drawPanels()
     {
         scorePanel.setPosition(AppConfig.hudOriginX, AppConfig.hudOriginY + (Gfx._HUD_HEIGHT - scorePanel.getHeight()));
-        scorePanel.draw(App.spriteBatch, 1.0f);
+        scorePanel.draw(App.getSpriteBatch(), 1.0f);
 
         itemBar.draw(AppConfig.hudOriginX, AppConfig.hudOriginY);
     }
@@ -270,7 +270,7 @@ public class HeadsUpDisplay implements IHud
     {
         if (!App.roomManager.activeRoom.compassPoints[Room._NORTH].isEmpty())
         {
-            App.spriteBatch.draw
+            App.getSpriteBatch().draw
                 (
                     compassTexture[Room._NORTH + 1],
                     AppConfig.hudOriginX + displayPos[_COMPASS][_X1],
@@ -280,7 +280,7 @@ public class HeadsUpDisplay implements IHud
 
         if (!App.roomManager.activeRoom.compassPoints[Room._EAST].isEmpty())
         {
-            App.spriteBatch.draw
+            App.getSpriteBatch().draw
                 (
                     compassTexture[Room._EAST + 1],
                     AppConfig.hudOriginX + displayPos[_COMPASS][_X1],
@@ -290,7 +290,7 @@ public class HeadsUpDisplay implements IHud
 
         if (!App.roomManager.activeRoom.compassPoints[Room._SOUTH].isEmpty())
         {
-            App.spriteBatch.draw
+            App.getSpriteBatch().draw
                 (
                     compassTexture[Room._SOUTH + 1],
                     AppConfig.hudOriginX + displayPos[_COMPASS][_X1],
@@ -300,7 +300,7 @@ public class HeadsUpDisplay implements IHud
 
         if (!App.roomManager.activeRoom.compassPoints[Room._WEST].isEmpty())
         {
-            App.spriteBatch.draw
+            App.getSpriteBatch().draw
                 (
                     compassTexture[Room._WEST + 1],
                     AppConfig.hudOriginX + displayPos[_COMPASS][_X1],
@@ -313,7 +313,7 @@ public class HeadsUpDisplay implements IHud
     {
         if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
-            if (!AppConfig.gamePaused && (App.appState.peek() != StateID._STATE_MESSAGE_PANEL))
+            if (!AppConfig.gamePaused && (App.getAppState().peek() != StateID._STATE_MESSAGE_PANEL))
             {
                 if (App.inputManager.virtualJoystick != null)
                 {
@@ -356,11 +356,11 @@ public class HeadsUpDisplay implements IHud
         if (Developer.isDevMode())
         {
             smallFont.setColor(Color.WHITE);
-            smallFont.draw(App.spriteBatch, "DEV MODE", AppConfig.hudOriginX + 470, AppConfig.hudOriginY + (720 - 6));
+            smallFont.draw(App.getSpriteBatch(), "DEV MODE", AppConfig.hudOriginX + 470, AppConfig.hudOriginY + (720 - 6));
 
             if (Developer.isGodMode())
             {
-                smallFont.draw(App.spriteBatch, "GOD MODE", AppConfig.hudOriginX + 790, AppConfig.hudOriginY + (720 - 6));
+                smallFont.draw(App.getSpriteBatch(), "GOD MODE", AppConfig.hudOriginX + 790, AppConfig.hudOriginY + (720 - 6));
             }
 
             int yPosition = 600;
@@ -369,7 +369,7 @@ public class HeadsUpDisplay implements IHud
             {
                 smallFont.draw
                     (
-                        App.spriteBatch,
+                        App.getSpriteBatch(),
                         "FPS  : " + Gdx.graphics.getFramesPerSecond(),
                         AppConfig.hudOriginX + 20,
                         AppConfig.hudOriginY + yPosition
@@ -386,7 +386,7 @@ public class HeadsUpDisplay implements IHud
             {
                 smallFont.draw
                     (
-                        App.spriteBatch,
+                        App.getSpriteBatch(),
                         String.format
                             (
                                 Locale.UK,
@@ -401,7 +401,7 @@ public class HeadsUpDisplay implements IHud
 
                 smallFont.draw
                     (
-                        App.spriteBatch,
+                        App.getSpriteBatch(),
                         String.format
                             (
                                 Locale.UK,
@@ -456,8 +456,8 @@ public class HeadsUpDisplay implements IHud
         {
             buttonA = new GameButton
                 (
-                    App.assets.getButtonRegion("button_a"),
-                    App.assets.getButtonRegion("button_a_pressed"),
+                    App.getAssets().getButtonRegion("button_a"),
+                    App.getAssets().getButtonRegion("button_a_pressed"),
                     (int) AppConfig.hudOriginX + displayPos[_BUTTON_A][_X1],
                     (int) AppConfig.hudOriginY + displayPos[_BUTTON_A][_Y],
                     displayPos[_BUTTON_A][_WIDTH], displayPos[_BUTTON_A][_HEIGHT]
@@ -465,8 +465,8 @@ public class HeadsUpDisplay implements IHud
 
             buttonB = new GameButton
                 (
-                    App.assets.getButtonRegion("button_b"),
-                    App.assets.getButtonRegion("button_b_pressed"),
+                    App.getAssets().getButtonRegion("button_b"),
+                    App.getAssets().getButtonRegion("button_b_pressed"),
                     (int) AppConfig.hudOriginX + displayPos[_BUTTON_B][_X1],
                     (int) AppConfig.hudOriginY + displayPos[_BUTTON_B][_Y],
                     displayPos[_BUTTON_B][_WIDTH], displayPos[_BUTTON_B][_HEIGHT]
@@ -474,8 +474,8 @@ public class HeadsUpDisplay implements IHud
 
             buttonX = new GameButton
                 (
-                    App.assets.getButtonRegion("button_x"),
-                    App.assets.getButtonRegion("button_x_pressed"),
+                    App.getAssets().getButtonRegion("button_x"),
+                    App.getAssets().getButtonRegion("button_x_pressed"),
                     (int) AppConfig.hudOriginX + displayPos[_BUTTON_X][_X1],
                     (int) AppConfig.hudOriginY + displayPos[_BUTTON_X][_Y],
                     displayPos[_BUTTON_X][_WIDTH], displayPos[_BUTTON_X][_HEIGHT]
@@ -483,8 +483,8 @@ public class HeadsUpDisplay implements IHud
 
             buttonY = new GameButton
                 (
-                    App.assets.getButtonRegion("button_y"),
-                    App.assets.getButtonRegion("button_y_pressed"),
+                    App.getAssets().getButtonRegion("button_y"),
+                    App.getAssets().getButtonRegion("button_y_pressed"),
                     (int) AppConfig.hudOriginX + displayPos[_BUTTON_Y][_X1],
                     (int) AppConfig.hudOriginY + displayPos[_BUTTON_Y][_Y],
                     displayPos[_BUTTON_Y][_WIDTH], displayPos[_BUTTON_Y][_HEIGHT]
@@ -533,7 +533,7 @@ public class HeadsUpDisplay implements IHud
             App.inputManager.virtualJoystick.removeTouchpad();
         }
 
-        App.assets.unloadAsset(GameAssets._HUD_PANEL_ASSET);
+        App.getAssets().unloadAsset(GameAssets._HUD_PANEL_ASSET);
 
         bigFont.dispose();
         midFont.dispose();

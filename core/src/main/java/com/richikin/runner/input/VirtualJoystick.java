@@ -41,7 +41,7 @@ public class VirtualJoystick
         touchpad.setBounds(PAD_X, PAD_Y, PAD_WIDTH, PAD_HEIGHT);
         touchpad.setResetOnTouchUp(true);
 
-        App.stage.addActor(touchpad);
+        App.getStage().addActor(touchpad);
 
         hide();
     }

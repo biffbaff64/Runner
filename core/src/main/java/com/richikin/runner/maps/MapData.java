@@ -109,7 +109,7 @@ public class MapData
         }
         else
         {
-            mapRenderer = new OrthogonalTiledMapRenderer(currentMap, App.spriteBatch);
+            mapRenderer = new OrthogonalTiledMapRenderer(currentMap, App.getSpriteBatch());
         }
 
         scrollXDirection = Movement._DIRECTION_STILL;

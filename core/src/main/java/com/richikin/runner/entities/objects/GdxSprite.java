@@ -285,7 +285,7 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
     {
         animFrames = new TextureRegion[descriptor._FRAMES];
 
-        TextureRegion asset = App.assets.getAnimationRegion(descriptor._ASSET);
+        TextureRegion asset = App.getAssets().getAnimationRegion(descriptor._ASSET);
 
         if (descriptor._SIZE != null)
         {

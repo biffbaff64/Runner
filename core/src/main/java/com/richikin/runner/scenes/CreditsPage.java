@@ -31,7 +31,7 @@ public class CreditsPage implements IUIPage, Disposable
     @Override
     public void initialise()
     {
-        foreground = App.assets.loadSingleAsset(GameAssets._CREDITS_PANEL_ASSET, Texture.class);
+        foreground = App.getAssets().loadSingleAsset(GameAssets._CREDITS_PANEL_ASSET, Texture.class);
 
         Scene2DUtils scene2DUtils = new Scene2DUtils();
 
@@ -88,7 +88,7 @@ public class CreditsPage implements IUIPage, Disposable
     {
         Trace.__FILE_FUNC();
 
-        App.assets.unloadAsset(GameAssets._CREDITS_PANEL_ASSET);
+        App.getAssets().unloadAsset(GameAssets._CREDITS_PANEL_ASSET);
 
         versionLabel.addAction(Actions.removeActor());
         versionLabel = null;

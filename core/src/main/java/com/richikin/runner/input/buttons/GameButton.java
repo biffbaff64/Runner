@@ -158,7 +158,7 @@ public class GameButton extends Switch implements Disposable
                 textureRegion = bgDisabled;
             }
 
-            App.spriteBatch.draw
+            App.getSpriteBatch().draw
                 (
                     textureRegion,
                     (App.baseRenderer.hudGameCamera.getPosition().x + (float) (x - (Gfx._HUD_WIDTH / 2))),

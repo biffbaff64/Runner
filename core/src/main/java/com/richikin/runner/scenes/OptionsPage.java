@@ -76,8 +76,8 @@ public class OptionsPage implements IUIPage
             }
         }
 
-        foreground          = App.assets.loadSingleAsset(GameAssets._OPTIONS_PANEL_ASSET, Texture.class);
-        controllerTestPanel = App.assets.loadSingleAsset(GameAssets._CONTROLLER_TEST_ASSET, Texture.class);
+        foreground          = App.getAssets().loadSingleAsset(GameAssets._OPTIONS_PANEL_ASSET, Texture.class);
+        controllerTestPanel = App.getAssets().loadSingleAsset(GameAssets._CONTROLLER_TEST_ASSET, Texture.class);
 
         skin = new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET));
 
@@ -608,8 +608,8 @@ public class OptionsPage implements IUIPage
             buttonGoogle = null;
         }
 
-        App.assets.unloadAsset(GameAssets._OPTIONS_PANEL_ASSET);
-        App.assets.unloadAsset(GameAssets._CONTROLLER_TEST_ASSET);
+        App.getAssets().unloadAsset(GameAssets._OPTIONS_PANEL_ASSET);
+        App.getAssets().unloadAsset(GameAssets._CONTROLLER_TEST_ASSET);
 
         if (controllerLabel != null)
         {

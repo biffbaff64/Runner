@@ -58,7 +58,7 @@ public class ItemBar
     {
         if (App.getHud().conversationPanel == null)
         {
-            App.spriteBatch.draw
+            App.getSpriteBatch().draw
                 (
                     objectivesPanel[App.getHud().itemPanelIndex],
                     originX + displayPos[_COLLECT_PANEL][_X1],
@@ -84,7 +84,7 @@ public class ItemBar
                 textureRegion = itemGreyTextures[App.getHud().itemPanelIndex][i];
             }
 
-            App.spriteBatch.draw
+            App.getSpriteBatch().draw
                 (
                     textureRegion,
                     originX + displayPos[_ITEMS_INDEX + i][_X1],
@@ -106,21 +106,21 @@ public class ItemBar
 
         gfxUtils.splitRegion
             (
-                App.assets.getAnimationRegion(GameAssets._RUNES_ASSET),
+                App.getAssets().getAnimationRegion(GameAssets._RUNES_ASSET),
                 GameAssets._RUNES_FRAMES,
                 itemTextures[_RUNES_PANEL]
             );
 
         gfxUtils.splitRegion
             (
-                App.assets.getAnimationRegion(GameAssets._BOOKS_ASSET),
+                App.getAssets().getAnimationRegion(GameAssets._BOOKS_ASSET),
                 GameAssets._BOOKS_FRAMES,
                 itemTextures[_BOOKS_PANEL]
             );
 
         gfxUtils.splitRegion
             (
-                App.assets.getAnimationRegion(GameAssets._POTIONS_ASSET),
+                App.getAssets().getAnimationRegion(GameAssets._POTIONS_ASSET),
                 GameAssets._POTIONS_FRAMES,
                 itemTextures[_POTIONS_PANEL]
             );
@@ -132,28 +132,28 @@ public class ItemBar
 
         gfxUtils.splitRegion
             (
-                App.assets.getAnimationRegion(GameAssets._GREY_RUNES_ASSET),
+                App.getAssets().getAnimationRegion(GameAssets._GREY_RUNES_ASSET),
                 GameAssets._RUNES_FRAMES,
                 itemGreyTextures[_RUNES_PANEL]
             );
 
         gfxUtils.splitRegion
             (
-                App.assets.getAnimationRegion(GameAssets._GREY_BOOKS_ASSET),
+                App.getAssets().getAnimationRegion(GameAssets._GREY_BOOKS_ASSET),
                 GameAssets._BOOKS_FRAMES,
                 itemGreyTextures[_BOOKS_PANEL]
             );
 
         gfxUtils.splitRegion
             (
-                App.assets.getAnimationRegion(GameAssets._GREY_POTIONS_ASSET),
+                App.getAssets().getAnimationRegion(GameAssets._GREY_POTIONS_ASSET),
                 GameAssets._POTIONS_FRAMES,
                 itemGreyTextures[_POTIONS_PANEL]
             );
 
         objectivesPanel    = new TextureRegion[3];
-        objectivesPanel[0] = App.assets.getObjectRegion("runes_panel");
-        objectivesPanel[1] = App.assets.getObjectRegion("books_panel");
-        objectivesPanel[2] = App.assets.getObjectRegion("potions_panel");
+        objectivesPanel[0] = App.getAssets().getObjectRegion("runes_panel");
+        objectivesPanel[1] = App.getAssets().getObjectRegion("books_panel");
+        objectivesPanel[2] = App.getAssets().getObjectRegion("potions_panel");
     }
 }
