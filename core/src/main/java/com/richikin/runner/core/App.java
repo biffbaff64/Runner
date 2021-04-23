@@ -95,21 +95,40 @@ public abstract class App extends LibApp
         mainGameScreen = new MainGameScreen();
     }
 
+    /**
+     * Convenience method which gets the global instance
+     * of the {@link MainPlayer}.
+     * @return The player object.
+     */
     public static MainPlayer getPlayer()
     {
         return entities.mainPlayer;
     }
 
+    /**
+     * Convenience method which returns the current position
+     * of the {@link MainPlayer}.
+     * @return The position.
+     */
     public static SimpleVec3 getPlayerPos()
     {
         return entities.mainPlayer.position;
     }
 
+    /**
+     * Convenience method which returns the current game level.
+     * @return The game level.
+     */
     public static int getLevel()
     {
         return gameProgress.playerLevel;
     }
 
+    /**
+     * Convenience method which returns the global instance
+     * of the {@link HeadsUpDisplay}, aka The HUD.
+     * @return The HUD.
+     */
     public static HeadsUpDisplay getHud()
     {
         return hud;
