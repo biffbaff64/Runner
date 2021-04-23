@@ -80,15 +80,15 @@ public class RoomManager implements Disposable
             {null, null, null, null, null, null, null, null},
             // -----------------------------------------
             // 0   1                        2                       3                       4                       5                       6                       7
-            {null, new Room(_S2), null, null, null, null, new Room(_PRISON_S), null},  // 1
-            {null, new Room(_ROOM1_NS), new Room(_SECRET1), new Room(_ROOM4_ES), new Room(_W), new Room(_S), new Room(_SN), null},  // 2
-            {null, new Room(_PASSAGE_NES), new Room(_NESW2), new Room(_NESW), new Room(_ROOM6_ESW), new Room(_ROOM11_NESW), new Room(_ROOM10_NSW), null},  // 3
-            {null, new Room(_ROOM2_NES), new Room(_ROOM3_NEW), new Room(_ROOM9_NESW), new Room(_MAZE_NW), new Room(_ROOM7_NS), new Room(_PASSAGE_NS), null},  // 4
-            {null, new Room(_N), new Room(_E), new Room(_ROOM5_NE), null, new Room(_NES), new Room(_NW), null},  // 5
-            {null, new Room(_PASSAGE_ES), new Room(_WS), null, null, new Room(_ROOM12_NS), null, null},  // 6
-            {null, new Room(_ROOM14_NS), new Room(_PASSAGE_NE), new Room(_PASSAGE_ESW), new Room(_ROOM13_ESW), new Room(_NWS), new Room(_PASSAGE_S), null},  // 7
-            {null, new Room(_ROOM17_N), new Room(_N2), new Room(_ROOM18_NS), new Room(_ROOM2_NS), new Room(_ROOM15_NE), new Room(_ROOM16_NW), null},  // 8
-            {null, null, null, new Room(_N3), new Room(_PRISON_N), null, null, null},  // 9
+            {null, new Room(_S2),           null,                   null,                   null,                   null,                   new Room(_PRISON_S),    null},  // 1
+            {null, new Room(_ROOM1_NS),     new Room(_SECRET1),     new Room(_ROOM4_ES),    new Room(_W),           new Room(_S),           new Room(_SN),          null},  // 2
+            {null, new Room(_PASSAGE_NES),  new Room(_NESW2),       new Room(_NESW),        new Room(_ROOM6_ESW),   new Room(_ROOM11_NESW), new Room(_ROOM10_NSW),  null},  // 3
+            {null, new Room(_ROOM2_NES),    new Room(_ROOM3_NEW),   new Room(_ROOM9_NESW),  new Room(_MAZE_NW),     new Room(_ROOM7_NS),    new Room(_PASSAGE_NS),  null},  // 4
+            {null, new Room(_N),            new Room(_E),           new Room(_ROOM5_NE),    null,                   new Room(_NES),         new Room(_NW),          null},  // 5
+            {null, new Room(_PASSAGE_ES),   new Room(_WS),          null,                   null,                   new Room(_ROOM12_NS),   null,                   null},  // 6
+            {null, new Room(_ROOM14_NS),    new Room(_PASSAGE_NE),  new Room(_PASSAGE_ESW), new Room(_ROOM13_ESW),  new Room(_NWS),         new Room(_PASSAGE_S),   null},  // 7
+            {null, new Room(_ROOM17_N),     new Room(_N2),          new Room(_ROOM18_NS),   new Room(_ROOM2_NS),    new Room(_ROOM15_NE),   new Room(_ROOM16_NW),   null},  // 8
+            {null, null,                    null,                   new Room(_N3),          new Room(_PRISON_N),    null,                   null,                   null},  // 9
 
             // -----------------------------------------
             // DO NOT CHANGE THIS LINE

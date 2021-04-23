@@ -85,13 +85,11 @@ public class EntityManager implements IEntityManager
     {
         if (isEntityUpdateAllowed() && !AppConfig.gamePaused)
         {
-            GdxSprite entity;
-
             //
             // Update all non-player entities.
             for (int i = 0; i < App.entityData.entityMap.size; i++)
             {
-                entity = (GdxSprite) App.entityData.entityMap.get(i);
+                GdxSprite entity = (GdxSprite) App.entityData.entityMap.get(i);
 
                 if ((entity.getActionState() != ActionStates._DEAD) && (entity.gid != GraphicID.G_PLAYER))
                 {
