@@ -25,6 +25,7 @@ import com.richikin.utilslib.assets.AssetLoader;
 import com.richikin.utilslib.core.ISettings;
 import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.maths.SimpleVec2;
+import com.richikin.utilslib.maths.SimpleVec3;
 
 public abstract class App extends LibApp
 {
@@ -99,13 +100,9 @@ public abstract class App extends LibApp
         return entities.mainPlayer;
     }
 
-    private static final SimpleVec2 position = new SimpleVec2();
-
-    public static SimpleVec2 getPlayerPos()
+    public static SimpleVec3 getPlayerPos()
     {
-        position.set(entities.mainPlayer.sprite.getX(), entities.mainPlayer.sprite.getY());
-
-        return position;
+        return entities.mainPlayer.position;
     }
 
     public static int getLevel()

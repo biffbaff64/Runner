@@ -2,6 +2,7 @@
 package com.richikin.utilslib.ui;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -17,6 +18,15 @@ public class Scene2DUtils
     {
     }
 
+    /**
+     * Creates a {@link Table}, without adding it to the stage.
+     * @param x X Display coordinate.
+     * @param y Y Display coordinate.
+     * @param width The table Width in pixels.
+     * @param height The table Height in pixels.
+     * @param skin The {@link Skin} to use.
+     * @return Tne Table.
+     */
     public Table createTable(int x, int y, int width, int height, Skin skin)
     {
         Table table = new Table(skin);
@@ -26,6 +36,12 @@ public class Scene2DUtils
         return table;
     }
 
+    /**
+     * Convenience method for creating a {@link Image}.
+     * @param imageName The name of the image to use.
+     * @param atlasLoader The {@link TextureAtlas} loader to use.
+     * @return The Image.
+     */
     public Image createImage(String imageName, TextureAtlas atlasLoader)
     {
         TextureRegion         region   = atlasLoader.findRegion(imageName);
@@ -34,6 +50,25 @@ public class Scene2DUtils
         return new Image(drawable);
     }
 
+    /**
+     * Create an {@link Image} from the Objects TextureAtlas.
+     * @param imageName Filename of the texture to use.
+     * @return The Image.
+     */
+    public Image makeObjectsImage(String imageName)
+    {
+        TextureRegion         region   = LibApp.getAssets().getObjectRegion(imageName);
+        TextureRegionDrawable drawable = new TextureRegionDrawable(region);
+
+        return new Image(drawable);
+    }
+
+    /**
+     * Convenience method for creating a {@link Drawable}.
+     * @param imageName The name of the image to use.
+     * @param atlasLoader The {@link TextureAtlas} loader to use.
+     * @return The Drawable.
+     */
     public Drawable createDrawable(String imageName, TextureAtlas atlasLoader)
     {
         TextureRegion region = atlasLoader.findRegion(imageName);
@@ -41,6 +76,13 @@ public class Scene2DUtils
         return new TextureRegionDrawable(region);
     }
 
+    /**
+     * Creates a {@link ScrollPane}, without adding it to the stage.
+     * @param table The associated {@link Table}.
+     * @param skin The {@link Skin} to use.
+     * @param name The name of this pane.
+     * @return The ScrollPane.
+     */
     public ScrollPane createScrollPane(Table table, Skin skin, String name)
     {
         ScrollPane scrollPane = new ScrollPane(table, skin);
@@ -50,6 +92,15 @@ public class Scene2DUtils
         return scrollPane;
     }
 
+    /**
+     * Makes a text {@link Label}, amd adds it to the stage.
+     * @param labelText The label text to display.
+     * @param x X Display coordinate.
+     * @param y Y Display coordinate.
+     * @param color The Tint.
+     * @param fontName The {@link BitmapFont} to use.
+     * @return The label.
+     */
     // FIXME: 12/12/2020 - Too many parameters
     public Label addLabel(String labelText, int x, int y, int size, Color color, String fontName)
     {
@@ -67,6 +118,17 @@ public class Scene2DUtils
         return label;
     }
 
+    /**
+     * Makes a text {@link Label}, amd adds it to the stage.
+     *
+     * @see Scene2DUtils#makeLabel(String, int, int, Color, Skin).
+     * @param labelText The label text to display.
+     * @param x X Display coordinate.
+     * @param y Y Display coordinate.
+     * @param color The Tint.
+     * @param skin The {@link Skin} to use.
+     * @return The label.
+     */
     public Label addLabel(String labelText, int x, int y, Color color, Skin skin)
     {
         Label label = makeLabel(labelText, x, y, color, skin);
@@ -76,6 +138,14 @@ public class Scene2DUtils
         return label;
     }
 
+    /**
+     * Makes a selectable {@link ImageButton} and adds it to the stage.
+     * @param upButton Filename of the image to display when NOT pressed.
+     * @param downButton Filename of the image to display when pressed.
+     * @param x X Display coordinate.
+     * @param y Y Display coordinate.
+     * @return The ImageButton.
+     */
     public ImageButton addButton(String upButton, String downButton, int x, int y)
     {
         Image       imageUp     = new Image(LibApp.getAssets().getButtonRegion(upButton));
@@ -91,7 +161,16 @@ public class Scene2DUtils
         return imageButton;
     }
 
-    // FIXME: 12/12/2020 - Too many parameters
+    /**
+     * Makes a selectable {@link CheckBox} and adds it to the stage.
+     * @param imageOn The image to display when selected.
+     * @param imageOff The image to display when deselected.
+     * @param x X Display coordinate.
+     * @param y Y Display coordinate.
+     * @param color The Tint.
+     * @param skin The {@link Skin} to use.
+     * @return The Checkbox.
+     */
     public CheckBox addCheckBox(String imageOn, String imageOff, int x, int y, Color color, Skin skin)
     {
         CheckBox checkBox = makeCheckBox(imageOn, imageOff, x, y, color, skin);
@@ -101,6 +180,15 @@ public class Scene2DUtils
         return checkBox;
     }
 
+    /**
+     * Makes a text {@link Label}, without adding it to the stage.
+     * @param string The label text to display.
+     * @param x X Display coordinate.
+     * @param y Y Display coordinate.
+     * @param color The Tint.
+     * @param skin The {@link Skin} to use.
+     * @return The label.
+     */
     public Label makeLabel(String string, int x, int y, Color color, Skin skin)
     {
         Label            label = new Label(string, skin);
@@ -115,6 +203,14 @@ public class Scene2DUtils
         return label;
     }
 
+    /**
+     * Make a {@link Slider} bar with a sliding indicator,
+     * without adding it to the stage.
+     * @param x X Display coordinate.
+     * @param y Y Display coordinate.
+     * @param skin The {@link Skin} to use.
+     * @return The Slider.
+     */
     public Slider makeSlider(int x, int y, Skin skin)
     {
         Slider             slider = new Slider(0, 10, 1, false, skin);
@@ -133,7 +229,8 @@ public class Scene2DUtils
      * @param x X Display coordinate.
      * @param y Y Display coordinate.
      * @param color The Tint.
-     * @param skin The skin to use.
+     * @param skin The {@link Skin} to use.
+     * @return The Checkbox.
      */
     // FIXME: 12/12/2020 - Too many parameters
     public CheckBox makeCheckBox(String imageOn, String imageOff, int x, int y, Color color, Skin skin)
@@ -153,16 +250,5 @@ public class Scene2DUtils
         checkBox.setPosition(x, y);
 
         return checkBox;
-    }
-
-    /**
-     * Create an {@link Image} from the Objects TextureAtlas.
-     */
-    public Image makeObjectsImage(String imageName)
-    {
-        TextureRegion         region   = LibApp.getAssets().getObjectRegion(imageName);
-        TextureRegionDrawable drawable = new TextureRegionDrawable(region);
-
-        return new Image(drawable);
     }
 }
