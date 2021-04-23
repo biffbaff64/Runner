@@ -34,7 +34,6 @@ public class CollisionUtils implements ICollideUtils, Disposable
 
     /**
      * Get a new collision object.
-     *
      * @return the collision object
      */
     @Override
@@ -45,9 +44,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
 
     /**
      * Get a new collision object.
-     *
      * @param rectangle the rectangle
-     *
      * @return the collision object
      */
     @Override
@@ -56,17 +53,6 @@ public class CollisionUtils implements ICollideUtils, Disposable
         return new CollisionObject(rectangle);
     }
 
-    /**
-     * Get a new object collision object.
-     *
-     * @param x         the x
-     * @param y         the y
-     * @param width     the width
-     * @param height    the height
-     * @param graphicID the graphic id
-     *
-     * @return the collision object
-     */
     @Override
     public CollisionObject newObject(int x, int y, int width, int height, GraphicID graphicID)
     {

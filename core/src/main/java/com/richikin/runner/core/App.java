@@ -24,8 +24,6 @@ import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.assets.AssetLoader;
 import com.richikin.utilslib.core.ISettings;
 import com.richikin.utilslib.logging.StateManager;
-import com.richikin.utilslib.maths.SimpleVec2;
-import com.richikin.utilslib.maths.SimpleVec3;
 
 public abstract class App extends LibApp
 {
@@ -67,37 +65,36 @@ public abstract class App extends LibApp
         LibApp.setAssets(new AssetLoader());
         LibApp.setSpriteBatch(new SpriteBatch());
 
-        settings     = new Settings();
-        cameraUtils  = new CameraUtils();
-        worldModel   = new WorldModel();
-        baseRenderer = new BaseRenderer();
+        settings       = new Settings();
+        cameraUtils    = new CameraUtils();
+        worldModel     = new WorldModel();
+        baseRenderer   = new BaseRenderer();
+        mainMenuScreen = new MainMenuScreen();
+        mainGameScreen = new MainGameScreen();
 
         //
         // This needs setting here as InputManager needs access to it, and cannot be done
         // until baseRenderer has been initialised.
         LibApp.setStage(new Stage(baseRenderer.hudGameCamera.viewport, getSpriteBatch()));
 
+        // TODO: 23/04/2021 - Look into seeing which of the following can be initialised
+        // TODO: 23/04/2021 - on entering MainGameScreen instead of here.
         inputManager   = new InputManager();
         panelManager   = new PanelManager();
         highScoreUtils = new HighScoreUtils();
-
-        //
-        // TODO: 19/08/2020
-        // These objects should really be initialised when moving
-        // from MainMenuScreen to MainGameScreen.
         mapCreator     = new MapCreator();
         entityData     = new EntityData();
         entities       = new Entities();
         mapData        = new MapData();
         mapUtils       = new MapUtils();
         gameProgress   = new GameProgress();
-        mainMenuScreen = new MainMenuScreen();
-        mainGameScreen = new MainGameScreen();
+        pathUtils      = new PathUtils();
     }
 
     /**
      * Convenience method which gets the global instance
      * of the {@link MainPlayer}.
+     *
      * @return The player object.
      */
     public static MainPlayer getPlayer()
@@ -106,17 +103,8 @@ public abstract class App extends LibApp
     }
 
     /**
-     * Convenience method which returns the current position
-     * of the {@link MainPlayer}.
-     * @return The position.
-     */
-    public static SimpleVec3 getPlayerPos()
-    {
-        return entities.mainPlayer.position;
-    }
-
-    /**
      * Convenience method which returns the current game level.
+     *
      * @return The game level.
      */
     public static int getLevel()
@@ -127,6 +115,7 @@ public abstract class App extends LibApp
     /**
      * Convenience method which returns the global instance
      * of the {@link HeadsUpDisplay}, aka The HUD.
+     *
      * @return The HUD.
      */
     public static HeadsUpDisplay getHud()

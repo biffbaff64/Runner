@@ -20,9 +20,11 @@ public class LevelManager
         isFirstTime = true;
     }
 
+    // TODO: 23/04/2021 - EVERYTHING in this class needs correcting
+    // TODO: 23/04/2021 - for this game, as this is from Jetman.
+
     /**
      * Gets the current level ready for playing.
-     *
      * @param _firstTime TRUE if first call from power-up.
      */
     public void prepareCurrentLevel(boolean _firstTime)
@@ -53,16 +55,6 @@ public class LevelManager
             App.mapUtils.positionAt((int) App.getPlayer().sprite.getX(), (int) App.getPlayer().sprite.getY());
         }
 
-        //
-        // The player is rewarded with an extra life every 4th level.
-        if (App.gameProgress.lives.getTotal() < GameConstants._MAX_LIVES)
-        {
-            if ((App.gameProgress.playerLevel % 4) == 0)
-            {
-                App.gameProgress.lives.add(1);
-            }
-        }
-
         if (_firstTime)
         {
             App.getHud().refillItems();
@@ -86,16 +78,17 @@ public class LevelManager
         //
         // Create entity paths if any relevant data
         // exists in the tilemap data.
-        App.pathUtils = new PathUtils();
         App.pathUtils.setup();
 
         Trace.finishedMessage();
     }
 
+    /**
+     * Restart the current level (room), for instance after
+     * the player loses a life.
+     */
     public void restartCurrentLevel()
     {
-        //
-        // Reset positions etc.
         App.entityUtils.resetAllPositions();
 
         App.getPlayer().setup(false);
@@ -107,9 +100,7 @@ public class LevelManager
     }
 
     /**
-     * Actions to perform when a level
-     * has been completed.
-     * <p>
+     * Actions to perform when a level has been completed.
      * Remove all entities/pickups/etc from the level, but
      * make sure that the main player is untouched.
      */

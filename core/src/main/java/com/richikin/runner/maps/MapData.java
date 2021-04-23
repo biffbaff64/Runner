@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.runner.core.App;
+import com.richikin.runner.entities.hero.MainPlayer;
 import com.richikin.runner.entities.objects.BaseEntity;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.runner.graphics.Gfx;
@@ -117,18 +118,22 @@ public class MapData
     }
 
     /**
-     * Update the screen virtual window.
-     * This box is used for checking that entities are visible on screen.
+     * Update the screen virtual window. This box is used for checking
+     * that entities are visible on screen.
+     * An extended virtual window is also updated, which is larger than
+     * the visible screen, and can be used for tracking entities that
+     * are nearby.
+     * These windows will NOT be updated if the {@link MainPlayer} has
+     * not been initialised, as they use its map position.
      */
     public void update()
     {
         if (App.getPlayer() != null)
-
         {
             viewportBox.set
                 (
-                    (App.getPlayerPos().getX() - Gfx._VIEW_HALF_WIDTH),
-                    (App.getPlayerPos().getY() - Gfx._VIEW_HALF_HEIGHT),
+                    (App.getPlayer().getPosition().x - Gfx._VIEW_HALF_WIDTH),
+                    (App.getPlayer().getPosition().y - Gfx._VIEW_HALF_HEIGHT),
                     Gfx._VIEW_WIDTH,
                     Gfx._VIEW_HEIGHT
                 );
@@ -137,8 +142,8 @@ public class MapData
             // entityWindow is ONLY to be used for entity tracking
             entityWindow.set
                 (
-                    (App.getPlayerPos().getX() - (Gfx._VIEW_WIDTH + Gfx._VIEW_HALF_WIDTH)),
-                    (App.getPlayerPos().getY() - (Gfx._VIEW_HEIGHT + Gfx._VIEW_HALF_HEIGHT)),
+                    (App.getPlayer().getPosition().x - (Gfx._VIEW_WIDTH + Gfx._VIEW_HALF_WIDTH)),
+                    (App.getPlayer().getPosition().y - (Gfx._VIEW_HEIGHT + Gfx._VIEW_HALF_HEIGHT)),
                     (Gfx._VIEW_WIDTH * 3),
                     (Gfx._VIEW_HEIGHT * 3)
                 );
@@ -147,7 +152,6 @@ public class MapData
 
     /**
      * Draws the TiledMap game tile layers.
-     *
      * @param camera The {@link OrthographicCamera} to use.
      */
     public void render(OrthographicCamera camera)
