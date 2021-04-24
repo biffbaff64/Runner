@@ -13,31 +13,18 @@ import java.util.concurrent.TimeUnit;
 
 public class SplashScreen implements Disposable
 {
-    private static final SplashScreen _INSTANCE;
-
-    // Instance initialiser block
-    static
-    {
-        try
-        {
-            _INSTANCE = new SplashScreen();
-        }
-        catch (Exception e)
-        {
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
-    public static SplashScreen inst()
-    {
-        return _INSTANCE;
-    }
+    private static final SplashScreen _INSTANCE = new SplashScreen();
 
     public boolean isAvailable;
 
     private SpriteBatch batch;
     private Texture     background;
     private StopWatch   stopWatch;
+
+    public static SplashScreen inst()
+    {
+        return _INSTANCE;
+    }
 
     public void setup()
     {

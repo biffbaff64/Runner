@@ -62,7 +62,6 @@ public abstract class App extends LibApp
     public static void initialiseObjects()
     {
         LibApp.setAppState(new StateManager(StateID._STATE_POWER_UP));
-        LibApp.setAssets(new AssetLoader());
         LibApp.setSpriteBatch(new SpriteBatch());
 
         settings       = new Settings();

@@ -2,11 +2,15 @@ package com.richikin.runner.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.richikin.enumslib.StateID;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.developer.Developer;
 import com.richikin.runner.scenes.SplashScreen;
+import com.richikin.utilslib.LibApp;
+import com.richikin.utilslib.assets.AssetLoader;
+import com.richikin.utilslib.logging.StateManager;
 
 public class MainGame extends com.badlogic.gdx.Game
 {
@@ -21,30 +25,29 @@ public class MainGame extends com.badlogic.gdx.Game
     {
         App.mainGame = this;
 
+        LibApp.setAssets(new AssetLoader());
+
         SplashScreen.inst().setup();
 
-        //
-        // Initialise all essential objects required before
-        // the main screen is initialised.
         startup = new Startup();
     }
 
     @Override
     public void render()
     {
-        if (SplashScreen.inst().isAvailable)
+        if (!startup.startupDone)
         {
-            if (!startup.startupDone)
+            if ((App.getAssets().getAssetManager() != null)
+                && (App.getAssets().getAssetManager().update())
+                && (!SplashScreen.inst().isAvailable))
             {
                 startup.startApp();
-            }
-
-            SplashScreen.inst().update();
-            SplashScreen.inst().render();
-
-            if (!SplashScreen.inst().isAvailable)
-            {
                 startup.closeStartup();
+            }
+            else
+            {
+                SplashScreen.inst().update();
+                SplashScreen.inst().render();
             }
         }
         else
@@ -65,9 +68,6 @@ public class MainGame extends com.badlogic.gdx.Game
         super.setScreen(screen);
     }
 
-    /**
-     * Pause the app
-     */
     @Override
     public void pause()
     {
@@ -81,9 +81,6 @@ public class MainGame extends com.badlogic.gdx.Game
         }
     }
 
-    /**
-     * Actions to perform on leaving Pause
-     */
     @Override
     public void resume()
     {

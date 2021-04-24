@@ -1,11 +1,16 @@
 
 package com.richikin.utilslib.assets;
 
+import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
+import com.richikin.utilslib.exceptions.NotImplementedException;
 import com.richikin.utilslib.logging.Trace;
+
+import java.io.File;
+import java.lang.invoke.TypeDescriptor;
 
 public class AssetLoader implements IAssets, Disposable
 {
@@ -19,7 +24,16 @@ public class AssetLoader implements IAssets, Disposable
     private static final String _TEXT_ATLAS         = "packedimages/output/text.atlas";
     private static final String _ACHIEVEMENTS_ATLAS = "packedimages/output/achievements.atlas";
 
-    public AssetManager assetManager;
+    private AssetManager assetManager;
+
+    private final String[] atlasNames =
+        {
+            _BUTTONS_ATLAS,
+            _ANIMATIONS_ATLAS,
+            _TEXT_ATLAS,
+            _OBJECTS_ATLAS,
+            _ACHIEVEMENTS_ATLAS,
+        };
 
     public AssetLoader()
     {
@@ -27,11 +41,23 @@ public class AssetLoader implements IAssets, Disposable
 
         try
         {
-            loadAtlas(_BUTTONS_ATLAS);
-            loadAtlas(_ANIMATIONS_ATLAS);
-            loadAtlas(_TEXT_ATLAS);
-            loadAtlas(_OBJECTS_ATLAS);
-            loadAtlas(_ACHIEVEMENTS_ATLAS);
+            AssetDescriptor<TextureAtlas> descriptor;
+
+            for (String string : atlasNames)
+            {
+                if ((new File(string)).exists())
+                {
+                    descriptor = new AssetDescriptor<>(string, TextureAtlas.class);
+
+                    assetManager.load(descriptor);
+                }
+            }
+
+//            loadAtlas(_BUTTONS_ATLAS);
+//            loadAtlas(_ANIMATIONS_ATLAS);
+//            loadAtlas(_TEXT_ATLAS);
+//            loadAtlas(_OBJECTS_ATLAS);
+//            loadAtlas(_ACHIEVEMENTS_ATLAS);
         }
         catch (Exception _exception)
         {
@@ -139,7 +165,6 @@ public class AssetLoader implements IAssets, Disposable
     /**
      * Load single asset, and ensures that it is loaded.
      * It then returns an object of the specified type.
-     *
      * @param <T>   the type parameter
      * @param asset the asset to load
      * @param type  the class type of the asset to load
@@ -159,18 +184,18 @@ public class AssetLoader implements IAssets, Disposable
 
     /**
      * Load TextureAtlas asset.
-     *
      * @param atlasName the full name of the specified atlas.
      */
     @Override
     public void loadAtlas(String atlasName)
     {
-        loadSingleAsset(atlasName, TextureAtlas.class);
+        throw new NotImplementedException("loadAtlas: Method used before implementation");
+
+//        loadSingleAsset(atlasName, TextureAtlas.class);
     }
 
     /**
      * Unload the specified object
-     *
      * @param asset the filename of the object to unload
      */
     @Override

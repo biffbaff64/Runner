@@ -47,30 +47,30 @@ public class Touchpad extends Widget
     private boolean resetOnTouchUp = false;
 
     /**
-     * @param _deadzoneRadius The distance in pixels from the center of the
+     * @param deadzoneRadius The distance in pixels from the center of the
      *                       touchpad required for the knob to be moved.
      */
-    public Touchpad(float _deadzoneRadius, Skin skin)
+    public Touchpad(float deadzoneRadius, Skin skin)
     {
-        this(_deadzoneRadius, skin.get(TouchpadStyle.class));
+        this(deadzoneRadius, skin.get(TouchpadStyle.class));
     }
 
     /**
-     * @param _deadzoneRadius The distance in pixels from the center of the
+     * @param deadzoneRadius The distance in pixels from the center of the
      *                       touchpad required for the knob to be moved.
      */
-    public Touchpad(float _deadzoneRadius, Skin skin, String styleName)
+    public Touchpad(float deadzoneRadius, Skin skin, String styleName)
     {
-        this(_deadzoneRadius, skin.get(styleName, TouchpadStyle.class));
+        this(deadzoneRadius, skin.get(styleName, TouchpadStyle.class));
     }
 
     /**
-     * @param _deadzoneRadius The distance in pixels from the center of the
+     * @param deadzoneRadius The distance in pixels from the center of the
      *                       touchpad required for the knob to be moved.
      */
-    public Touchpad(float _deadzoneRadius, TouchpadStyle _style)
+    public Touchpad(float deadzoneRadius, TouchpadStyle style)
     {
-        if (_deadzoneRadius < 0)
+        if (deadzoneRadius < 0)
         {
             if (Gdx.app.getType() == Application.ApplicationType.Desktop)
             {
@@ -78,17 +78,17 @@ public class Touchpad extends Widget
             }
             else
             {
-                _deadzoneRadius = DEFAULT_DEADZONE_RADIUS;
+                deadzoneRadius = DEFAULT_DEADZONE_RADIUS;
             }
         }
 
-        this.deadzoneRadius = _deadzoneRadius;
+        this.deadzoneRadius = deadzoneRadius;
 
         knobPosition.set(getWidth() / 2f, getHeight() / 2f);
 
         Trace.__FILE_FUNC("knobPosition: " + knobPosition.toString());
 
-        setStyle(_style);
+        setStyle(style);
         setSize(getPrefWidth(), getPrefHeight());
 
         addListener(new InputListener()
@@ -182,9 +182,9 @@ public class Touchpad extends Widget
         calculatePositionAndValue(x, y, false);
     }
 
-    public void setStyle(TouchpadStyle _style)
+    public void setStyle(TouchpadStyle style)
     {
-        if (_style == null)
+        if (style == null)
         {
             if (Gdx.app.getType() == Application.ApplicationType.Desktop)
             {
@@ -192,11 +192,11 @@ public class Touchpad extends Widget
             }
             else
             {
-                _style = new TouchpadStyle();
+                style = new TouchpadStyle();
             }
         }
 
-        this.style = _style;
+        this.style = style;
 
         invalidateHierarchy();
     }

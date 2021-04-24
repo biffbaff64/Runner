@@ -146,9 +146,6 @@ public class AppConfig
         }
     }
 
-    /**
-     *
-     */
     public static void addBackButton(String _default, String _pressed)
     {
         // TODO: 11/11/2020 - Use Scene2DUtils instead
@@ -170,68 +167,44 @@ public class AppConfig
         });
     }
 
-    /**
-     *
-     */
     public static void setBackButtonState(boolean _visible, boolean _enabled)
     {
         backButton.setVisible(_visible);
         backButton.setDisabled(!_enabled);
     }
 
-    /**
-     *
-     */
     public static void showAndEnableBackButton()
     {
         backButton.setVisible(true);
         backButton.setDisabled(false);
     }
 
-    /**
-     *
-     */
     public static void hideAndDisableBackButton()
     {
         backButton.setVisible(false);
         backButton.setDisabled(true);
     }
 
-    /**
-     * @return TRUE if the app is running on Desktop
-     */
     public static boolean isDesktopApp()
     {
         return (Gdx.app.getType() == Application.ApplicationType.Desktop);
     }
 
-    /**
-     * @return TRUE if the app is running on Android
-     */
     public static boolean isAndroidApp()
     {
         return (Gdx.app.getType() == Application.ApplicationType.Android);
     }
 
-    /**
-     *
-     */
     public static boolean gameScreenActive()
     {
         return currentScreenID == ScreenID._GAME_SCREEN;
     }
 
-    /**
-     *
-     */
     public static boolean isControllerFitted()
     {
         return App.inputManager.gameController != null;
     }
 
-    /**
-     *
-     */
     public static void freshInstallCheck()
     {
         Trace.__FILE_FUNC();
@@ -250,9 +223,6 @@ public class AppConfig
         }
     }
 
-    /**
-     * Pause the game
-     */
     public static void pause()
     {
         App.getAppState().set(StateID._STATE_PAUSED);
@@ -264,9 +234,6 @@ public class AppConfig
         }
     }
 
-    /**
-     * Un-pause the game
-     */
     public static void unPause()
     {
         App.getAppState().set(StateID._STATE_GAME);
@@ -274,9 +241,6 @@ public class AppConfig
         App.getHud().hudStateID = StateID._STATE_PANEL_UPDATE;
     }
 
-    /**
-     *
-     */
     public static void dispose()
     {
         Trace.__FILE_FUNC();

@@ -32,6 +32,10 @@ import java.util.Locale;
 
 public class HeadsUpDisplay implements IHud
 {
+    public static final int _LARGE_FONT_SIZE = 28;
+    public static final int _MID_FONT_SIZE   = 22;
+    public static final int _SMALL_FONT_SIZE = 14;
+
     public static final int _X1     = 0;
     public static final int _X2     = 1;
     public static final int _Y      = 2;
@@ -54,12 +58,12 @@ public class HeadsUpDisplay implements IHud
     //@formatter:off
     public final int[][] displayPos =
         {
-            {  40,  820,   50,  240,  240},             // Joystick
+            {  25,  820,   25,  240,  240},             // Joystick
 
-            {1069,   22,   85,   96,   96},             // X
-            {1128,   22,  141,   96,   96},             // Y
-            {1188,   22,   85,   96,   96},             // B (Attack)
-            {1128,   79,   29,   96,   96},             // A (Action)
+            { 979,   22,   87,   96,   96},             // X
+            {1080,   22,  156,   96,   96},             // Y
+            {1177,   22,   87,   96,   96},             // B (Attack)
+            {1080,   79,   14,   96,   96},             // A (Action)
 
             {1179, 1179,  630,   66,   66},             // Pause Button
 
@@ -77,16 +81,15 @@ public class HeadsUpDisplay implements IHud
         };
     //@formatter:on
 
-    public Switch     buttonUp;
-    public Switch     buttonDown;
-    public Switch     buttonLeft;
-    public Switch     buttonRight;
-    public Switch     buttonPause;
-    public IGDXButton buttonA;
-    public IGDXButton buttonB;
-    public IGDXButton buttonX;
-    public IGDXButton buttonY;
-
+    public Switch              buttonUp;
+    public Switch              buttonDown;
+    public Switch              buttonLeft;
+    public Switch              buttonRight;
+    public Switch              buttonPause;
+    public IGDXButton          buttonA;
+    public IGDXButton          buttonB;
+    public IGDXButton          buttonX;
+    public IGDXButton          buttonY;
     public Image               scorePanel;
     public BitmapFont          smallFont;
     public BitmapFont          midFont;
@@ -95,9 +98,8 @@ public class HeadsUpDisplay implements IHud
     public PausePanel          pausePanel;
     public IUserInterfacePanel conversationPanel;
     public StateID             hudStateID;
-
-    public ItemBar itemBar;
-    public int     itemPanelIndex;
+    public ItemBar             itemBar;
+    public int                 itemPanelIndex;
 
     private IUIProgressBar  healthBar;
     private IUIProgressBar  livesBar;
@@ -134,9 +136,9 @@ public class HeadsUpDisplay implements IHud
         itemBar        = new ItemBar();
         itemPanelIndex = 0;
 
-        bigFont   = FontUtils.inst().createFont(GameAssets._PRO_WINDOWS_FONT, 28);
-        midFont   = FontUtils.inst().createFont(GameAssets._PRO_WINDOWS_FONT, 22);
-        smallFont = FontUtils.inst().createFont(GameAssets._PRO_WINDOWS_FONT, 14);
+        bigFont   = FontUtils.inst().createFont(GameAssets._PRO_WINDOWS_FONT, _LARGE_FONT_SIZE);
+        midFont   = FontUtils.inst().createFont(GameAssets._PRO_WINDOWS_FONT, _MID_FONT_SIZE);
+        smallFont = FontUtils.inst().createFont(GameAssets._PRO_WINDOWS_FONT, _SMALL_FONT_SIZE);
 
         this.hudStateID = StateID._STATE_PANEL_START;
 

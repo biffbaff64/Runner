@@ -8,6 +8,8 @@ import com.richikin.runner.ui.panels.SlidePanel;
 import com.richikin.runner.ui.panels.ZoomPanel;
 import com.richikin.utilslib.logging.Trace;
 
+// TODO: 24/04/2021 - Scrap this class and PanelManager, and replace with a UIManager class.
+
 public class MessageManager
 {
     private static class Message

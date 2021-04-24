@@ -12,8 +12,8 @@ import com.richikin.utilslib.physics.Dir;
 
 public class VirtualJoystick
 {
-    private static final float PAD_X      = 25;
-    private static final float PAD_Y      = 25;
+    private static final float PAD_X      = 10;
+    private static final float PAD_Y      = 10;
     private static final float PAD_WIDTH  = 240;
     private static final float PAD_HEIGHT = 240;
 
