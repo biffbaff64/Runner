@@ -16,25 +16,21 @@ import com.richikin.utilslib.physics.ICollideUtils;
 
 public class CollisionUtils implements ICollideUtils, Disposable
 {
-    /**
-     * Instantiates a new CollisionUtils object.
-     */
     public CollisionUtils()
     {
     }
 
-    /**
-     * Initialise these utils.
-     */
     @Override
     public void initialise()
     {
+        // Reset the AABB box array, ready for refilling
+        // with fresh data.
         AABBData.initialise();
     }
 
     /**
-     * Get a new collision object.
-     * @return the collision object
+     * Creates a new {@link CollisionObject} with default settings.
+     * @return The CollisionObject.
      */
     @Override
     public CollisionObject newObject()
@@ -43,9 +39,10 @@ public class CollisionUtils implements ICollideUtils, Disposable
     }
 
     /**
-     * Get a new collision object.
-     * @param rectangle the rectangle
-     * @return the collision object
+     * Creates a new {@link CollisionObject} with position and size
+     * data obtained from the supplied rectangle.
+     * @param rectangle The rectangle to use.
+     * @return The CollisionObject.
      */
     @Override
     public CollisionObject newObject(Rectangle rectangle)
@@ -53,12 +50,29 @@ public class CollisionUtils implements ICollideUtils, Disposable
         return new CollisionObject(rectangle);
     }
 
+    /**
+     * Creates a new {@link CollisionObject} with the supplied
+     * position and size data.
+     * @param x The X coordinate.
+     * @param y The Y coordinatee.
+     * @param width Width of the rectangle in pixels.
+     * @param height Height of the rectangle in pixels.
+     * @param graphicID The {@link GraphicID} of this CollisionObject.
+     * @return The Collision Object.
+     */
     @Override
     public CollisionObject newObject(int x, int y, int width, int height, GraphicID graphicID)
     {
         return new CollisionObject(x, y, width, height, graphicID);
     }
 
+    /**
+     * Checks for contact between the {@link CollisionObject} at the
+     * specified array position and any other CollisionObject. This
+     * check is done for ALL objects, entities and otherwise.
+     * @param parentIndex The array position.
+     * @return True if contact is made.
+     */
     public boolean isTouchingAnother(int parentIndex)
     {
         boolean isTouching = false;
@@ -77,6 +91,14 @@ public class CollisionUtils implements ICollideUtils, Disposable
         return isTouching;
     }
 
+    /**
+     * Checks for contact between the {@link CollisionObject} at the
+     * specified array position and any Entity object.
+     * CollisionObjects that are not associated with Entities, such as
+     * walls, floors, ceilings etc are ignored.
+     * @param parentIndex The array position.
+     * @return True if contact is made.
+     */
     public boolean isTouchingAnEntity(int parentIndex)
     {
         boolean isTouching = false;
@@ -129,7 +151,6 @@ public class CollisionUtils implements ICollideUtils, Disposable
         return ((entity.collidesWith & target.bodyCategory) != 0)
             && ((target.collidesWith & entity.bodyCategory) != 0)
             && (entity.spriteNumber != target.spriteNumber);
-//            && (entity.collisionObject.collisionArrayIndex != target.collisionObject.collisionArrayIndex);
     }
 
     @Override
