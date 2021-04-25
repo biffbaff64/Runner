@@ -58,17 +58,16 @@ public class SlidePanel extends DefaultPanel implements IUserInterfacePanel
         {
             switch (getState())
             {
-                case _STATE_OPENING:
-                {
+                case _STATE_OPENING -> {
+
                     if (move())
                     {
                         setState(StateID._UPDATE);
                     }
                 }
-                break;
 
-                case _STATE_CLOSING:
-                {
+                case _STATE_CLOSING -> {
+
                     if (move())
                     {
                         deactivate();
@@ -76,14 +75,9 @@ public class SlidePanel extends DefaultPanel implements IUserInterfacePanel
                         setState(StateID._STATE_CLOSED);
                     }
                 }
-                break;
 
-                case _UPDATE:
-                case _STATE_CLOSED:
-                default:
-                {
+                default -> {
                 }
-                break;
             }
         }
 

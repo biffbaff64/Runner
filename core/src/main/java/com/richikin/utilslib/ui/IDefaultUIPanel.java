@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.enumslib.StateID;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
+import com.richikin.utilslib.maths.Vec2;
+import com.richikin.utilslib.maths.Vec2F;
 import com.richikin.utilslib.physics.Direction;
 
 public interface IDefaultUIPanel
@@ -45,9 +47,9 @@ public interface IDefaultUIPanel
 
     boolean nameExists(String _nameID);
 
-    SimpleVec2 getSize();
+    Vec2 getSize();
 
-    SimpleVec2F getPosition();
+    Vec2F getPosition();
 
     int getWidth();
 

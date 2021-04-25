@@ -1,8 +1,8 @@
 package com.richikin.runner.ui.panels;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.utilslib.graphics.SimpleDrawable;
 import com.richikin.utilslib.maths.Vec2F;
 import com.richikin.utilslib.physics.Direction;
 
@@ -10,13 +10,13 @@ public class PanelManager
 {
     public static class Panel
     {
-        public TextureRegion textureRegion;
-        public Direction     direction;
-        public Vec2F         distance;
-        public Vec2F         position;
-        public Vec2F         speed;
-        public boolean       isActive;
-        public ActionStates  actionState;
+        public SimpleDrawable image;
+        public Direction      direction;
+        public Vec2F          distance;
+        public Vec2F          position;
+        public Vec2F          speed;
+        public boolean        isActive;
+        public ActionStates   actionState;
 
         public Panel()
         {
@@ -29,7 +29,7 @@ public class PanelManager
         }
     }
 
-    private Array<IUserInterfacePanel> panels;
+    private final Array<IUserInterfacePanel> panels;
 
     public PanelManager()
     {
@@ -42,7 +42,7 @@ public class PanelManager
      */
     public void update()
     {
-        if ((panels != null) && !panels.isEmpty())
+        if (!panels.isEmpty())
         {
             panels.get(0).update();
         }
@@ -50,7 +50,7 @@ public class PanelManager
 
     public void draw()
     {
-        if ((panels != null) && !panels.isEmpty())
+        if (!panels.isEmpty())
         {
             panels.get(0).draw();
         }
@@ -58,6 +58,6 @@ public class PanelManager
 
     public void addPanel(IUserInterfacePanel uiPanel)
     {
-        Panel panel = new Panel();
+        panels.add(uiPanel);
     }
 }

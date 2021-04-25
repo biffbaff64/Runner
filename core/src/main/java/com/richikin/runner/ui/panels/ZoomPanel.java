@@ -13,9 +13,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- * A Stationary panel which zooms in and out
- */
 public class ZoomPanel extends DefaultPanel implements IUserInterfacePanel
 {
     private final static int    _DEFAULT_PAUSE_TIME = 1500;

@@ -1,16 +1,16 @@
 package com.richikin.utilslib.ui;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.StateID;
 import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.exceptions.NotImplementedException;
+import com.richikin.utilslib.graphics.SimpleDrawable;
 import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
+import com.richikin.utilslib.maths.Vec2;
+import com.richikin.utilslib.maths.Vec2F;
 import com.richikin.utilslib.physics.Direction;
 
 /**
@@ -19,30 +19,20 @@ import com.richikin.utilslib.physics.Direction;
  */
 public abstract class DefaultPanel implements IDefaultUIPanel, Disposable
 {
-    public Table      buffer;
-    public Skin       skin;
-    public ScrollPane scrollPane;
-
-    protected TextureRegion textureRegion;
-    protected String        nameID;
-    protected SimpleVec2    size;
-    protected SimpleVec2F   position;
-
-    private int     panelWidth;
-    private int     panelHeight;
-    private boolean isActive;
+    protected SimpleDrawable image;
+    protected String         nameID;
+    protected boolean        isActive;
 
     private final StateManager state;
 
     public DefaultPanel()
     {
-        this.position      = new SimpleVec2F();
-        this.state         = new StateManager();
-        this.textureRegion = null;
-        this.panelWidth    = 10;
-        this.panelHeight   = 10;
-        this.isActive      = false;
-        this.nameID        = "unnamed";
+        this.image        = new SimpleDrawable();
+        this.image.size.x = 16;
+        this.image.size.y = 16;
+        this.state        = new StateManager();
+        this.isActive     = false;
+        this.nameID       = "unnamed";
     }
 
     @Override
@@ -60,9 +50,9 @@ public abstract class DefaultPanel implements IDefaultUIPanel, Disposable
     @Override
     public void draw()
     {
-        if (isActive && (textureRegion != null))
+        if (isActive && (image != null))
         {
-            LibApp.getSpriteBatch().draw(textureRegion, position.getX(), position.getY(), panelWidth, panelHeight);
+            image.draw();
         }
     }
 
@@ -75,43 +65,44 @@ public abstract class DefaultPanel implements IDefaultUIPanel, Disposable
     @Override
     public void setWidth(int _width)
     {
-        panelWidth = _width;
+        image.size.x = _width;
     }
 
     @Override
     public int getWidth()
     {
-        return panelWidth;
+        return image.size.x;
     }
 
     @Override
     public void setHeight(int _height)
     {
-        panelHeight = _height;
+        image.size.y = _height;
     }
 
     @Override
     public int getHeight()
     {
-        return panelHeight;
+        return image.size.y;
     }
 
     @Override
-    public SimpleVec2 getSize()
+    public Vec2 getSize()
     {
-        return size;
+        return image.size;
     }
 
     @Override
-    public SimpleVec2F getPosition()
+    public Vec2F getPosition()
     {
-        return position;
+        return image.position;
     }
 
     @Override
     public void setPosition(float x, float y)
     {
-        position.set(x, y);
+        image.position.x = x;
+        image.position.y = y;
     }
 
     @Override
@@ -194,7 +185,5 @@ public abstract class DefaultPanel implements IDefaultUIPanel, Disposable
     @Override
     public void dispose()
     {
-        position      = null;
-        textureRegion = null;
     }
 }
