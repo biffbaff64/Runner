@@ -19,6 +19,7 @@ import com.richikin.runner.physics.CollisionUtils;
 import com.richikin.runner.scenes.MainGameScreen;
 import com.richikin.runner.scenes.MainMenuScreen;
 import com.richikin.runner.ui.HeadsUpDisplay;
+import com.richikin.runner.ui.MessageManager;
 import com.richikin.runner.ui.panels.PanelManager;
 import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.assets.AssetLoader;
@@ -41,6 +42,7 @@ public abstract class App extends LibApp
     public static HighScoreUtils  highScoreUtils;
     public static ParallaxManager parallaxManager;
     public static PanelManager    panelManager;
+    public static MessageManager  messageManager;
     public static LevelManager    levelManager;
     public static RoomManager     roomManager;
 
@@ -80,6 +82,7 @@ public abstract class App extends LibApp
         // TODO: 23/04/2021 - on entering MainGameScreen instead of here.
         inputManager   = new InputManager();
         panelManager   = new PanelManager();
+        messageManager = new MessageManager();
         highScoreUtils = new HighScoreUtils();
         mapCreator     = new MapCreator();
         entityData     = new EntityData();

@@ -29,6 +29,8 @@ public class PanelManager
         }
     }
 
+    private static final int _DEFAULT_PANEL = 0;
+
     private final Array<IUserInterfacePanel> panels;
 
     public PanelManager()
@@ -44,7 +46,7 @@ public class PanelManager
     {
         if (!panels.isEmpty())
         {
-            panels.get(0).update();
+            panels.get(_DEFAULT_PANEL).update();
         }
     }
 
@@ -52,7 +54,7 @@ public class PanelManager
     {
         if (!panels.isEmpty())
         {
-            panels.get(0).draw();
+            panels.get(_DEFAULT_PANEL).draw();
         }
     }
 

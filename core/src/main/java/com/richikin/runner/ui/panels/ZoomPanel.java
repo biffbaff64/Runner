@@ -173,8 +173,8 @@ public class ZoomPanel extends DefaultPanel implements IUserInterfacePanel
             App.getSpriteBatch().draw
                 (
                     textureRegion,
-                    getPosition().getX(),
-                    getPosition().getY(),
+                    getPosition().x,
+                    getPosition().y,
                     AppConfig.hudOriginX + (textureRegion.getRegionWidth() / 2f),
                     AppConfig.hudOriginY + (textureRegion.getRegionHeight() / 2f),
                     textureRegion.getRegionWidth(),

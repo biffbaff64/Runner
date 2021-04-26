@@ -122,7 +122,7 @@ public class GameControlLoop extends AbstractControlLoop
         //
         // If there is no 'Get Ready' message on screen then setup
         // flow control to play the game.
-        if (!App.panelManager.doesPanelExist(GameAssets._GETREADY_MSG_ASSET))
+        if (!App.messageManager.doesPanelExist(GameAssets._GETREADY_MSG_ASSET))
         {
             Trace.__FILE_FUNC("----- START GAME (GET READY) -----");
 

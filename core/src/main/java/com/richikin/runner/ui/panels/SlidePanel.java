@@ -114,13 +114,13 @@ public class SlidePanel extends DefaultPanel implements IUserInterfacePanel
     {
         if (distance.getX() > 0)
         {
-            setPosition((int) (getPosition().getX() + (speed.getX() * direction.getX())), getPosition().getY());
+            setPosition((int) (getPosition().x + (speed.getX() * direction.getX())), getPosition().y);
             distance.subX((int) Math.min(distance.getX(), speed.getX()));
         }
 
         if (distance.getY() > 0)
         {
-            setPosition(getPosition().getX(), (int) (getPosition().getY() + (speed.getY() * direction.getY())));
+            setPosition(getPosition().x, (int) (getPosition().y + (speed.getY() * direction.getY())));
             distance.subY((int) Math.min(distance.getY(), speed.getY()));
         }
 

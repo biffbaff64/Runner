@@ -48,5 +48,26 @@ public class Lwjgl3Launcher
 
     private static void updateTexturePacker()
     {
+//        if (_rebuildAtlas)
+//        {
+//            TexturePacker.Settings settings = new TexturePacker.Settings();
+//
+//            settings.maxWidth  = 2048;        // Maximum Width of final atlas image
+//            settings.maxHeight = 2048;        // Maximum Height of final atlas image
+//            settings.pot       = true;
+//            settings.debug     = _drawDebugLines;
+//            settings.alias     = _removeDuplicateImages;
+//
+//            //
+//            // Build the Atlases from the specified parameters :-
+//            // - configuration settings
+//            // - source folder
+//            // - destination folder
+//            // - name of atlas, without extension (the extension '.atlas' will be added automatically)
+//            TexturePacker.process(settings, "packedimages/objects", "packedimages/output", "objects");
+//            TexturePacker.process(settings, "packedimages/animations", "packedimages/output", "animations");
+//            TexturePacker.process(settings, "packedimages/input", "packedimages/output", "buttons");
+//            TexturePacker.process(settings, "packedimages/text", "packedimages/output", "text");
+//        }
     }
 }

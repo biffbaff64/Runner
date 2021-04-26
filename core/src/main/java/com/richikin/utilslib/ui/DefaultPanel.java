@@ -19,6 +19,7 @@ import com.richikin.utilslib.physics.Direction;
  */
 public abstract class DefaultPanel implements IDefaultUIPanel, Disposable
 {
+    protected TextureRegion  textureRegion;
     protected SimpleDrawable image;
     protected String         nameID;
     protected boolean        isActive;

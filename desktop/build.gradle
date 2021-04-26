@@ -11,7 +11,6 @@ dependencies {
 	implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
 	implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
 	implementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
-	implementation "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
 	implementation "com.badlogicgames.gdx-controllers:gdx-controllers-desktop:$gdxControllersVersion"
 	implementation "com.github.crykn.guacamole:gdx-desktop:$guacamoleVersion"
 	implementation "de.tomgrill.gdxdialogs:gdx-dialogs-desktop:$dialogsVersion"
