@@ -26,18 +26,12 @@ public class EntityManager implements IEntityManager
     public RenderSystem     renderSystem;
     public boolean          playerReady;
 
-    /**
-     * <p>
-     */
     public EntityManager()
     {
         this.enemies      = new Array<>();
         this.renderSystem = new RenderSystem();
     }
 
-    /**
-     * <p>
-     */
     @Override
     public void initialise()
     {
@@ -54,9 +48,6 @@ public class EntityManager implements IEntityManager
         this.decorationsManagerIndex = App.entityData.addManager(new DecorationsHandler());
     }
 
-    /**
-     * <p>
-     */
     public void initialiseForLevel()
     {
         Trace.__FILE_FUNC();
@@ -77,9 +68,6 @@ public class EntityManager implements IEntityManager
         AppConfig.entitiesExist = true;
     }
 
-    /**
-     * <p>
-     */
     @Override
     public void updateSprites()
     {
@@ -191,9 +179,6 @@ public class EntityManager implements IEntityManager
         }
     }
 
-    /**
-     * <p>
-     */
     @Override
     public void releaseEntity(GdxSprite entity)
     {
@@ -228,9 +213,6 @@ public class EntityManager implements IEntityManager
         }
     }
 
-    /**
-     * <p>
-     */
     @Override
     public boolean isEntityUpdateAllowed()
     {

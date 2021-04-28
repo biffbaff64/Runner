@@ -235,7 +235,6 @@ public class EntityUtils
             if (entity.gid == gid)
             {
                 gdxSprite = (GdxSprite) entity;
-                break;
             }
         }
 
@@ -244,48 +243,12 @@ public class EntityUtils
 
     public boolean canUpdate(@NotNull GraphicID graphicID)
     {
-        boolean isUpdateable;
-
-        if (graphicID == GraphicID.G_ARROW)
-        {
-            isUpdateable = true;
-        }
-        else
-        {
-            isUpdateable = isEntityEnabled(graphicID);
-        }
-
-        return isUpdateable;
+        return true;
     }
 
-    // TODO: 07/12/2020 - This method is too long, shorten it.
     private boolean isEntityEnabled(@NotNull GraphicID graphicID)
     {
-        boolean isEnabled;
-
-        switch (graphicID)
-        {
-            case G_PLAYER:
-            case G_LASER:
-            case G_EXPLOSION12:
-            case G_EXPLOSION64:
-            case G_EXPLOSION128:
-            case G_EXPLOSION256:
-            case G_MESSAGE_BUBBLE:
-            case G_PRIZE_BALLOON:
-            {
-                isEnabled = true;
-            }
-            break;
-
-            default:
-            {
-                isEnabled = false;
-            }
-            break;
-        }
-
-        return isEnabled;
+        return true;
     }
 
     public SimpleVec3 translateMapPosToEntityWindow(GdxSprite sprite)

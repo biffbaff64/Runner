@@ -38,9 +38,6 @@ public class MainGameScreen extends AbstractBaseScreen
     public boolean firstTime;
     public Texture background;
 
-    /**
-     *
-     */
     public MainGameScreen()
     {
         super();
@@ -48,9 +45,6 @@ public class MainGameScreen extends AbstractBaseScreen
         this.firstTime = true;
     }
 
-    /**
-     *
-     */
     @Override
     public void initialise()
     {
@@ -81,7 +75,7 @@ public class MainGameScreen extends AbstractBaseScreen
     }
 
     /**
-     *
+     * Update the MainGameScreen
      */
     @Override
     public void update()
@@ -106,7 +100,7 @@ public class MainGameScreen extends AbstractBaseScreen
                 _STATE_TELEPORTING,
                 _STATE_END_GAME -> {
 
-                gameControlLoop.update();
+                    gameControlLoop.update();
             }
 
             default -> {
@@ -138,9 +132,6 @@ public class MainGameScreen extends AbstractBaseScreen
         }
     }
 
-    /**
-     *
-     */
     public void draw(final SpriteBatch spriteBatch, OrthoGameCamera camera)
     {
         if (background != null)
@@ -154,17 +145,6 @@ public class MainGameScreen extends AbstractBaseScreen
         }
     }
 
-    /**
-     *
-     */
-    public Texture getBackground()
-    {
-        return background;
-    }
-
-    /**
-     *
-     */
     public void reset()
     {
         firstTime = true;
@@ -173,9 +153,11 @@ public class MainGameScreen extends AbstractBaseScreen
         AppConfig.gamePaused            = false;
     }
 
-    /**
-     *
-     */
+    public Texture getBackground()
+    {
+        return background;
+    }
+
     @Override
     public void show()
     {
@@ -189,18 +171,12 @@ public class MainGameScreen extends AbstractBaseScreen
         App.getAppState().set(StateID._STATE_SETUP);
     }
 
-    /**
-     *
-     */
     @Override
     public void loadImages()
     {
         background = App.getAssets().loadSingleAsset("water_background.png", Texture.class);
     }
 
-    /**
-     *
-     */
     @Override
     public void dispose()
     {

@@ -63,6 +63,8 @@ public class MapCreator
      */
     protected void parseMarkerTiles()
     {
+        Trace.__FILE_FUNC();
+
         int xOffset = 0;
         int yOffset = 0;
 
@@ -220,6 +222,8 @@ public class MapCreator
      */
     protected void parseObjectTiles()
     {
+        Trace.__FILE_FUNC();
+
         for (MapObject mapObject : App.mapData.mapObjects)
         {
             if (mapObject instanceof TiledMapTileMapObject)
@@ -277,6 +281,8 @@ public class MapCreator
      */
     protected void createCollisionBoxes()
     {
+        Trace.__FILE_FUNC();
+
         BaseEntity baseEntity;
 
         for (MapObject mapObject : App.mapData.mapObjects)
@@ -424,6 +430,8 @@ public class MapCreator
         }
 
         App.mapData.placementTiles.add(descriptor);
+
+        descriptor.debug();
     }
 
     /**

@@ -120,7 +120,24 @@ public class Entities
                     GameAssets._SOLDIER_IDLE_DOWN_ASSET, GameAssets._SOLDIER_IDLE_FRAMES,
                     new Vec2(148, 148),
                     Animation.PlayMode.LOOP
+                ),
 
+            new SpriteDescriptor
+                (
+                    "Spike Ball",
+                    GraphicID.G_SPIKE_BALL, GraphicID._ENEMY, TileID._SPIKE_BALL_TILE,
+                    GameAssets._SPIKE_BALL_1_ASSET, GameAssets._SPIKE_BALL_FRAMES,
+                    new Vec2(128, 128),
+                    Animation.PlayMode.LOOP
+                ),
+
+            new SpriteDescriptor
+                (
+                    "Spike Block",
+                    GraphicID.G_SPIKE_BLOCK_HORIZONTAL, GraphicID._ENEMY, TileID._SPIKE_BLOCK_RIGHT_TILE,
+                    GameAssets._SPIKE_BLOCK_ASSET, GameAssets._SPIKE_BLOCK_HORIZONTAL_FRAMES,
+                    new Vec2(147, 256),
+                    Animation.PlayMode.LOOP
                 ),
 
             // Miscellaneous Enemy Related
