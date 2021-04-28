@@ -1,4 +1,3 @@
-
 package com.richikin.runner.entities;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -14,11 +13,6 @@ import com.richikin.utilslib.maths.Vec2;
 
 public class Entities
 {
-    public MainPlayer   mainPlayer;
-
-    // TODO: 06/02/2021 - Transfer the information from GameAssets class into this class
-    // TODO: 06/02/2021 - This would allow removal of GameAssets.
-
     public final SpriteDescriptor[] entityList =
         {
             // Main Characters
@@ -133,6 +127,10 @@ public class Entities
 
             // Background Sprites
         };
+
+    // TODO: 06/02/2021 - Transfer the information from GameAssets class into this class
+    // TODO: 06/02/2021 - This would allow removal of GameAssets.
+    public MainPlayer mainPlayer;
 
     public Entities()
     {

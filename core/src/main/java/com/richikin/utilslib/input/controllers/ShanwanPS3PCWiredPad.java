@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.input.controllers;
 
 public class ShanwanPS3PCWiredPad implements ControlMapData

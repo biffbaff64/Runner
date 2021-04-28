@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.maths;
 
 import com.badlogic.gdx.math.Rectangle;
@@ -23,9 +22,9 @@ public class Box
 
     public Box(Rectangle _rectangle)
     {
-        this.x = (int) _rectangle.x;
-        this.y = (int) _rectangle.y;
-        this.width = (int) _rectangle.width;
+        this.x      = (int) _rectangle.x;
+        this.y      = (int) _rectangle.y;
+        this.width  = (int) _rectangle.width;
         this.height = (int) _rectangle.height;
     }
 
@@ -36,25 +35,25 @@ public class Box
 
     public Box(int _x, int _y, int _width, int _height)
     {
-        this.x = _x;
-        this.y = _y;
-        this.width = _width;
+        this.x      = _x;
+        this.y      = _y;
+        this.width  = _width;
         this.height = _height;
     }
 
     public void set(int _x, int _y, int _width, int _height)
     {
-        this.x = _x;
-        this.y = _y;
-        this.width = _width;
+        this.x      = _x;
+        this.y      = _y;
+        this.width  = _width;
         this.height = _height;
     }
 
     public void set(Box _box)
     {
-        this.x = _box.x;
-        this.y = _box.y;
-        this.width = _box.width;
+        this.x      = _box.x;
+        this.y      = _box.y;
+        this.width  = _box.width;
         this.height = _box.height;
     }
 

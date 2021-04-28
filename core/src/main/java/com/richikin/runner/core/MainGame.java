@@ -2,7 +2,6 @@ package com.richikin.runner.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.richikin.enumslib.StateID;
 import com.richikin.runner.config.AppConfig;
@@ -10,7 +9,6 @@ import com.richikin.runner.developer.Developer;
 import com.richikin.runner.scenes.SplashScreen;
 import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.assets.AssetLoader;
-import com.richikin.utilslib.logging.StateManager;
 
 public class MainGame extends com.badlogic.gdx.Game
 {

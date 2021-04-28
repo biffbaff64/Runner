@@ -1,4 +1,3 @@
-
 package com.richikin.runner.ui.panels;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -15,20 +14,20 @@ import java.util.concurrent.TimeUnit;
 
 public class ZoomPanel extends DefaultPanel implements IUserInterfacePanel
 {
-    private final static int    _DEFAULT_PAUSE_TIME = 1500;
-    private final static float  _DEFAULT_SPEED      = 0.04f;
-    private final static float  _DEFAULT_SPEED_INC  = 0.01f;
-    private final static float  _MAXIMUM_ZOOM       = 8.0f;
-    private final static float  _MINIMUM_ZOOM       = 0.1f;
-    private final static float  _PAUSED_ZOOM        = 0.75f;
+    private final static int   _DEFAULT_PAUSE_TIME = 1500;
+    private final static float _DEFAULT_SPEED      = 0.04f;
+    private final static float _DEFAULT_SPEED_INC  = 0.01f;
+    private final static float _MAXIMUM_ZOOM       = 8.0f;
+    private final static float _MINIMUM_ZOOM       = 0.1f;
+    private final static float _PAUSED_ZOOM        = 0.75f;
 
-    private StopWatch    stopWatch;
-    private float        zoomSpeed;
-    private boolean      isFinished;
-    private boolean      canPause;       // enable / disable pausing
-    private int          pauseTime;      // How long to pause for. Default is 1500ms.
-    private boolean      bounceBack;     // bounces back out of view after pausing
-    private Zoom         zoom;
+    private StopWatch stopWatch;
+    private float     zoomSpeed;
+    private boolean   isFinished;
+    private boolean   canPause;       // enable / disable pausing
+    private int       pauseTime;      // How long to pause for. Default is 1500ms.
+    private boolean   bounceBack;     // bounces back out of view after pausing
+    private Zoom      zoom;
 
     public ZoomPanel()
     {
@@ -36,17 +35,17 @@ public class ZoomPanel extends DefaultPanel implements IUserInterfacePanel
     }
 
     @Override
-    public void initialise(final TextureRegion _region, final String _nameID, @NotNull final Object ... args)
+    public void initialise(final TextureRegion _region, final String _nameID, @NotNull final Object... args)
     {
-        textureRegion   = _region;
-        nameID          = _nameID;
-        canPause        = Boolean.parseBoolean(args[0].toString());
-        pauseTime       = _DEFAULT_PAUSE_TIME;
-        bounceBack      = Boolean.parseBoolean(args[1].toString());
-        isFinished      = false;
-        stopWatch       = StopWatch.start();
-        zoom            = new Zoom();
-        zoomSpeed       = _DEFAULT_SPEED;
+        textureRegion = _region;
+        nameID        = _nameID;
+        canPause      = Boolean.parseBoolean(args[0].toString());
+        pauseTime     = _DEFAULT_PAUSE_TIME;
+        bounceBack    = Boolean.parseBoolean(args[1].toString());
+        isFinished    = false;
+        stopWatch     = StopWatch.start();
+        zoom          = new Zoom();
+        zoomSpeed     = _DEFAULT_SPEED;
 
         setState(StateID._STATE_ZOOM_IN);
 

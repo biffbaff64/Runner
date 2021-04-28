@@ -1,9 +1,7 @@
-
 package com.richikin.utilslib.ui;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.enumslib.StateID;
-import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.maths.Vec2;
 import com.richikin.utilslib.maths.Vec2F;
@@ -31,15 +29,9 @@ public interface IDefaultUIPanel
 
     void setPosition(float x, float y);
 
-    void setWidth(int _width);
-
-    void setState(StateID _state);
-
     void forceZoomOut();
 
     void setPauseTime(int _time);
-
-    void setHeight(int _height);
 
     boolean update();
 
@@ -53,9 +45,15 @@ public interface IDefaultUIPanel
 
     int getWidth();
 
+    void setWidth(int _width);
+
     int getHeight();
+
+    void setHeight(int _height);
 
     String getNameID();
 
     StateID getState();
+
+    void setState(StateID _state);
 }

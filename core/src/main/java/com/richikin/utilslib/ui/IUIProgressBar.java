@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.ui;
 
 import com.badlogic.gdx.graphics.Color;
@@ -21,9 +20,9 @@ public interface IUIProgressBar
 
     void setColor(Color color);
 
-    void setSpeed(float speed);
-
     float getSpeed();
+
+    void setSpeed(float speed);
 
     void setSubInterval(int subInterval);
 

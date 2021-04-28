@@ -329,7 +329,7 @@ public class MapCreator
 
                     if (baseEntity.gid != GraphicID.G_NO_ID)
                     {
-                        baseEntity.position = new SimpleVec3
+                        baseEntity.position    = new SimpleVec3
                             (
                                 (int) ((float) mapObject.getProperties().get("x")),
                                 (int) ((float) mapObject.getProperties().get("y")),
@@ -451,8 +451,8 @@ public class MapCreator
                 _SPIKE_BLOCK_RIGHT_TILE -> {
 
                 properties.hasDirection = true;
-                properties.hasDistance = true;
-                properties.hasSpeed = true;
+                properties.hasDistance  = true;
+                properties.hasSpeed     = true;
             }
 
             default -> {

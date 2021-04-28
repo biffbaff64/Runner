@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.maths;
 
 import com.badlogic.gdx.math.Vector2;

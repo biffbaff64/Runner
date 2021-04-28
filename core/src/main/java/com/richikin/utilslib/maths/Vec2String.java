@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.maths;
 
 public class Vec2String

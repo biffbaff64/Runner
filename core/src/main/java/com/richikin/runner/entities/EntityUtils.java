@@ -1,4 +1,3 @@
-
 package com.richikin.runner.entities;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -69,8 +68,8 @@ public class EntityUtils
             randomSprite = (GdxSprite) App.entityData.entityMap.get(MathUtils.random(App.entityData.entityMap.size - 1));
         }
         while ((randomSprite.gid == oneToAvoid.gid)
-                || (randomSprite.sprite == null)
-                || (randomSprite.spriteNumber == oneToAvoid.spriteNumber));
+            || (randomSprite.sprite == null)
+            || (randomSprite.spriteNumber == oneToAvoid.spriteNumber));
 
         return randomSprite;
     }
@@ -123,7 +122,7 @@ public class EntityUtils
 
             if (Math.abs(tempDistance) > Math.abs(distance))
             {
-                distance = tempDistance;
+                distance      = tempDistance;
                 distantSprite = gdxSprite;
             }
         }

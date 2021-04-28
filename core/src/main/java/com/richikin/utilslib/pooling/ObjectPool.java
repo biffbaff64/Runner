@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.pooling;
 
 import com.badlogic.gdx.math.Rectangle;
@@ -13,8 +12,8 @@ public class ObjectPool<T>
 
     public ObjectPool(IObjectPoolFactory<T> factory, int maxSize)
     {
-        this.factory = factory;
-        this.maxSize = maxSize;
+        this.factory     = factory;
+        this.maxSize     = maxSize;
         this.freeObjects = new Array<>(maxSize);
     }
 

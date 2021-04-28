@@ -11,10 +11,6 @@ public class GameAudio
 {
     private static final GameAudio _INSTANCE;
 
-    private GameAudio()
-    {
-    }
-
     // Instance initialiser block
     static
     {
@@ -28,16 +24,20 @@ public class GameAudio
         }
     }
 
-    public static GameAudio inst()
-    {
-        return _INSTANCE;
-    }
-
     private int     currentTune;
     private int     musicVolumeSave;
     private int     fxVolumeSave;
     private boolean soundsLoaded;
     private boolean isTunePaused;
+
+    private GameAudio()
+    {
+    }
+
+    public static GameAudio inst()
+    {
+        return _INSTANCE;
+    }
 
     public void setup()
     {
@@ -224,6 +224,11 @@ public class GameAudio
         }
     }
 
+    public int getMusicVolume()
+    {
+        return App.settings.getPrefs().getInteger(Settings._MUSIC_VOLUME);
+    }
+
     public void setMusicVolume(int volume)
     {
         if (AudioData.music[currentTune] != null)
@@ -235,20 +240,15 @@ public class GameAudio
         App.settings.getPrefs().flush();
     }
 
+    public int getFXVolume()
+    {
+        return App.settings.getPrefs().getInteger(Settings._FX_VOLUME);
+    }
+
     public void setFXVolume(int volume)
     {
         App.settings.getPrefs().putInteger(Settings._FX_VOLUME, volume);
         App.settings.getPrefs().flush();
-    }
-
-    public int getMusicVolume()
-    {
-        return App.settings.getPrefs().getInteger(Settings._MUSIC_VOLUME);
-    }
-
-    public int getFXVolume()
-    {
-        return App.settings.getPrefs().getInteger(Settings._FX_VOLUME);
     }
 
     public float getUsableFxVolume()

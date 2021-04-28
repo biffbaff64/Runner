@@ -1,4 +1,3 @@
-
 package com.richikin.runner.scenes;
 
 import com.badlogic.gdx.Gdx;

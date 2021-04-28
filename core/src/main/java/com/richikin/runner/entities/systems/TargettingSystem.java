@@ -1,9 +1,7 @@
-
 package com.richikin.runner.entities.systems;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.runner.core.App;
 import com.richikin.runner.entities.objects.GdxSprite;

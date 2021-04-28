@@ -9,9 +9,9 @@ import com.richikin.utilslib.physics.aabb.AABBData;
 
 public class AABB implements Disposable
 {
-    private Rectangle   topRectangle;
-    private Rectangle   midRectangle;
-    private Rectangle   botRectangle;
+    private Rectangle topRectangle;
+    private Rectangle midRectangle;
+    private Rectangle botRectangle;
 
     public AABB()
     {
@@ -76,10 +76,10 @@ public class AABB implements Disposable
                             {
                                 if (Intersector.overlaps(topRectangle, boxB.rectangle))
                                 {
-                                    isHitting           = true;
-                                    boxA.idTop          = boxB.gid;
-                                    boxA.boxHittingTop  = boxB.index;
-                                    boxA.contactMask    |= AABBData._TOP;
+                                    isHitting          = true;
+                                    boxA.idTop         = boxB.gid;
+                                    boxA.boxHittingTop = boxB.index;
+                                    boxA.contactMask |= AABBData._TOP;
                                 }
 
                                 if (Intersector.overlaps(midRectangle, boxB.rectangle))
@@ -91,27 +91,27 @@ public class AABB implements Disposable
                                         isHitting           = true;
                                         boxA.idLeft         = boxB.gid;
                                         boxA.boxHittingLeft = boxB.index;
-                                        boxA.contactMask    |= AABBData._LEFT;
+                                        boxA.contactMask |= AABBData._LEFT;
                                     }
 
                                     if ((midRectangle.x < boxB.rectangle.x)
                                         && ((midRectangle.x + midRectangle.width) >= boxB.rectangle.x)
                                         && ((midRectangle.x + midRectangle.width) <= (boxB.rectangle.x + boxB.rectangle.width)))
                                     {
-                                        isHitting               = true;
-                                        boxA.idRight            = boxB.gid;
-                                        boxA.boxHittingRight    = boxB.index;
-                                        boxA.contactMask        |= AABBData._RIGHT;
+                                        isHitting            = true;
+                                        boxA.idRight         = boxB.gid;
+                                        boxA.boxHittingRight = boxB.index;
+                                        boxA.contactMask |= AABBData._RIGHT;
                                     }
                                 }
 
                                 if (Intersector.overlaps(botRectangle, boxB.rectangle)
                                     && (boxB.rectangle.y <= botRectangle.y))
                                 {
-                                    isHitting               = true;
-                                    boxA.idBottom           = boxB.gid;
-                                    boxA.boxHittingBottom   = boxB.index;
-                                    boxA.contactMask        |= AABBData._BOTTOM;
+                                    isHitting             = true;
+                                    boxA.idBottom         = boxB.gid;
+                                    boxA.boxHittingBottom = boxB.index;
+                                    boxA.contactMask |= AABBData._BOTTOM;
                                 }
                             }
                         }
@@ -119,12 +119,12 @@ public class AABB implements Disposable
                         if (isHitting)
                         {
                             collisionDetected = true;
-                            isHitting = false;
+                            isHitting         = false;
 
-                            boxA.contactEntity      = boxB.parentEntity;
-                            boxA.isContactObstacle  = boxB.isObstacle;
-                            boxA.action             = ActionStates._COLLIDING;
-                            boxB.action             = ActionStates._COLLIDING;
+                            boxA.contactEntity     = boxB.parentEntity;
+                            boxA.isContactObstacle = boxB.isObstacle;
+                            boxA.action            = ActionStates._COLLIDING;
+                            boxB.action            = ActionStates._COLLIDING;
 
                             if (boxB.gid == GraphicID.G_PLAYER)
                             {
@@ -142,8 +142,8 @@ public class AABB implements Disposable
     @Override
     public void dispose()
     {
-        topRectangle    = null;
-        midRectangle    = null;
-        botRectangle    = null;
+        topRectangle = null;
+        midRectangle = null;
+        botRectangle = null;
     }
 }

@@ -1,4 +1,3 @@
-
 package com.richikin.runner.graphics.parallax;
 
 public class LayerImage

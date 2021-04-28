@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.input;
 
 import com.badlogic.gdx.Application;
@@ -182,6 +181,15 @@ public class Touchpad extends Widget
         calculatePositionAndValue(x, y, false);
     }
 
+    /**
+     * Returns the touchpad's style. Modifying the returned style may not
+     * have an effect until {@link #setStyle(TouchpadStyle)} is called.
+     */
+    public TouchpadStyle getStyle()
+    {
+        return style;
+    }
+
     public void setStyle(TouchpadStyle style)
     {
         if (style == null)
@@ -199,15 +207,6 @@ public class Touchpad extends Widget
         this.style = style;
 
         invalidateHierarchy();
-    }
-
-    /**
-     * Returns the touchpad's style. Modifying the returned style may not
-     * have an effect until {@link #setStyle(TouchpadStyle)} is called.
-     */
-    public TouchpadStyle getStyle()
-    {
-        return style;
     }
 
     @Override
@@ -316,7 +315,7 @@ public class Touchpad extends Widget
 
     /**
      * @param _deadzoneRadius The distance in pixels from the center of the
-     *                       touchpad required for the knob to be moved.
+     *                        touchpad required for the knob to be moved.
      */
     public void setDeadzone(float _deadzoneRadius)
     {
@@ -406,13 +405,13 @@ public class Touchpad extends Widget
         public TouchpadStyle(Drawable background, Drawable knob)
         {
             this.background = background;
-            this.knob = knob;
+            this.knob       = knob;
         }
 
         public TouchpadStyle(TouchpadStyle style)
         {
             this.background = style.background;
-            this.knob = style.knob;
+            this.knob       = style.knob;
         }
     }
 }

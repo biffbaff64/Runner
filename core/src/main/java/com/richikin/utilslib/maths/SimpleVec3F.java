@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.maths;
 
 import org.jetbrains.annotations.NotNull;
@@ -22,6 +21,7 @@ public class SimpleVec3F
         this.y = _y;
         this.z = _z;
     }
+
     public SimpleVec3F(SimpleVec3F _vec2)
     {
         this.x = _vec2.x;

@@ -3,8 +3,8 @@ package com.richikin.runner.entities.components;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
-import com.richikin.utilslib.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.maths.SimpleVec3;
+import com.richikin.utilslib.physics.aabb.ICollisionListener;
 
 public interface ISpriteComponent
 {

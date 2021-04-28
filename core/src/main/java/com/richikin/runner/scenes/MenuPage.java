@@ -1,4 +1,3 @@
-
 package com.richikin.runner.scenes;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -28,8 +27,8 @@ public class MenuPage implements IUIPage, Disposable
     public ImageButton buttonCredits;
     public ImageButton buttonExit;
 
-    private Texture   foreground;
-    private Image     decoration;
+    private Texture foreground;
+    private Image   decoration;
 
     public MenuPage()
     {
@@ -82,10 +81,22 @@ public class MenuPage implements IUIPage, Disposable
     {
         Trace.__FILE_FUNC();
 
-        if (buttonStart != null) buttonStart.addAction(Actions.removeActor());
-        if (buttonOptions != null) buttonOptions.addAction(Actions.removeActor());
-        if (buttonCredits != null) buttonCredits.addAction(Actions.removeActor());
-        if (buttonExit != null) buttonExit.addAction(Actions.removeActor());
+        if (buttonStart != null)
+        {
+            buttonStart.addAction(Actions.removeActor());
+        }
+        if (buttonOptions != null)
+        {
+            buttonOptions.addAction(Actions.removeActor());
+        }
+        if (buttonCredits != null)
+        {
+            buttonCredits.addAction(Actions.removeActor());
+        }
+        if (buttonExit != null)
+        {
+            buttonExit.addAction(Actions.removeActor());
+        }
 
         buttonStart   = null;
         buttonOptions = null;
@@ -109,7 +120,7 @@ public class MenuPage implements IUIPage, Disposable
 
         Scene2DUtils scene2DUtils = new Scene2DUtils();
 
-        buttonStart = scene2DUtils.addButton
+        buttonStart   = scene2DUtils.addButton
             (
                 "buttonStart",
                 "buttonStart_pressed",
@@ -123,7 +134,7 @@ public class MenuPage implements IUIPage, Disposable
                 (int) AppConfig.hudOriginX + 558,
                 (int) AppConfig.hudOriginY + (720 - 437)
             );
-        buttonExit = scene2DUtils.addButton
+        buttonExit    = scene2DUtils.addButton
             (
                 "buttonExit",
                 "buttonExit_pressed",
@@ -238,10 +249,22 @@ public class MenuPage implements IUIPage, Disposable
      */
     private void showItems(boolean _visible)
     {
-        if (buttonStart != null) buttonStart.setVisible(_visible);
-        if (buttonOptions != null) buttonOptions.setVisible(_visible);
-        if (buttonCredits != null) buttonCredits.setVisible(_visible);
-        if (buttonExit != null) buttonExit.setVisible(_visible);
+        if (buttonStart != null)
+        {
+            buttonStart.setVisible(_visible);
+        }
+        if (buttonOptions != null)
+        {
+            buttonOptions.setVisible(_visible);
+        }
+        if (buttonCredits != null)
+        {
+            buttonCredits.setVisible(_visible);
+        }
+        if (buttonExit != null)
+        {
+            buttonExit.setVisible(_visible);
+        }
 
         if (decoration != null)
         {

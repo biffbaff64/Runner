@@ -1,4 +1,3 @@
-
 package com.richikin.runner.entities.paths;
 
 import com.badlogic.gdx.math.Vector2;

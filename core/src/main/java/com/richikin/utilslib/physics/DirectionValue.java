@@ -8,8 +8,8 @@ public class DirectionValue
 
     public DirectionValue(int x, int y, Dir trans)
     {
-        dirX = x;
-        dirY = y;
+        dirX       = x;
+        dirY       = y;
         translated = trans;
     }
 }

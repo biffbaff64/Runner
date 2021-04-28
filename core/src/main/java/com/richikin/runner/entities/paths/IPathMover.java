@@ -1,4 +1,3 @@
-
 package com.richikin.runner.entities.paths;
 
 import com.richikin.runner.entities.objects.GdxSprite;

@@ -12,20 +12,6 @@ import com.richikin.utilslib.logging.Trace;
 
 public class MessageManager
 {
-    private static class Message
-    {
-        public IUserInterfacePanel panel;
-        public boolean             enabled;
-        public String              name;
-
-        public Message(IUserInterfacePanel _panel, boolean _enabled, String _name)
-        {
-            panel   = _panel;
-            enabled = _enabled;
-            name    = _name;
-        }
-    }
-
     private final Array<Message> messages;
     private       boolean        managerEnabled;
 
@@ -158,5 +144,19 @@ public class MessageManager
     public boolean isEnabled()
     {
         return managerEnabled;
+    }
+
+    private static class Message
+    {
+        public IUserInterfacePanel panel;
+        public boolean             enabled;
+        public String              name;
+
+        public Message(IUserInterfacePanel _panel, boolean _enabled, String _name)
+        {
+            panel   = _panel;
+            enabled = _enabled;
+            name    = _name;
+        }
     }
 }

@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.input.controllers;
 
 public class Qumox3507Pad implements ControlMapData

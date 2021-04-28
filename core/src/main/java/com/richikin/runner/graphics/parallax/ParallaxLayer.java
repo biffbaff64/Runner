@@ -1,4 +1,3 @@
-
 package com.richikin.runner.graphics.parallax;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -13,17 +12,15 @@ import com.richikin.utilslib.physics.Movement;
 
 public class ParallaxLayer implements Disposable
 {
-    public final String        name;
-    public       TextureRegion textureRegion;
-    public       XYSetF        offset;
-    public       XYSetF        position;
-    public final boolean isActive;
-
-    public Direction direction;
-    public float     xSpeed;
-    public float     ySpeed;
-
-    private final Box imageBox;
+    public final  String        name;
+    public final  boolean       isActive;
+    private final Box           imageBox;
+    public        TextureRegion textureRegion;
+    public        XYSetF        offset;
+    public        XYSetF        position;
+    public        Direction     direction;
+    public        float         xSpeed;
+    public        float         ySpeed;
 
     public ParallaxLayer(String textureName)
     {
@@ -98,8 +95,8 @@ public class ParallaxLayer implements Disposable
         textureRegion.getTexture().dispose();
 
         textureRegion = null;
-        offset = null;
-        position = null;
-        direction = null;
+        offset        = null;
+        position      = null;
+        direction     = null;
     }
 }

@@ -1,9 +1,8 @@
-
 package com.richikin.utilslib.input.controllers;
 
 public class DefaultControllerMap implements ControlMapData
 {
-     public static final String _NAME = "Default Controller Map";
+    public static final String _NAME = "Default Controller Map";
 
     public static final float _MIN_RANGE          = -1.0f;
     public static final float _MAX_RANGE          = 1.0f;

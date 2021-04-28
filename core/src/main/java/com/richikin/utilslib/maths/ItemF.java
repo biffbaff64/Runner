@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.maths;
 
 import com.richikin.utilslib.logging.StopWatch;
@@ -15,52 +14,52 @@ public class ItemF
 
     public ItemF()
     {
-        this.maximum = 100;
-        this.minimum = 0;
-        this.total = 0;
+        this.maximum      = 100;
+        this.minimum      = 0;
+        this.total        = 0;
         this.refillAmount = 0;
-        this.stopWatch = StopWatch.start();
+        this.stopWatch    = StopWatch.start();
     }
 
     public ItemF(float minimum, float maximum)
     {
-        this.minimum = minimum;
-        this.maximum = maximum;
-        this.total = minimum;
+        this.minimum      = minimum;
+        this.maximum      = maximum;
+        this.total        = minimum;
         this.refillAmount = minimum;
-        this.stopWatch = StopWatch.start();
+        this.stopWatch    = StopWatch.start();
     }
 
     public ItemF(float minimum, float maximum, float total)
     {
-        this.minimum = minimum;
-        this.maximum = maximum;
-        this.total = total;
+        this.minimum      = minimum;
+        this.maximum      = maximum;
+        this.total        = total;
         this.refillAmount = minimum;
-        this.stopWatch = StopWatch.start();
+        this.stopWatch    = StopWatch.start();
     }
 
     public ItemF(float maximum)
     {
-        this.minimum = 0;
-        this.maximum = maximum;
-        this.total = 0;
+        this.minimum      = 0;
+        this.maximum      = maximum;
+        this.total        = 0;
         this.refillAmount = 0;
-        this.stopWatch = StopWatch.start();
+        this.stopWatch    = StopWatch.start();
     }
 
     public boolean slowDecrementOnTimer(float interval, float amount)
     {
         boolean empty = false;
 
-        if(stopWatch.time(TimeUnit.MILLISECONDS) >= interval)
+        if (stopWatch.time(TimeUnit.MILLISECONDS) >= interval)
         {
             this.total -= amount;
 
             stopWatch.reset();
         }
 
-        if(isEmpty() || isUnderflowing())
+        if (isEmpty() || isUnderflowing())
         {
             this.total = this.minimum;
 
@@ -70,16 +69,6 @@ public class ItemF
         return empty;
     }
 
-    public void setMin(float minimum)
-    {
-        this.minimum = minimum;
-    }
-
-    public void setMax(float maximum)
-    {
-        this.maximum = maximum;
-    }
-
     public float getTotal()
     {
         this.validate();
@@ -87,9 +76,19 @@ public class ItemF
         return this.total;
     }
 
+    public void setTotal(float amount)
+    {
+        this.total = amount;
+    }
+
     public float getMin()
     {
         return minimum;
+    }
+
+    public void setMin(float minimum)
+    {
+        this.minimum = minimum;
     }
 
     public float getMax()
@@ -97,15 +96,20 @@ public class ItemF
         return maximum;
     }
 
+    public void setMax(float maximum)
+    {
+        this.maximum = maximum;
+    }
+
     public void add(float amount)
     {
-        if((this.total += amount) < 0)
+        if ((this.total += amount) < 0)
         {
             this.total = 0;
         }
         else
         {
-            if(this.total > this.maximum)
+            if (this.total > this.maximum)
             {
                 this.total = this.maximum;
             }
@@ -114,7 +118,7 @@ public class ItemF
 
     public void add(float amount, float wrap)
     {
-        if((this.total += amount) > wrap)
+        if ((this.total += amount) > wrap)
         {
             this.total = this.minimum;
         }
@@ -137,11 +141,6 @@ public class ItemF
     {
         this.minimum = minimum;
         this.maximum = maximum;
-    }
-
-    public void setTotal(float amount)
-    {
-        this.total = amount;
     }
 
     public void setToMaximum()
@@ -196,12 +195,12 @@ public class ItemF
 
     protected void validate()
     {
-        if(this.total < this.minimum)
+        if (this.total < this.minimum)
         {
             this.total = this.minimum;
         }
 
-        if(this.total > this.maximum)
+        if (this.total > this.maximum)
         {
             this.total = this.maximum;
         }

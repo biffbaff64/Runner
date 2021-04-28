@@ -1,4 +1,3 @@
-
 package com.richikin.runner.input.buttons;
 
 import com.badlogic.gdx.Gdx;
@@ -43,8 +42,8 @@ public class AnimatedButton implements IGDXButton, Disposable
     public TextureRegion bg;
     public TextureRegion bgPressed;
     public TextureRegion bgDisabled;
-    public Box          buttonRect;
-    public ActionStates buttonAction;
+    public Box           buttonRect;
+    public ActionStates  buttonAction;
 
     public boolean _isDrawable;
     public boolean _isPressed;
@@ -69,10 +68,10 @@ public class AnimatedButton implements IGDXButton, Disposable
     {
         this(x, y);
 
-        this.bg         = textureRegion;
-        this.bgPressed  = textureRegionPressed;
-        this.width      = textureRegion.getRegionWidth();
-        this.height     = textureRegion.getRegionHeight();
+        this.bg          = textureRegion;
+        this.bgPressed   = textureRegionPressed;
+        this.width       = textureRegion.getRegionWidth();
+        this.height      = textureRegion.getRegionHeight();
         this.alpha       = 1.0f;
         this._isDrawable = true;
         this.buttonRect  = new Box(this.x, this.y, this.width, this.height);
@@ -81,8 +80,8 @@ public class AnimatedButton implements IGDXButton, Disposable
     /**
      * Define a GameButton
      *
-     * @param x    - X Display co-ordinate
-     * @param y    - Y Display co-ordinate
+     * @param x - X Display co-ordinate
+     * @param y - Y Display co-ordinate
      */
     public AnimatedButton(int x, int y)
     {
@@ -116,10 +115,10 @@ public class AnimatedButton implements IGDXButton, Disposable
 
     public AnimatedButton()
     {
-        this._isPressed     = false;
-        this._isDisabled    = false;
-        this.hasSound       = true;
-        this.buttonAction   = ActionStates._NO_ACTION;
+        this._isPressed   = false;
+        this._isDisabled  = false;
+        this.hasSound     = true;
+        this.buttonAction = ActionStates._NO_ACTION;
 
         this.buttonRect = new Box();
     }
@@ -261,18 +260,6 @@ public class AnimatedButton implements IGDXButton, Disposable
     }
 
     @Override
-    public void setDisabled(boolean _disabled)
-    {
-        _isDisabled = _disabled;
-    }
-
-    @Override
-    public void setDrawable(boolean _drawable)
-    {
-        _isDrawable = _drawable;
-    }
-
-    @Override
     public void press()
     {
         _isPressed = true;
@@ -303,9 +290,21 @@ public class AnimatedButton implements IGDXButton, Disposable
     }
 
     @Override
+    public void setDisabled(boolean _disabled)
+    {
+        _isDisabled = _disabled;
+    }
+
+    @Override
     public boolean isDrawable()
     {
         return _isDrawable;
+    }
+
+    @Override
+    public void setDrawable(boolean _drawable)
+    {
+        _isDrawable = _drawable;
     }
 
     @Override
@@ -338,11 +337,11 @@ public class AnimatedButton implements IGDXButton, Disposable
     public String toString()
     {
         return "x: " + x
-                + ", y: " + y
-                + ", w: " + width
-                + ", h: " + height
-                + ", rotating: " + isRotating
-                + ", scaling: " + isScaling
-                + ", to and fro: " + isToAndFro;
+            + ", y: " + y
+            + ", w: " + width
+            + ", h: " + height
+            + ", rotating: " + isRotating
+            + ", scaling: " + isScaling
+            + ", to and fro: " + isToAndFro;
     }
 }

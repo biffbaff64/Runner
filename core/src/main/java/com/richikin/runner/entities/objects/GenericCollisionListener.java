@@ -4,14 +4,14 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.runner.physics.aabb.CollisionObject;
-import com.richikin.utilslib.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.physics.aabb.ICollisionListener;
 
 public class GenericCollisionListener implements ICollisionListener, Disposable
 {
     private GdxSprite parent;
 
-    public  GenericCollisionListener(GdxSprite _parent)
+    public GenericCollisionListener(GdxSprite _parent)
     {
         this.parent = _parent;
     }

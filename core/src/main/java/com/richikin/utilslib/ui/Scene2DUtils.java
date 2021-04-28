@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.ui;
 
 import com.badlogic.gdx.graphics.Color;
@@ -20,11 +19,12 @@ public class Scene2DUtils
 
     /**
      * Creates a {@link Table}, without adding it to the stage.
-     * @param x X Display coordinate.
-     * @param y Y Display coordinate.
-     * @param width The table Width in pixels.
+     *
+     * @param x      X Display coordinate.
+     * @param y      Y Display coordinate.
+     * @param width  The table Width in pixels.
      * @param height The table Height in pixels.
-     * @param skin The {@link Skin} to use.
+     * @param skin   The {@link Skin} to use.
      * @return Tne Table.
      */
     public Table createTable(int x, int y, int width, int height, Skin skin)
@@ -38,7 +38,8 @@ public class Scene2DUtils
 
     /**
      * Convenience method for creating a {@link Image}.
-     * @param imageName The name of the image to use.
+     *
+     * @param imageName   The name of the image to use.
      * @param atlasLoader The {@link TextureAtlas} loader to use.
      * @return The Image.
      */
@@ -52,6 +53,7 @@ public class Scene2DUtils
 
     /**
      * Create an {@link Image} from the Objects TextureAtlas.
+     *
      * @param imageName Filename of the texture to use.
      * @return The Image.
      */
@@ -65,7 +67,8 @@ public class Scene2DUtils
 
     /**
      * Convenience method for creating a {@link Drawable}.
-     * @param imageName The name of the image to use.
+     *
+     * @param imageName   The name of the image to use.
      * @param atlasLoader The {@link TextureAtlas} loader to use.
      * @return The Drawable.
      */
@@ -78,9 +81,10 @@ public class Scene2DUtils
 
     /**
      * Creates a {@link ScrollPane}, without adding it to the stage.
+     *
      * @param table The associated {@link Table}.
-     * @param skin The {@link Skin} to use.
-     * @param name The name of this pane.
+     * @param skin  The {@link Skin} to use.
+     * @param name  The name of this pane.
      * @return The ScrollPane.
      */
     public ScrollPane createScrollPane(Table table, Skin skin, String name)
@@ -94,11 +98,12 @@ public class Scene2DUtils
 
     /**
      * Makes a text {@link Label}, amd adds it to the stage.
+     *
      * @param labelText The label text to display.
-     * @param x X Display coordinate.
-     * @param y Y Display coordinate.
-     * @param color The Tint.
-     * @param fontName The {@link BitmapFont} to use.
+     * @param x         X Display coordinate.
+     * @param y         Y Display coordinate.
+     * @param color     The Tint.
+     * @param fontName  The {@link BitmapFont} to use.
      * @return The label.
      */
     // FIXME: 12/12/2020 - Too many parameters
@@ -121,13 +126,13 @@ public class Scene2DUtils
     /**
      * Makes a text {@link Label}, amd adds it to the stage.
      *
-     * @see Scene2DUtils#makeLabel(String, int, int, Color, Skin).
      * @param labelText The label text to display.
-     * @param x X Display coordinate.
-     * @param y Y Display coordinate.
-     * @param color The Tint.
-     * @param skin The {@link Skin} to use.
+     * @param x         X Display coordinate.
+     * @param y         Y Display coordinate.
+     * @param color     The Tint.
+     * @param skin      The {@link Skin} to use.
      * @return The label.
+     * @see Scene2DUtils#makeLabel(String, int, int, Color, Skin).
      */
     public Label addLabel(String labelText, int x, int y, Color color, Skin skin)
     {
@@ -140,10 +145,11 @@ public class Scene2DUtils
 
     /**
      * Makes a selectable {@link ImageButton} and adds it to the stage.
-     * @param upButton Filename of the image to display when NOT pressed.
+     *
+     * @param upButton   Filename of the image to display when NOT pressed.
      * @param downButton Filename of the image to display when pressed.
-     * @param x X Display coordinate.
-     * @param y Y Display coordinate.
+     * @param x          X Display coordinate.
+     * @param y          Y Display coordinate.
      * @return The ImageButton.
      */
     public ImageButton addButton(String upButton, String downButton, int x, int y)
@@ -163,12 +169,13 @@ public class Scene2DUtils
 
     /**
      * Makes a selectable {@link CheckBox} and adds it to the stage.
-     * @param imageOn The image to display when selected.
+     *
+     * @param imageOn  The image to display when selected.
      * @param imageOff The image to display when deselected.
-     * @param x X Display coordinate.
-     * @param y Y Display coordinate.
-     * @param color The Tint.
-     * @param skin The {@link Skin} to use.
+     * @param x        X Display coordinate.
+     * @param y        Y Display coordinate.
+     * @param color    The Tint.
+     * @param skin     The {@link Skin} to use.
      * @return The Checkbox.
      */
     public CheckBox addCheckBox(String imageOn, String imageOff, int x, int y, Color color, Skin skin)
@@ -182,11 +189,12 @@ public class Scene2DUtils
 
     /**
      * Makes a text {@link Label}, without adding it to the stage.
+     *
      * @param string The label text to display.
-     * @param x X Display coordinate.
-     * @param y Y Display coordinate.
-     * @param color The Tint.
-     * @param skin The {@link Skin} to use.
+     * @param x      X Display coordinate.
+     * @param y      Y Display coordinate.
+     * @param color  The Tint.
+     * @param skin   The {@link Skin} to use.
      * @return The label.
      */
     public Label makeLabel(String string, int x, int y, Color color, Skin skin)
@@ -206,8 +214,9 @@ public class Scene2DUtils
     /**
      * Make a {@link Slider} bar with a sliding indicator,
      * without adding it to the stage.
-     * @param x X Display coordinate.
-     * @param y Y Display coordinate.
+     *
+     * @param x    X Display coordinate.
+     * @param y    Y Display coordinate.
      * @param skin The {@link Skin} to use.
      * @return The Slider.
      */
@@ -224,12 +233,13 @@ public class Scene2DUtils
 
     /**
      * Create a {@link CheckBox} without adding it to stage.
-     * @param imageOn The image to display when box is selected.
+     *
+     * @param imageOn  The image to display when box is selected.
      * @param imageOff The image to display when box is deselected.
-     * @param x X Display coordinate.
-     * @param y Y Display coordinate.
-     * @param color The Tint.
-     * @param skin The {@link Skin} to use.
+     * @param x        X Display coordinate.
+     * @param y        Y Display coordinate.
+     * @param color    The Tint.
+     * @param skin     The {@link Skin} to use.
      * @return The Checkbox.
      */
     // FIXME: 12/12/2020 - Too many parameters

@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.ui;
 
 import com.badlogic.gdx.graphics.Color;
@@ -138,15 +137,15 @@ public class ProgressBar extends ItemF implements IUIProgressBar, Disposable
     }
 
     @Override
-    public void setSpeed(float _speed)
-    {
-        this.speed = _speed;
-    }
-
-    @Override
     public float getSpeed()
     {
         return speed;
+    }
+
+    @Override
+    public void setSpeed(float _speed)
+    {
+        this.speed = _speed;
     }
 
     @Override

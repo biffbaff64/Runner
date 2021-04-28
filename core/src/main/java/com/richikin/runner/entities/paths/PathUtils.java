@@ -8,15 +8,13 @@ import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.runner.core.App;
 import com.richikin.utilslib.logging.Trace;
 
 public class PathUtils implements Disposable
 {
-    private Array<FixedPath> paths;
-    private int              numberOfPaths;
-
-    private static final String _PATH_NUMBER = "Path Number";
+    private static final String           _PATH_NUMBER = "Path Number";
+    private              Array<FixedPath> paths;
+    private              int              numberOfPaths;
 
     public PathUtils()
     {
@@ -49,7 +47,7 @@ public class PathUtils implements Disposable
 
                 float[] points = polygon.getTransformedVertices();
 
-                for (int i=0; i<points.length; i+=2)
+                for (int i = 0; i < points.length; i += 2)
                 {
                     paths.get(pathNum).data.add(new Vector2(points[i], points[i + 1]));
                 }
@@ -59,6 +57,7 @@ public class PathUtils implements Disposable
 
     /**
      * Establish how many seperate paths there are.
+     *
      * @param mapObjects The TiledMap Object Layer
      * @return The number of paths found.
      */
@@ -100,6 +99,7 @@ public class PathUtils implements Disposable
 
     /**
      * Pick a path at random from the paths array.
+     *
      * @return The path number.
      */
     public int getRandomPath()

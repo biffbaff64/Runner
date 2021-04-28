@@ -1,4 +1,3 @@
-
 package com.richikin.runner.input;
 
 import com.richikin.runner.config.AppConfig;

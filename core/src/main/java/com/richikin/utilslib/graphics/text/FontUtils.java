@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.graphics.text;
 
 import com.badlogic.gdx.Gdx;
@@ -18,6 +17,7 @@ public class FontUtils
         return instance;
 
     }
+
     public BitmapFont createFont(String fontFile, int size, Color color)
     {
         BitmapFont font;

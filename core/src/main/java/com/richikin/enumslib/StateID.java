@@ -1,4 +1,3 @@
-
 package com.richikin.enumslib;
 
 public enum StateID

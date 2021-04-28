@@ -63,8 +63,8 @@ public class MainGameScreen extends AbstractBaseScreen
             Trace.__FILE_FUNC("prefs : " + App.settings.getPrefs());
             Trace.divider();
 
-            endGameManager   = new EndgameManager();
-            gameControlLoop  = new GameControlLoop();
+            endGameManager  = new EndgameManager();
+            gameControlLoop = new GameControlLoop();
 
             App.levelManager = new LevelManager();
             App.levelManager.prepareNewGame();
@@ -93,18 +93,18 @@ public class MainGameScreen extends AbstractBaseScreen
             }
 
             case _STATE_SETUP,
-                 _STATE_GET_READY,
-                 _STATE_DEVELOPER_PANEL,
-                 _STATE_PAUSED,
-                 _STATE_GAME,
-                 _STATE_MESSAGE_PANEL,
-                 _STATE_LEVEL_RETRY,
-                 _STATE_LEVEL_FINISHED,
-                 _STATE_GAME_OVER,
-                 _STATE_GAME_FINISHED,
-                 _STATE_ANNOUNCE_MISSILE,
-                 _STATE_TELEPORTING,
-                 _STATE_END_GAME -> {
+                _STATE_GET_READY,
+                _STATE_DEVELOPER_PANEL,
+                _STATE_PAUSED,
+                _STATE_GAME,
+                _STATE_MESSAGE_PANEL,
+                _STATE_LEVEL_RETRY,
+                _STATE_LEVEL_FINISHED,
+                _STATE_GAME_OVER,
+                _STATE_GAME_FINISHED,
+                _STATE_ANNOUNCE_MISSILE,
+                _STATE_TELEPORTING,
+                _STATE_END_GAME -> {
 
                 gameControlLoop.update();
             }

@@ -1,4 +1,3 @@
-
 package com.richikin.runner.maps;
 
 import com.richikin.runner.entities.characters.JailKey;

@@ -1,4 +1,3 @@
-
 package com.richikin.runner.graphics.camera;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -9,11 +8,11 @@ public class Shake
 {
     public static boolean screenShakeEnabled;
 
-    private static float shakeRadius;
-    private static float randomAngle;
-    private static float elapsedTime;
-    private static float shakeDuration;
-    private static float shakeIntensity;
+    private static float   shakeRadius;
+    private static float   randomAngle;
+    private static float   elapsedTime;
+    private static float   shakeDuration;
+    private static float   shakeIntensity;
     private static boolean screenShakeAllowed;
 
     public static void start()
@@ -27,12 +26,12 @@ public class Shake
         {
             if (!screenShakeEnabled)
             {
-                shakeDuration = duration / 1000f;
-                shakeRadius = radius;
+                shakeDuration  = duration / 1000f;
+                shakeRadius    = radius;
                 shakeIntensity = intensity;
 
-                elapsedTime = 0;
-                randomAngle = MathUtils.random.nextFloat() % 360f;
+                elapsedTime        = 0;
+                randomAngle        = MathUtils.random.nextFloat() % 360f;
                 screenShakeEnabled = true;
             }
         }
@@ -46,7 +45,7 @@ public class Shake
         }
         else
         {
-            if(screenShakeEnabled)
+            if (screenShakeEnabled)
             {
                 // Only shake when required.
                 if (elapsedTime < shakeDuration)

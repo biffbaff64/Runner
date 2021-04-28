@@ -4,7 +4,10 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.TileID;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.maths.*;
+import com.richikin.utilslib.maths.Box;
+import com.richikin.utilslib.maths.SimpleVec2F;
+import com.richikin.utilslib.maths.Vec2;
+import com.richikin.utilslib.maths.Vec3;
 import com.richikin.utilslib.physics.Direction;
 
 /**

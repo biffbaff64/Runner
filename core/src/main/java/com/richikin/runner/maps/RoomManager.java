@@ -97,15 +97,13 @@ public class RoomManager implements Disposable
             // -----------------------------------------
         };
     //@formatter:on
-
-    public int           roomIndex;
-    public Array<String> roomList;
-    public int           playerStart;
-    public Room          activeRoom;
-    public boolean       taskOffered;
-
-    private final int worldWidth;
-    private final int worldHeight;
+    private final int      worldWidth;
+    private final int      worldHeight;
+    public        int      roomIndex;
+    public        Array<String> roomList;
+    public        int playerStart;
+    public        Room activeRoom;
+    public        boolean taskOffered;
 
     /**
      * <p>

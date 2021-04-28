@@ -5,9 +5,9 @@ import com.richikin.enumslib.ActionStates;
 
 public interface IEntityComponent
 {
-    void setActionState(ActionStates action);
-
     ActionStates getActionState();
+
+    void setActionState(ActionStates action);
 
     void tidy(int index);
 

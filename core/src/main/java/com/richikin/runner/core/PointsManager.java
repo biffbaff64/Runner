@@ -4,21 +4,9 @@ import com.richikin.enumslib.GraphicID;
 
 public class PointsManager
 {
-    static class Points
-    {
-        final GraphicID gid;
-        final int       points;
-
-        Points(GraphicID _gid, int _points)
-        {
-            this.gid = _gid;
-            this.points = _points;
-        }
-    }
-
     private static final Points[] pointsTable =
         {
-            new Points(GraphicID.G_SOLDIER,     90),
+            new Points(GraphicID.G_SOLDIER, 90),
         };
 
     public static int getPoints(GraphicID gid)
@@ -36,5 +24,17 @@ public class PointsManager
         }
 
         return score;
+    }
+
+    static class Points
+    {
+        final GraphicID gid;
+        final int       points;
+
+        Points(GraphicID _gid, int _points)
+        {
+            this.gid    = _gid;
+            this.points = _points;
+        }
     }
 }

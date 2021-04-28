@@ -1,4 +1,3 @@
-
 package com.richikin.runner.scenes;
 
 public interface IBaseScreen

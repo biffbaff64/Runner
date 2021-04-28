@@ -1,4 +1,3 @@
-
 package com.richikin.runner.ui.panels;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

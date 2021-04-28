@@ -1,4 +1,3 @@
-
 package com.richikin.runner.graphics.camera;
 
 import com.badlogic.gdx.Gdx;
@@ -15,14 +14,13 @@ import com.richikin.utilslib.maths.SimpleVec3F;
 
 public class OrthoGameCamera implements IGameCamera, Disposable
 {
-    public Viewport           viewport;
-    public OrthographicCamera camera;
-    public String             name;
-    public boolean            isInUse;
-    public boolean            isLerpingEnabled;
-
-    private       float   defaultZoom;
-    public        Vector3 lerpVector;
+    public  Viewport           viewport;
+    public  OrthographicCamera camera;
+    public  String             name;
+    public  boolean            isInUse;
+    public  boolean            isLerpingEnabled;
+    public  Vector3            lerpVector;
+    private float              defaultZoom;
 
     public OrthoGameCamera(float _sceneWidth, float _sceneHeight, ViewportType _viewType, String _name)
     {
@@ -73,19 +71,6 @@ public class OrthoGameCamera implements IGameCamera, Disposable
     }
 
     @Override
-    public void setPosition(SimpleVec3F _position)
-    {
-        if (isInUse)
-        {
-            camera.position.x = _position.x;
-            camera.position.y = _position.y;
-            camera.position.z = _position.z;
-
-            camera.update();
-        }
-    }
-
-    @Override
     public void setPosition(SimpleVec3F _position, float _zoom)
     {
         if (isInUse)
@@ -122,6 +107,19 @@ public class OrthoGameCamera implements IGameCamera, Disposable
     public Vector3 getPosition()
     {
         return camera.position;
+    }
+
+    @Override
+    public void setPosition(SimpleVec3F _position)
+    {
+        if (isInUse)
+        {
+            camera.position.x = _position.x;
+            camera.position.y = _position.y;
+            camera.position.z = _position.z;
+
+            camera.update();
+        }
     }
 
     @Override
@@ -184,15 +182,15 @@ public class OrthoGameCamera implements IGameCamera, Disposable
     }
 
     @Override
-    public void setCameraZoom(float _zoom)
-    {
-        camera.zoom = _zoom;
-    }
-
-    @Override
     public float getCameraZoom()
     {
         return camera.zoom;
+    }
+
+    @Override
+    public void setCameraZoom(float _zoom)
+    {
+        camera.zoom = _zoom;
     }
 
     @Override

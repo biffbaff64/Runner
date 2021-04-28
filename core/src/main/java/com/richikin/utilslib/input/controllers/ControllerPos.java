@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.input.controllers;
 
 import com.richikin.utilslib.physics.Movement;
@@ -14,7 +13,7 @@ public enum ControllerPos
 
     ControllerPos(String _text, int _value)
     {
-        text = _text;
+        text  = _text;
         value = _value;
     }
 

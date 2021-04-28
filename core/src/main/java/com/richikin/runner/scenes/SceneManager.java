@@ -19,15 +19,15 @@ public class SceneManager
         }
     }
 
-    public static SceneManager inst()
-    {
-        return _INSTANCE;
-    }
-
     private ScreenID currentScene;
 
     private SceneManager()
     {
+    }
+
+    public static SceneManager inst()
+    {
+        return _INSTANCE;
     }
 
     public ScreenID getCurrentScene()

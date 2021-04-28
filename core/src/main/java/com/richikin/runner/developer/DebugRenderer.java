@@ -11,7 +11,6 @@ import com.richikin.runner.assets.GameAssets;
 import com.richikin.runner.config.Settings;
 import com.richikin.runner.core.App;
 import com.richikin.runner.physics.aabb.CollisionObject;
-import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.graphics.text.FontUtils;
 import com.richikin.utilslib.logging.Meters;
 import com.richikin.utilslib.logging.Stats;

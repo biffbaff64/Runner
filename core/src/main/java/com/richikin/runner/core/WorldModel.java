@@ -9,8 +9,8 @@ import com.richikin.runner.config.Settings;
 import com.richikin.runner.developer.Developer;
 import com.richikin.runner.graphics.Gfx;
 import com.richikin.runner.physics.box2d.BodyBuilder;
-import com.richikin.utilslib.physics.box2d.Box2DContactListener;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.physics.box2d.Box2DContactListener;
 
 public class WorldModel implements Disposable
 {

@@ -1,4 +1,3 @@
-
 package com.richikin.runner.entities.paths;
 
 import com.badlogic.gdx.utils.Disposable;
@@ -11,20 +10,6 @@ import com.richikin.utilslib.physics.Movement;
 
 public class StairsPath implements Disposable
 {
-    private static class PathData
-    {
-        public final SimpleVec2F distance;
-        public final Direction   direction;
-        public final SimpleVec2F       speed;
-
-        PathData(SimpleVec2F distance, Direction direction, SimpleVec2F speed)
-        {
-            this.distance  = new SimpleVec2F(distance.getX(), distance.getY());
-            this.direction = new Direction(direction);
-            this.speed     = new SimpleVec2F(speed);
-        }
-    }
-
     private final PathData[] pathData =
         {
             new PathData(
@@ -110,9 +95,8 @@ public class StairsPath implements Disposable
             ),
             // ...And Repeat...
         };
-
-    public int pathIndex;
-    public SimpleVec2 directionReset;
+    public        int        pathIndex;
+    public        SimpleVec2 directionReset;
 
     public StairsPath()
     {
@@ -140,5 +124,19 @@ public class StairsPath implements Disposable
         Trace.__FILE_FUNC();
 
         directionReset = null;
+    }
+
+    private static class PathData
+    {
+        public final SimpleVec2F distance;
+        public final Direction   direction;
+        public final SimpleVec2F speed;
+
+        PathData(SimpleVec2F distance, Direction direction, SimpleVec2F speed)
+        {
+            this.distance  = new SimpleVec2F(distance.getX(), distance.getY());
+            this.direction = new Direction(direction);
+            this.speed     = new SimpleVec2F(speed);
+        }
     }
 }

@@ -21,24 +21,14 @@ public abstract class Developer
         }
     }
 
-    public static void setDevMode(boolean _state)
-    {
-        isDevMode = _state;
-    }
-
-    public static void setGodMode(boolean _state)
-    {
-        isGodMode = _state;
-    }
-
-    public static void setAndroidOnDesktop(boolean _state)
-    {
-        isAndroidOnDesktop = _state;
-    }
-
     public static boolean isDevMode()
     {
         return !AppConfig.isAndroidApp() && isDevMode;
+    }
+
+    public static void setDevMode(boolean _state)
+    {
+        isDevMode = _state;
     }
 
     public static boolean isGodMode()
@@ -46,8 +36,18 @@ public abstract class Developer
         return !AppConfig.isAndroidApp() && isGodMode;
     }
 
+    public static void setGodMode(boolean _state)
+    {
+        isGodMode = _state;
+    }
+
     public static boolean isAndroidOnDesktop()
     {
         return isAndroidOnDesktop;
+    }
+
+    public static void setAndroidOnDesktop(boolean _state)
+    {
+        isAndroidOnDesktop = _state;
     }
 }

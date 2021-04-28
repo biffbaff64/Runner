@@ -5,9 +5,9 @@ import com.richikin.enumslib.ActionStates;
 
 public class ActionButtonHandler implements Disposable
 {
-    private       ActionStates actionMode;
-    private       ActionStates previousActionMode;
-    private       ActionStates futureActionMode;
+    private ActionStates actionMode;
+    private ActionStates previousActionMode;
+    private ActionStates futureActionMode;
 
     public ActionButtonHandler()
     {
@@ -77,11 +77,6 @@ public class ActionButtonHandler implements Disposable
         actionMode         = mode;
     }
 
-    public void setFutureActionMode(ActionStates mode)
-    {
-        futureActionMode = mode;
-    }
-
     public ActionStates getPreviousActionMode()
     {
         return previousActionMode;
@@ -90,6 +85,11 @@ public class ActionButtonHandler implements Disposable
     public ActionStates getFutureActionMode()
     {
         return futureActionMode;
+    }
+
+    public void setFutureActionMode(ActionStates mode)
+    {
+        futureActionMode = mode;
     }
 
     public void removeAction()

@@ -1,18 +1,16 @@
-
 package com.richikin.runner.graphics.camera;
 
 import com.richikin.utilslib.physics.Movement;
 
 public class Zoom
 {
-    public static final float _DEFAULT_ZOOM = 1.0f;
-    public static final float _INITIAL_ZOOM = 0.0f;
-
-    private       int     direction;
-    private       float   zoomValue;
-    private       float   resetValue;
-    private       float   target;
-    private final boolean bounce;
+    public static final float   _DEFAULT_ZOOM = 1.0f;
+    public static final float   _INITIAL_ZOOM = 0.0f;
+    private final       boolean bounce;
+    private             int     direction;
+    private             float   zoomValue;
+    private             float   resetValue;
+    private             float   target;
 
     public Zoom()
     {

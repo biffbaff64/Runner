@@ -10,9 +10,9 @@ import com.richikin.runner.core.App;
 import com.richikin.runner.entities.objects.GdxSprite;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.runner.graphics.Gfx;
-import com.richikin.utilslib.physics.aabb.AABBData;
 import com.richikin.runner.physics.aabb.CollisionObject;
 import com.richikin.utilslib.physics.ICollideUtils;
+import com.richikin.utilslib.physics.aabb.AABBData;
 
 public class CollisionUtils implements ICollideUtils, Disposable
 {
@@ -30,6 +30,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
 
     /**
      * Creates a new {@link CollisionObject} with default settings.
+     *
      * @return The CollisionObject.
      */
     @Override
@@ -41,6 +42,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
     /**
      * Creates a new {@link CollisionObject} with position and size
      * data obtained from the supplied rectangle.
+     *
      * @param rectangle The rectangle to use.
      * @return The CollisionObject.
      */
@@ -53,10 +55,11 @@ public class CollisionUtils implements ICollideUtils, Disposable
     /**
      * Creates a new {@link CollisionObject} with the supplied
      * position and size data.
-     * @param x The X coordinate.
-     * @param y The Y coordinatee.
-     * @param width Width of the rectangle in pixels.
-     * @param height Height of the rectangle in pixels.
+     *
+     * @param x         The X coordinate.
+     * @param y         The Y coordinatee.
+     * @param width     Width of the rectangle in pixels.
+     * @param height    Height of the rectangle in pixels.
      * @param graphicID The {@link GraphicID} of this CollisionObject.
      * @return The Collision Object.
      */
@@ -70,6 +73,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
      * Checks for contact between the {@link CollisionObject} at the
      * specified array position and any other CollisionObject. This
      * check is done for ALL objects, entities and otherwise.
+     *
      * @param parentIndex The array position.
      * @return True if contact is made.
      */
@@ -96,6 +100,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
      * specified array position and any Entity object.
      * CollisionObjects that are not associated with Entities, such as
      * walls, floors, ceilings etc are ignored.
+     *
      * @param parentIndex The array position.
      * @return True if contact is made.
      */

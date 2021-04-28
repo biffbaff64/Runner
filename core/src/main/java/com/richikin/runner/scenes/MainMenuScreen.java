@@ -221,8 +221,8 @@ public class MainMenuScreen extends AbstractBaseScreen
         App.cameraUtils.disableAllCameras();
 
         App.baseRenderer.parallaxCamera.isInUse = true;
-        App.baseRenderer.hudGameCamera.isInUse = true;
-        App.baseRenderer.isDrawingStage        = true;
+        App.baseRenderer.hudGameCamera.isInUse  = true;
+        App.baseRenderer.isDrawingStage         = true;
 
         Version.appDetails();
 

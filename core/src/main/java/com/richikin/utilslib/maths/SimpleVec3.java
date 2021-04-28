@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.maths;
 
 import org.jetbrains.annotations.NotNull;

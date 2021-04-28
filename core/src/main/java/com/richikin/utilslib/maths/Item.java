@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.maths;
 
 import com.richikin.utilslib.logging.StopWatch;
@@ -7,11 +6,11 @@ import java.util.concurrent.TimeUnit;
 
 public class Item
 {
+    private final StopWatch stopWatch;
     private       int       maximum;
     private       int       minimum;
     private       int       total;
     private       int       refillAmount;
-    private final StopWatch stopWatch;
 
     public Item()
     {
@@ -30,11 +29,11 @@ public class Item
 
     public Item(int minimum, int maximum, int total)
     {
-        this.minimum = minimum;
-        this.maximum = maximum;
-        this.total = total;
+        this.minimum      = minimum;
+        this.maximum      = maximum;
+        this.total        = total;
         this.refillAmount = minimum;
-        this.stopWatch = StopWatch.start();
+        this.stopWatch    = StopWatch.start();
     }
 
     public boolean slowDecrementOnTimer(int interval, int amount)

@@ -1,4 +1,3 @@
-
 package com.richikin.runner.physics.aabb;
 
 import com.badlogic.gdx.math.Rectangle;
@@ -46,8 +45,8 @@ public class CollisionObject implements Disposable
     public boolean isObstacle;
     public boolean isContactObstacle;
 
-    public boolean isInvisibilityAllowed;
-    public StopWatch invisibilityTimer;
+    public  boolean   isInvisibilityAllowed;
+    public  StopWatch invisibilityTimer;
     private int       invisibilityDelay;    // How long this collision object is ignored for
 
     public CollisionObject()

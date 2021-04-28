@@ -1,4 +1,3 @@
-
 package com.richikin.runner.physics.box2d;
 
 import com.richikin.enumslib.GraphicID;
@@ -13,7 +12,7 @@ public class BodyIdentity
     public BodyIdentity(GdxSprite entity, GraphicID gid, GraphicID type)
     {
         this.entity = entity;
-        this.gid = gid;
-        this.type = type;
+        this.gid    = gid;
+        this.type   = type;
     }
 }

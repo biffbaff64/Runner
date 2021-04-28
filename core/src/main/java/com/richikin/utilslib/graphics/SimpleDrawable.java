@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.graphics;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -35,7 +34,7 @@ public class SimpleDrawable implements Disposable
     @Override
     public void dispose()
     {
-        image = null;
+        image    = null;
         position = null;
     }
 }

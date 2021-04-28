@@ -4,12 +4,11 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.runner.config.AppConfig;
 import com.richikin.runner.entities.EntityManager;
 import com.richikin.runner.entities.EntityUtils;
-import com.richikin.runner.entities.paths.PathUtils;
 import com.richikin.runner.maps.RoomManager;
 import com.richikin.runner.physics.CollisionUtils;
-import com.richikin.utilslib.physics.aabb.AABBData;
 import com.richikin.runner.ui.HeadsUpDisplay;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.physics.aabb.AABBData;
 
 public class LevelManager
 {
@@ -25,6 +24,7 @@ public class LevelManager
 
     /**
      * Gets the current level ready for playing.
+     *
      * @param _firstTime TRUE if first call from power-up.
      */
     public void prepareCurrentLevel(boolean _firstTime)
@@ -40,8 +40,8 @@ public class LevelManager
             App.gameProgress.resetProgress();
         }
 
-        AppConfig.gamePaused     = false;
-        AppConfig.quitToMainMenu = false;
+        AppConfig.gamePaused      = false;
+        AppConfig.quitToMainMenu  = false;
         AppConfig.forceQuitToMenu = false;
 
         App.gameProgress.isRestarting   = false;
@@ -106,7 +106,7 @@ public class LevelManager
      */
     public void closeCurrentLevel()
     {
-        for (int i=0; i< App.entityData.entityMap.size; i++)
+        for (int i = 0; i < App.entityData.entityMap.size; i++)
         {
             if (App.entityData.entityMap.get(i).gid != GraphicID.G_PLAYER)
             {

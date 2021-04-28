@@ -1,4 +1,3 @@
-
 package com.richikin.runner.entities.hero;
 
 import com.badlogic.gdx.utils.Disposable;
@@ -196,7 +195,7 @@ public class ButtonInputHandler implements Disposable
 
     private void setDirection(Dir _direction)
     {
-        for (int i = 0; i< DirectionMap.map.length; i++)
+        for (int i = 0; i < DirectionMap.map.length; i++)
         {
             if (DirectionMap.map[i].translated == _direction)
             {

@@ -152,6 +152,7 @@ public class MapData
 
     /**
      * Draws the TiledMap game tile layers.
+     *
      * @param camera The {@link OrthographicCamera} to use.
      */
     public void render(OrthographicCamera camera)

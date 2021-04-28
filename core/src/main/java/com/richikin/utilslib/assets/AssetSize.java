@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.assets;
 
 import com.richikin.enumslib.GraphicID;
@@ -15,7 +14,7 @@ public class AssetSize
 
     public AssetSize(GraphicID gid, int width, int height)
     {
-        this.graphicID  = gid;
-        this.size       = new Vec2(width, height);
+        this.graphicID = gid;
+        this.size      = new Vec2(width, height);
     }
 }

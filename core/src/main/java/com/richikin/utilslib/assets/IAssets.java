@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.assets;
 
 import com.badlogic.gdx.assets.AssetManager;

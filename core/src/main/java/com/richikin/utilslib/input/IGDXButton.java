@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.input;
 
 public interface IGDXButton

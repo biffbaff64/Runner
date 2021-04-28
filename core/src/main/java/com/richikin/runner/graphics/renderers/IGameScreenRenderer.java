@@ -1,4 +1,3 @@
-
 package com.richikin.runner.graphics.renderers;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

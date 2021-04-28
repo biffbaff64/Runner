@@ -38,7 +38,7 @@ public class MainPlayer extends GdxSprite
     public ButtonInputHandler  buttons;
     public CollisionHandler    collision;
     public ActionButtonHandler actionButton;
-//    public PlayerBulletManager bulletManager;
+    //    public PlayerBulletManager bulletManager;
     public SimpleVec2F         maxMoveSpeed;
     public GdxSprite           platformSprite;
 
@@ -605,8 +605,8 @@ public class MainPlayer extends GdxSprite
         buttons.dispose();
 
         tileRectangle = null;
-        buttons = null;
-        actionButton = null;
-        collision = null;
+        buttons       = null;
+        actionButton  = null;
+        collision     = null;
     }
 }

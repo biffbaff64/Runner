@@ -208,7 +208,7 @@ public class HighScoreUtils implements Disposable
     {
         Trace.__FILE_FUNC();
 
-        json = null;
+        json       = null;
         highScores = null;
     }
 

@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.assets;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
@@ -10,7 +9,6 @@ import com.richikin.utilslib.exceptions.NotImplementedException;
 import com.richikin.utilslib.logging.Trace;
 
 import java.io.File;
-import java.lang.invoke.TypeDescriptor;
 
 public class AssetLoader implements IAssets, Disposable
 {
@@ -18,15 +16,12 @@ public class AssetLoader implements IAssets, Disposable
      * Texture Atlas names.
      * For more information check DesktopLauncher::main()
      */
-    private static final String _BUTTONS_ATLAS      = "packedimages/output/buttons.atlas";
-    private static final String _ANIMATIONS_ATLAS   = "packedimages/output/animations.atlas";
-    private static final String _OBJECTS_ATLAS      = "packedimages/output/objects.atlas";
-    private static final String _TEXT_ATLAS         = "packedimages/output/text.atlas";
-    private static final String _ACHIEVEMENTS_ATLAS = "packedimages/output/achievements.atlas";
-
-    private AssetManager assetManager;
-
-    private final String[] atlasNames =
+    private static final String       _BUTTONS_ATLAS      = "packedimages/output/buttons.atlas";
+    private static final String       _ANIMATIONS_ATLAS   = "packedimages/output/animations.atlas";
+    private static final String       _OBJECTS_ATLAS      = "packedimages/output/objects.atlas";
+    private static final String       _TEXT_ATLAS         = "packedimages/output/text.atlas";
+    private static final String       _ACHIEVEMENTS_ATLAS = "packedimages/output/achievements.atlas";
+    private final        String[]     atlasNames          =
         {
             _BUTTONS_ATLAS,
             _ANIMATIONS_ATLAS,
@@ -34,6 +29,7 @@ public class AssetLoader implements IAssets, Disposable
             _OBJECTS_ATLAS,
             _ACHIEVEMENTS_ATLAS,
         };
+    private              AssetManager assetManager;
 
     public AssetLoader()
     {
@@ -69,8 +65,9 @@ public class AssetLoader implements IAssets, Disposable
     /**
      * Use the AssetManager to find and return the specified
      * region from the Buttons Atlas.
+     *
      * @param name The name of the required region
-     * @return      A TextureRegion holding requested Region
+     * @return A TextureRegion holding requested Region
      */
     @Override
     public TextureRegion getButtonRegion(final String name)
@@ -81,8 +78,9 @@ public class AssetLoader implements IAssets, Disposable
     /**
      * Use the AssetManager to find and return the specified
      * region from the Animations Atlas.
+     *
      * @param name The name of the required region
-     * @return      A TextureRegion holding requested Region
+     * @return A TextureRegion holding requested Region
      */
     @Override
     public TextureRegion getAnimationRegion(final String name)
@@ -93,8 +91,9 @@ public class AssetLoader implements IAssets, Disposable
     /**
      * Use the AssetManager to find and return the specified
      * region from the Objects Atlas.
+     *
      * @param name The name of the required region
-     * @return      A TextureRegion holding requested Region
+     * @return A TextureRegion holding requested Region
      */
     @Override
     public TextureRegion getObjectRegion(final String name)
@@ -105,8 +104,9 @@ public class AssetLoader implements IAssets, Disposable
     /**
      * Use the AssetManager to find and return the specified
      * region from the Text Atlas.
+     *
      * @param name The name of the required region
-     * @return      A TextureRegion holding requested Region
+     * @return A TextureRegion holding requested Region
      */
     @Override
     public TextureRegion getTextRegion(final String name)
@@ -117,8 +117,9 @@ public class AssetLoader implements IAssets, Disposable
     /**
      * Use the AssetManager to find and return the specified
      * region from the Achievements Atlas.
+     *
      * @param name The name of the required region
-     * @return      A TextureRegion holding requested Region
+     * @return A TextureRegion holding requested Region
      */
     @Override
     public TextureRegion getAchievementRegion(final String name)
@@ -165,6 +166,7 @@ public class AssetLoader implements IAssets, Disposable
     /**
      * Load single asset, and ensures that it is loaded.
      * It then returns an object of the specified type.
+     *
      * @param <T>   the type parameter
      * @param asset the asset to load
      * @param type  the class type of the asset to load
@@ -184,6 +186,7 @@ public class AssetLoader implements IAssets, Disposable
 
     /**
      * Load TextureAtlas asset.
+     *
      * @param atlasName the full name of the specified atlas.
      */
     @Override
@@ -196,6 +199,7 @@ public class AssetLoader implements IAssets, Disposable
 
     /**
      * Unload the specified object
+     *
      * @param asset the filename of the object to unload
      */
     @Override

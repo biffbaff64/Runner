@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.graphics;
 
 import com.badlogic.gdx.graphics.Color;

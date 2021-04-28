@@ -31,7 +31,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
             case G_LOCKED_DOOR:
             case G_VILLAGER:
             {
-                App.getPlayer().isOnPlatform = false;
+                App.getPlayer().isOnPlatform   = false;
                 App.getPlayer().platformSprite = null;
 
                 isImpeded = true;
@@ -46,7 +46,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
                         App.getPlayer().getPosition().y
                     ))
                 {
-                    App.getPlayer().isOnPlatform = true;
+                    App.getPlayer().isOnPlatform   = true;
                     App.getPlayer().platformSprite = (GdxSprite) App.getPlayer().collisionObject.contactEntity;
                 }
             }
@@ -78,7 +78,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
                     rebound();
                 }
 
-                App.getPlayer().isOnPlatform = false;
+                App.getPlayer().isOnPlatform   = false;
                 App.getPlayer().platformSprite = null;
             }
             break;
@@ -86,7 +86,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
             case G_NO_ID:
             default:
             {
-                App.getPlayer().isOnPlatform = false;
+                App.getPlayer().isOnPlatform   = false;
                 App.getPlayer().platformSprite = null;
             }
             break;

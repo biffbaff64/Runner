@@ -1,4 +1,3 @@
-
 package com.richikin.runner.graphics.effects;
 
 import com.badlogic.gdx.utils.Disposable;

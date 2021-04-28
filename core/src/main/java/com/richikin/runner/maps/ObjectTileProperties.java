@@ -2,7 +2,7 @@ package com.richikin.runner.maps;
 
 /**
  * ------------------------------------------------------------------------------
- *
+ * <p>
  * ------------------------------------------------------------------------------
  */
 public class ObjectTileProperties
@@ -14,9 +14,9 @@ public class ObjectTileProperties
 
     public ObjectTileProperties()
     {
-        hasDirection    = false;
-        hasDistance     = false;
-        hasSpeed        = false;
-        isLinked        = false;
+        hasDirection = false;
+        hasDistance  = false;
+        hasSpeed     = false;
+        isLinked     = false;
     }
 }

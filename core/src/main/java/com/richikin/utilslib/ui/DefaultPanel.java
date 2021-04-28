@@ -3,11 +3,9 @@ package com.richikin.utilslib.ui;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.StateID;
-import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.exceptions.NotImplementedException;
 import com.richikin.utilslib.graphics.SimpleDrawable;
 import com.richikin.utilslib.logging.StateManager;
-import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.maths.Vec2;
 import com.richikin.utilslib.maths.Vec2F;
@@ -19,12 +17,11 @@ import com.richikin.utilslib.physics.Direction;
  */
 public abstract class DefaultPanel implements IDefaultUIPanel, Disposable
 {
-    protected TextureRegion  textureRegion;
-    protected SimpleDrawable image;
-    protected String         nameID;
-    protected boolean        isActive;
-
-    private final StateManager state;
+    private final StateManager   state;
+    protected     TextureRegion  textureRegion;
+    protected     SimpleDrawable image;
+    protected     String         nameID;
+    protected     boolean        isActive;
 
     public DefaultPanel()
     {
@@ -64,27 +61,27 @@ public abstract class DefaultPanel implements IDefaultUIPanel, Disposable
     }
 
     @Override
-    public void setWidth(int _width)
-    {
-        image.size.x = _width;
-    }
-
-    @Override
     public int getWidth()
     {
         return image.size.x;
     }
 
     @Override
-    public void setHeight(int _height)
+    public void setWidth(int _width)
     {
-        image.size.y = _height;
+        image.size.x = _width;
     }
 
     @Override
     public int getHeight()
     {
         return image.size.y;
+    }
+
+    @Override
+    public void setHeight(int _height)
+    {
+        image.size.y = _height;
     }
 
     @Override

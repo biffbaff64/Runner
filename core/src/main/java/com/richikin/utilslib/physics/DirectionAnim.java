@@ -8,8 +8,8 @@ public class DirectionAnim
 
     public DirectionAnim(int _x, int _y, String _anim)
     {
-        dirX = _x;
-        dirY = _y;
+        dirX      = _x;
+        dirY      = _y;
         animation = _anim;
     }
 }

@@ -32,7 +32,7 @@ public class BodyBuilder
         CircleShape shape = new CircleShape();
         shape.setRadius((_entity.frameWidth / 2f) / Gfx._PPM);
 
-        BodyDef bodyDef = createBodyDef(BodyDef.BodyType.DynamicBody, _entity);
+        BodyDef    bodyDef    = createBodyDef(BodyDef.BodyType.DynamicBody, _entity);
         FixtureDef fixtureDef = createFixtureDef(_entity, shape, _density, _friction, _restitution);
 
         return buildBody(_entity, bodyDef, fixtureDef);
@@ -60,7 +60,7 @@ public class BodyBuilder
                 ((_entity.frameHeight / 2f) / Gfx._PPM)
             );
 
-        BodyDef bodyDef = createBodyDef(BodyDef.BodyType.DynamicBody, _entity);
+        BodyDef    bodyDef    = createBodyDef(BodyDef.BodyType.DynamicBody, _entity);
         FixtureDef fixtureDef = createFixtureDef(_entity, shape, _density, _friction, _restitution);
 
         return buildBody(_entity, bodyDef, fixtureDef);
@@ -91,7 +91,7 @@ public class BodyBuilder
                 ((_entity.frameHeight / 2f) / Gfx._PPM)
             );
 
-        BodyDef bodyDef = createBodyDef(BodyDef.BodyType.KinematicBody, _entity);
+        BodyDef    bodyDef    = createBodyDef(BodyDef.BodyType.KinematicBody, _entity);
         FixtureDef fixtureDef = createFixtureDef(_entity, shape, _density, 0, _restitution);
 
         return buildBody(_entity, bodyDef, fixtureDef);
@@ -116,7 +116,7 @@ public class BodyBuilder
                 ((_entity.frameHeight / 2f) / Gfx._PPM)
             );
 
-        BodyDef bodyDef = createBodyDef(BodyDef.BodyType.StaticBody, _entity);
+        BodyDef    bodyDef    = createBodyDef(BodyDef.BodyType.StaticBody, _entity);
         FixtureDef fixtureDef = createFixtureDef(_entity, shape, 1.0f, 1.0f, 0.15f);
 
         return buildBody(bodyDef, fixtureDef);
@@ -145,7 +145,7 @@ public class BodyBuilder
                 ((_entity.frameHeight / 2f) / Gfx._PPM)
             );
 
-        BodyDef bodyDef = createBodyDef(BodyDef.BodyType.StaticBody, _entity);
+        BodyDef    bodyDef    = createBodyDef(BodyDef.BodyType.StaticBody, _entity);
         FixtureDef fixtureDef = createFixtureDef(_entity, shape, _density, _friction, _restitution);
 
         return buildBody(bodyDef, fixtureDef);

@@ -129,11 +129,11 @@ public class DecorationsHandler extends GenericEntityManager
 
         if (graphicID == GraphicID.G_BARREL)
         {
-            descriptor._ASSET = barrels[MathUtils.random(barrels.length-1)];
+            descriptor._ASSET = barrels[MathUtils.random(barrels.length - 1)];
         }
         else if (graphicID == GraphicID.G_POT)
         {
-            descriptor._ASSET = pots[MathUtils.random(pots.length-1)];
+            descriptor._ASSET = pots[MathUtils.random(pots.length - 1)];
         }
 
         return descriptor;

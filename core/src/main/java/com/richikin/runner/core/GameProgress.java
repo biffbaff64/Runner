@@ -20,26 +20,15 @@ public class GameProgress implements Disposable
     public boolean playerGameOver;
     public float   gameDiffculty;
 
-    public boolean      cloudDemonInView;
-    public boolean[][]  collectItems;
-
-    public enum Stack
-    {
-        _SCORE,
-        _GEM,
-        _COIN,
-        _KEY,
-        _VILLAGER,
-    }
-
-    public Item score;
-    public Item lives;
-    public Item gemCount;
-    public Item coinCount;
-    public Item keyCount;
-    public Item rescuedVillagers;
-
-    private int scoreStack;
+    public  boolean     cloudDemonInView;
+    public  boolean[][] collectItems;
+    public  Item        score;
+    public  Item        lives;
+    public  Item        gemCount;
+    public  Item        coinCount;
+    public  Item        keyCount;
+    public  Item        rescuedVillagers;
+    private int         scoreStack;
 
     public GameProgress()
     {
@@ -68,7 +57,7 @@ public class GameProgress implements Disposable
         score.setToMinimum();
         lives.setToMaximum();
 
-        collectItems = new boolean[3][8];
+        collectItems    = new boolean[3][8];
         collectItems[0] = new boolean[GameAssets._RUNES_FRAMES];
         collectItems[1] = new boolean[GameAssets._BOOKS_FRAMES];
         collectItems[2] = new boolean[GameAssets._POTIONS_FRAMES];
@@ -77,10 +66,10 @@ public class GameProgress implements Disposable
         Arrays.fill(collectItems[1], false);
         Arrays.fill(collectItems[2], false);
 
-        playerLifeOver    = false;
-        playerLevel       = 1;
-        playerGameOver    = false;
-        gameDiffculty     = 1.0f;
+        playerLifeOver = false;
+        playerLevel    = 1;
+        playerGameOver = false;
+        gameDiffculty  = 1.0f;
     }
 
     public void update()
@@ -139,7 +128,7 @@ public class GameProgress implements Disposable
         Arrays.fill(collectItems[2], false);
 
         playerLifeOver = false;
-        playerLevel = 1;
+        playerLevel    = 1;
     }
 
     public float getGameDifficulty()
@@ -154,5 +143,14 @@ public class GameProgress implements Disposable
 
         // DO NOT dispose of score and lives unless they have
         // been processed with regard to hiscores first.
+    }
+
+    public enum Stack
+    {
+        _SCORE,
+        _GEM,
+        _COIN,
+        _KEY,
+        _VILLAGER,
     }
 }

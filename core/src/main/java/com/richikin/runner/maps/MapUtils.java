@@ -1,4 +1,3 @@
-
 package com.richikin.runner.maps;
 
 import com.richikin.runner.core.App;
@@ -23,7 +22,7 @@ public class MapUtils
             App.mapData.mapPosition.setX
                 (
                     (int) Math.max(App.mapData.minScrollX,
-                    (float) ((x + (App.getPlayer().frameWidth / 2)) - (Gfx._VIEW_WIDTH / 2)))
+                        (float) ((x + (App.getPlayer().frameWidth / 2)) - (Gfx._VIEW_WIDTH / 2)))
                 );
 
             App.mapData.mapPosition.setX(Math.min(App.mapData.mapPosition.getX(), App.mapData.maxScrollX));
@@ -31,7 +30,7 @@ public class MapUtils
             App.mapData.mapPosition.setY
                 (
                     (int) Math.max(App.mapData.minScrollY,
-                    (float) ((y + (App.getPlayer().frameHeight / 2)) - (Gfx._VIEW_HEIGHT / 2)))
+                        (float) ((y + (App.getPlayer().frameHeight / 2)) - (Gfx._VIEW_HEIGHT / 2)))
                 );
 
             App.mapData.mapPosition.setY(Math.min(App.mapData.mapPosition.getY(), App.mapData.maxScrollY));

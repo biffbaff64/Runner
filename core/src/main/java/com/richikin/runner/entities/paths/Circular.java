@@ -1,4 +1,3 @@
-
 package com.richikin.runner.entities.paths;
 
 
@@ -18,8 +17,8 @@ public class Circular implements IPathMover
     public void reset()
     {
         timeInterval = 0;
-        xOffset = 0;
-        yOffset = 0;
+        xOffset      = 0;
+        yOffset      = 0;
     }
 
     public float getXOffset()

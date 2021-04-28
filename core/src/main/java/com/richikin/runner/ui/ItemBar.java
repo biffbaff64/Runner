@@ -7,11 +7,11 @@ import com.richikin.utilslib.graphics.GfxUtils;
 
 public class ItemBar
 {
-    private static final int _X1            = 0;
-    private static final int _X2            = 1;
-    private static final int _Y             = 2;
-    private static final int _WIDTH         = 3;
-    private static final int _HEIGHT        = 4;
+    private static final int _X1     = 0;
+    private static final int _X2     = 1;
+    private static final int _Y      = 2;
+    private static final int _WIDTH  = 3;
+    private static final int _HEIGHT = 4;
 
     private static final int _RUNES_PANEL   = 0;
     private static final int _BOOKS_PANEL   = 1;
@@ -31,23 +31,23 @@ public class ItemBar
     private static final int[][] displayPos = new int[][]
         {
             //
-            { 374,  374,   17,    0,    0},  // Collection Panel
+            {374, 374, 17, 0, 0},  // Collection Panel
 
             //
             //
-            { 386,  386,   38,   48,   48},
-            { 452,  452,   38,   48,   48},
-            { 518,  518,   38,   48,   48},
-            { 582,  582,   38,   48,   48},
-            { 649,  649,   38,   48,   48},
-            { 715,  715,   38,   48,   48},
-            { 781,  781,   38,   48,   48},
-            { 847,  847,   38,   48,   48},
+            {386, 386, 38, 48, 48},
+            {452, 452, 38, 48, 48},
+            {518, 518, 38, 48, 48},
+            {582, 582, 38, 48, 48},
+            {649, 649, 38, 48, 48},
+            {715, 715, 38, 48, 48},
+            {781, 781, 38, 48, 48},
+            {847, 847, 38, 48, 48},
         };
 
-    private TextureRegion[]     objectivesPanel;
-    private TextureRegion[][]   itemTextures;
-    private TextureRegion[][]   itemGreyTextures;
+    private TextureRegion[]   objectivesPanel;
+    private TextureRegion[][] itemTextures;
+    private TextureRegion[][] itemGreyTextures;
 
     public ItemBar()
     {

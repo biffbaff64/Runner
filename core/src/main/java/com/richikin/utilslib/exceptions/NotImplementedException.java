@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.exceptions;
 
 import java.io.Serial;

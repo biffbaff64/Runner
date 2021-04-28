@@ -10,23 +10,22 @@ import com.richikin.utilslib.maths.SimpleVec2;
 
 public class GenericEntityManager implements IEntityManagerComponent, Disposable
 {
-    public       boolean          canPlace;
-    public       SpriteDescriptor descriptor;
-    public       int              activeCount;
-    public       GraphicID        graphicID;
-
-    private final GraphicID managerID;
+    private final GraphicID        managerID;
+    public        boolean          canPlace;
+    public        SpriteDescriptor descriptor;
+    public        int              activeCount;
+    public        GraphicID        graphicID;
 
     public GenericEntityManager()
     {
-        this.graphicID    = GraphicID.G_NO_ID;
-        this.managerID    = GraphicID.G_NO_ID;
+        this.graphicID = GraphicID.G_NO_ID;
+        this.managerID = GraphicID.G_NO_ID;
     }
 
     public GenericEntityManager(final GraphicID _graphicID)
     {
-        this.graphicID    = _graphicID;
-        this.managerID    = _graphicID;
+        this.graphicID = _graphicID;
+        this.managerID = _graphicID;
     }
 
     @Override

@@ -22,9 +22,9 @@ public class EntityManager implements IEntityManager
     public int              blocksManagerIndex;
     public int              decorationsManagerIndex;
     public int              playerIndex;
-    public PlayerManager playerManager;
-    public RenderSystem  renderSystem;
-    public boolean       playerReady;
+    public PlayerManager    playerManager;
+    public RenderSystem     renderSystem;
+    public boolean          playerReady;
 
     /**
      * <p>

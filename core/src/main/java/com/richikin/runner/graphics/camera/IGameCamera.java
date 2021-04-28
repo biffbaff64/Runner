@@ -5,13 +5,13 @@ import com.richikin.utilslib.maths.SimpleVec3F;
 
 public interface IGameCamera
 {
-    void setPosition(SimpleVec3F _position);
-
     void setPosition(SimpleVec3F _position, float _zoom);
 
     void setPosition(SimpleVec3F _position, float _zoom, boolean _shake);
 
     Vector3 getPosition();
+
+    void setPosition(SimpleVec3F _position);
 
     void updatePosition(float targetX, float targetY);
 
@@ -21,9 +21,9 @@ public interface IGameCamera
 
     void resizeViewport(int _width, int _height, boolean _centerCamera);
 
-    void setCameraZoom(float _zoom);
-
     float getCameraZoom();
+
+    void setCameraZoom(float _zoom);
 
     void setZoomDefault(float _zoom);
 

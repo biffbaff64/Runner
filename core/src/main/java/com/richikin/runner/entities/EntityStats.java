@@ -14,22 +14,14 @@ public class EntityStats
     public static int[] mtrScorpions   = new int[]{0, 0, 0};
     public static int[] mtrSoldiers    = new int[]{0, 0, 0};
 
-    public void clearMaxCounts()
-    {
-        mtrBouncers[MIN]    = 0;
-        mtrScorpions[MIN]   = 0;
-        mtrSoldiers[MIN]    = 0;
-        mtrStormDemons[MIN] = 0;
-    }
-
     public static void log(GraphicID graphicID)
     {
         switch (graphicID)
         {
             case G_STORM_DEMON -> mtrStormDemons[NUM]++;
-            case G_BOUNCER     -> mtrBouncers[NUM]++;
-            case G_SCORPION    -> mtrScorpions[NUM]++;
-            case G_SOLDIER     -> mtrSoldiers[NUM]++;
+            case G_BOUNCER -> mtrBouncers[NUM]++;
+            case G_SCORPION -> mtrScorpions[NUM]++;
+            case G_SOLDIER -> mtrSoldiers[NUM]++;
 
             case G_COIN,
                 G_GEM,
@@ -65,9 +57,18 @@ public class EntityStats
                 G_BOOK,
                 G_LITTER,
                 G_RUNE,
-                G_SACKS -> {}
+                G_SACKS -> {
+            }
 
             default -> Trace.__FILE_FUNC("Unable to log $graphicID");
         }
+    }
+
+    public void clearMaxCounts()
+    {
+        mtrBouncers[MIN]    = 0;
+        mtrScorpions[MIN]   = 0;
+        mtrSoldiers[MIN]    = 0;
+        mtrStormDemons[MIN] = 0;
     }
 }

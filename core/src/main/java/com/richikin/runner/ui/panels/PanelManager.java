@@ -8,30 +8,8 @@ import com.richikin.utilslib.physics.Direction;
 
 public class PanelManager
 {
-    public static class Panel
-    {
-        public SimpleDrawable image;
-        public Direction      direction;
-        public Vec2F          distance;
-        public Vec2F          position;
-        public Vec2F          speed;
-        public boolean        isActive;
-        public ActionStates   actionState;
-
-        public Panel()
-        {
-            direction   = new Direction();
-            distance    = new Vec2F();
-            position    = new Vec2F();
-            speed       = new Vec2F();
-            isActive    = false;
-            actionState = ActionStates._NO_ACTION;
-        }
-    }
-
-    private static final int _DEFAULT_PANEL = 0;
-
-    private final Array<IUserInterfacePanel> panels;
+    private static final int                        _DEFAULT_PANEL = 0;
+    private final        Array<IUserInterfacePanel> panels;
 
     public PanelManager()
     {
@@ -61,5 +39,26 @@ public class PanelManager
     public void addPanel(IUserInterfacePanel uiPanel)
     {
         panels.add(uiPanel);
+    }
+
+    public static class Panel
+    {
+        public SimpleDrawable image;
+        public Direction      direction;
+        public Vec2F          distance;
+        public Vec2F          position;
+        public Vec2F          speed;
+        public boolean        isActive;
+        public ActionStates   actionState;
+
+        public Panel()
+        {
+            direction   = new Direction();
+            distance    = new Vec2F();
+            position    = new Vec2F();
+            speed       = new Vec2F();
+            isActive    = false;
+            actionState = ActionStates._NO_ACTION;
+        }
     }
 }

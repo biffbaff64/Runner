@@ -37,10 +37,10 @@ public class Proximity
     public Proximity()
     {
         this.proximityArea = new Rectangle();
-        this.tmp1 = new Vector2();
-        this.tmp2 = new Vector2();
-        this.start = new Vector2();
-        this.stop = new Vector2();
+        this.tmp1          = new Vector2();
+        this.tmp2          = new Vector2();
+        this.start         = new Vector2();
+        this.stop          = new Vector2();
 
         this.isSilent = false;
     }
@@ -168,7 +168,7 @@ public class Proximity
         tmp2.nor().scl(step);
 
         boolean processing = true;
-        boolean retFlag = false;
+        boolean retFlag    = false;
 
         while (processing)
         {
@@ -177,13 +177,13 @@ public class Proximity
 
             if (Vector2.dst2(tmp1.x, tmp1.y, stop.x, stop.y) < (step * step * 1.2f))
             {
-                retFlag = true;
+                retFlag    = true;
                 processing = false;
             }
 
             if (dist > maxDist)
             {
-                retFlag = false;
+                retFlag    = false;
                 processing = false;
             }
 

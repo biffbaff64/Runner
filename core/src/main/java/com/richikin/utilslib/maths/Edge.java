@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.maths;
 
 import com.badlogic.gdx.math.Rectangle;
@@ -32,9 +31,9 @@ public class Edge extends SimpleLine2D
             }
 
             if (intersects(new SimpleLine2D(x, y, x, y + height))
-                    || intersects(new SimpleLine2D(x, y + height, x + width, y + height))
-                    || intersects(new SimpleLine2D(x + width, y, x + width, y + height))
-                    || intersects(new SimpleLine2D(x, y, x + width, y)))
+                || intersects(new SimpleLine2D(x, y + height, x + width, y + height))
+                || intersects(new SimpleLine2D(x + width, y, x + width, y + height))
+                || intersects(new SimpleLine2D(x, y, x + width, y)))
             {
                 isIntersecting = true;
             }

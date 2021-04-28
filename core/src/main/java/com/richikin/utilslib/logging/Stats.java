@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.logging;
 
 import com.badlogic.gdx.Gdx;
@@ -28,10 +27,10 @@ public class Stats
         if (prefs != null)
         {
             prefs.putInteger
-                    (
-                            Meters.fromValue(meter).name(),
-                            (prefs.getInteger(Meters.fromValue(meter).name(), 0) + amount)
-                    );
+                (
+                    Meters.fromValue(meter).name(),
+                    (prefs.getInteger(Meters.fromValue(meter).name(), 0) + amount)
+                );
 
             prefs.flush();
         }
@@ -42,10 +41,10 @@ public class Stats
         if (prefs != null)
         {
             prefs.putInteger
-                    (
-                            Meters.fromValue(meter).name(),
-                            (prefs.getInteger(Meters.fromValue(meter).name(), 0) - 1)
-                    );
+                (
+                    Meters.fromValue(meter).name(),
+                    (prefs.getInteger(Meters.fromValue(meter).name(), 0) - 1)
+                );
 
             prefs.flush();
         }
@@ -56,10 +55,10 @@ public class Stats
         if (prefs != null)
         {
             prefs.putInteger
-                    (
-                            Meters.fromValue(meter).name(),
-                            (prefs.getInteger(Meters.fromValue(meter).name(), 0) + 1)
-                    );
+                (
+                    Meters.fromValue(meter).name(),
+                    (prefs.getInteger(Meters.fromValue(meter).name(), 0) + 1)
+                );
 
             prefs.flush();
         }

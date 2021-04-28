@@ -1,4 +1,3 @@
-
 package com.richikin.runner.scenes;
 
 import com.badlogic.gdx.Gdx;
@@ -610,16 +609,16 @@ public class OptionsPage implements IUIPage
     /**
      *
      */
-    public void setActivePanel(ScreenID screenID)
+    public ScreenID getActivePanel()
     {
-        activePanel = screenID;
+        return activePanel;
     }
 
     /**
      *
      */
-    public ScreenID getActivePanel()
+    public void setActivePanel(ScreenID screenID)
     {
-        return activePanel;
+        activePanel = screenID;
     }
 }

@@ -224,51 +224,47 @@ public class GameAssets
     public static final int _SOLDIER_RUN_FRAMES   = 10;
     public static final int _SOLDIER_FIGHT_FRAMES = 6;
 
-    public static final int _LASER_BEAM_FRAMES             = 1;
-    public static final int _EXPLOSION64_FRAMES            = 12;
-    public static final int _LASER_FRAMES                  = 1;
-    public static final int _ARROW_FRAMES                  = 1;
-    public static final int _COIN_FRAMES                   = 4;
-    public static final int _GEMS_FRAMES                   = 6;
-    public static final int _KEY_FRAMES                    = 5;
-    public static final int _SHIELD_FRAMES                 = 1;
-    public static final int _ALCOVE_TORCH_FRAMES           = 4;
-    public static final int _POT_FRAMES                    = 1;
-    public static final int _CRATE_FRAMES                  = 1;
-    public static final int _FLOOR_BUTTON_FRAMES           = 2;
-    public static final int _LEVER_SWITCH_FRAMES           = 4;
-    public static final int _BARREL_FRAMES                 = 1;
-    public static final int _DOOR_FRAMES                   = 3;
-    public static final int _LOCKED_DOOR_FRAMES            = 1;
-    public static final int _TREASURE_CHEST_FRAMES         = 4;
-    public static final int _MYSTERY_CHEST_FRAMES          = 2;
-    public static final int _STORM_DEMON_FRAMES            = 7;
-    public static final int _BOUNCER_FRAMES                = 1;
-    public static final int _FLAME_THROW_FRAMES            = 4;
-    public static final int _SPIKE_BALL_FRAMES             = 1;
-    public static final int _SPIKE_BLOCK_HORIZONTAL_FRAMES = 10;
-    public static final int _SPIKE_BLOCK_VERTICAL_FRAMES   = 10;
-    public static final int _TELEPORTER_FRAMES             = 8;
-    public static final int _PHASER_BULLET_FRAMES          = 1;
-    public static final int _FIREBALL_BULLET_FRAMES        = 1;
-    public static final int _SMALL_BULLET_FRAMES           = 1;
-    public static final int _SCORPION_FRAMES               = 15;
-    public static final int _FLOATING_PLATFORM_FRAMES      = 1;
-    public static final int _TURRET_FRAMES                 = 1;
-    public static final int _SACKS_FRAMES                  = 1;
-    public static final int _CROSSHAIRS_FRAMES             = 1;
-    public static final int _ESCALATOR_FRAMES              = 16;
-    public static final int _LITTER_FRAMES                 = 10;
-    public static final int _BOOKS_FRAMES                  = 8;
-    public static final int _RUNES_FRAMES                  = 8;
-    public static final int _POTIONS_FRAMES                = 8;
-    public static final int _PLANT_POT_FRAMES              = 1;
-    public static final int _BIG_BLOCK_FRAMES              = 1;
-
-    public static int hudPanelWidth;      // Set when object is loaded
-    public static int hudPanelHeight;     //
-
-    private static final AssetSize[] assetSizes =
+    public static final  int         _LASER_BEAM_FRAMES             = 1;
+    public static final  int         _EXPLOSION64_FRAMES            = 12;
+    public static final  int         _LASER_FRAMES                  = 1;
+    public static final  int         _ARROW_FRAMES                  = 1;
+    public static final  int         _COIN_FRAMES                   = 4;
+    public static final  int         _GEMS_FRAMES                   = 6;
+    public static final  int         _KEY_FRAMES                    = 5;
+    public static final  int         _SHIELD_FRAMES                 = 1;
+    public static final  int         _ALCOVE_TORCH_FRAMES           = 4;
+    public static final  int         _POT_FRAMES                    = 1;
+    public static final  int         _CRATE_FRAMES                  = 1;
+    public static final  int         _FLOOR_BUTTON_FRAMES           = 2;
+    public static final  int         _LEVER_SWITCH_FRAMES           = 4;
+    public static final  int         _BARREL_FRAMES                 = 1;
+    public static final  int         _DOOR_FRAMES                   = 3;
+    public static final  int         _LOCKED_DOOR_FRAMES            = 1;
+    public static final  int         _TREASURE_CHEST_FRAMES         = 4;
+    public static final  int         _MYSTERY_CHEST_FRAMES          = 2;
+    public static final  int         _STORM_DEMON_FRAMES            = 7;
+    public static final  int         _BOUNCER_FRAMES                = 1;
+    public static final  int         _FLAME_THROW_FRAMES            = 4;
+    public static final  int         _SPIKE_BALL_FRAMES             = 1;
+    public static final  int         _SPIKE_BLOCK_HORIZONTAL_FRAMES = 10;
+    public static final  int         _SPIKE_BLOCK_VERTICAL_FRAMES   = 10;
+    public static final  int         _TELEPORTER_FRAMES             = 8;
+    public static final  int         _PHASER_BULLET_FRAMES          = 1;
+    public static final  int         _FIREBALL_BULLET_FRAMES        = 1;
+    public static final  int         _SMALL_BULLET_FRAMES           = 1;
+    public static final  int         _SCORPION_FRAMES               = 15;
+    public static final  int         _FLOATING_PLATFORM_FRAMES      = 1;
+    public static final  int         _TURRET_FRAMES                 = 1;
+    public static final  int         _SACKS_FRAMES                  = 1;
+    public static final  int         _CROSSHAIRS_FRAMES             = 1;
+    public static final  int         _ESCALATOR_FRAMES              = 16;
+    public static final  int         _LITTER_FRAMES                 = 10;
+    public static final  int         _BOOKS_FRAMES                  = 8;
+    public static final  int         _RUNES_FRAMES                  = 8;
+    public static final  int         _POTIONS_FRAMES                = 8;
+    public static final  int         _PLANT_POT_FRAMES              = 1;
+    public static final  int         _BIG_BLOCK_FRAMES              = 1;
+    private static final AssetSize[] assetSizes                     =
         {
             new AssetSize(GraphicID.G_PLAYER, 192, 192),
             new AssetSize(GraphicID.G_PLAYER_CAST, 82, 120),
@@ -360,6 +356,8 @@ public class GameAssets
             new AssetSize(GraphicID.G_MINI_FIRE_BALL, 64, 64),
             new AssetSize(GraphicID.G_SCORPION, 136, 123),
         };
+    public static        int         hudPanelWidth;      // Set when object is loaded
+    public static        int         hudPanelHeight;     //
 
     private GameAssets()
     {

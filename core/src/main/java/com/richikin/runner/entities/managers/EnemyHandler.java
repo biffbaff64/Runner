@@ -31,7 +31,7 @@ public class EnemyHandler extends GenericEntityManager
             for (EntityCounts item : enemies)
             {
                 item.currentTotal = 0;
-                item.maxTotal = 0;
+                item.maxTotal     = 0;
             }
 
             update();

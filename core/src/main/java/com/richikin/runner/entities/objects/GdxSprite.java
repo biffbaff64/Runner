@@ -23,8 +23,8 @@ import com.richikin.utilslib.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.physics.box2d.B2DConstants;
 
 /**
- *  This should really be named GameSprite, but GdxSprite is a
- *  historic name I've used for quite some time.
+ * This should really be named GameSprite, but GdxSprite is a
+ * historic name I've used for quite some time.
  */
 public class GdxSprite extends BaseEntity implements ISpriteComponent
 {
@@ -46,27 +46,25 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
     // -----------------------------------------------
     // Collision Related
     //
-    public  AABB               aabb;
-    private ICollisionListener collisionCallback;
-
+    public  AABB                     aabb;
     // -----------------------------------------------
     // public flags
     //
-    public boolean isDrawable;
-    public boolean isRotating;
-    public boolean isFlippedX;
-    public boolean isFlippedY;
-    public boolean canFlip;
-    public boolean isAnimating;
-    public boolean isLinked;
-    public boolean isMainCharacter;
-    public boolean isEnemy;
-
+    public  boolean                  isDrawable;
+    public  boolean                  isRotating;
+    public  boolean                  isFlippedX;
+    public  boolean                  isFlippedY;
+    public  boolean                  canFlip;
+    public  boolean                  isAnimating;
+    public  boolean                  isLinked;
+    public  boolean                  isMainCharacter;
+    public  boolean                  isEnemy;
     // -----------------------------------------------
     // Animation related
-    public Animation<TextureRegion> animation;
-    public float                    elapsedAnimTime;
-    public TextureRegion[]          animFrames;
+    public  Animation<TextureRegion> animation;
+    public  float                    elapsedAnimTime;
+    public  TextureRegion[]          animFrames;
+    private ICollisionListener       collisionCallback;
 
     // --------------------------------------------------------------
     // Code
@@ -149,7 +147,7 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
         sprite.setBounds(sprite.getX(), sprite.getY(), frameWidth, frameHeight);
         sprite.setOriginCenter();
 
-        position  = new SimpleVec3((int) sprite.getX(), (int) sprite.getY(), vec3F.z);
+        position = new SimpleVec3((int) sprite.getX(), (int) sprite.getY(), vec3F.z);
 
         initXYZ.set(sprite.getX(), sprite.getY(), vec3F.z);
     }

@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.logging;
 
 import com.badlogic.gdx.Application;

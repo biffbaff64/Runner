@@ -1,4 +1,3 @@
-
 package com.richikin.runner.input.buttons;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -12,19 +11,17 @@ import org.jetbrains.annotations.NotNull;
 
 public class GameButton extends Switch implements Disposable
 {
-    public TextureRegion bg;
-    public TextureRegion bgPressed;
-    public TextureRegion bgDisabled;
-    public Box           buttonRect;
-    public ActionStates  buttonAction;
-
-    public int x;
-    public int y;
-    public int width;
-    public int height;
-
-    private       boolean _isDrawable;
-    private final int     mapIndex;
+    private final int           mapIndex;
+    public        TextureRegion bg;
+    public        TextureRegion bgPressed;
+    public        TextureRegion bgDisabled;
+    public        Box           buttonRect;
+    public        ActionStates  buttonAction;
+    public        int           x;
+    public        int           y;
+    public        int           width;
+    public        int           height;
+    private       boolean       _isDrawable;
 
     /**
      * Define a GameButton
@@ -211,15 +208,15 @@ public class GameButton extends Switch implements Disposable
     }
 
     @Override
-    public void setDrawable(boolean _drawable)
-    {
-        _isDrawable = _drawable;
-    }
-
-    @Override
     public boolean isDrawable()
     {
         return _isDrawable;
+    }
+
+    @Override
+    public void setDrawable(boolean _drawable)
+    {
+        _isDrawable = _drawable;
     }
 
     public void delete()

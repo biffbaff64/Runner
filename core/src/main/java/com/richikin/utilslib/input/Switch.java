@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.input;
 
 /**
@@ -67,14 +66,14 @@ public class Switch implements IGDXButton
     }
 
     @Override
-    public void setDrawable(boolean _state)
-    {
-    }
-
-    @Override
     public boolean isDrawable()
     {
         return false;
+    }
+
+    @Override
+    public void setDrawable(boolean _state)
+    {
     }
 
     @Override

@@ -1,4 +1,3 @@
-
 package com.richikin.runner.entities.components;
 
 import com.badlogic.gdx.utils.Array;

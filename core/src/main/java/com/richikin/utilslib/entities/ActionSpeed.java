@@ -10,6 +10,6 @@ public class ActionSpeed
     public ActionSpeed(ActionStates action, float speed)
     {
         this.action = action;
-        this.speed = speed;
+        this.speed  = speed;
     }
 }

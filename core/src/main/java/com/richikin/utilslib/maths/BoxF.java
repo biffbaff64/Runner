@@ -1,4 +1,3 @@
-
 package com.richikin.utilslib.maths;
 
 import com.badlogic.gdx.math.Rectangle;
@@ -34,17 +33,17 @@ public class BoxF
 
     public BoxF(float _x, float _y, float _width, float _height)
     {
-        this.x = _x;
-        this.y = _y;
-        this.width = _width;
+        this.x      = _x;
+        this.y      = _y;
+        this.width  = _width;
         this.height = _height;
     }
 
     public void set(float _x, float _y, float _width, float _height)
     {
-        this.x = _x;
-        this.y = _y;
-        this.width = _width;
+        this.x      = _x;
+        this.y      = _y;
+        this.width  = _width;
         this.height = _height;
     }
 

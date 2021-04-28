@@ -8,6 +8,6 @@ public class JailKey
     public JailKey()
     {
         this.isCollected = false;
-        this.isUsed = false;
+        this.isUsed      = false;
     }
 }

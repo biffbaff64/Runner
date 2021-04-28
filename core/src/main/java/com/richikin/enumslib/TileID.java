@@ -1,4 +1,3 @@
-
 package com.richikin.enumslib;
 
 public enum TileID
@@ -151,11 +150,6 @@ public enum TileID
         this.tileNumber = value;
     }
 
-    public int get()
-    {
-        return tileNumber;
-    }
-
     public static TileID fromValue(int value)
     {
         TileID returnValue = _UNKNOWN;
@@ -169,5 +163,10 @@ public enum TileID
         }
 
         return returnValue;
+    }
+
+    public int get()
+    {
+        return tileNumber;
     }
 }

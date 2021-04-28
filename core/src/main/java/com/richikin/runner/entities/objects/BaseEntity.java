@@ -79,15 +79,15 @@ public class BaseEntity implements IEntityComponent, Disposable
     }
 
     @Override
-    public void setActionState(ActionStates action)
-    {
-        this.entityAction = action;
-    }
-
-    @Override
     public ActionStates getActionState()
     {
         return this.entityAction;
+    }
+
+    @Override
+    public void setActionState(ActionStates action)
+    {
+        this.entityAction = action;
     }
 
     @Override
