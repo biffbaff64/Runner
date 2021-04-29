@@ -174,7 +174,7 @@ public class MainGameScreen extends AbstractBaseScreen
     @Override
     public void loadImages()
     {
-        background = App.getAssets().loadSingleAsset("water_background.png", Texture.class);
+        background = App.getAssets().loadSingleAsset("combined_background.png", Texture.class);
     }
 
     @Override

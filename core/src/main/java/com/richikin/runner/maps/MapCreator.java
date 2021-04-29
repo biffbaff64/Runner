@@ -44,7 +44,7 @@ public class MapCreator
         App.mapData.autoFloors.clear();
 
         parseMarkerTiles();
-        parseObjectTiles();
+//        parseObjectTiles();
 
         if (AABBData.boxes().size == 0)
         {
@@ -215,68 +215,6 @@ public class MapCreator
     }
 
     /**
-     * Parse marker tiles from the OBJECT marker tiles layer. This layer
-     * is for complicated markers that have a set of properties.
-     * NB: Does NOT create entities. This just extracts markers from
-     * the Tile map (Object Layer) and creates the necessary information from them.
-     */
-    protected void parseObjectTiles()
-    {
-        Trace.__FILE_FUNC();
-
-        for (MapObject mapObject : App.mapData.mapObjects)
-        {
-            if (mapObject instanceof TiledMapTileMapObject)
-            {
-                //
-                // Find the objects details ready for parsing
-                if (null != mapObject.getName())
-                {
-                    for (SpriteDescriptor descriptor : App.entities.entityList)
-                    {
-                        if (mapObject.getName().equals(descriptor._NAME))
-                        {
-                            if (descriptor._GID != GraphicID.G_NO_ID)
-                            {
-                                createPlacementTile(mapObject, descriptor);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     *
-     */
-    private void setEntityPlaceable(GraphicID gid, boolean placeable)
-    {
-        for (IEntityManagerComponent component : App.entityData.managerList)
-        {
-            if (component.getGID() == gid)
-            {
-                component.setPlaceable(placeable);
-            }
-        }
-    }
-
-    /**
-     *
-     */
-    private void addDummyCollisionObject()
-    {
-        BaseEntity baseEntity;
-
-        baseEntity                 = new BaseEntity();
-        baseEntity.gid             = GraphicID.G_NO_ID;
-        baseEntity.type            = GraphicID.G_NO_ID;
-        baseEntity.position        = new SimpleVec3();
-        baseEntity.collisionObject = App.collisionUtils.newObject();
-        AABBData.add(baseEntity.collisionObject);
-    }
-
-    /**
      *
      */
     protected void createCollisionBoxes()
@@ -356,10 +294,76 @@ public class MapCreator
     }
 
     /**
-     *
+     * Identifies the properties associated with this ObjectTile.
      */
-    private void createPlacementTile(int x, int y)
+    private ObjectTileProperties setObjectTileProperties(SpriteDescriptor descriptor)
     {
+        ObjectTileProperties properties = new ObjectTileProperties();
+
+        switch (descriptor._TILE)
+        {
+            case _FLOOR_BUTTON_TILE,
+                _LEVER_TILE -> {
+
+                properties.isLinked = true;
+            }
+
+            case _BIG_BLOCK_TILE,
+                _LOOP_BLOCK_HORIZONTAL_TILE,
+                _LOOP_BLOCK_VERTICAL_TILE,
+                _SPIKE_BALL_TILE,
+                _SPIKE_BLOCK_DOWN_TILE,
+                _SPIKE_BLOCK_UP_TILE,
+                _SPIKE_BLOCK_LEFT_TILE,
+                _SPIKE_BLOCK_RIGHT_TILE -> {
+
+                properties.hasDirection = true;
+                properties.hasDistance  = true;
+                properties.hasSpeed     = true;
+            }
+
+            default -> {
+            }
+        }
+
+        return properties;
+    }
+
+    /**
+     * Parse marker tiles from the OBJECT marker tiles layer. This layer
+     * is for complicated markers that have a set of properties.
+     * NB: Does NOT create entities. This just extracts markers from
+     * the Tile map (Object Layer) and creates the necessary information from them.
+     */
+    protected void parseObjectTiles()
+    {
+        Trace.__FILE_FUNC();
+
+        for (MapObject mapObject : App.mapData.mapObjects)
+        {
+            if (mapObject instanceof TiledMapTileMapObject)
+            {
+                //
+                // Find the objects details ready for parsing
+                if (null != mapObject.getName())
+                {
+                    for (SpriteDescriptor descriptor : App.entities.entityList)
+                    {
+                        if (mapObject.getName().equals(descriptor._NAME))
+                        {
+                            if (descriptor._GID != GraphicID.G_NO_ID)
+                            {
+                                //
+                                // 'mapObject' will contain positioning, distance,
+                                // speed, and direction information.
+                                // 'descriptor' will contain identity information.
+                                createPlacementTile(mapObject, descriptor);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -429,45 +433,36 @@ public class MapCreator
             }
         }
 
-        App.mapData.placementTiles.add(descriptor);
-
-        descriptor.debug();
+        descriptor._INDEX = App.entityData.entityMap.size;
     }
 
     /**
-     * Identifies the properties associated with this ObjectTile.
+     *
      */
-    private ObjectTileProperties setObjectTileProperties(SpriteDescriptor descriptor)
+    private void setEntityPlaceable(GraphicID gid, boolean placeable)
     {
-        ObjectTileProperties properties = new ObjectTileProperties();
-
-        switch (descriptor._TILE)
+        for (IEntityManagerComponent component : App.entityData.managerList)
         {
-            case _FLOOR_BUTTON_TILE,
-                _LEVER_TILE -> {
-
-                properties.isLinked = true;
-            }
-
-            case _BIG_BLOCK_TILE,
-                _LOOP_BLOCK_HORIZONTAL_TILE,
-                _LOOP_BLOCK_VERTICAL_TILE,
-                _SPIKE_BALL_TILE,
-                _SPIKE_BLOCK_DOWN_TILE,
-                _SPIKE_BLOCK_UP_TILE,
-                _SPIKE_BLOCK_LEFT_TILE,
-                _SPIKE_BLOCK_RIGHT_TILE -> {
-
-                properties.hasDirection = true;
-                properties.hasDistance  = true;
-                properties.hasSpeed     = true;
-            }
-
-            default -> {
+            if (component.getGID() == gid)
+            {
+                component.setPlaceable(placeable);
             }
         }
+    }
 
-        return properties;
+    /**
+     *
+     */
+    private void addDummyCollisionObject()
+    {
+        BaseEntity baseEntity;
+
+        baseEntity                 = new BaseEntity();
+        baseEntity.gid             = GraphicID.G_NO_ID;
+        baseEntity.type            = GraphicID.G_NO_ID;
+        baseEntity.position        = new SimpleVec3();
+        baseEntity.collisionObject = App.collisionUtils.newObject();
+        AABBData.add(baseEntity.collisionObject);
     }
 
     /**

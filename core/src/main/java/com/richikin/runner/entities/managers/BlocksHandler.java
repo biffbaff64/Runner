@@ -70,8 +70,10 @@ public class BlocksHandler extends GenericEntityManager
 
             if (tiles.size > 0)
             {
-                for (SpriteDescriptor descriptor : tiles)
+                for (int i=0; i< tiles.size; i++)
                 {
+                    SpriteDescriptor descriptor = App.entities.getDescriptor(item.graphicID);
+
                     descriptor._ASSET = checkAssetName(descriptor)._ASSET;
 
                     switch (item.graphicID)

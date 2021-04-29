@@ -7,6 +7,8 @@ import com.richikin.runner.core.App;
 import com.richikin.runner.entities.components.IEntityManagerComponent;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
 import com.richikin.utilslib.maths.SimpleVec2;
+import com.richikin.utilslib.maths.Vec2;
+import com.richikin.utilslib.maths.Vec3;
 
 public class GenericEntityManager implements IEntityManagerComponent, Disposable
 {
@@ -45,15 +47,17 @@ public class GenericEntityManager implements IEntityManagerComponent, Disposable
     }
 
     @Override
-    public SimpleVec2 findCoordinates(final GraphicID targetGID)
+    public Vec3 findCoordinates(final GraphicID targetGID)
     {
-        SimpleVec2 coords = new SimpleVec2();
+        Vec3 coords = new Vec3();
 
         for (SpriteDescriptor marker : App.mapData.placementTiles)
         {
             if (marker._GID == targetGID)
             {
-                coords.set(marker._POSITION.x, marker._POSITION.y);
+                coords.x = marker._POSITION.x;
+                coords.y = marker._POSITION.y;
+                coords.z = 0;
             }
         }
 
@@ -61,15 +65,15 @@ public class GenericEntityManager implements IEntityManagerComponent, Disposable
     }
 
     @Override
-    public Array<SimpleVec2> findMultiCoordinates(final GraphicID targetGID)
+    public Array<Vec3> findMultiCoordinates(final GraphicID targetGID)
     {
-        Array<SimpleVec2> coords = new Array<>();
+        Array<Vec3> coords = new Array<>();
 
         for (SpriteDescriptor marker : App.mapData.placementTiles)
         {
             if (marker._GID == targetGID)
             {
-                coords.add(new SimpleVec2(marker._POSITION.x, marker._POSITION.y));
+                coords.add(new Vec3(marker._POSITION.x, marker._POSITION.y, 0));
             }
         }
 

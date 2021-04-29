@@ -76,7 +76,8 @@ public class SimpleVec2F
 
     public void mul(float mulX, float mulY)
     {
-        throw new NotImplementedException("Method need implementing for Vec2, Vec3, and Vec3F also");
+        this.x *= mulX;
+        this.y *= mulY;
     }
 
     public boolean isEmpty()

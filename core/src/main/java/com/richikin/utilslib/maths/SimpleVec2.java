@@ -101,6 +101,12 @@ public class SimpleVec2
         this.y = vec2.y;
     }
 
+    public void mul(int mulX, int mulY)
+    {
+        this.x *= mulX;
+        this.y *= mulY;
+    }
+
     public boolean isEmpty()
     {
         return ((x == 0) && (y == 0));

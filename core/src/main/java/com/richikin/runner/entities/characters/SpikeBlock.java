@@ -7,6 +7,7 @@ public class SpikeBlock extends GdxSprite
 {
     public SpikeBlock(GraphicID gid)
     {
-
+        super(gid);
     }
+
 }

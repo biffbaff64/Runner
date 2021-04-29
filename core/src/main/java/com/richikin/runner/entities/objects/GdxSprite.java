@@ -47,6 +47,7 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
     // Collision Related
     //
     public  AABB                     aabb;
+
     // -----------------------------------------------
     // public flags
     //
@@ -59,6 +60,7 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
     public  boolean                  isLinked;
     public  boolean                  isMainCharacter;
     public  boolean                  isEnemy;
+
     // -----------------------------------------------
     // Animation related
     public  Animation<TextureRegion> animation;

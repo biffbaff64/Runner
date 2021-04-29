@@ -14,7 +14,7 @@ import com.richikin.utilslib.logging.Trace;
 
 public class DecorationsHandler extends GenericEntityManager
 {
-    private EntityCounts[] decorations =
+    private final EntityCounts[] decorations =
         {
             new EntityCounts(GraphicID.G_ALCOVE_TORCH, 0, 0),
             new EntityCounts(GraphicID.G_BARREL, 0, 0),
@@ -53,9 +53,9 @@ public class DecorationsHandler extends GenericEntityManager
                     item.maxTotal++;
                 }
             }
-
-            Trace.dbg("Entity " + item.graphicID + " : maxTotal = " + item.maxTotal);
         }
+
+        create();
     }
 
     /**

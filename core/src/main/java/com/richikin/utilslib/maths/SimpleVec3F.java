@@ -80,6 +80,13 @@ public class SimpleVec3F
         this.z = vec2.z;
     }
 
+    public void mul(float mulX, float mulY, float mulZ)
+    {
+        this.x *= mulX;
+        this.y *= mulY;
+        this.z *= mulZ;
+    }
+
     public boolean isEmpty()
     {
         return ((x == 0) && (y == 0) && (z == 0));
