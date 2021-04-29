@@ -51,9 +51,9 @@ public class BlocksHandler extends GenericEntityManager
                     item.maxTotal++;
                 }
             }
-
-            Trace.dbg("Entity " + item.graphicID + " : maxTotal = " + item.maxTotal);
         }
+
+        create();
     }
 
     /**
