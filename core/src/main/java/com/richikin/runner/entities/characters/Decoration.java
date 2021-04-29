@@ -51,7 +51,7 @@ public class Decoration extends GdxSprite
             if (!distance.isEmpty())
             {
                 sprite.translate(speed.getX() * direction.getX(), speed.getY() * direction.getY());
-                distance.sub(speed.getX(), speed.getY(), 0);
+                distance.sub(speed.getX(), speed.getY());
             }
         }
 

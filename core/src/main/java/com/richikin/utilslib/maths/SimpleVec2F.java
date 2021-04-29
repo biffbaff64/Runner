@@ -1,5 +1,6 @@
 package com.richikin.utilslib.maths;
 
+import com.richikin.utilslib.exceptions.NotImplementedException;
 import org.jetbrains.annotations.NotNull;
 
 public class SimpleVec2F
@@ -40,7 +41,7 @@ public class SimpleVec2F
         this.y += value;
     }
 
-    public void sub(float x, float y, float z)
+    public void sub(float x, float y)
     {
         this.set(this.x - x, this.y - y);
     }
@@ -71,6 +72,11 @@ public class SimpleVec2F
     {
         this.x = vec2.getX();
         this.y = vec2.getY();
+    }
+
+    public void mul(float mulX, float mulY)
+    {
+        throw new NotImplementedException("Method need implementing for Vec2, Vec3, and Vec3F also");
     }
 
     public boolean isEmpty()
