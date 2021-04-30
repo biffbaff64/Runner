@@ -52,6 +52,8 @@ public class MapCreator
         }
 
         createCollisionBoxes();
+
+        debugPlacementsTiles();
     }
 
     /**
@@ -87,6 +89,9 @@ public class MapCreator
                     boolean isSpawnPoint = false;
                     boolean isIgnoreTile = false;
 
+                    // ============================================
+                    // TODO: 30/04/2021 - Seems a bit messy?
+
                     for (SpriteDescriptor descriptor : App.entities.entityList)
                     {
                         if (descriptor._TILE.equals(tileID))
@@ -115,6 +120,8 @@ public class MapCreator
                             }
                         }
                     }
+
+                    // ============================================
 
                     if (isSpawnPoint)
                     {
@@ -185,7 +192,7 @@ public class MapCreator
                         SpriteDescriptor descriptor = App.entities.getDescriptor(graphicID);
                         descriptor._POSITION.x = xOffset;
                         descriptor._POSITION.y = yOffset;
-                        descriptor._INDEX      = App.entityData.entityMap.size;
+                        descriptor._INDEX      = App.mapData.placementTiles.size;
 
                         App.mapData.placementTiles.add(descriptor);
                     }
@@ -212,6 +219,43 @@ public class MapCreator
         }
 
         Trace.divider();
+    }
+
+    /**
+     * Parse marker tiles from the OBJECT marker tiles layer. This layer
+     * is for complicated markers that have a set of properties.
+     * NB: Does NOT create entities. This just extracts markers from
+     * the Tile map (Object Layer) and creates the necessary information from them.
+     */
+    protected void parseObjectTiles()
+    {
+        Trace.__FILE_FUNC();
+
+        for (MapObject mapObject : App.mapData.mapObjects)
+        {
+            if (mapObject instanceof TiledMapTileMapObject)
+            {
+                //
+                // Find the objects details ready for parsing
+                if (null != mapObject.getName())
+                {
+                    for (SpriteDescriptor descriptor : App.entities.entityList)
+                    {
+                        if (mapObject.getName().equals(descriptor._NAME))
+                        {
+                            if (descriptor._GID != GraphicID.G_NO_ID)
+                            {
+                                //
+                                // 'mapObject' will contain positioning, distance,
+                                // speed, and direction information.
+                                // 'descriptor' will contain identity information.
+                                createPlacementTile(mapObject, descriptor);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -330,44 +374,9 @@ public class MapCreator
     }
 
     /**
-     * Parse marker tiles from the OBJECT marker tiles layer. This layer
-     * is for complicated markers that have a set of properties.
-     * NB: Does NOT create entities. This just extracts markers from
-     * the Tile map (Object Layer) and creates the necessary information from them.
-     */
-    protected void parseObjectTiles()
-    {
-        Trace.__FILE_FUNC();
-
-        for (MapObject mapObject : App.mapData.mapObjects)
-        {
-            if (mapObject instanceof TiledMapTileMapObject)
-            {
-                //
-                // Find the objects details ready for parsing
-                if (null != mapObject.getName())
-                {
-                    for (SpriteDescriptor descriptor : App.entities.entityList)
-                    {
-                        if (mapObject.getName().equals(descriptor._NAME))
-                        {
-                            if (descriptor._GID != GraphicID.G_NO_ID)
-                            {
-                                //
-                                // 'mapObject' will contain positioning, distance,
-                                // speed, and direction information.
-                                // 'descriptor' will contain identity information.
-                                createPlacementTile(mapObject, descriptor);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /**
+     * Creates a new PlacementTile from a TiledMap MapObject.
      *
+     * @param mapObject The {@link MapObject}
      */
     private void createPlacementTile(MapObject mapObject, SpriteDescriptor descriptor)
     {
@@ -433,7 +442,7 @@ public class MapCreator
             }
         }
 
-        descriptor._INDEX = App.entityData.entityMap.size;
+        descriptor._INDEX = App.mapData.placementTiles.size;
     }
 
     /**
@@ -465,9 +474,6 @@ public class MapCreator
         AABBData.add(baseEntity.collisionObject);
     }
 
-    /**
-     * <p>
-     */
     private void debugPlacementsTiles()
     {
         for (SpriteDescriptor tile : App.mapData.placementTiles)
@@ -476,9 +482,6 @@ public class MapCreator
         }
     }
 
-    /**
-     * <p>
-     */
     private void debugCollisionBoxes()
     {
         Trace.__FILE_FUNC();

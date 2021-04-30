@@ -16,8 +16,6 @@ public class TiledUtils
 
         for (SpriteDescriptor marker : App.mapData.placementTiles)
         {
-            Trace.dbg("ID: " + marker._GID + "   Index: " + marker._INDEX);
-
             if (marker._GID == targetGID)
             {
                 tiles.add(marker);
