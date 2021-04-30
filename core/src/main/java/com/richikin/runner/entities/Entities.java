@@ -153,6 +153,21 @@ public class Entities
     {
     }
 
+    public SpriteDescriptor getDescriptor(GraphicID gid)
+    {
+        return entityList[getDescriptorIndex(gid)];
+    }
+
+    public SpriteDescriptor getDescriptor(TileID tileID)
+    {
+        return entityList[getDescriptorIndex(tileID)];
+    }
+
+    public Vec2 getAssetSize(GraphicID gid)
+    {
+        return entityList[getDescriptorIndex(gid)]._SIZE;
+    }
+
     public int getDescriptorIndex(GraphicID gid)
     {
         int     index      = 0;
@@ -178,14 +193,29 @@ public class Entities
         return defsIndex;
     }
 
-    public SpriteDescriptor getDescriptor(GraphicID gid)
+    public int getDescriptorIndex(TileID tileID)
     {
-        return entityList[getDescriptorIndex(gid)];
-    }
+        int     index      = 0;
+        int     defsIndex  = 0;
+        boolean foundIndex = false;
 
-    public Vec2 getAssetSize(GraphicID gid)
-    {
-        return entityList[getDescriptorIndex(gid)]._SIZE;
+        for (SpriteDescriptor descriptor : entityList)
+        {
+            if (descriptor._TILE == tileID)
+            {
+                defsIndex  = index;
+                foundIndex = true;
+            }
+
+            index++;
+        }
+
+        if (!foundIndex)
+        {
+            Trace.megaDivider("INDEX FOR " + tileID + " NOT FOUND!!!");
+        }
+
+        return defsIndex;
     }
 
     public void setAllEnemyStatuses()
@@ -196,7 +226,10 @@ public class Entities
         {
             switch (App.entityData.entityMap.get(i).gid)
             {
-                case G_PRIZE_BALLOON, G_MESSAGE_BUBBLE, G_LASER, G_PLAYER,
+                case G_PRIZE_BALLOON,
+                    G_MESSAGE_BUBBLE,
+                    G_LASER,
+                    G_PLAYER,
                     G_EXPLOSION12, G_EXPLOSION64, G_EXPLOSION128, G_EXPLOSION256 -> {
 
                     isEnemy = false;

@@ -56,8 +56,6 @@ public class EntityManager implements IEntityManager
 
         playerManager.init();
 
-        addBackgroundEntities();
-
         for (final IEntityManagerComponent component : App.entityData.managerList)
         {
             component.init();
@@ -79,7 +77,8 @@ public class EntityManager implements IEntityManager
             {
                 GdxSprite entity = (GdxSprite) App.entityData.entityMap.get(i);
 
-                if ((entity.getActionState() != ActionStates._DEAD) && (entity.gid != GraphicID.G_PLAYER))
+                if ((entity.getActionState() != ActionStates._DEAD)
+                    && (entity.gid != GraphicID.G_PLAYER))
                 {
                     entity.preUpdate();
                     entity.update(entity.spriteNumber);
@@ -217,13 +216,6 @@ public class EntityManager implements IEntityManager
     public boolean isEntityUpdateAllowed()
     {
         return (AppConfig.entitiesExist && !AppConfig.quitToMainMenu);
-    }
-
-    /**
-     * Background entities which are essentially just decorations.
-     */
-    private void addBackgroundEntities()
-    {
     }
 
     /**

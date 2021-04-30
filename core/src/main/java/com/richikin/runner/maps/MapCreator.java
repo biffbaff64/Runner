@@ -52,8 +52,6 @@ public class MapCreator
         }
 
         createCollisionBoxes();
-
-        debugPlacementsTiles();
     }
 
     /**
@@ -71,7 +69,6 @@ public class MapCreator
         int yOffset = 0;
 
         TileID    tileID;
-        GraphicID graphicID = GraphicID.G_NO_ID;
 
         for (int y = 0; y < App.mapData.markerTilesLayer.getHeight(); y++)
         {
@@ -86,120 +83,76 @@ public class MapCreator
                 {
                     tileID = TileID.fromValue(cell.getTile().getId());
 
-                    boolean isSpawnPoint = false;
                     boolean isIgnoreTile = false;
 
-                    // ============================================
-                    // TODO: 30/04/2021 - Seems a bit messy?
-
-                    for (SpriteDescriptor descriptor : App.entities.entityList)
+                    switch (tileID)
                     {
-                        if (descriptor._TILE.equals(tileID))
-                        {
-                            graphicID    = descriptor._GID;
-                            isSpawnPoint = true;
-                        }
-                    }
+                        case _NORTH_TILE,
+                            _EAST_TILE,
+                            _SOUTH_TILE,
+                            _WEST_TILE -> {
 
-                    if (!isSpawnPoint)
-                    {
-                        switch (tileID)
-                        {
-                            case _NORTH_TILE,
-                                _EAST_TILE,
-                                _SOUTH_TILE,
-                                _WEST_TILE -> {
-
-                                // These aren't spawn point tiles, but they also
-                                // should not write error messages.
-                                isIgnoreTile = true;
-                            }
-
-                            default -> {
-
-                            }
-                        }
-                    }
-
-                    // ============================================
-
-                    if (isSpawnPoint)
-                    {
-                        switch (tileID)
-                        {
-                            case _ARROW_TILE,
-                                _GEM_TILE,
-                                _KEY_TILE,
-                                _COIN_TILE,
-                                _SHIELD_TILE,
-                                _CHEST_TILE,
-                                _MYSTERY_COIN,
-                                _MYSTERY_CHEST_TILE,
-                                _HIDDEN_COIN_TILE -> {
-
-                                setEntityPlaceable(GraphicID._PICKUP, true);
-                            }
-
-                            case _ALCOVE_TORCH_TILE,
-                                _CRATE_TILE,
-                                _BARREL_TILE,
-                                _POT_TILE,
-                                _PLANT_POT_TILE,
-                                _SACKS_TILE,
-                                _GLOW_EYES_TILE -> {
-
-                                setEntityPlaceable(GraphicID._DECORATION, true);
-                            }
-
-                            case _VILLAGER_TILE -> {
-
-                                setEntityPlaceable(GraphicID.G_VILLAGER, true);
-                            }
-
-                            case _SOLDIER_TILE -> {
-
-                                setEntityPlaceable(GraphicID.G_SOLDIER, true);
-                            }
-
-                            case _TURRET_TILE -> {
-
-                                setEntityPlaceable(GraphicID.G_TURRET, true);
-                            }
-
-                            case _STORM_DEMON_TILE,
-                                _SCORPION_TILE,
-                                _BOUNCER_TILE -> {
-
-                                setEntityPlaceable(GraphicID._MONSTER, true);
-                            }
-
-                            case _LEVER_TILE,
-                                _DOOR_TILE,
-                                _ESCALATOR_UP_TILE,
-                                _ESCALATOR_DOWN_TILE,
-                                _ESCALATOR_LEFT_TILE,
-                                _ESCALATOR_RIGHT_TILE -> {
-
-                                setEntityPlaceable(GraphicID._INTERACTIVE, true);
-                            }
-
-                            default -> {
-
-                                setEntityPlaceable(graphicID, false);
-                            }
+                            isIgnoreTile = true;
                         }
 
-                        SpriteDescriptor descriptor = App.entities.getDescriptor(graphicID);
-                        descriptor._POSITION.x = xOffset;
-                        descriptor._POSITION.y = yOffset;
-                        descriptor._INDEX      = App.mapData.placementTiles.size;
+                        case _ARROW_TILE,
+                            _GEM_TILE,
+                            _KEY_TILE,
+                            _COIN_TILE,
+                            _SHIELD_TILE,
+                            _CHEST_TILE,
+                            _MYSTERY_COIN,
+                            _MYSTERY_CHEST_TILE,
+                            _HIDDEN_COIN_TILE -> {
 
-                        App.mapData.placementTiles.add(descriptor);
-                    }
-                    else
-                    {
-                        if (!isIgnoreTile)
-                        {
+                            setEntityPlaceable(GraphicID._PICKUP, true);
+                        }
+
+                        case _ALCOVE_TORCH_TILE,
+                            _CRATE_TILE,
+                            _BARREL_TILE,
+                            _POT_TILE,
+                            _PLANT_POT_TILE,
+                            _SACKS_TILE,
+                            _GLOW_EYES_TILE -> {
+
+                            setEntityPlaceable(GraphicID._DECORATION, true);
+                        }
+
+                        case _VILLAGER_TILE -> {
+
+                            setEntityPlaceable(GraphicID.G_VILLAGER, true);
+                        }
+
+                        case _SOLDIER_TILE -> {
+
+                            setEntityPlaceable(GraphicID.G_SOLDIER, true);
+                        }
+
+                        case _TURRET_TILE -> {
+
+                            setEntityPlaceable(GraphicID.G_TURRET, true);
+                        }
+
+                        case _STORM_DEMON_TILE,
+                            _SCORPION_TILE,
+                            _BOUNCER_TILE -> {
+
+                            setEntityPlaceable(GraphicID._MONSTER, true);
+                        }
+
+                        case _LEVER_TILE,
+                            _DOOR_TILE,
+                            _ESCALATOR_UP_TILE,
+                            _ESCALATOR_DOWN_TILE,
+                            _ESCALATOR_LEFT_TILE,
+                            _ESCALATOR_RIGHT_TILE -> {
+
+                            setEntityPlaceable(GraphicID._INTERACTIVE, true);
+                        }
+
+                        default -> {
+
                             Trace.dbg
                                 (
                                     " - Unknown tile: "
@@ -207,7 +160,19 @@ public class MapCreator
                                         + "(" + tileID.get() + ")"
                                         + " at " + x + ", " + y
                                 );
+
+                            isIgnoreTile = true;
                         }
+                    }
+
+                    if (!isIgnoreTile)
+                    {
+                        SpriteDescriptor descriptor = App.entities.getDescriptor(tileID);
+                        descriptor._POSITION.x = xOffset;
+                        descriptor._POSITION.y = yOffset;
+                        descriptor._INDEX      = App.mapData.placementTiles.size;
+
+                        App.mapData.placementTiles.add(descriptor);
                     }
                 }
 
