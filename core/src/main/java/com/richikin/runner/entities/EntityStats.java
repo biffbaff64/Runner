@@ -36,6 +36,7 @@ public class EntityStats
                 G_PRISONER,
                 G_VILLAGER,
                 G_POT,
+                G_PLANT_POT,
                 G_CRATE,
                 G_BARREL,
                 G_ALCOVE_TORCH,
@@ -60,7 +61,7 @@ public class EntityStats
                 G_SACKS -> {
             }
 
-            default -> Trace.__FILE_FUNC("Unable to log $graphicID");
+            default -> Trace.__FILE_FUNC("Unable to log " + graphicID);
         }
     }
 

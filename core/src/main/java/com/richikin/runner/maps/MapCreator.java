@@ -90,7 +90,8 @@ public class MapCreator
                         case _NORTH_TILE,
                             _EAST_TILE,
                             _SOUTH_TILE,
-                            _WEST_TILE -> {
+                            _WEST_TILE,
+                            _PLAYER_TILE -> {
 
                             isIgnoreTile = true;
                         }
