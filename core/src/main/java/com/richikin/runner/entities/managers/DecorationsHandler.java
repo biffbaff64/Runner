@@ -14,7 +14,7 @@ import com.richikin.utilslib.logging.Trace;
 
 public class DecorationsHandler extends GenericEntityManager
 {
-    private final EntityCounts[] decorations =
+    private final EntityCounts[] decorationsList =
         {
             new EntityCounts(GraphicID.G_ALCOVE_TORCH, 0, 0),
             new EntityCounts(GraphicID.G_BARREL, 0, 0),
@@ -28,22 +28,16 @@ public class DecorationsHandler extends GenericEntityManager
             new EntityCounts(GraphicID.G_HAMMERS, 0, 0),
         };
 
-    /**
-     *
-     */
     public DecorationsHandler()
     {
     }
 
-    /**
-     *
-     */
     @Override
     public void init()
     {
         Trace.__FILE_FUNC();
 
-        for (EntityCounts item : decorations)
+        for (EntityCounts item : decorationsList)
         {
             for (SpriteDescriptor descriptor : App.mapData.placementTiles)
             {
@@ -58,9 +52,6 @@ public class DecorationsHandler extends GenericEntityManager
         create();
     }
 
-    /**
-     *
-     */
     @Override
     public void create()
     {
@@ -68,7 +59,7 @@ public class DecorationsHandler extends GenericEntityManager
 
         TiledUtils tiledUtils = new TiledUtils();
 
-        for (EntityCounts item : decorations)
+        for (EntityCounts item : decorationsList)
         {
             Array<SpriteDescriptor> tiles = tiledUtils.findMultiTiles(item.graphicID);
 
@@ -77,7 +68,8 @@ public class DecorationsHandler extends GenericEntityManager
                 for (SpriteDescriptor descriptor : tiles)
                 {
                     descriptor._ASSET = checkAssetName(descriptor)._ASSET;
-                    descriptor._SIZE  = GameAssets.getAssetSize(descriptor._GID);
+
+                    Trace.dbg(item.graphicID.name() + " : " + descriptor._INDEX + " : " + descriptor._POSITION.toString());
 
                     Decoration decoration = new Decoration(descriptor._GID);
                     decoration.initialise(descriptor);
@@ -85,30 +77,23 @@ public class DecorationsHandler extends GenericEntityManager
                     App.entityData.addEntity(decoration);
 
                     EntityStats.log(descriptor._GID);
+
+                    item.currentTotal++;
                 }
             }
         }
     }
 
-    /**
-     *
-     */
     @Override
     public void update()
     {
     }
 
-    /**
-     *
-     */
-    public EntityCounts[] getDecorations()
+    public EntityCounts[] getDecorationsList()
     {
-        return decorations;
+        return decorationsList;
     }
 
-    /**
-     *
-     */
     private SpriteDescriptor checkAssetName(SpriteDescriptor descriptor)
     {
         final String[] barrels =

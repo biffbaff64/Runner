@@ -14,7 +14,6 @@ public class GenericEntityManager implements IEntityManagerComponent, Disposable
 {
     private final GraphicID        managerID;
     public        boolean          canPlace;
-    public        SpriteDescriptor descriptor;
     public        int              activeCount;
     public        GraphicID        graphicID;
 
@@ -124,6 +123,5 @@ public class GenericEntityManager implements IEntityManagerComponent, Disposable
     @Override
     public void dispose()
     {
-        descriptor = null;
     }
 }
