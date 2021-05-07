@@ -1,7 +1,5 @@
 package com.richikin.utilslib.maths;
 
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import org.jetbrains.annotations.NotNull;
 
 public class SimpleVec2
@@ -55,32 +53,6 @@ public class SimpleVec2
     public void subY(int value)
     {
         this.y -= value;
-    }
-
-    //
-    // Experimental
-    public <T> void set(Object _obj, Class<T> clazz)
-    {
-        if (_obj instanceof SimpleVec2)
-        {
-            this.x = ((SimpleVec2) _obj).x;
-            this.y = ((SimpleVec2) _obj).y;
-        }
-        else if (_obj instanceof SimpleVec2F)
-        {
-            this.x = (int) ((SimpleVec2F) _obj).x;
-            this.y = (int) ((SimpleVec2F) _obj).y;
-        }
-        else if (_obj instanceof Vector2)
-        {
-            this.x = (int) ((Vector2) _obj).x;
-            this.y = (int) ((Vector2) _obj).y;
-        }
-        else if (_obj instanceof Vector3)
-        {
-            this.x = (int) ((Vector3) _obj).x;
-            this.y = (int) ((Vector3) _obj).y;
-        }
     }
 
     public void set(int _x, int _y)

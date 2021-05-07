@@ -13,10 +13,6 @@ public interface IEntityManagerComponent
 
     void create();
 
-    Vec3 findCoordinates(final GraphicID targetGID);
-
-    Array<Vec3> findMultiCoordinates(final GraphicID targetGID);
-
     void free();
 
     void free(final GraphicID gid);

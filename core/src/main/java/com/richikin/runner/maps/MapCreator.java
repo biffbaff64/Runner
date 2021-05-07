@@ -65,10 +65,10 @@ public class MapCreator
     {
         Trace.__FILE_FUNC();
 
-        int xOffset = 0;
-        int yOffset = 0;
-
-        TileID    tileID;
+        int    xOffset    = 0;
+        int    yOffset    = 0;
+        int    arrayIndex = 0;
+        TileID tileID;
 
         for (int y = 0; y < App.mapData.markerTilesLayer.getHeight(); y++)
         {
@@ -159,7 +159,7 @@ public class MapCreator
                                     " - Unknown tile: "
                                         + tileID
                                         + "(" + tileID.get() + ")"
-                                        + " at " + x + ", " + y
+                                        + " at " + xOffset + ", " + yOffset
                                 );
 
                             isIgnoreTile = true;
@@ -171,7 +171,7 @@ public class MapCreator
                         SpriteDescriptor descriptor = App.entities.getDescriptor(tileID);
                         descriptor._POSITION.x = xOffset;
                         descriptor._POSITION.y = yOffset;
-                        descriptor._INDEX      = App.mapData.placementTiles.size;
+                        descriptor._INDEX      = arrayIndex++;
 
                         App.mapData.placementTiles.add(descriptor);
                     }
@@ -183,6 +183,8 @@ public class MapCreator
             xOffset = 0;
             yOffset++;
         }
+
+        debugPlacementsTiles();
 
         Trace.divider();
     }
@@ -411,9 +413,7 @@ public class MapCreator
         descriptor._INDEX = App.mapData.placementTiles.size;
     }
 
-    /**
-     *
-     */
+    @SuppressWarnings("SameParameterValue")
     private void setEntityPlaceable(GraphicID gid, boolean placeable)
     {
         for (IEntityManagerComponent component : App.entityData.managerList)
@@ -425,9 +425,6 @@ public class MapCreator
         }
     }
 
-    /**
-     *
-     */
     private void addDummyCollisionObject()
     {
         BaseEntity baseEntity;
