@@ -15,9 +15,10 @@ public class Trace
     /*
      * NB: Do not make these final, as they can be modified
      */
-    private static final String debugTag = "DEBUG";
-    private static final String errorTag = "ERROR";
-    private static       File   logFile;
+    private static final String  debugTag = "DEBUG";
+    private static final String  errorTag = "ERROR";
+    private static       File    logFile;
+    private static       boolean isWriteFileActive;
 
     /**
      * Write a debug string to logcat or console.
@@ -293,6 +294,14 @@ public class Trace
     }
 
     /**
+     * Enables or Disables write to file.
+     */
+    public static void enableWriteToFile(boolean enable)
+    {
+        isWriteFileActive = enable;
+    }
+
+    /**
      * Opens a physical file for writing copies of debug messages to.
      * Note: Only messages output via Trace#dbg() are written to file.
      * Note: An option to specify target directory is to be added.
@@ -306,7 +315,8 @@ public class Trace
     {
         boolean isSuccess = true;
 
-        if (Gdx.app.getType() == Application.ApplicationType.Desktop)
+        if ((Gdx.app.getType() == Application.ApplicationType.Desktop)
+            && isWriteFileActive)
         {
             logFile = new File(fileName);
 
@@ -357,7 +367,7 @@ public class Trace
      */
     public static void writeToFile(String text)
     {
-        if ((logFile != null) && logFile.exists())
+        if (isWriteFileActive && (logFile != null) && logFile.exists())
         {
             try
             {

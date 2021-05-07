@@ -1,9 +1,11 @@
 package com.richikin.runner.maps;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
+import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.TileID;
 import com.richikin.runner.config.Settings;
@@ -40,8 +42,8 @@ public class MapCreator
             component.setPlaceable(false);
         }
 
-        App.mapData.placementTiles.clear();
-        App.mapData.autoFloors.clear();
+        App.mapData.placementTiles = new Array<>();
+        App.mapData.autoFloors = new Array<>();
 
         parseMarkerTiles();
 //        parseObjectTiles();
@@ -52,6 +54,8 @@ public class MapCreator
         }
 
         createCollisionBoxes();
+
+//        debugPlacementsTiles();
     }
 
     /**
@@ -168,12 +172,18 @@ public class MapCreator
 
                     if (!isIgnoreTile)
                     {
-                        SpriteDescriptor descriptor = App.entities.getDescriptor(tileID);
+                        SpriteDescriptor descriptor = new SpriteDescriptor();
+                        descriptor.set(App.entities.getDescriptor(tileID));
+
                         descriptor._POSITION.x = xOffset;
                         descriptor._POSITION.y = yOffset;
                         descriptor._INDEX      = arrayIndex++;
 
+//                        Trace.dbg("Adding " + tileID.name() + "(" + xOffset + ", " + yOffset + ")" + " at index " + App.mapData.placementTiles.size);
+
                         App.mapData.placementTiles.add(descriptor);
+
+//                        descriptor.debug();
                     }
                 }
 
@@ -184,8 +194,8 @@ public class MapCreator
             yOffset++;
         }
 
-        debugPlacementsTiles();
-
+        Trace.divider();
+        Trace.dbg("Number of Entites created from tiles: " + App.mapData.placementTiles.size);
         Trace.divider();
     }
 
@@ -226,9 +236,6 @@ public class MapCreator
         }
     }
 
-    /**
-     *
-     */
     protected void createCollisionBoxes()
     {
         Trace.__FILE_FUNC();
@@ -245,11 +252,6 @@ public class MapCreator
 
                     switch (mapObject.getName().toLowerCase())
                     {
-                        case "Spawn Free Zone":
-                        {
-                        }
-                        break;
-
                         case "wall":
                         {
                             baseEntity.gid          = GraphicID._WALL;
@@ -293,6 +295,7 @@ public class MapCreator
                             );
                         baseEntity.frameWidth  = (int) ((float) mapObject.getProperties().get("width"));
                         baseEntity.frameHeight = (int) ((float) mapObject.getProperties().get("height"));
+
                         baseEntity.setCollisionObject(baseEntity.position.x, baseEntity.position.y);
 
                         if (App.settings.isEnabled(Settings._BOX2D_PHYSICS))
@@ -343,8 +346,6 @@ public class MapCreator
 
     /**
      * Creates a new PlacementTile from a TiledMap MapObject.
-     *
-     * @param mapObject The {@link MapObject}
      */
     private void createPlacementTile(MapObject mapObject, SpriteDescriptor descriptor)
     {
@@ -439,9 +440,11 @@ public class MapCreator
 
     private void debugPlacementsTiles()
     {
-        for (SpriteDescriptor tile : App.mapData.placementTiles)
+        Trace.__FILE_FUNC();
+
+        for (int i=0; i<App.mapData.placementTiles.size; i++)
         {
-            tile.debug();
+            App.mapData.placementTiles.get(i).debug();
         }
     }
 

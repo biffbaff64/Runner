@@ -115,7 +115,10 @@ public class LevelManager
         }
 
         App.mapData.placementTiles.clear();
-        App.mapData.spawnFreeZones.clear();
+        App.mapData.autoFloors.clear();
+        App.mapData.placementTiles = null;
+        App.mapData.autoFloors = null;
+
         App.mapData.currentMap.dispose();
     }
 

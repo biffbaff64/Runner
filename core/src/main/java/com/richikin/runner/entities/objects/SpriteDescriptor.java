@@ -3,6 +3,7 @@ package com.richikin.runner.entities.objects;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.TileID;
+import com.richikin.runner.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.Box;
 import com.richikin.utilslib.maths.SimpleVec2F;
@@ -61,6 +62,20 @@ public class SpriteDescriptor
     public SpriteDescriptor(String objectName,
                             GraphicID graphicID,
                             GraphicID type,
+                            TileID tileID,
+                            String asset,
+                            int frames,
+                            Vec2 assetSize,
+                            Animation.PlayMode playMode)
+    {
+        this(objectName, graphicID, type, asset, frames, tileID);
+        this._PLAYMODE = playMode;
+        this._SIZE     = assetSize;
+    }
+
+    public SpriteDescriptor(String objectName,
+                            GraphicID graphicID,
+                            GraphicID type,
                             String asset,
                             int frames,
                             TileID tileID)
@@ -74,21 +89,7 @@ public class SpriteDescriptor
         this._TYPE   = type;
     }
 
-    public SpriteDescriptor(String objectName,
-                            GraphicID graphicID,
-                            GraphicID type,
-                            TileID tileID,
-                            String asset,
-                            int frames,
-                            Vec2 assetSize,
-                            Animation.PlayMode playMode)
-    {
-        this(objectName, graphicID, type, asset, frames, tileID);
-        this._PLAYMODE = playMode;
-        this._SIZE     = assetSize;
-    }
-
-    public SpriteDescriptor(SpriteDescriptor descriptor)
+    public void set(SpriteDescriptor descriptor)
     {
         this._GID       = descriptor._GID;
         this._TYPE      = descriptor._TYPE;
@@ -112,24 +113,27 @@ public class SpriteDescriptor
 
     public void debug()
     {
-        Trace.__FILE_FUNC_WithDivider();
-        Trace.dbg("_GID            : " + _GID);
-        Trace.dbg("_TYPE           : " + _TYPE);
-        Trace.dbg("_POSITION       : " + (_POSITION != null ? _POSITION.toString() : "NOT SET"));
-        Trace.dbg("_SIZE           : " + (_SIZE != null ? _SIZE.toString() : "NOT SET"));
-        Trace.dbg("_INDEX          : " + _INDEX);
-        Trace.dbg("_FRAMES         : " + _FRAMES);
-        Trace.dbg("_PLAYMODE       : " + _PLAYMODE);
-        Trace.dbg("_ANIM_RATE      : " + _ANIM_RATE);
-        Trace.dbg("_NAME           : " + (_NAME != null ? _NAME : "NOT SET"));
-        Trace.dbg("_ASSET          : " + (_ASSET != null ? _ASSET : "NOT SET"));
-        Trace.dbg("_LINK           : " + _LINK);
-        Trace.dbg("_TILE           : " + _TILE);
-        Trace.dbg("_PARENT         : " + _PARENT);
-        Trace.dbg("_DIR            : " + (_DIR != null ? _DIR.toString() : "NOT SET"));
-        Trace.dbg("_DIST           : " + (_DIST != null ? _DIST.toString() : "NOT SET"));
-        Trace.dbg("_SPEED          : " + (_SPEED != null ? _SPEED.toString() : "NOT SET"));
-        Trace.dbg("_BOX            : " + (_BOX != null ? _BOX.toString() : "NOT SET"));
-        Trace.dbg("_ENEMY          : " + _ENEMY);
+        if (Developer.isDevMode())
+        {
+            Trace.__FILE_FUNC_WithDivider();
+            Trace.dbg("_GID            : " + _GID);
+            Trace.dbg("_TYPE           : " + _TYPE);
+            Trace.dbg("_POSITION       : " + (_POSITION != null ? _POSITION.toString() : "NOT SET"));
+            Trace.dbg("_SIZE           : " + (_SIZE != null ? _SIZE.toString() : "NOT SET"));
+            Trace.dbg("_INDEX          : " + _INDEX);
+            Trace.dbg("_FRAMES         : " + _FRAMES);
+            Trace.dbg("_PLAYMODE       : " + _PLAYMODE);
+            Trace.dbg("_ANIM_RATE      : " + _ANIM_RATE);
+            Trace.dbg("_NAME           : " + (_NAME != null ? _NAME : "NOT SET"));
+            Trace.dbg("_ASSET          : " + (_ASSET != null ? _ASSET : "NOT SET"));
+            Trace.dbg("_LINK           : " + _LINK);
+            Trace.dbg("_TILE           : " + _TILE);
+            Trace.dbg("_PARENT         : " + (_PARENT != null ? _PARENT : "NOT SET"));
+            Trace.dbg("_DIR            : " + (_DIR != null ? _DIR.toString() : "NOT SET"));
+            Trace.dbg("_DIST           : " + (_DIST != null ? _DIST.toString() : "NOT SET"));
+            Trace.dbg("_SPEED          : " + (_SPEED != null ? _SPEED.toString() : "NOT SET"));
+            Trace.dbg("_BOX            : " + (_BOX != null ? _BOX.toString() : "NOT SET"));
+            Trace.dbg("_ENEMY          : " + _ENEMY);
+        }
     }
 }

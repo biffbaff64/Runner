@@ -42,22 +42,11 @@ public class DecorationsHandler extends GenericEntityManager
             {
                 if (descriptor._GID.equals(item.graphicID))
                 {
-                    descriptor.debug();
-                    
                     item.currentTotal = 0;
                     item.maxTotal++;
                 }
             }
         }
-
-//        Trace.divider();
-//
-//        for (EntityCounts item : decorationsList)
-//        {
-//            Trace.dbg(item.graphicID + " : currentTotal: " + item.currentTotal + " : maxTotal: " + item.maxTotal);
-//        }
-//
-//        Trace.divider();
 
         create();
     }
@@ -73,15 +62,11 @@ public class DecorationsHandler extends GenericEntityManager
         {
             Array<SpriteDescriptor> tiles = managerUtils.getDescriptorList(item.graphicID);
 
-//            Trace.dbg(tiles.size + " entries found for ID: " + item.graphicID);
-
             if (tiles.size > 0)
             {
                 for (SpriteDescriptor descriptor : tiles)
                 {
-                    descriptor._ASSET = checkAssetName(descriptor)._ASSET;
-
-//                    descriptor.debug();
+                    descriptor._ASSET = checkAssetName(descriptor);
 
                     Decoration decoration = new Decoration(descriptor._GID);
                     decoration.initialise(descriptor);
@@ -106,7 +91,7 @@ public class DecorationsHandler extends GenericEntityManager
         return decorationsList;
     }
 
-    private SpriteDescriptor checkAssetName(SpriteDescriptor descriptor)
+    private String checkAssetName(SpriteDescriptor descriptor)
     {
         final String[] barrels =
             {
@@ -124,15 +109,15 @@ public class DecorationsHandler extends GenericEntityManager
                 GameAssets._POT_4_ASSET,
             };
 
-        if (graphicID == GraphicID.G_BARREL)
+        if (descriptor._GID == GraphicID.G_BARREL)
         {
             descriptor._ASSET = barrels[MathUtils.random(barrels.length - 1)];
         }
-        else if (graphicID == GraphicID.G_POT)
+        else if (descriptor._GID == GraphicID.G_POT)
         {
             descriptor._ASSET = pots[MathUtils.random(pots.length - 1)];
         }
 
-        return descriptor;
+        return descriptor._ASSET;
     }
 }

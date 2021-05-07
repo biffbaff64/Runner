@@ -1,12 +1,8 @@
 package com.richikin.runner.entities.managers;
 
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.runner.core.App;
 import com.richikin.runner.entities.components.IEntityManagerComponent;
-import com.richikin.runner.entities.objects.SpriteDescriptor;
-import com.richikin.utilslib.maths.Vec3;
 
 public class GenericEntityManager implements IEntityManagerComponent, Disposable
 {

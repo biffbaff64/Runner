@@ -69,7 +69,6 @@ public class MapData
 
     public TiledMap                currentMap;
     public MapObjects              mapObjects;
-    public Array<Rectangle>        spawnFreeZones;
     public Array<SpriteDescriptor> placementTiles;
     public Array<BaseEntity>       autoFloors;
 
@@ -86,7 +85,10 @@ public class MapData
         viewportBox         = new Rectangle();
         entityWindow        = new Rectangle();
         mapBox              = new Rectangle();
-        spawnFreeZones      = new Array<>();
+
+        //
+        // placementTiles and autoFloors arrays will
+        // be created later, when the map is created.
         placementTiles      = new Array<>();
         autoFloors          = new Array<>();
     }
@@ -100,7 +102,6 @@ public class MapData
         currentMap     = tmxMapLoader.load(currentMapName);
 
         setGameLevelMap(mapLayerNames);
-        setNoSpawnZones();
 
         if (mapRenderer != null)
         {
@@ -138,8 +139,6 @@ public class MapData
                     Gfx._VIEW_HEIGHT
                 );
 
-            //
-            // entityWindow is ONLY to be used for entity tracking
             entityWindow.set
                 (
                     (App.getPlayer().getPosition().x - (Gfx._VIEW_WIDTH + Gfx._VIEW_HALF_WIDTH)),
@@ -188,22 +187,6 @@ public class MapData
     }
 
     /**
-     * Creates a map of areas that enemies cannot spawn into.
-     */
-    private void setNoSpawnZones()
-    {
-        spawnFreeZones.clear();
-
-        for (MapObject mapObject : mapObjects)
-        {
-            if (mapObject instanceof RectangleMapObject)
-            {
-                spawnFreeZones.add(new Rectangle(((RectangleMapObject) mapObject).getRectangle()));
-            }
-        }
-    }
-
-    /**
      *
      */
     private void debugMap()
@@ -240,9 +223,9 @@ public class MapData
         entityWindow        = null;
         mapBox              = null;
 
-        spawnFreeZones.clear();
         placementTiles.clear();
-        spawnFreeZones = null;
+        autoFloors.clear();
         placementTiles = null;
+        autoFloors = null;
     }
 }

@@ -32,6 +32,7 @@ public class Startup
         // Initialise DEBUG classes
         //noinspection LibGDXLogLevel
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
+        Trace.enableWriteToFile(true);
         Trace.openDebugFile("debug_log.txt", true);
         Trace.__FILE_FUNC_WithDivider();
 
