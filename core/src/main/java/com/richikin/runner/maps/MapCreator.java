@@ -358,16 +358,6 @@ public class MapCreator
         descriptor._DIR        = new Direction();
         descriptor._SPEED      = new SimpleVec2F();
 
-        //
-        // Create the bounding box for this placement tile.
-        descriptor._BOX = new Box
-            (
-                (int) (((TiledMapTileMapObject) mapObject).getX()),
-                (int) (((TiledMapTileMapObject) mapObject).getY()),
-                Gfx.getTileWidth(),
-                Gfx.getTileHeight()
-            );
-
         ObjectTileProperties properties = setObjectTileProperties(descriptor);
 
         if (properties.hasDistance)

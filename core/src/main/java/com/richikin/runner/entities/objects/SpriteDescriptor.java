@@ -20,7 +20,7 @@ public class SpriteDescriptor
 {
     public String             _NAME;         // MUST Match the name assigned in TiledMap.
     public GraphicID          _GID;          // ID. See GraphicID class for options.
-    public TileID             _TILE;         //
+    public TileID             _TILE;         // The associated marker tile.
     public String             _ASSET;        // The initial image asset.
     public int                _FRAMES;       // Number of frames in the asset above.
     public GraphicID          _TYPE;         // _MAIN, _INTERACTIVE, _PICKUP etc
@@ -30,12 +30,10 @@ public class SpriteDescriptor
     public Animation.PlayMode _PLAYMODE;     // Animation playmode for the asset frames above.
     public float              _ANIM_RATE;    // Animation speed
     public GdxSprite          _PARENT;       // Parent GDXSprite (if applicable).
-    public int                _LINK;         // Linked GDXSprite (if applicable).
+    public int                _LINK;         // Linked GDXSprite (if applicable) (Index into entityMap).
     public Direction          _DIR;          // Initial direction of travel.
     public SimpleVec2F        _DIST;         // Initial travel distance. Useful for moving blocks etc.
     public SimpleVec2F        _SPEED;        // Initial speed.
-    public Box                _BOX;          //
-    public boolean            _ENEMY;        //
 
     public SpriteDescriptor()
     {
@@ -52,11 +50,9 @@ public class SpriteDescriptor
         this._LINK      = 0;
         this._TILE      = TileID._DEFAULT_TILE;
         this._PARENT    = null;
-        this._DIR       = null;
-        this._DIST      = null;
-        this._SPEED     = null;
-        this._BOX       = null;
-        this._ENEMY     = false;
+        this._DIR       = new Direction();
+        this._DIST      = new SimpleVec2F();
+        this._SPEED     = new SimpleVec2F();
     }
 
     public SpriteDescriptor(String objectName,
@@ -69,8 +65,10 @@ public class SpriteDescriptor
                             Animation.PlayMode playMode)
     {
         this(objectName, graphicID, type, asset, frames, tileID);
+
         this._PLAYMODE = playMode;
-        this._SIZE     = assetSize;
+        this._SIZE.x   = assetSize.x;
+        this._SIZE.y   = assetSize.y;
     }
 
     public SpriteDescriptor(String objectName,
@@ -91,10 +89,16 @@ public class SpriteDescriptor
 
     public void set(SpriteDescriptor descriptor)
     {
-        this._GID       = descriptor._GID;
-        this._TYPE      = descriptor._TYPE;
-        this._POSITION  = descriptor._POSITION;
-        this._SIZE      = descriptor._SIZE;
+        this._GID  = descriptor._GID;
+        this._TYPE = descriptor._TYPE;
+
+        this._POSITION.x = descriptor._POSITION.x;
+        this._POSITION.y = descriptor._POSITION.y;
+        this._POSITION.z = descriptor._POSITION.z;
+
+        this._SIZE.x = descriptor._SIZE.x;
+        this._SIZE.y = descriptor._SIZE.y;
+
         this._INDEX     = descriptor._INDEX;
         this._FRAMES    = descriptor._FRAMES;
         this._PLAYMODE  = descriptor._PLAYMODE;
@@ -104,11 +108,10 @@ public class SpriteDescriptor
         this._LINK      = descriptor._LINK;
         this._TILE      = descriptor._TILE;
         this._PARENT    = descriptor._PARENT;
-        this._DIR       = descriptor._DIR;
-        this._DIST      = descriptor._DIST;
-        this._SPEED     = descriptor._SPEED;
-        this._BOX       = descriptor._BOX;
-        this._ENEMY     = descriptor._ENEMY;
+
+        this._DIR.set(descriptor._DIR);
+        this._DIST.set(descriptor._DIST);
+        this._SPEED.set(descriptor._SPEED);
     }
 
     public void debug()
@@ -132,8 +135,6 @@ public class SpriteDescriptor
             Trace.dbg("_DIR            : " + (_DIR != null ? _DIR.toString() : "NOT SET"));
             Trace.dbg("_DIST           : " + (_DIST != null ? _DIST.toString() : "NOT SET"));
             Trace.dbg("_SPEED          : " + (_SPEED != null ? _SPEED.toString() : "NOT SET"));
-            Trace.dbg("_BOX            : " + (_BOX != null ? _BOX.toString() : "NOT SET"));
-            Trace.dbg("_ENEMY          : " + _ENEMY);
         }
     }
 }

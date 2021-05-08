@@ -43,8 +43,8 @@ public class EntityManager implements IEntityManager
 
         this.playerManager = new PlayerManager();
 
-//        this.alienManagerIndex       = App.entityData.addManager(new EnemyHandler());
-//        this.blocksManagerIndex      = App.entityData.addManager(new BlocksHandler());
+        this.alienManagerIndex       = App.entityData.addManager(new EnemyHandler());
+        this.blocksManagerIndex      = App.entityData.addManager(new BlocksHandler());
         this.decorationsManagerIndex = App.entityData.addManager(new DecorationsHandler());
     }
 

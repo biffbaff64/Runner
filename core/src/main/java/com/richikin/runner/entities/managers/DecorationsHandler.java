@@ -15,16 +15,16 @@ public class DecorationsHandler extends GenericEntityManager
 {
     private final EntityCounts[] decorationsList =
         {
-//            new EntityCounts(GraphicID.G_ALCOVE_TORCH, 0, 0),
-//            new EntityCounts(GraphicID.G_BARREL, 0, 0),
-//            new EntityCounts(GraphicID.G_CRATE, 0, 0),
-//            new EntityCounts(GraphicID.G_GLOW_EYES, 0, 0),
-//            new EntityCounts(GraphicID.G_PLANT_POT, 0, 0),
+            new EntityCounts(GraphicID.G_ALCOVE_TORCH, 0, 0),
+            new EntityCounts(GraphicID.G_BARREL, 0, 0),
+            new EntityCounts(GraphicID.G_CRATE, 0, 0),
+            new EntityCounts(GraphicID.G_GLOW_EYES, 0, 0),
+            new EntityCounts(GraphicID.G_PLANT_POT, 0, 0),
             new EntityCounts(GraphicID.G_POT, 0, 0),
-//            new EntityCounts(GraphicID.G_WAGON_WHEEL, 0, 0),
-//            new EntityCounts(GraphicID.G_POT_STAND, 0, 0),
-//            new EntityCounts(GraphicID.G_ANVIL, 0, 0),
-//            new EntityCounts(GraphicID.G_HAMMERS, 0, 0),
+            new EntityCounts(GraphicID.G_WAGON_WHEEL, 0, 0),
+            new EntityCounts(GraphicID.G_POT_STAND, 0, 0),
+            new EntityCounts(GraphicID.G_ANVIL, 0, 0),
+            new EntityCounts(GraphicID.G_HAMMERS, 0, 0),
         };
 
     public DecorationsHandler()

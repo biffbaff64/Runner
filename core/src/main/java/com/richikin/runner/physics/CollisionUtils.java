@@ -167,17 +167,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
     @Override
     public TileID getMarkerTileOn(int x, int y)
     {
-        TileID tileID = TileID._UNKNOWN;
-
-        for (SpriteDescriptor placementTile : App.mapData.placementTiles)
-        {
-            if (placementTile._BOX.contains(x, y))
-            {
-                tileID = placementTile._TILE;
-            }
-        }
-
-        return tileID;
+        return TileID._UNKNOWN;
     }
 
     @Override
