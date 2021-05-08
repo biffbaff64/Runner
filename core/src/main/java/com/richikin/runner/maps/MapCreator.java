@@ -1,6 +1,5 @@
 package com.richikin.runner.maps;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -43,7 +42,7 @@ public class MapCreator
         }
 
         App.mapData.placementTiles = new Array<>();
-        App.mapData.autoFloors = new Array<>();
+        App.mapData.autoFloors     = new Array<>();
 
         parseMarkerTiles();
 //        parseObjectTiles();
@@ -54,43 +53,44 @@ public class MapCreator
         }
 
         createCollisionBoxes();
-
-//        debugPlacementsTiles();
     }
 
     /**
      * Parse marker tiles from the TILES marker tiles layer. This layer
      * is for basic marker tiles with no properties. Eventually MarkerTiles and
      * ObjectTiles layers should be combined.
-     * NB: Does NOT create entities. This just extracts markers from
-     * the Tile map (Object Layer) and creates the necessary information from them.
+     * <p>
+     * The array {@link MapData#placementTiles} will be filled with all relevant
+     * data needed to define and place game entities, except for the MainPlayer.
+     * No entities will be created, this will be done later.
      */
     protected void parseMarkerTiles()
     {
         Trace.__FILE_FUNC();
 
-        int    xOffset    = 0;
-        int    yOffset    = 0;
-        int    arrayIndex = 0;
-        TileID tileID;
+        int     xOffset    = 0;
+        int     yOffset    = 0;
+        int     arrayIndex = 0;
+        TileID  tileID;
+        boolean isIgnoreTile;
 
         for (int y = 0; y < App.mapData.markerTilesLayer.getHeight(); y++)
         {
             for (int x = 0; x < App.mapData.markerTilesLayer.getWidth(); x++)
             {
-                // getCell() returns null if the raw data at x,y is zero.
-                // This is Ok because, here, that means there is no
-                // marker tile to process.
+                // getCell() returns null if the raw data at x,y is zero. This is Ok
+                // because, here, that means there is no marker tile to process.
                 TiledMapTileLayer.Cell cell = App.mapData.markerTilesLayer.getCell(x, y);
 
                 if (cell != null)
                 {
                     tileID = TileID.fromValue(cell.getTile().getId());
 
-                    boolean isIgnoreTile = false;
-
                     switch (tileID)
                     {
+                        //
+                        // Marker tiles that should not create entries
+                        // in the placements array.
                         case _NORTH_TILE,
                             _EAST_TILE,
                             _SOUTH_TILE,
@@ -111,6 +111,7 @@ public class MapCreator
                             _HIDDEN_COIN_TILE -> {
 
                             setEntityPlaceable(GraphicID._PICKUP, true);
+                            isIgnoreTile = false;
                         }
 
                         case _ALCOVE_TORCH_TILE,
@@ -122,21 +123,25 @@ public class MapCreator
                             _GLOW_EYES_TILE -> {
 
                             setEntityPlaceable(GraphicID._DECORATION, true);
+                            isIgnoreTile = false;
                         }
 
                         case _VILLAGER_TILE -> {
 
                             setEntityPlaceable(GraphicID.G_VILLAGER, true);
+                            isIgnoreTile = false;
                         }
 
                         case _SOLDIER_TILE -> {
 
                             setEntityPlaceable(GraphicID.G_SOLDIER, true);
+                            isIgnoreTile = false;
                         }
 
                         case _TURRET_TILE -> {
 
                             setEntityPlaceable(GraphicID.G_TURRET, true);
+                            isIgnoreTile = false;
                         }
 
                         case _STORM_DEMON_TILE,
@@ -144,6 +149,7 @@ public class MapCreator
                             _BOUNCER_TILE -> {
 
                             setEntityPlaceable(GraphicID._MONSTER, true);
+                            isIgnoreTile = false;
                         }
 
                         case _LEVER_TILE,
@@ -154,6 +160,7 @@ public class MapCreator
                             _ESCALATOR_RIGHT_TILE -> {
 
                             setEntityPlaceable(GraphicID._INTERACTIVE, true);
+                            isIgnoreTile = false;
                         }
 
                         default -> {
@@ -179,11 +186,7 @@ public class MapCreator
                         descriptor._POSITION.y = yOffset;
                         descriptor._INDEX      = arrayIndex++;
 
-//                        Trace.dbg("Adding " + tileID.name() + "(" + xOffset + ", " + yOffset + ")" + " at index " + App.mapData.placementTiles.size);
-
                         App.mapData.placementTiles.add(descriptor);
-
-//                        descriptor.debug();
                     }
                 }
 
@@ -287,7 +290,7 @@ public class MapCreator
 
                     if (baseEntity.gid != GraphicID.G_NO_ID)
                     {
-                        baseEntity.position    = new SimpleVec3
+                        baseEntity.position = new SimpleVec3
                             (
                                 (int) ((float) mapObject.getProperties().get("x")),
                                 (int) ((float) mapObject.getProperties().get("y")),
@@ -442,7 +445,7 @@ public class MapCreator
     {
         Trace.__FILE_FUNC();
 
-        for (int i=0; i<App.mapData.placementTiles.size; i++)
+        for (int i = 0; i < App.mapData.placementTiles.size; i++)
         {
             App.mapData.placementTiles.get(i).debug();
         }

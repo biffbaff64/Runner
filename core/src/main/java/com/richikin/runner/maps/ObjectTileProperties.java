@@ -1,10 +1,5 @@
 package com.richikin.runner.maps;
 
-/**
- * ------------------------------------------------------------------------------
- * <p>
- * ------------------------------------------------------------------------------
- */
 public class ObjectTileProperties
 {
     public boolean hasDirection;

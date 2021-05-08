@@ -43,11 +43,14 @@ public class EntityManager implements IEntityManager
 
         this.playerManager = new PlayerManager();
 
-        this.alienManagerIndex       = App.entityData.addManager(new EnemyHandler());
-        this.blocksManagerIndex      = App.entityData.addManager(new BlocksHandler());
+//        this.alienManagerIndex       = App.entityData.addManager(new EnemyHandler());
+//        this.blocksManagerIndex      = App.entityData.addManager(new BlocksHandler());
         this.decorationsManagerIndex = App.entityData.addManager(new DecorationsHandler());
     }
 
+    /**
+     * Level-specific entity initialisation.
+     */
     public void initialiseForLevel()
     {
         Trace.__FILE_FUNC();
@@ -181,11 +184,14 @@ public class EntityManager implements IEntityManager
     @Override
     public void releaseEntity(GdxSprite entity)
     {
-        for (GraphicID gid : enemies)
+        if (!App.entityData.managerList.isEmpty())
         {
-            if (gid == entity.gid)
+            for (GraphicID gid : enemies)
             {
-                App.entityData.managerList.get(alienManagerIndex).free(gid);
+                if (gid == entity.gid)
+                {
+                    App.entityData.managerList.get(alienManagerIndex).free(gid);
+                }
             }
         }
     }
