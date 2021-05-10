@@ -14,16 +14,20 @@ import com.richikin.utilslib.logging.Trace;
 
 public class BlocksHandler extends GenericEntityManager
 {
-    private final EntityCounts[] blockTypes =
+    //
+    // This only needs to be a list of the GraphicID types,
+    // unlike pickups, for instance, as these entities
+    // cannot be destroyed and respawned.
+    private final GraphicID[] blockTypes =
         {
-            new EntityCounts(GraphicID.G_SPIKE_BALL, 0, 0),
-            new EntityCounts(GraphicID.G_SPIKE_BLOCK_HORIZONTAL, 0, 0),
-            new EntityCounts(GraphicID.G_SPIKE_BLOCK_VERTICAL, 0, 0),
-            new EntityCounts(GraphicID.G_LOOP_BLOCK_HORIZONTAL, 0, 0),
-            new EntityCounts(GraphicID.G_LOOP_BLOCK_VERTICAL, 0, 0),
-            new EntityCounts(GraphicID.G_FLOATING_PLATFORM, 0, 0),
-            new EntityCounts(GraphicID.G_BIG_BLOCK_HORIZONTAL, 0, 0),
-            new EntityCounts(GraphicID.G_BIG_BLOCK_VERTICAL, 0, 0),
+            GraphicID.G_SPIKE_BALL,
+            GraphicID.G_SPIKE_BLOCK_HORIZONTAL,
+            GraphicID.G_SPIKE_BLOCK_VERTICAL,
+            GraphicID.G_LOOP_BLOCK_HORIZONTAL,
+            GraphicID.G_LOOP_BLOCK_VERTICAL,
+            GraphicID.G_FLOATING_PLATFORM,
+            GraphicID.G_BIG_BLOCK_HORIZONTAL,
+            GraphicID.G_BIG_BLOCK_VERTICAL,
         };
 
     /**
@@ -41,18 +45,6 @@ public class BlocksHandler extends GenericEntityManager
     {
         Trace.__FILE_FUNC();
 
-        for (EntityCounts item : blockTypes)
-        {
-            for (SpriteDescriptor descriptor : App.mapData.placementTiles)
-            {
-                if (descriptor._GID.equals(item.graphicID))
-                {
-                    item.currentTotal = 0;
-                    item.maxTotal++;
-                }
-            }
-        }
-
         create();
     }
 
@@ -64,23 +56,23 @@ public class BlocksHandler extends GenericEntityManager
     {
         TiledUtils tiledUtils = new TiledUtils();
 
-        for (EntityCounts item : blockTypes)
+        for (GraphicID item : blockTypes)
         {
-            Array<SpriteDescriptor> tiles = tiledUtils.findMultiTiles(item.graphicID);
+            Array<SpriteDescriptor> tiles = tiledUtils.findMultiTiles(item);
 
             if (tiles.size > 0)
             {
                 for (int i=0; i< tiles.size; i++)
                 {
-                    SpriteDescriptor descriptor = App.entities.getDescriptor(item.graphicID);
+                    SpriteDescriptor descriptor = App.entities.getDescriptor(item);
 
                     descriptor._ASSET = checkAssetName(descriptor)._ASSET;
 
-                    switch (item.graphicID)
+                    switch (item)
                     {
                         case G_SPIKE_BALL -> {
 
-                            SpikeBall spikeBall = new SpikeBall(item.graphicID);
+                            SpikeBall spikeBall = new SpikeBall(item);
                             spikeBall.initialise(descriptor);
 
                             App.entityData.addEntity(spikeBall);
@@ -89,7 +81,7 @@ public class BlocksHandler extends GenericEntityManager
                         case G_SPIKE_BLOCK_HORIZONTAL,
                             G_SPIKE_BLOCK_VERTICAL -> {
 
-                            SpikeBlock spikeBlock = new SpikeBlock(item.graphicID);
+                            SpikeBlock spikeBlock = new SpikeBlock(item);
                             spikeBlock.initialise(descriptor);
 
                             App.entityData.addEntity(spikeBlock);
@@ -98,7 +90,7 @@ public class BlocksHandler extends GenericEntityManager
                         case G_LOOP_BLOCK_HORIZONTAL,
                             G_LOOP_BLOCK_VERTICAL -> {
 
-                            LoopBlock loopBlock = new LoopBlock(item.graphicID);
+                            LoopBlock loopBlock = new LoopBlock(item);
                             loopBlock.initialise(descriptor);
 
                             App.entityData.addEntity(loopBlock);
@@ -106,7 +98,7 @@ public class BlocksHandler extends GenericEntityManager
 
                         case G_FLOATING_PLATFORM -> {
 
-                            FloatingPlatform platform = new FloatingPlatform(item.graphicID);
+                            FloatingPlatform platform = new FloatingPlatform(item);
                             platform.initialise(descriptor);
 
                             App.entityData.addEntity(platform);
@@ -115,7 +107,7 @@ public class BlocksHandler extends GenericEntityManager
                         case G_BIG_BLOCK_HORIZONTAL,
                             G_BIG_BLOCK_VERTICAL -> {
 
-                            BigBlock bigBlock = new BigBlock(item.graphicID);
+                            BigBlock bigBlock = new BigBlock(item);
                             bigBlock.initialise(descriptor);
 
                             App.entityData.addEntity(bigBlock);
@@ -125,7 +117,7 @@ public class BlocksHandler extends GenericEntityManager
                         }
                     }
 
-                    EntityStats.log(item.graphicID);
+                    EntityStats.log(item);
                 }
             }
         }
@@ -149,13 +141,5 @@ public class BlocksHandler extends GenericEntityManager
         }
 
         return descriptor;
-    }
-
-    /**
-     *
-     */
-    public EntityCounts[] getBlockTypes()
-    {
-        return blockTypes;
     }
 }
