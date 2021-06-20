@@ -33,7 +33,6 @@ public class Entities
                     GameAssets._PRISONER_IDLE_DOWN_ASSET, GameAssets._PRISONER_IDLE_FRAMES,
                     new Vec2(128, 128),
                     Animation.PlayMode.LOOP
-
                 ),
 
             new SpriteDescriptor
@@ -43,7 +42,6 @@ public class Entities
                     GameAssets._VILLAGER_IDLE_DOWN_ASSET, GameAssets._VILLAGER_IDLE_FRAMES,
                     new Vec2(128, 128),
                     Animation.PlayMode.LOOP
-
                 ),
 
             // Lasers, Bullets, Explosions, etc
@@ -57,7 +55,6 @@ public class Entities
                     new Vec2(64, 64),
                     Animation.PlayMode.LOOP
                 ),
-
 
             // Decorations
             new SpriteDescriptor
@@ -76,7 +73,6 @@ public class Entities
                     GameAssets._BARREL_1_ASSET, GameAssets._BARREL_FRAMES,
                     new Vec2(90, 152),
                     Animation.PlayMode.NORMAL
-
                 ),
 
             new SpriteDescriptor
@@ -86,7 +82,6 @@ public class Entities
                     GameAssets._PLANT_POT_ASSET, GameAssets._PLANT_POT_FRAMES,
                     new Vec2(64, 146),
                     Animation.PlayMode.NORMAL
-
                 ),
 
             new SpriteDescriptor
@@ -96,7 +91,6 @@ public class Entities
                     GameAssets._POT_1_ASSET, GameAssets._POT_FRAMES,
                     new Vec2(93, 128),
                     Animation.PlayMode.NORMAL
-
                 ),
 
             // Interactive
@@ -107,7 +101,6 @@ public class Entities
                     GameAssets._WOOD_DOOR_ASSET, GameAssets._DOOR_FRAMES,
                     new Vec2(512, 384),
                     Animation.PlayMode.NORMAL
-
                 ),
 
             // Stationary Enemies

@@ -46,20 +46,20 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
     // -----------------------------------------------
     // Collision Related
     //
-    public  AABB                     aabb;
+    public AABB aabb;
 
     // -----------------------------------------------
     // public flags
     //
-    public  boolean                  isDrawable;
-    public  boolean                  isRotating;
-    public  boolean                  isFlippedX;
-    public  boolean                  isFlippedY;
-    public  boolean                  canFlip;
-    public  boolean                  isAnimating;
-    public  boolean                  isLinked;
-    public  boolean                  isMainCharacter;
-    public  boolean                  isEnemy;
+    public boolean isDrawable;
+    public boolean isRotating;
+    public boolean isFlippedX;
+    public boolean isFlippedY;
+    public boolean canFlip;
+    public boolean isAnimating;
+    public boolean isLinked;
+    public boolean isMainCharacter;
+    public boolean isEnemy;
 
     // -----------------------------------------------
     // Animation related
@@ -129,11 +129,11 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
         }
 
         initPosition(new SimpleVec3
-            (
-                descriptor._POSITION.x,
-                descriptor._POSITION.y,
-                descriptor._POSITION.z
-            ));
+                (
+                        descriptor._POSITION.x,
+                        descriptor._POSITION.y,
+                        descriptor._POSITION.z
+                ));
 
         setCollisionObject(sprite.getX(), sprite.getY());
 
@@ -161,12 +161,12 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
         if (App.settings.isEnabled(Settings._BOX2D_PHYSICS))
         {
             b2dBody = App.worldModel.bodyBuilder.createDynamicBox
-                (
-                    this,
-                    1.0f,
-                    B2DConstants.DEFAULT_FRICTION,
-                    B2DConstants.DEFAULT_RESTITUTION
-                );
+                    (
+                            this,
+                            1.0f,
+                            B2DConstants.DEFAULT_FRICTION,
+                            B2DConstants.DEFAULT_RESTITUTION
+                    );
         }
     }
 
@@ -177,11 +177,11 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
         if (App.settings.isEnabled(Settings._BOX2D_PHYSICS))
         {
             b2dBody = App.worldModel.bodyBuilder.createKinematicBody
-                (
-                    this,
-                    1.0f,
-                    B2DConstants.DEFAULT_RESTITUTION
-                );
+                    (
+                            this,
+                            1.0f,
+                            B2DConstants.DEFAULT_RESTITUTION
+                    );
         }
     }
 
@@ -207,10 +207,10 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
             if (b2dBody != null)
             {
                 sprite.setPosition
-                    (
-                        (b2dBody.getPosition().x * Gfx._PPM) - (frameWidth >> 1),
-                        (b2dBody.getPosition().y * Gfx._PPM) - (frameHeight >> 1)
-                    );
+                        (
+                                (b2dBody.getPosition().x * Gfx._PPM) - (frameWidth >> 1),
+                                (b2dBody.getPosition().y * Gfx._PPM) - (frameHeight >> 1)
+                        );
             }
         }
     }
@@ -219,9 +219,9 @@ public class GdxSprite extends BaseEntity implements ISpriteComponent
     public void preUpdate()
     {
         if (App.gameProgress.levelCompleted
-            && !isMainCharacter
-            && (entityAction != ActionStates._DEAD)
-            && (entityAction != ActionStates._DYING))
+                && !isMainCharacter
+                && (entityAction != ActionStates._DEAD)
+                && (entityAction != ActionStates._DYING))
         {
             entityAction = ActionStates._DYING;
         }
