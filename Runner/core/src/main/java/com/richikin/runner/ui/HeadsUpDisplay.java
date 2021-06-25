@@ -25,7 +25,6 @@ import com.richikin.utilslib.input.IGDXButton;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.ui.IUIProgressBar;
 import com.richikin.utilslib.ui.ProgressBar;
 
 import java.util.Locale;
@@ -58,26 +57,26 @@ public class HeadsUpDisplay implements IHud
     //@formatter:off
     public final int[][] displayPos =
         {
-            {  25,  820,   25,  240,  240},             // Joystick
+            {25, 820, 25, 240, 240},             // Joystick
 
-            { 979,   22,   87,   96,   96},             // X
-            {1080,   22,  156,   96,   96},             // Y
-            {1177,   22,   87,   96,   96},             // B (Attack)
-            {1080,   79,   14,   96,   96},             // A (Action)
+            {979, 22, 87, 96, 96},             // X
+            {1080, 22, 156, 96, 96},             // Y
+            {1177, 22, 87, 96, 96},             // B (Attack)
+            {1080, 79, 14, 96, 96},             // A (Action)
 
-            {1179, 1179,  630,   66,   66},             // Pause Button
-
-            //
-            // Y is distance from the TOP of the screen
-            { 990,  990,   28,    0,    0},             // Coins total
-            { 990,  990,   70,    0,    0},             // Gems total
-            {  75,   75,   47,    0,    0},             // Life bar
-            {  75,   75,   89,    0,    0},             // Health bar
+            {1179, 1179, 630, 66, 66},             // Pause Button
 
             //
             // Y is distance from the TOP of the screen
-            { 835,  835,   53,    0,    0},             // Villagers
-            {1172, 1172,  101,    0,    0},             // Compass
+            {990, 990, 28, 0, 0},             // Coins total
+            {990, 990, 70, 0, 0},             // Gems total
+            {75, 75, 47, 0, 0},             // Life bar
+            {75, 75, 89, 0, 0},             // Health bar
+
+            //
+            // Y is distance from the TOP of the screen
+            {835, 835, 53, 0, 0},             // Villagers
+            {1172, 1172, 101, 0, 0},             // Compass
         };
     //@formatter:on
 
@@ -101,8 +100,8 @@ public class HeadsUpDisplay implements IHud
     public ItemBar             itemBar;
     public int                 itemPanelIndex;
 
-    private IUIProgressBar  healthBar;
-    private IUIProgressBar  livesBar;
+    private ProgressBar  healthBar;
+    private ProgressBar  livesBar;
     private TextureRegion[] compassTexture;
 
     public HeadsUpDisplay()
@@ -174,6 +173,13 @@ public class HeadsUpDisplay implements IHud
 
             case _STATE_PAUSED:
             {
+                pausePanel.update();
+
+                if (buttonPause.isPressed())
+                {
+                    AppConfig.unPause();
+                    buttonPause.release();
+                }
             }
             break;
 
@@ -266,6 +272,43 @@ public class HeadsUpDisplay implements IHud
 
     private void drawItems()
     {
+        healthBar.draw
+            (
+                (int) AppConfig.hudOriginX + displayPos[_HEALTH][_X1],
+                (int) AppConfig.hudOriginY + (Gfx._HUD_HEIGHT - displayPos[_HEALTH][_Y])
+            );
+
+        livesBar.draw
+            (
+                (int) AppConfig.hudOriginX + displayPos[_LIVES][_X1],
+                (int) AppConfig.hudOriginY + (Gfx._HUD_HEIGHT - displayPos[_LIVES][_Y])
+            );
+
+        midFont.setColor(Color.WHITE);
+
+        midFont.draw
+            (
+                App.getSpriteBatch(),
+                String.format(Locale.UK, "%d", App.gameProgress.coinCount.getTotal()),
+                AppConfig.hudOriginX + displayPos[_COINS][_X1],
+                AppConfig.hudOriginY + (Gfx._HUD_HEIGHT - displayPos[_COINS][_Y])
+            );
+
+        midFont.draw
+            (
+                App.getSpriteBatch(),
+                String.format(Locale.UK, "%d", App.gameProgress.gemCount.getTotal()),
+                AppConfig.hudOriginX + displayPos[_GEMS][_X1],
+                AppConfig.hudOriginY + (Gfx._HUD_HEIGHT - displayPos[_GEMS][_Y])
+            );
+
+        midFont.draw
+            (
+                App.getSpriteBatch(),
+                String.format(Locale.UK, "%3d", App.gameProgress.rescuedVillagers.getTotal()),
+                AppConfig.hudOriginX + displayPos[_VILLAGERS][_X1],
+                AppConfig.hudOriginY + (Gfx._HUD_HEIGHT - displayPos[_VILLAGERS][_Y])
+            );
     }
 
     private void drawCompass()
@@ -427,12 +470,12 @@ public class HeadsUpDisplay implements IHud
         itemPanelIndex = index;
     }
 
-    public IUIProgressBar getHealthBar()
+    public ProgressBar getHealthBar()
     {
         return healthBar;
     }
 
-    public IUIProgressBar getLivesBar()
+    public ProgressBar getLivesBar()
     {
         return livesBar;
     }
@@ -544,8 +587,8 @@ public class HeadsUpDisplay implements IHud
         // TODO: 20/04/2021
 //        messageManager.dispose();
 //        pausePanel.dispose();
-//        healthBar.dispose();
-//        livesBar.dispose();
+        healthBar.dispose();
+        livesBar.dispose();
 
         healthBar = null;
         livesBar  = null;

@@ -6,6 +6,10 @@ public class PausePanel
     {
     }
 
+    public void update()
+    {
+    }
+
     public void draw()
     {
     }

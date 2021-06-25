@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.runner.core.App;
+import com.richikin.runner.entities.objects.BoundedEnemy;
 import com.richikin.runner.entities.objects.GdxSprite;
 import com.richikin.runner.entities.objects.GenericCollisionListener;
 import com.richikin.runner.entities.objects.SpriteDescriptor;
@@ -18,7 +19,7 @@ import com.richikin.utilslib.physics.aabb.ICollisionListener;
 
 import java.util.concurrent.TimeUnit;
 
-public class SpikeBall extends GdxSprite
+public class SpikeBall extends BoundedEnemy
 {
     private SimpleVec2F distanceReset;
     private StopWatch stopWatch;

@@ -42,6 +42,16 @@ public class Direction extends SimpleVec2
         return (this.x != Movement._DIRECTION_STILL) || (this.y != Movement._DIRECTION_STILL);
     }
 
+    public boolean hasXDirection()
+    {
+        return (this.x != Movement._DIRECTION_STILL);
+    }
+
+    public boolean hasYDirection()
+    {
+        return (this.y != Movement._DIRECTION_STILL);
+    }
+
     /**
      * Returns the X direction, but flipped.
      * i.e If current X direction is _DIRECTION_LEFT

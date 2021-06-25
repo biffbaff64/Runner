@@ -9,7 +9,7 @@ import com.richikin.utilslib.maths.ItemF;
 
 import java.util.concurrent.TimeUnit;
 
-public class ProgressBar extends ItemF implements IUIProgressBar, Disposable
+public class ProgressBar extends ItemF implements Disposable
 {
     private static final int _DEFAULT_BAR_HEIGHT = 26;
     private static final int _DEFAULT_INTERVAL   = 100;
@@ -51,7 +51,6 @@ public class ProgressBar extends ItemF implements IUIProgressBar, Disposable
         }
     }
 
-    @Override
     public void updateSlowDecrement()
     {
         justEmptied = false;
@@ -72,7 +71,6 @@ public class ProgressBar extends ItemF implements IUIProgressBar, Disposable
         }
     }
 
-    @Override
     public void updateSlowDecrementWithWrap(int wrap)
     {
         justEmptied = false;
@@ -94,7 +92,6 @@ public class ProgressBar extends ItemF implements IUIProgressBar, Disposable
         }
     }
 
-    @Override
     public boolean updateSlowIncrement()
     {
         if (total < maximum)
@@ -110,7 +107,6 @@ public class ProgressBar extends ItemF implements IUIProgressBar, Disposable
         return isFull();
     }
 
-    @Override
     public void setHeightColorScale(float height, Color color, float scale)
     {
         this.height = height;
@@ -118,43 +114,36 @@ public class ProgressBar extends ItemF implements IUIProgressBar, Disposable
         this.scale = scale;
     }
 
-    @Override
     public void setHeight(float _height)
     {
         height = _height;
     }
 
-    @Override
     public boolean hasRefillRoom()
     {
         return hasRoom() && (total < (getMax() - 10));
     }
 
-    @Override
     public void setColor(Color color)
     {
         this.ninePatch.setColor(color);
     }
 
-    @Override
     public float getSpeed()
     {
         return speed;
     }
 
-    @Override
     public void setSpeed(float _speed)
     {
         this.speed = _speed;
     }
 
-    @Override
     public void setSubInterval(int _subInterval)
     {
         subInterval = _subInterval;
     }
 
-    @Override
     public void setAddInterval(int _addInterval)
     {
         addInterval = _addInterval;

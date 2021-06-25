@@ -50,6 +50,30 @@ public class XYSetF extends SimpleVec2F
         }
     }
 
+    public void subXMinZero(float value)
+    {
+        if (this.x < value)
+        {
+            this.x = 0;
+        }
+        else
+        {
+            this.x -= value;
+        }
+    }
+
+    public void subYMinZero(float value)
+    {
+        if (this.y < value)
+        {
+            this.y = 0;
+        }
+        else
+        {
+            this.y -= value;
+        }
+    }
+
     @Override
     public void subX(float value)
     {
